@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Social-viz</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body onhashchange="render()">
+<nav id="main-menu"><a>Accueil</a></nav>
+<nav id="tools-panel" class="small">Options filtres et réglages
+	<section id="advanced-tools">
+
+	</section>
+	<section id="main-tools">
+
+	<input type="search"/>
+	</section>
+	<button class="reduce bottom">-</button>
+	<button class="expand bottom">+</button>
+</nav>
+<figure>
+	<figcaption id="legend" class="small">
+		<section>
+			Légende
+		</section>
+		<button class="reduce right">-</button>
+		<button class="expand right">+</button>
+	</figcaption>
+	<noscript>
+		Cette application à besoin de javascript pour fonctionner.
+		Des export imprimable devraient être disponible plus tard.
+	</noscript>
+	<svg id="viz" role="application">data-viz</svg>
+</figure>
+<article id="details" class="small">
+	<section>
+		Fiches
+	</section>
+	<button class="reduce left">-</button>
+	<button class="expand left">+</button>
+</article>
+<footer>info legals,github</footer>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

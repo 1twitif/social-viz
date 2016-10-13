@@ -1,0 +1,142 @@
+#main-menu {
+  background-color: #7fffd4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 150px;
+  width: 150px;
+}
+#tools-panel {
+  background-color: #ffe4c4;
+  position: fixed;
+  top: 0;
+  left: 150px;
+  right: 0;
+  height: 360px;
+}
+#tools-panel.hidden {
+  top: -360px;
+}
+#tools-panel.small {
+  top: -300px;
+}
+#tools-panel.big {
+  top: 0;
+}
+#tools-panel.big .expand {
+  opacity: 0;
+}
+#legend {
+  background-color: #deb887;
+  position: fixed;
+  top: 150px;
+  left: 0;
+  bottom: 0;
+  width: 150px;
+}
+#legend.hidden {
+  left: -150px;
+}
+#legend.small {
+  left: 0;
+}
+#legend.small .expand {
+  opacity: 0;
+}
+#tools-panel.hidden ~ #details {
+  top: 0;
+}
+#tools-panel.small ~ #details {
+  top: 60px;
+}
+#tools-panel.big ~ #details {
+  top: 360px;
+}
+#details {
+  background-color: #6495ed;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+}
+#details.hidden {
+  right: -300px;
+}
+#details.small {
+  right: 0;
+}
+#details.big {
+  width: 66vw;
+}
+#details.big .expand {
+  opacity: 0;
+}
+#legend > section,
+#details > section {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.hidden,
+.small,
+.big {
+  transition: all 0.5s;
+}
+footer {
+  background-color: #d3d3d3;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  z-index: -1;
+  text-align: center;
+}
+.expand,
+.reduce {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -30px;
+  margin-top: -30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  transition: opacity 0.5s;
+}
+.expand.bottom,
+.reduce.bottom {
+  top: 100%;
+}
+.expand.left,
+.reduce.left {
+  left: 0;
+}
+.expand.right,
+.reduce.right {
+  left: 100%;
+}
+.expand.bottom {
+  margin-top: 0;
+  height: 30px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.reduce.bottom {
+  height: 30px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.expand.left,
+.reduce.right {
+  width: 30px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.reduce.left,
+.expand.right {
+  margin-left: 0;
+  width: 30px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
