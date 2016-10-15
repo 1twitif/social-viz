@@ -1,31 +1,59 @@
-mainMenuWidth = 150px
-mainMenuHeight = 150px
+mainMenuWidth = 240px
+mainMenuHeight = 120px
+mainMenuCurveRadius = 60px
 mainToolsHeight = 60px
-advencedToolsHeight = 300px
+advencedToolsHeight = 60px
 toolsPanelHeight = mainToolsHeight + advencedToolsHeight
-legendWidth = 150px
+legendWidth = 180px
 detailsSmallWidth = 300px
 detailsBigWidth = 66vw
 footerHeight = 30px
 panelSizeChangerSize = 30px
 transitionDuration = 0.5s
+sizeChangerBg = #888
+mainMenuBg = sizeChangerBg
 
 hide()
-	opacity 0
+	display none
 
+*
+	font-family Calibri
+	font-size 11pt
+	margin 0
+	padding 0
+
+body
+	background-color #eeeeee
+
+.picto
+	width 24px
+	float left
+	margin-top 3px
+	margin-right 5px
+	margin-left 5px
+
+a
+	text-decoration none
+	font-weight bold
+	color #333
+	&:hover
+		text-decoration underline
 #main-menu
-	background-color: aquamarine
+	background mainMenuBg
 	position: fixed
 	top:0
 	left:0
 	height: mainMenuHeight
 	width:  mainMenuWidth
+	border-bottom-right-radius mainMenuCurveRadius
+	z-index 2
 
 #tools-panel
-	background-color: bisque
+	background-color: #aaa
 	position: fixed
 	top:0
-	left: mainMenuWidth
+	left: mainMenuWidth - mainMenuCurveRadius
+	padding-left mainMenuCurveRadius
 	right: 0
 	height: toolsPanelHeight
 	&.hidden
@@ -36,10 +64,17 @@ hide()
 		top 0
 		.expand
 			hide()
+	#advanced-tools
+		height advencedToolsHeight
+		background-color #999
+	#main-tools
+		height mainToolsHeight
 
 #legend
-	background-color burlywood
+	background-color #ccc
 	position fixed
+	display block
+
 	top mainMenuHeight
 	left 0
 	bottom 0
@@ -50,6 +85,34 @@ hide()
 		left 0
 		.expand
 			hide()
+	h2
+		text-align center
+		margin 10px
+	label
+		position relative
+		display block
+		vertical-align middle
+		clear both
+		height 40px
+		line-height 20px
+		border-top solid 1px #ddd
+		&::first-line
+			line-height 19px
+
+		&:hover
+			background-color #bbb
+	.picto
+		margin 4px
+		height 32px
+		width 32px
+		background-color #666
+	input
+		position absolute
+		bottom 2px
+		right 2px
+		width 16px
+		height 16px
+
 
 #tools-panel.hidden ~ #details
 	top 0
@@ -59,7 +122,7 @@ hide()
 	top toolsPanelHeight
 
 #details
-	background-color cornflowerblue
+	background-color #ccc
 	position fixed
 	right 0
 	bottom 0
@@ -72,26 +135,41 @@ hide()
 		width detailsBigWidth
 		.expand
 			hide()
+	section
+		padding 10px
+
 
 #legend, #details
 	> section
-		width 100%
 		height 100%
 		overflow auto
 
 .hidden, .small, .big
 	transition all transitionDuration
 footer
-	background-color lightgrey
+	background-color hsla(0,0,0,0.1);
 	position fixed
 	left 0
 	right 0
 	bottom 0
 	height footerHeight
+	line-height footerHeight
 	z-index -1
 	text-align center
+	opacity 0.5
+	a
+		margin 0 20px
+		display inline-block;
+#viz
+	position fixed
+	z-index -2
 
 .expand, .reduce
+	font-weight bold
+	font-size 20px
+	color #eee
+	background sizeChangerBg
+	border 0
 	position absolute
 	top 50%
 	left 50%
@@ -100,7 +178,6 @@ footer
 	width 2 * panelSizeChangerSize
 	height 2 * panelSizeChangerSize
 	border-radius panelSizeChangerSize
-	transition opacity transitionDuration
 	&.bottom
 		top 100%
 	&.left

@@ -1,47 +1,114 @@
+* {
+  font-family: Calibri;
+  font-size: 11pt;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #eee;
+}
+.picto {
+  width: 24px;
+  float: left;
+  margin-top: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+a:hover {
+  text-decoration: underline;
+}
 #main-menu {
-  background-color: #7fffd4;
+  background: #888;
   position: fixed;
   top: 0;
   left: 0;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 240px;
+  border-bottom-right-radius: 60px;
+  z-index: 2;
 }
 #tools-panel {
-  background-color: #ffe4c4;
+  background-color: #aaa;
   position: fixed;
   top: 0;
-  left: 150px;
+  left: 180px;
+  padding-left: 60px;
   right: 0;
-  height: 360px;
+  height: 120px;
 }
 #tools-panel.hidden {
-  top: -360px;
+  top: -120px;
 }
 #tools-panel.small {
-  top: -300px;
+  top: -60px;
 }
 #tools-panel.big {
   top: 0;
 }
 #tools-panel.big .expand {
-  opacity: 0;
+  display: none;
+}
+#tools-panel #advanced-tools {
+  height: 60px;
+  background-color: #999;
+}
+#tools-panel #main-tools {
+  height: 60px;
 }
 #legend {
-  background-color: #deb887;
+  background-color: #ccc;
   position: fixed;
-  top: 150px;
+  display: block;
+  top: 120px;
   left: 0;
   bottom: 0;
-  width: 150px;
+  width: 180px;
 }
 #legend.hidden {
-  left: -150px;
+  left: -180px;
 }
 #legend.small {
   left: 0;
 }
 #legend.small .expand {
-  opacity: 0;
+  display: none;
+}
+#legend h2 {
+  text-align: center;
+  margin: 10px;
+}
+#legend label {
+  position: relative;
+  display: block;
+  vertical-align: middle;
+  clear: both;
+  height: 40px;
+  line-height: 20px;
+  border-top: solid 1px #ddd;
+}
+#legend label::first-line {
+  line-height: 19px;
+}
+#legend label:hover {
+  background-color: #bbb;
+}
+#legend .picto {
+  margin: 4px;
+  height: 32px;
+  width: 32px;
+  background-color: #666;
+}
+#legend input {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
 }
 #tools-panel.hidden ~ #details {
   top: 0;
@@ -50,10 +117,10 @@
   top: 60px;
 }
 #tools-panel.big ~ #details {
-  top: 360px;
+  top: 120px;
 }
 #details {
-  background-color: #6495ed;
+  background-color: #ccc;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -69,11 +136,13 @@
   width: 66vw;
 }
 #details.big .expand {
-  opacity: 0;
+  display: none;
+}
+#details section {
+  padding: 10px;
 }
 #legend > section,
 #details > section {
-  width: 100%;
   height: 100%;
   overflow: auto;
 }
@@ -83,17 +152,32 @@
   transition: all 0.5s;
 }
 footer {
-  background-color: #d3d3d3;
+  background-color: rgba(0,0,0,0.1);
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   height: 30px;
+  line-height: 30px;
   z-index: -1;
   text-align: center;
+  opacity: 0.5;
+}
+footer a {
+  margin: 0 20px;
+  display: inline-block;
+}
+#viz {
+  position: fixed;
+  z-index: -2;
 }
 .expand,
 .reduce {
+  font-weight: bold;
+  font-size: 20px;
+  color: #eee;
+  background: #888;
+  border: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -102,7 +186,6 @@ footer {
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  transition: opacity 0.5s;
 }
 .expand.bottom,
 .reduce.bottom {

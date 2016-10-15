@@ -6,14 +6,98 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body onhashchange="render()">
-<nav id="main-menu"><a>Accueil</a></nav>
-<nav id="tools-panel" class="small">Options filtres et réglages
+<nav id="main-menu"><h1><a>Logo<br/>Accueil</a></h1>
+	<a>Versions imprimables</a>
+	<a>Contact</a>
+</nav>
+<nav id="tools-panel" class="small">
 	<section id="advanced-tools">
+		<label>Force d'attraction <input type="number"></label>
+		<label>Force de répulsion <input type="number"></label>
+		<label>Distance de répulsion <input type="number"></label>
+		<label>Force d'attraction de zone <input type="number"></label>
+		...
+		Afficher la couche Voronoi
+		Distance maximum Voronoi
 
+		Options filtres et réglages ||
+		survol d'un lien -> affiche son type et sa pondération le cas échéant
+		survol d'un noeud ou d'un lien -> atténue les éléments de légende d'autre type
+		clic sur un noeud ou un lien -> le sélectionne et ouvre sa description
+		double-clic sur un noeud -> centre et fige le noeud
+		Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
+		Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
+		double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
+		<label>Ratio taille min noeud <input type="number"></label>
+		<label>Ratio taille max noeud <input type="number"></label>
+		<label>Ratio taille min noeud <input type="number"></label>
+		<label>Ratio taille min noeud <input type="number"></label>
+		<label>FPS : <span id="fpsValue"></span></label>
 	</section>
 	<section id="main-tools">
+		<a title="flux RSS des mise à jour de données">
+			<img src="" class="picto">
+		</a>
+		<a title="sauvegarder en pdf pour l'impression">
+			<img src="" class="picto">
+		</a>
+		<a title="exporter (svg, json des données affiché, json total des données publiques">
+			<img src="" class="picto">
+		</a>
+		<a title="partager la carte (FB,twitter,embed...)">
+			<img src="" class="picto">
+		</a>
+		<label title="Garder tous les éléments à l'écran">
+			<input type="checkbox"/> Confiner
+		</label>
+		<label title="Auto-activé en maintenant la touche Majuscule enfoncée">
+			<input type="checkbox"/> Multi-sélection
+		</label>
+		<label title="Distance maximum aux neuds sélectionnés">
+			<img src="" class="picto">
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>∞</option>
+			</select>
+		</label>
+		<label title="Estomper les liens selon">
+			<img src="" class="picto">
+			<select>
+				<option>leur date de fin</option>
+				<option>leur fugacité</option>
+				<option>...</option>
+			</select>
+		</label>
+		<label title="Epaisseur des liens selon">
+			<img src="" class="picto">
+			<select>
+				<option>rien (epaisseur constante)</option>
+				<option>leur durée dans le temps</option>
+				<option>leur ampleur/importance</option>
+				<option>...</option>
+			</select>
+		</label>
+		<label title="Taille des acteur selon">
+			<img src="" class="picto">
+			<select>
+				<option>rien (taille constante)</option>
+				<option>leur capital</option>
+				<option>leur nombre de liens</option>
+				<option>le nombre de leur subordonnés</option>
+				<option>...</option>
+			</select>
+		</label>
 
-	<input type="search"/>
+		<select id="langPicker">
+			<option>Français</option>
+			<option>Anglais</option>
+			<option>Espagnol</option>
+		</select>
+		<input type="search" placeholder="Rechercher..."/>
 	</section>
 	<button class="reduce bottom">-</button>
 	<button class="expand bottom">+</button>
@@ -21,7 +105,127 @@
 <figure>
 	<figcaption id="legend" class="small">
 		<section>
-			Légende
+			<h2>Légende accordéon</h2>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet
+			</label>
+			<label>
+				<img class="picto">
+				<input type="checkbox">
+				Lorem ipsum dolor sit amet, con sec
+			</label>
 		</section>
 		<button class="reduce right">-</button>
 		<button class="expand right">+</button>
@@ -34,13 +238,15 @@
 </figure>
 <article id="details" class="small">
 	<section>
-		Fiches
+		Notices
 	</section>
 	<button class="reduce left">-</button>
 	<button class="expand left">+</button>
 </article>
-<footer>info legals,github</footer>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="script.js"></script>
+<footer><a href="">Mentions légales</a><a href=""><img src="img/github.svg" class="picto"> Code source AGPLv3</a></footer>
+<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="graph.js"></script>
+<script src="userInterface.js"></script>
 </body>
 </html>
