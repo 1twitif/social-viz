@@ -9,12 +9,7 @@ function slidePanel(nextStatePicker){
 	var options = {}, panelNode = d3.event.target.parentNode;
 	options[panelNode.id]=nextStatePicker[panelNode.className];
 	updateUrl(options);
-	updateSvgArea();
-	setTimeout(updateSvgArea,100);
-	setTimeout(updateSvgArea,200);
-	setTimeout(updateSvgArea,300);
-	setTimeout(updateSvgArea,400);
-	setTimeout(updateSvgArea,500);
+	render();
 }
 function render(){
 	var pageOptions = urlOptions2json();
@@ -23,6 +18,12 @@ function render(){
 function updatePanels(options){
 	var panels = document.querySelectorAll('.hidden,.small,.big');
 	for(var i in panels) if(options[panels[i].id]) panels[i].className = options[panels[i].id];
+	updateSvgArea();
+	setTimeout(updateSvgArea,100);
+	setTimeout(updateSvgArea,200);
+	setTimeout(updateSvgArea,300);
+	setTimeout(updateSvgArea,400);
+	setTimeout(updateSvgArea,500);
 }
 function updateUrl(options, newPageTitle){ // à transformer en méthode d'objet ?
 	var pageOptions = urlOptions2json();

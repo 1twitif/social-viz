@@ -6,9 +6,10 @@ options.linkStrengthRatio = 0.8;
 options.linkLengthMinRatio = 0;
 options.linkLengthMaxRatio = 2;
 options.confiner = true;
+options.zoom = d3.zoomIdentity;
 
 var zoom = d3.zoom()
-	.scaleExtent([0.1, 10])
+	.scaleExtent([0.2, 3])
 	.on("zoom", zoomed);
 
 var svg = d3.select("#viz").call(zoom),
@@ -17,8 +18,17 @@ var svg = d3.select("#viz").call(zoom),
 var zoomableContainer = svg.append("g")
 	.attr("class", "zoomableContainer")
 	;
-var rect = zoomableContainer.append('rect')
-	.style('fill','yellow');
+var centre = zoomableContainer.append("g")
+	.attr("class", "centre")
+	.attr("transform",'translate('+width/2+','+height/2+')');
+centre.append("image")
+	.attr("xlink:href", "img/github.svg")
+	.attr("x", -100)
+	.attr("y", -100)
+	.attr("width", 200)
+	.attr("height", 200)
+	.attr("opacity", .1)
+;
 function updateSvgArea(){
 	var legendWidth = document.querySelector('#legend').offsetLeft + document.querySelector("#legend").offsetWidth,
 		detailsWidth = window.innerWidth - document.querySelector("#details").offsetLeft,
@@ -26,25 +36,26 @@ function updateSvgArea(){
 	width = window.innerWidth - legendWidth - detailsWidth;
 	height = window.innerHeight - toolsHeight;
 	svg.attr("width",width).attr("height",height).attr("style",'left:'+legendWidth+'px;top:'+toolsHeight+'px');
-
-	rect.attr("x",5).attr("y",5).attr("width",width-10).attr("height",height-10);
-
+	centre.attr("transform",'translate('+width/2+','+height/2+')');
 	simulation.force("center", d3.forceCenter(width / 2, height / 2));
-	simulation.alphaTarget(0.5).restart();
+	agitationTemporaire(3000,0.5);
+}
+function agitationTemporaire(durée,intensité){
+	simulation.alphaTarget(intensité).restart();
 	setTimeout(function () {
 		simulation.alphaTarget(0);
-	},3000)
+	},durée)
+
 }
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
+	.alphaDecay(0.02)
 	//.alphaDecay(0.002)
 	.force("no-collision", d3.forceManyBody().distanceMax(2*options.nodeBaseRadius*options.nodeMinRatio).strength(-1000))
 	.force("proximity-warning", d3.forceManyBody().distanceMax(2*options.nodeBaseRadius*options.nodeMaxRatio).strength(-400))
 	.force("gaz-dispersion", d3.forceManyBody().distanceMax(5*2*options.nodeBaseRadius*options.nodeMaxRatio).strength(-100))
-	//.force("center", d3.forceCenter(width / 2, height / 2))
-		//.force("x", d3.forceX(width / 2).strength(.01))
-		//.force("y", d3.forceY(height / 2).strength(.01))
+	.force("center", d3.forceCenter(width / 2, height / 2))
 	;
 
 d3.json("publicData.json", function(error, graph) {
@@ -70,17 +81,18 @@ d3.json("publicData.json", function(error, graph) {
 		.attr("stroke", 'grey');
 
 	var node = zoomableContainer.append("g")
-		.attr("class", "nodes")
-		.selectAll("g.node")
-		.data(graph.nodes)
-		.enter()
-		.append("g")
+			.attr("class", "nodes")
+			.selectAll("g.node")
+			.data(graph.nodes)
+			.enter()
+			.append("g")
 			.attr("class", "node")
 			.call(d3.drag()
 				.on("start", dragstarted)
 				.on("drag", dragged)
 				.on("end", dragended))
 		;
+
 	node.append("circle")
 		.attr("cx", 0).attr("cy", 0)
 			.attr("r", function(n){
@@ -105,20 +117,23 @@ d3.json("publicData.json", function(error, graph) {
 		.text(function(d) { return d.id; });
 
 	function ticked() {
+		node
+			.attr("transform", function(n) {
+				if(options.confiner){
+					var limiteGauche = 0-((options.zoom.x-n.r)/options.zoom.k);
+					var limiteHaut = 0-((options.zoom.y-n.r)/options.zoom.k);
+					var limiteDroite = (width-n.r)/(options.zoom.k)-(options.zoom.x/options.zoom.k);
+					var limiteBas = (height-n.r)/(options.zoom.k)-(options.zoom.y/options.zoom.k);
+					n.x = Math.max(limiteGauche, Math.min(limiteDroite, n.x));
+					n.y = Math.max(limiteHaut, Math.min(limiteBas, n.y));
+				}
+				return "translate("+n.x+","+n.y+")";
+			});
 		link
 			.attr("x1", function(d) { return d.source.x; })
 			.attr("y1", function(d) { return d.source.y; })
 			.attr("x2", function(d) { return d.target.x; })
 			.attr("y2", function(d) { return d.target.y; });
-
-		node
-			.attr("transform", function(n) {
-				if(options.confiner){
-					n.x = Math.max(n.r, Math.min(width-n.r, n.x));
-					n.y = Math.max(n.r, Math.min(height-n.r, n.y));
-				}
-				return "translate("+n.x+","+n.y+")";
-			});
 		fpsTick();
 	}
 	var linkLengthScale = d3.scaleLinear()
@@ -138,10 +153,9 @@ d3.json("publicData.json", function(error, graph) {
 	updateSvgArea();
 });
 function zoomed() {
-	console.log(d3.event);
 	zoomableContainer.attr("transform", d3.event.transform);
-	rect.attr("width",(width-10)/(d3.event.transform.k)).attr("height",(height-10)/(d3.event.transform.k))
-	rect.attr("x",5-(d3.event.transform.x/d3.event.transform.k)).attr("y",5-(d3.event.transform.y/d3.event.transform.k))
+	options.zoom = d3.event.transform;
+	agitationTemporaire(2000,0.3);
 }
 function dragstarted(d) {
 	if (!d3.event.active) simulation.alphaTarget(0.3).restart();
