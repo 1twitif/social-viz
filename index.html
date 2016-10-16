@@ -12,9 +12,18 @@
 </nav>
 <nav id="tools-panel" class="small">
 	<section id="advanced-tools">
-		<label>Force d'attraction <input type="number"></label>
-		<label>Force de répulsion <input type="number"></label>
-		<label>Distance de répulsion <input type="number"></label>
+		<label>Force de répulsion anti collision <input type="number"></label>
+		<label>Force de répulsion de proximité <input type="number"></label>
+		<label>Distance de répulsion de porximité <input type="number"></label>
+		<label>Force de répulsion globale <input type="number"></label>
+		<label>Température idéale du graph (0 stable,100 agité) <input type="number"></label>
+		<label>Friction de stabilisation <input type="number"></label>
+		<label>Ratio taille min noeud <input type="number"></label>
+		<label>Ratio taille max noeud <input type="number"></label>
+		<label>Ratio taille min lien <input type="number"></label>
+		<label>Ratio taille min lien <input type="number"></label>
+		<label>Coéficient de force des liens (vitesse d'agencement) <input type="number"></label>
+
 		<label>Force d'attraction de zone <input type="number"></label>
 		...
 		Afficher la couche Voronoi
@@ -28,13 +37,10 @@
 		Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
 		Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
 		double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
-		<label>Ratio taille min noeud <input type="number"></label>
-		<label>Ratio taille max noeud <input type="number"></label>
-		<label>Ratio taille min noeud <input type="number"></label>
-		<label>Ratio taille min noeud <input type="number"></label>
 		<label>FPS : <span id="fpsValue"></span></label>
 	</section>
 	<section id="main-tools">
+		<a>Afficher les réglages avancés</a>
 		<a title="flux RSS des mise à jour de données">
 			<img src="" class="picto">
 		</a>
@@ -47,6 +53,7 @@
 		<a title="partager la carte (FB,twitter,embed...)">
 			<img src="" class="picto">
 		</a>
+		<label>Zoom <input type="number">%</label>
 		<label title="Garder tous les éléments à l'écran">
 			<input type="checkbox"/> Confiner
 		</label>
@@ -246,6 +253,7 @@
 <footer><a href="">Mentions légales</a><a href=""><img src="img/github.svg" class="picto"> Code source AGPLv3</a></footer>
 <!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
 <script src="https://d3js.org/d3.v4.js"></script>
+<script src="fps.js"></script>
 <script src="graph.js"></script>
 <script src="userInterface.js"></script>
 </body>
