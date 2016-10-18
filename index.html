@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Social-viz</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="staticApp/style.css"/>
+	<link rel="stylesheet" href="allData/customStyle.css"/>
 </head>
 <body onhashchange="render()">
 <nav id="main-menu"><h1><a>Logo<br/>Accueil</a></h1>
@@ -17,7 +18,7 @@
 		<label>Distance de répulsion de porximité <input type="number"></label>
 		<label>Force de répulsion globale <input type="number"></label>
 		<label>Température idéale du graph (0 stable,100 agité) <input type="number"></label>
-		<label>Friction de stabilisation <input type="number"></label>
+		<label>Friction de stabilisation <input type="number" name="friction"></label>
 		<label>Ratio taille min noeud <input type="number"></label>
 		<label>Ratio taille max noeud <input type="number"></label>
 		<label>Ratio taille min lien <input type="number"></label>
@@ -113,126 +114,6 @@
 	<figcaption id="legend" class="small">
 		<section>
 			<h2>Légende accordéon</h2>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet
-			</label>
-			<label>
-				<img class="picto">
-				<input type="checkbox">
-				Lorem ipsum dolor sit amet, con sec
-			</label>
 		</section>
 		<button class="reduce right">-</button>
 		<button class="expand right">+</button>
@@ -250,11 +131,29 @@
 	<button class="reduce left">-</button>
 	<button class="expand left">+</button>
 </article>
-<footer><a href="">Mentions légales</a><a href=""><img src="img/github.svg" class="picto"> Code source AGPLv3</a></footer>
-<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="fps.js"></script>
-<script src="graph.js"></script>
-<script src="userInterface.js"></script>
+<aside id="sponsor">
+	<h2>Partenaires</h2>
+</aside>
+<footer><a href="">Mentions légales</a><a href=""><img src="staticApp/appImg/github.svg" class="picto"> Code source AGPLv3</a></footer>
+<script id="no-ie" type="application/javascript">
+	if (navigator.userAgent.indexOf('MSIE') != -1 || (navigator.userAgent.indexOf('Trident') != -1 && navigator.userAgent.indexOf('rv:11'))){
+		var lang = navigator.userLanguage || navigator.language || navigator.browserLanguage;
+		if(lang.substr(0,2)==='fr' || lang.substr(0,2)==='es') lang = lang.substr(0,2) + '.html';
+		else lang='';
+		window.location.href = 'no-ie/'+lang;
+	}
+</script>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script>
+	d3 || document.write('<script src="d3.v4.min.js"><\/script>');
+</script>
+<!--<script src="node_modules/d3/build/d3.min.js"></script>-->
+<!--<script src="node_modules/d3/build/d3.js"></script>-->
+
+<script src="staticApp/jsonUrlHashPersistance.js"></script>
+<script src="staticApp/configLoader.js"></script>
+<script src="staticApp/fps.js"></script>
+<script src="staticApp/graph.js"></script>
+<script src="staticApp/userInterface.js"></script>
 </body>
 </html>

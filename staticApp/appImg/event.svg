@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="620" width="620" version="1.0" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 62 62">
+<circle cy="31" cx="31" r="30.765"/>
+<g stroke="#000" transform="matrix(1.1925 0 0 1.1925 -5.9661 -5.9661)">
+<path d="m14.988 39.217 29.265 3.1931 1.0078 1.5009c5.1226-2.6085 3.3009-7.004 3.3009-7.004l-1.408 0.278-21.064-21.846" stroke-width="1.1358" fill="#fff"/>
+<path stroke-linejoin="round" d="m25.701 41.017c3.1043 7.4083 11.014 1.1001 11.014 1.1001" stroke-linecap="round" stroke-width="1.1358" fill="#fff"/>
+<path d="m46.95 37.418c0.07177 0.73779-1.8781 4.7624-2.5942 4.7752" stroke-width=".56788" fill="none"/>
+<g>
+<path d="m34.504 41.523s-4.4025 2.9188-7.0329-0.67503" stroke-width=".56788"/>
+<ellipse rx="4.6811" transform="matrix(.89598 .46855 -.43728 .96005 13.895 -8.4044)" ry="12.656" cy="27.047" cx="19.878" stroke-width="1.08" fill="#fff"/>
+<path d="m45.142 37.052-16.235-15.19" stroke-width=".73393" fill="#fff"/>
+</g>
+</g>
+</svg>

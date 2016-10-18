@@ -105,7 +105,7 @@ a
 		margin 4px
 		height 32px
 		width 32px
-		background-color #666
+		//background-color #666
 	input
 		position absolute
 		bottom 2px
@@ -137,6 +137,15 @@ a
 			hide()
 	section
 		padding 10px
+#sponsor
+	background mainMenuBg
+	position: fixed
+	bottom:0
+	right:0
+	height: mainMenuHeight
+	width:  mainMenuWidth
+	border-top-left-radius mainMenuCurveRadius
+	z-index 2
 
 
 #legend, #details
@@ -168,7 +177,7 @@ footer
 	font-weight bold
 	font-size 20px
 	color #eee
-	background sizeChangerBg
+	background alpha(sizeChangerBg,0.7)
 	border 0
 	position absolute
 	top 50%
@@ -184,6 +193,8 @@ footer
 		left 0
 	&.right
 		left 100%
+	&:hover
+		background sizeChangerBg
 
 .expand.bottom
 	margin-top 0

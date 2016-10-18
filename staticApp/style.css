@@ -101,7 +101,6 @@ a:hover {
   margin: 4px;
   height: 32px;
   width: 32px;
-  background-color: #666;
 }
 #legend input {
   position: absolute;
@@ -141,6 +140,16 @@ a:hover {
 #details section {
   padding: 10px;
 }
+#sponsor {
+  background: #888;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 120px;
+  width: 240px;
+  border-top-left-radius: 60px;
+  z-index: 2;
+}
 #legend > section,
 #details > section {
   height: 100%;
@@ -176,7 +185,7 @@ footer a {
   font-weight: bold;
   font-size: 20px;
   color: #eee;
-  background: #888;
+  background: rgba(136,136,136,0.7);
   border: 0;
   position: absolute;
   top: 50%;
@@ -198,6 +207,10 @@ footer a {
 .expand.right,
 .reduce.right {
   left: 100%;
+}
+.expand:hover,
+.reduce:hover {
+  background: #888;
 }
 .expand.bottom {
   margin-top: 0;

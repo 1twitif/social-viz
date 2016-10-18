@@ -12,3 +12,4 @@ function fpsRefresh(){
 	document.getElementById('fpsValue').innerText = fpsCalc();
 }
 setInterval(fpsRefresh,1000);
+function multiTimeout(frequence,duration,func){for(var t=0;t<duration;t+=frequence) setTimeout(func,t);}
