@@ -7,6 +7,25 @@
 body {
   background-color: #eee;
 }
+.node circle {
+  opacity: 0.2;
+}
+.node path {
+  opacity: 0.7;
+  display: none;
+}
+.node:hover circle {
+  opacity: 1;
+}
+.node.fixed path {
+  display: block;
+}
+.node.fixed circle {
+  display: none;
+}
+.node.fixed:hover path {
+  opacity: 1;
+}
 .picto {
   width: 24px;
   float: left;

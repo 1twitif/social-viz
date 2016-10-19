@@ -23,6 +23,7 @@ function updatePanels(options){
 	multiTimeout(50,500,updateSvgArea);
 }
 function initUI(){
+	//TODO: gérer les layersGroups
 	var legendArea = d3.select('#legend>section');
 	var legend = legendArea.selectAll('label.layer').data(options.nodeLayers).enter()
 		.append("label")

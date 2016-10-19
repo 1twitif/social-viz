@@ -10,7 +10,13 @@
 	{"id":8,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
 	{"id":9,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
 	{"id":10,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"}
-],"hideLayers":{"nl4":true}
-
+],
+	"layersGroups":[
+		{
+			"id":"osef",
+			"include":["nl1","nl2"],
+			"title":"Communication","picto":"staticApp/appImg/time.svg"}
+	],
+	"hideLayers":{"nl4":true}
 }
 

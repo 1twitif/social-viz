@@ -4,7 +4,7 @@ window.addEventListener('configReady', function () {
 		.scaleExtent([options.zoomMin, options.zoomMax])
 		.on("zoom", zoomed);
 
-	var svg = d3.select("#viz").call(zoom),
+	var svg = d3.select("#viz").call(zoom).on("dblclick.zoom", null),
 		width = window.innerWidth,
 		height = window.innerHeight;
 	var zoomableContainer = svg.append("g")
@@ -87,6 +87,7 @@ window.addEventListener('configReady', function () {
 				.enter()
 				.append("g")
 				.attr("class", "node")
+				.on("dblclick", dblclick)
 				.call(d3.drag()
 					.on("start", dragstarted)
 					.on("drag", dragged)
@@ -98,11 +99,17 @@ window.addEventListener('configReady', function () {
 			.attr("r", function (n) {
 				return n.r = options.nodeBaseRadius * nodeRadiusScale(n.degree);
 			})
-			.attr("opacity", .5) //FIXME: nombre magique
+			.attr("opacity", .2) //FIXME: nombre magique
 			.attr("fill", function (d) {
 				return color(d.type);
 			});
-		node.append("image")
+		node.append("path")
+			.attr("d", function (n) {
+				return points2Path(regularPolygon(0, 0, n.r, options.fixedNode.sides),options.fixedNode.tension);
+			})
+			.attr("fill", function (d) {
+				return color(d.type);
+			});		node.append("image")
 			.attr("xlink:href", function (n) { return options.nodeLayers[n.type].picto; })
 			.attr("x", function (n) { return -n.r / 2; })
 			.attr("y", function (n) { return -n.r / 2; })
@@ -171,6 +178,7 @@ window.addEventListener('configReady', function () {
 
 	function dragstarted(d) {
 		if (!d3.event.active) simulation.alphaTarget(0.3).restart(); //FIXME: nombre magique
+		d3.select(this).classed("fixed", d.fixed = true);
 		d.fx = d.x;
 		d.fy = d.y;
 	}
@@ -182,6 +190,9 @@ window.addEventListener('configReady', function () {
 
 	function dragended(d) {
 		if (!d3.event.active) simulation.alphaTarget(0); //FIXME: nombre magique
+	}
+	function dblclick(d){
+		d3.select(this).classed("fixed", d.fixed = false);
 		d.fx = null;
 		d.fy = null;
 	}
@@ -192,6 +203,23 @@ window.addEventListener('configReady', function () {
 			++graph.links[i].source.degree;
 			++graph.links[i].target.degree;
 		}
+	}
+
+	// fixedNodeFactory
+	function regularPolygon(x, y, radius, sides) {
+		var crd = [];
+		if (sides == 1) return [[x, y]];
+		for (var i = 0; i < sides; i++) {
+			crd.push({"x":(x + (Math.sin(2 * Math.PI * i / sides) * radius)), "y":(y - (Math.cos(2 * Math.PI * i / sides) * radius))});
+		}
+		return crd;
+	}
+	function points2Path (points,tension){
+		var drawer = d3.line()
+			.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; })
+			.curve(d3.curveCardinalClosed.tension(tension));
+		return drawer(points);
 	}
 
 

@@ -25,6 +25,24 @@ hide()
 body
 	background-color #eeeeee
 
+.node
+	circle
+		opacity 0.2
+	path
+		opacity 0.7
+		display none
+	&:hover
+		circle
+			opacity 1
+	&.fixed
+		path
+			display block
+		circle
+			display none
+		&:hover
+			path
+				opacity 1
+
 .picto
 	width 24px
 	float left

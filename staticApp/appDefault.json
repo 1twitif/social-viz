@@ -6,6 +6,7 @@
 	"legend":"small",
 	"details":"small",
 	"tools-panel":"small",
+	"fixedNode":{"sides":8,"tension":-2},
 
 	"nodeBaseRadius":32,
 	"nodeMinRatio": 0.75,
