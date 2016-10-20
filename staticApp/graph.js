@@ -8,12 +8,12 @@ window.addEventListener('configReady', function () {
 		width = window.innerWidth,
 		height = window.innerHeight;
 	var zoomableContainer = svg.append("g")
-			.attr("class", "zoomableContainer")
-			.attr("transform", "translate(" + options.zoom.x + "," + options.zoom.y + ") scale(" + options.zoom.k + ")");
-		;
+			.attr("class", "zoomableContainer");
+	updateZoom();
 	var centre = zoomableContainer.append("g")
 		.attr("class", "centre")
 		.attr("transform", 'translate(' + width / 2 + ',' + height / 2 + ')');
+
 	centre.append("image")
 		.attr("xlink:href", options.centerLogoUrl)
 		.attr("x", -options.centerLogoWidth / 2)
@@ -30,16 +30,11 @@ window.addEventListener('configReady', function () {
 		height = window.innerHeight - toolsHeight;
 		svg.attr("width", width).attr("height", height).attr("style", 'left:' + legendWidth + 'px;top:' + toolsHeight + 'px');
 		centre.attr("transform", 'translate(' + width / 2 + ',' + height / 2 + ')');
-		simulation.force("center", d3.forceCenter(width / 2, height / 2));
+		updateZoom();
+		applyFixedNode();
+		updateCenterForce();
 		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
 	};
-	function agitationTemporaire(duration, amplitude) {
-		simulation.alphaTarget(amplitude).restart();
-		setTimeout(function () {
-			simulation.alphaTarget(0);
-		}, duration)
-
-	}
 
 	var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -48,8 +43,8 @@ window.addEventListener('configReady', function () {
 			.force("noCollision", d3.forceManyBody().distanceMax(2 * options.nodeBaseRadius * options.nodeMinRatio).strength(options.noCollisionForce))
 			.force("proximityWarning", d3.forceManyBody().distanceMax(options.proximityWarningDistanceRatio * 2 * options.nodeBaseRadius * options.nodeMaxRatio).strength(options.proximityWarningForce))
 			.force("gazDispersion", d3.forceManyBody().distanceMax(options.gazDispersionMaxDistanceRatio * 2 * options.nodeBaseRadius * options.nodeMaxRatio).strength(options.gazDispersionForce))
-			.force("center", d3.forceCenter(width / 2, height / 2))
 		;
+	updateCenterForce();
 
 	d3.json("allData/publicData.json", function (error, graphData) {
 		if (error) throw error;
@@ -79,7 +74,6 @@ window.addEventListener('configReady', function () {
 			.attr("stroke", 'grey');
 
 
-
 		var node = zoomableContainer.append("g")
 				.attr("class", "nodes")
 				.selectAll("g.node")
@@ -87,6 +81,7 @@ window.addEventListener('configReady', function () {
 				.enter()
 				.append("g")
 				.attr("class", "node")
+				.attr("id", function (n) { return "n"+n.id; })
 				.on("dblclick", dblclick)
 				.call(d3.drag()
 					.on("start", dragstarted)
@@ -130,10 +125,12 @@ window.addEventListener('configReady', function () {
 			node
 				.attr("transform", function (n) {
 					if (options.confiner) {
-						var limiteGauche = n.r - options.zoom.x / options.zoom.k;
-						var limiteHaut = n.r - options.zoom.y / options.zoom.k;
-						var limiteDroite = (width - options.zoom.x) / options.zoom.k - n.r;
-						var limiteBas = (height - options.zoom.y) / options.zoom.k - n.r;
+						var zx = centerRatioX2D3X(options.zoom.x),
+							zy = centerRatioY2D3Y(options.zoom.y);
+						var limiteGauche = n.r - zx / options.zoom.k;
+						var limiteHaut = n.r - zy / options.zoom.k;
+						var limiteDroite = (width - zx) / options.zoom.k - n.r;
+						var limiteBas = (height - zy) / options.zoom.k - n.r;
 						n.x = Math.max(limiteGauche, Math.min(limiteDroite, n.x));
 						n.y = Math.max(limiteHaut, Math.min(limiteBas, n.y));
 					}
@@ -165,15 +162,14 @@ window.addEventListener('configReady', function () {
 		updateSvgArea();
 	});
 	function zoomed() {
-		url.save({'zoom':{
-			"x":Math.round(d3.event.transform.x*1000)/1000,
-			"y":Math.round(d3.event.transform.y*1000)/1000,
-			"k":Math.round(d3.event.transform.k*1000)/1000
-		}});
-		options = url.load();
-		var zoom = options.zoom;
-		zoomableContainer.attr("transform", "translate(" + zoom.x + "," + zoom.y + ") scale(" + zoom.k + ")");
-		agitationTemporaire(2000, 0.3); //FIXME: nombre magique
+		var zoom = {
+			"x":round(d3X2CenterRatioX(d3.event.transform.x,d3.event.transform.k),4),
+				"y":round(d3Y2CenterRatioY(d3.event.transform.y,d3.event.transform.k),4),
+				"k":round(d3.event.transform.k,4)
+		};
+		url.save({'zoom':zoom});
+		updateZoom();
+		if(options.confiner) agitationTemporaire(2000, 0.3); //FIXME: nombre magique
 	}
 
 	function dragstarted(d) {
@@ -181,6 +177,7 @@ window.addEventListener('configReady', function () {
 		d3.select(this).classed("fixed", d.fixed = true);
 		d.fx = d.x;
 		d.fy = d.y;
+		updateCenterForce();
 	}
 
 	function dragged(d) {
@@ -189,14 +186,53 @@ window.addEventListener('configReady', function () {
 	}
 
 	function dragended(d) {
-		if (!d3.event.active) simulation.alphaTarget(0); //FIXME: nombre magique
+		var d3ToCentricX = d3.scaleLinear().domain([0,width]).range([-1,1]);
+		var d3ToCentricY = d3.scaleLinear().domain([0,height]).range([-1,1]);
+		if(!options.fixedNodes) options.fixedNodes = {};
+		options.fixedNodes["n"+d.id]={
+			"x":round(d3ToCentricX(d.x),2),
+			"y":round(d3ToCentricY(d.y),2)
+		};
+		url.save(options);
+		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
 	}
 	function dblclick(d){
 		d3.select(this).classed("fixed", d.fixed = false);
 		d.fx = null;
 		d.fy = null;
+		delete options.fixedNodes["n"+d.id];
+		url.save(options);
+		/*if(!document.querySelectorAll(".fixed").length){
+			options.zoom.x = 0;
+			options.zoom.y = 0;
+		}
+		url.save(options);*/
+		updateZoom();
+		updateCenterForce();
+		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
 	}
-
+	function applyFixedNode(){
+		var centricToD3X = d3.scaleLinear().domain([-1,1]).range([0,width]);
+		var centricToD3Y = d3.scaleLinear().domain([-1,1]).range([0,height]);
+		for (var id in options.fixedNodes){
+			var fixed = options.fixedNodes[id];
+			var n = d3.select('#'+id).node().__data__;
+			d3.select('#'+id).classed("fixed", n.fixed = true);
+			n.fx = centricToD3X(fixed.x);
+			n.fy = centricToD3Y(fixed.y);
+		}
+		updateCenterForce();
+	}
+	function agitationTemporaire(duration, amplitude) {
+		simulation.alphaTarget(amplitude).restart();
+		setTimeout(function () {
+			simulation.alphaTarget(0);
+		}, duration);
+	}
+	function updateCenterForce(){
+		if(document.querySelectorAll(".fixed").length) simulation.force("center", undefined);
+		else simulation.force("center", d3.forceCenter(width / 2, height / 2));
+	}
 	function computeNodesDegree(graph) {
 		for (var i = 0; i < graph.nodes.length; ++i) graph.nodes[i].degree = 0;
 		for (var i = 0; i < graph.links.length; ++i) {
@@ -204,7 +240,19 @@ window.addEventListener('configReady', function () {
 			++graph.links[i].target.degree;
 		}
 	}
+	function updateZoom(){
+		options = url.load();
+		var zoom = options.zoom;
 
+		zoomableContainer.attr("transform",
+			"translate(" + centerRatioX2D3X(zoom.x) + "," + centerRatioY2D3Y(zoom.y) + ") scale(" + zoom.k + ")");
+	}
+	function d3X2CenterRatioX(d3x,k){ if(!k) k = options.zoom.k; return d3x/(width/2)+k-1; }//(2*d3x/width-1)*k; }
+	function d3Y2CenterRatioY(d3y,k){ if(!k) k = options.zoom.k; return d3y/(height/2)+k-1; }
+	function centerRatioX2D3X(x){ return (1+x-options.zoom.k)*width/2; }
+	function centerRatioY2D3Y(y){ return (1+y-options.zoom.k)*height/2; }
+	function round(number,decimals) { if(!decimals)decimals=0;
+		return Math.round(number*Math.pow(10,decimals))/Math.pow(10,decimals); }
 	// fixedNodeFactory
 	function regularPolygon(x, y, radius, sides) {
 		var crd = [];

@@ -1,4 +1,6 @@
-{"nodeLayers":[
+{	"zoomMin":0.1,
+	"zoomMax":10,
+	"nodeLayers":[
 	{"id":0,"title":"Publication","picto":"staticApp/appImg/document.svg"},
 	{"id":1,"title":"Evenement","picto":"staticApp/appImg/event.svg"},
 	{"id":2,"title":"Entreprise","picto":"staticApp/appImg/factory.svg"},
