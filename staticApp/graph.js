@@ -33,7 +33,7 @@ window.addEventListener('configReady', function () {
 		updateZoom();
 		applyFixedNode();
 		updateCenterForce();
-		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
+		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	};
 
 	var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -162,18 +162,18 @@ window.addEventListener('configReady', function () {
 		updateSvgArea();
 	});
 	function zoomed() {
-		var zoom = {
-			"x":round(d3X2CenterRatioX(d3.event.transform.x,d3.event.transform.k),4),
-				"y":round(d3Y2CenterRatioY(d3.event.transform.y,d3.event.transform.k),4),
-				"k":round(d3.event.transform.k,4)
+		options.zoom = {
+			"x":round(d3X2CenterRatioX(d3.event.transform.x,d3.event.transform.k),options.zoomPrecisionXY),
+				"y":round(d3Y2CenterRatioY(d3.event.transform.y,d3.event.transform.k),options.zoomPrecisionXY),
+				"k":round(d3.event.transform.k,options.zoomPrecisionK)
 		};
-		url.save({'zoom':zoom});
+		url.save(options);
 		updateZoom();
-		if(options.confiner) agitationTemporaire(2000, 0.3); //FIXME: nombre magique
+		if(options.confiner) agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	}
 
 	function dragstarted(d) {
-		if (!d3.event.active) simulation.alphaTarget(0.3).restart(); //FIXME: nombre magique
+		if (!d3.event.active) simulation.alphaTarget(options.boostAgitation.force).restart();
 		d3.select(this).classed("fixed", d.fixed = true);
 		d.fx = d.x;
 		d.fy = d.y;
@@ -194,22 +194,17 @@ window.addEventListener('configReady', function () {
 			"y":round(d3ToCentricY(d.y),2)
 		};
 		url.save(options);
-		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
+		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	}
 	function dblclick(d){
 		d3.select(this).classed("fixed", d.fixed = false);
 		d.fx = null;
 		d.fy = null;
-		delete options.fixedNodes["n"+d.id];
+		options.fixedNodes["n"+d.id] = undefined;
 		url.save(options);
-		/*if(!document.querySelectorAll(".fixed").length){
-			options.zoom.x = 0;
-			options.zoom.y = 0;
-		}
-		url.save(options);*/
 		updateZoom();
 		updateCenterForce();
-		agitationTemporaire(3000, 0.5); // FIXME: nombres magique
+		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	}
 	function applyFixedNode(){
 		var centricToD3X = d3.scaleLinear().domain([-1,1]).range([0,width]);
@@ -227,7 +222,7 @@ window.addEventListener('configReady', function () {
 		simulation.alphaTarget(amplitude).restart();
 		setTimeout(function () {
 			simulation.alphaTarget(0);
-		}, duration);
+		}, Math.round(duration*1000));
 	}
 	function updateCenterForce(){
 		if(document.querySelectorAll(".fixed").length) simulation.force("center", undefined);

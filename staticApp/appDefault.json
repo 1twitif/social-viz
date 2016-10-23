@@ -6,7 +6,9 @@
 	"legend":"small",
 	"details":"small",
 	"tools-panel":"small",
-	"fixedNode":{"sides":8,"tension":-2},
+	"zoomPrecisionK":3,
+	"zoomPrecisionXY":2,
+	"fixedNode":{"sides":8,"tension":-2,"precisionXY":2},
 
 	"nodeBaseRadius":32,
 	"nodeMinRatio": 0.75,
@@ -23,5 +25,6 @@
 	"proximityWarningForce":-400,
 	"gazDispersionForce":-100,
 	"proximityWarningDistanceRatio":1,
-	"gazDispersionMaxDistanceRatio":5
+	"gazDispersionMaxDistanceRatio":5,
+	"boostAgitation":{"force":0.5,"temps":3}
 }
