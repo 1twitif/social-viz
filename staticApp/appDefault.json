@@ -9,6 +9,7 @@
 	"zoomPrecisionK":3,
 	"zoomPrecisionXY":2,
 	"fixedNode":{"sides":8,"tension":-2,"precisionXY":2},
+	"defaultPicto":"staticApp/appImg/unknow.svg",
 
 	"nodeBaseRadius":32,
 	"nodeMinRatio": 0.75,

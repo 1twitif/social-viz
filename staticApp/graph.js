@@ -1,5 +1,6 @@
 var updateSvgArea;
 window.addEventListener('configReady', function () {
+	var graph;
 	var zoom = d3.zoom()
 		.scaleExtent([options.zoomMin, options.zoomMax])
 		.on("zoom", zoomed);
@@ -32,6 +33,7 @@ window.addEventListener('configReady', function () {
 		centre.attr("transform", 'translate(' + width / 2 + ',' + height / 2 + ')');
 		updateZoom();
 		applyFixedNode();
+		updateSelection();
 		updateCenterForce();
 		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	};
@@ -48,6 +50,7 @@ window.addEventListener('configReady', function () {
 
 	d3.json("allData/publicData.json", function (error, graphData) {
 		if (error) throw error;
+		graph = graphData;
 		simulation
 			.nodes(graphData.nodes)
 			.force("link",
@@ -105,7 +108,7 @@ window.addEventListener('configReady', function () {
 			.attr("fill", function (d) {
 				return color(d.type);
 			});		node.append("image")
-			.attr("xlink:href", function (n) { return options.nodeLayers[n.type].picto; })
+			.attr("xlink:href", function (n) { return options.nodeLayers[n.type]?options.nodeLayers[n.type].picto:options.defaultPicto;})
 			.attr("x", function (n) { return -n.r / 2; })
 			.attr("y", function (n) { return -n.r / 2; })
 			.attr("width", function (n) { return n.r; })
@@ -173,13 +176,14 @@ window.addEventListener('configReady', function () {
 	}
 
 	function dragstarted(d) {
-		if (!d3.event.active) simulation.alphaTarget(options.boostAgitation.force).restart();
-		d3.select(this).classed("fixed", d.fixed = true);
 		d.fx = d.x;
 		d.fy = d.y;
+		if (!d3.event.active) simulation.alphaTarget(options.boostAgitation.force).restart();
+		d3.select(this).classed("fixed", d.fixed = true);
+		options.selected="n"+d.id;
+		updateSelection();
 		updateCenterForce();
 	}
-
 	function dragged(d) {
 		d.fx = d3.event.x;
 		d.fy = d3.event.y;
@@ -193,7 +197,9 @@ window.addEventListener('configReady', function () {
 			"x":round(d3ToCentricX(d.x),2),
 			"y":round(d3ToCentricY(d.y),2)
 		};
+		options.selected="n"+d.id;
 		url.save(options);
+		updateSelection();
 		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 	}
 	function dblclick(d){
@@ -223,6 +229,32 @@ window.addEventListener('configReady', function () {
 		setTimeout(function () {
 			simulation.alphaTarget(0);
 		}, Math.round(duration*1000));
+	}
+	function updateSelection() {
+		d3.selectAll('.node.selected').classed("selected", function(n){return n.selected = false;});
+		if(options.selected){
+			d3.select('#'+options.selected).classed("selected",function(n){return n.selected = true;});
+		}
+		updateDetails();
+	}
+	function updateDetails(){
+		var details = document.querySelector("#details section");
+		var tutorialContent = "<h2>Tutorial</h2>\nMettre en pause / reprendre"; //FIXME: charger ça dynamiquement.
+		if(!options.selected) details.innerHTML = tutorialContent;
+		else details.innerHTML = renderDetails(options.selected);
+	}
+	function renderDetails(id){
+		var detailsFunctions = {"n":renderNodeDetails};
+		return detailsFunctions[id.substring(0,1)](id.substring(1));
+	}
+	function renderNodeDetails(id){
+		var n = d3.select('#n'+id).node().__data__;
+		var res = "<h1>"+n.id+"</h1>\n<div>Voisins ( "+n.degree+" ) :</div>\n<ul>";
+		for (var i = 0; i < graph.links.length; ++i) {
+			if(graph.links[i].source.id === id) res += "<li>"+graph.links[i].value+" "+graph.links[i].target.id+" ( "+graph.links[i].target.degree+" ) </li>";
+			if(graph.links[i].target.id === id) res += "<li>"+graph.links[i].value+" "+graph.links[i].source.id+" ( "+graph.links[i].source.degree+" ) </li>";
+		}
+		return res+"</ul>";
 	}
 	function updateCenterForce(){
 		if(document.querySelectorAll(".fixed").length) simulation.force("center", undefined);
@@ -264,6 +296,4 @@ window.addEventListener('configReady', function () {
 			.curve(d3.curveCardinalClosed.tension(tension));
 		return drawer(points);
 	}
-
-
 });

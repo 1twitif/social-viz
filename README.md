@@ -31,3 +31,27 @@ npm start
 ```bash
 docker-compose up
 ```
+
+## Structure des données :
+Chaque noeud doit avoir un libellé et un type. Il peut contenir d'autres champs optionnels.
+```json
+{"nodes":[
+	{"label":"John Smith","type":"agent"},
+	{"label":"M. Dupont","type":"avocat","dateBirth":"1970-01-01","comment":"# M. Dupont\n ## Sa vie\n ## Son oeuvre\ ..."}
+]
+}
+```
+Dans la configuration, chaque type devra être associé à un calque ou sous calque pour renseigner la légende et son style d'affichage.
+```json
+{"nodeLayers":[
+	{"id":"human","label":"Personne physique","color":"#AA3388","picto":"staticApp/appImg/people.svg",
+	"subLayers":[
+		{"id":"agent","label":"Agent","picto":"staticApp/appImg/people.svg"},
+		{"id":"juridique","label":"Professionnel de la loi","picto":"staticApp/appImg/people.svg",
+		"subLayres":[
+			{"id":"avocat","label":"Avocat","picto":"staticApp/appImg/people.svg"}
+		]}
+	]}
+]
+}
+```

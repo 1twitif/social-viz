@@ -4,19 +4,8 @@
 	{"id":2,"title":"Entreprise","picto":"staticApp/appImg/factory.svg"},
 	{"id":3,"title":"Lieu","picto":"staticApp/appImg/geoNode.svg"},
 	{"id":4,"title":"Elus","picto":"staticApp/appImg/gov.svg"},
-	{"id":5,"title":"Personne physique","picto":"staticApp/appImg/people.svg"},
-	{"id":6,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
-	{"id":7,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
-	{"id":8,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
-	{"id":9,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"},
-	{"id":10,"title":"Inconnu","picto":"staticApp/appImg/unknow.svg"}
+	{"id":5,"title":"Personne physique","picto":"staticApp/appImg/people.svg"}
 ],
-	"layersGroups":[
-		{
-			"id":"osef",
-			"include":["nl1","nl2"],
-			"title":"Communication","picto":"staticApp/appImg/time.svg"}
-	],
 	"hideLayers":{"nl4":true}
 }
 
