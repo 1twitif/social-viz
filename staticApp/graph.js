@@ -118,9 +118,9 @@ window.addEventListener('configReady', function () {
 			.attr("text-anchor", "middle")
 			.attr("dx", 0)
 			.attr("dy", function (n) { return n.r; })
-			.text(function (n) { return n.id });
+			.text(function (n) { return t(n.id) });
 		node.append("title")
-			.text(function (d) { return d.id; });
+			.text(function (d) { return t(d.id); });
 
 
 
