@@ -176,28 +176,38 @@ window.addEventListener('configReady', function () {
 	}
 
 	function dragstarted(d) {
-		d.fx = d.x;
-		d.fy = d.y;
 		if (!d3.event.active) simulation.alphaTarget(options.boostAgitation.force).restart();
-		d3.select(this).classed("fixed", d.fixed = true);
-		options.selected="n"+d.id;
+		d.dragOriginX = d.x;
+		d.dragOriginY = d.y;
+		d.wasSelected = false;
+		if(options.selected!=="n"+d.id) options.selected="n"+d.id;
+		else d.wasSelected = true;
 		updateSelection();
 		updateCenterForce();
 	}
 	function dragged(d) {
-		d.fx = d3.event.x;
-		d.fy = d3.event.y;
+
+		if(Math.abs(d3.event.x-d.dragOriginX)>5 || Math.abs(d3.event.y-d.dragOriginY)>5){ //FIXME: magic number
+			if(d.fx == null) {
+				d3.select(this).classed("fixed", d.fixed = true);
+			}
+			d.fx = d3.event.x;
+			d.fy = d3.event.y;
+		}
 	}
 
 	function dragended(d) {
-		var d3ToCentricX = d3.scaleLinear().domain([0,width]).range([-1,1]);
-		var d3ToCentricY = d3.scaleLinear().domain([0,height]).range([-1,1]);
-		if(!options.fixedNodes) options.fixedNodes = {};
-		options.fixedNodes["n"+d.id]={
-			"x":round(d3ToCentricX(d.x),2),
-			"y":round(d3ToCentricY(d.y),2)
-		};
-		options.selected="n"+d.id;
+		if(Math.abs(d3.event.x-d.dragOriginX)>5 || Math.abs(d3.event.y-d.dragOriginY)>5) { //FIXME: magic number
+			var d3ToCentricX = d3.scaleLinear().domain([0, width]).range([-1, 1]);
+			var d3ToCentricY = d3.scaleLinear().domain([0, height]).range([-1, 1]);
+			if (!options.fixedNodes) options.fixedNodes = {};
+			options.fixedNodes["n" + d.id] = {
+				"x": round(d3ToCentricX(d.x), 2),
+				"y": round(d3ToCentricY(d.y), 2)
+			};
+		} else if (d.wasSelected){
+			options.selected=undefined;
+		}
 		url.save(options);
 		updateSelection();
 		agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);

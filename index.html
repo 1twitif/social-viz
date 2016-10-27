@@ -117,9 +117,9 @@
     </label>
     <!-- TODO: drapeau langue :  https://openclassrooms.com/forum/sujet/image-dans-un-select-10327 -->
 		<select id="langPicker">
-			<option>Français</option>
-			<option>Anglais</option>
-			<option>Espagnol</option>
+			<option value="fr">Français</option>
+			<option value="en">English</option>
+			<option value="es">Español</option>
 		</select>
 		<input type="search" placeholder="Rechercher..."/>
 	</section>
@@ -160,6 +160,7 @@
 		window.location.href = 'no-ie/'+lang;
 	}
 </script>
+
 <script src="//d3js.org/d3.v4.min.js"></script>
 <!--<script>
 	d3 || document.write('<script src="node_modules/d3/build/d3.min.js"><\/script>');
@@ -169,9 +170,11 @@
 </script>-->
 <!--<script src="node_modules/d3/build/d3.min.js"></script>-->
 <!--<script src="node_modules/d3/build/d3.js"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.min.js"></script>
 
 <script src="staticApp/jsonUrlHashPersistance.js"></script>
 <script src="staticApp/configLoader.js"></script>
+<script src="staticApp/languageLoader.js"></script>
 <script src="staticApp/fps.js"></script>
 <script src="staticApp/graph.js"></script>
 <script src="staticApp/userInterface.js"></script>

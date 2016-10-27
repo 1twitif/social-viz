@@ -45,6 +45,31 @@ function removeDefault(json,defaultJson){
 	return cleanJson(res);
 }
 exports.removeDefault = removeDefault;
+function asyncYmlLoader(sourcesFiles,customEventToSendOrCallBack){
+	var filesLoadedCount = 0;
+	var filesContents = {};
+	var mergedData = {};
+	var finalMerge = function(){
+		for(var i in sourcesFiles){
+			var path = sourcesFiles[i];
+			if(typeof filesContents[path] === "object") mergedData = merge(mergedData,filesContents[path]);
+		}
+		if(typeof customEventToSendOrCallBack === "string") window.dispatchEvent(new CustomEvent(customEventToSendOrCallBack, {'detail':mergedData}));
+		else if(typeof customEventToSendOrCallBack === "function") customEventToSendOrCallBack(mergedData, sourcesFiles);
+	};
+	for(var i in sourcesFiles){
+		var closure = function(path){
+			d3.text(path, function(error, yml){
+				if(error) console.log(error);
+				filesContents[path] = jsyaml.safeLoad(yml);
+				filesLoadedCount++;
+				if(sourcesFiles.length === filesLoadedCount) finalMerge();
+			});
+		};
+		closure(sourcesFiles[i]);
+	}
+}
+exports.asyncYmlLoader = asyncYmlLoader;
 function Url(defaultState){
 	// private attributs
 	var referenceState = clone(defaultState);

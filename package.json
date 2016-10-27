@@ -25,7 +25,8 @@
   },
   "homepage": "https://1twitif.github.io/social-viz/",
   "dependencies": {
-    "d3": "^4.2.7"
+    "d3": "^4.2.7",
+    "js-yaml": "^3.6.1"
   },
   "devDependencies": {
     "jest-cli": "^16.0.1",

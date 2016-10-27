@@ -38,5 +38,5 @@ function initUI(){
 		.attr("value", function (l) {return l.id;})
 		.property("checked", function (l) {return !options.hideLayers['nl'+l.id];})
 	;
-	legend.append("span").text(function (l) {return l.title;});
+	legend.append("span").text(function (l) {return l.label;});
 }
