@@ -8,6 +8,10 @@ legendWidth = 180px
 detailsSmallWidth = 300px
 detailsBigWidth = 66vw
 footerHeight = 30px
+sponsorWidth = 240px
+sponsorHeight = 120px
+sponsorRadius = 60px
+
 panelSizeChangerSize = 30px
 transitionDuration = 0.5s
 sizeChangerBg = #888
@@ -161,14 +165,17 @@ a
 			hide()
 	section
 		padding 10px
+		>:last-child
+			margin-bottom sponsorHeight+10px
+
 #sponsor
 	background mainMenuBg
 	position: fixed
 	bottom:0
 	right:0
-	height: mainMenuHeight
-	width:  mainMenuWidth
-	border-top-left-radius mainMenuCurveRadius
+	height: sponsorHeight
+	width:  sponsorWidth
+	border-top-left-radius sponsorRadius
 	z-index 2
 
 
@@ -238,3 +245,11 @@ footer
 	width  panelSizeChangerSize
 	border-top-left-radius 0
 	border-bottom-left-radius 0
+
+#tradForm
+	label
+		display block;
+		clear both;
+	input
+		width 50%;
+		float:right;

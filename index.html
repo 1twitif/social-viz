@@ -54,6 +54,7 @@
     Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
     Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
     double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
+		<button id="editTrad" title="Formulaire de traduction">Traduction</button>
     <label>FPS : <span id="fpsValue"></span></label>
 </section>
 <section id="main-tools">
@@ -61,6 +62,7 @@
     <a title="flux RSS des mise à jour de données">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>
+	<!-- TODO: http://webreflection.blogspot.fr/2011/08/html5-how-to-create-downloads-on-fly.html -->
     <a title="sauvegarder en pdf pour l'impression">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>

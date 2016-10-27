@@ -168,6 +168,9 @@ a:hover {
 #details section {
   padding: 10px;
 }
+#details section >:last-child {
+  margin-bottom: 130px;
+}
 #sponsor {
   background: #888;
   position: fixed;
@@ -263,4 +266,12 @@ footer a {
   width: 30px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+#tradForm label {
+  display: block;
+  clear: both;
+}
+#tradForm input {
+  width: 50%;
+  float: right;
 }

@@ -250,8 +250,11 @@ window.addEventListener('configReady', function () {
 	function updateDetails(){
 		var details = document.querySelector("#details section");
 		var tutorialContent = "<h2>Tutorial</h2>\nMettre en pause / reprendre"; //FIXME: charger ça dynamiquement.
-		if(!options.selected) details.innerHTML = tutorialContent;
-		else details.innerHTML = renderDetails(options.selected);
+		if(!options.selected && !options.userMode) details.innerHTML = tutorialContent;
+		else if(!options.userMode) details.innerHTML = renderDetails(options.selected);
+		else if(options.userMode=='trad') renderTradForm();
+		else details.innerHTML = options.userMode + t(' pas encore géré');
+		//FIXME: ugly code smell
 	}
 	function renderDetails(id){
 		var detailsFunctions = {"n":renderNodeDetails};
