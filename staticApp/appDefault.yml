@@ -2,9 +2,10 @@ centerLogoUrl: staticApp/appImg/center.svg
 centerLogoWidth: 200
 centerLogoHeight: 200
 centerLogoOpacity: 0.1
-legend: small
-details: small
-tools-panel: small
+panels:
+  legend: small
+  details: small
+  tools-panel: small
 zoomPrecisionK: 3
 zoomPrecisionXY: 2
 fixedNode:

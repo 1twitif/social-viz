@@ -6,5 +6,5 @@ asyncYmlLoader([
 	options = data;
 	url = new Url(options);	// init url with default values
 	options = url.load();	// init options from url hash
-	window.dispatchEvent(new CustomEvent('configReady', {'detail':options}));
+	send('configReady', options);
 });

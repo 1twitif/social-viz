@@ -1,5 +1,5 @@
 var updateSvgArea;
-window.addEventListener('configReady', function () {
+on('configReady', function () {
 	var graph;
 	var zoom = d3.zoom()
 		.scaleExtent([options.zoomMin, options.zoomMax])

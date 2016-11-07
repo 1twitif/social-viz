@@ -54,7 +54,7 @@ function asyncYmlLoader(sourcesFiles,customEventToSendOrCallBack){
 			var path = sourcesFiles[i];
 			if(typeof filesContents[path] === "object") mergedData = merge(mergedData,filesContents[path]);
 		}
-		if(typeof customEventToSendOrCallBack === "string") window.dispatchEvent(new CustomEvent(customEventToSendOrCallBack, {'detail':mergedData}));
+		if(typeof customEventToSendOrCallBack === "string") send(customEventToSendOrCallBack, mergedData);
 		else if(typeof customEventToSendOrCallBack === "function") customEventToSendOrCallBack(mergedData, sourcesFiles);
 	};
 	for(var i in sourcesFiles){

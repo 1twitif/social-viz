@@ -1,26 +1,36 @@
-window.addEventListener('hashchange',render);
-window.addEventListener('configReady',render);
-window.addEventListener('configReady',initUI);
+on('hashchange',render);
+on('configReady',render);
+on('configReady',initUI);
 d3.selectAll('.expand').on('click',expandPanel);
 d3.selectAll('.reduce').on('click',reducePanel);
 
 function expandPanel(){ slidePanel({'hidden':'small','small':'big'}); }
 function reducePanel(){ slidePanel({'big':'small','small':'hidden'}); }
 function slidePanel(nextStatePicker){
-	// met à jour l'url selon les options
-	var newStateOptions = {}, panelNode = d3.event.target.parentNode;
-	newStateOptions[panelNode.id]=nextStatePicker[panelNode.className];
-	url.save(newStateOptions);
-	render();
+	// met à jour les options (l'état de l'app)
+	var panelNode = d3.event.target.parentNode;
+	options.panels[panelNode.id]=nextStatePicker[panelNode.className];
+	send('optionsChanged',options);
 }
+function saveOptions(opt){url.save(opt);}
+on('optionsChanged', saveOptions);
+on('optionsChanged', render);
 function render(){
-	var currentOptions = url.load();
-	updatePanels(currentOptions);
+	options = url.load();
+	send('render',options);
 }
+on('render', updatePanels);
 function updatePanels(options){
-	var panels = document.querySelectorAll('.hidden,.small,.big');
-	for(var i in panels) if(options[panels[i].id]) panels[i].className = options[panels[i].id];
-	multiTimeout(50,500,updateSvgArea);
+	var panelsMoved = false;
+	for(var i in options.panels){
+		var node = d3.select('#'+i);
+		var alreadyClassed = node.classed(options.panels[i]);
+		if(!alreadyClassed){
+			node.node().className = options.panels[i];
+			panelsMoved = true;
+		}
+	}
+	if(panelsMoved) multiTimeout(50,500,updateSvgArea);
 }
 function initUI(){
 	//TODO: gérer les layersGroups
