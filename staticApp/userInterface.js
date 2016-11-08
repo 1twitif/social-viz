@@ -51,8 +51,9 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 				.append("label")
 				.attr("class", "layer")
 				.attr("id", function (l) {
-					return 'nl' + l.id;
-				}); //nl -> nodeLayer
+					return 'nl' + l.id; //nl -> nodeLayer
+				}).on('mouseover',partialHideNotConcerned)
+				.on('mouseout',unhideAll);
 			legend.append("img")
 				.attr("class", "picto")
 				.attr("src", function (l) {
@@ -71,5 +72,12 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 			legend.append("span").text(function (l) {
 				return t(l.label);
 			});
+		}
+		function partialHideNotConcerned(e){
+			d3.selectAll('.node, .link').classed('nearlyHidden',true);
+			d3.selectAll('.node.nl'+e.id).classed('nearlyHidden',false);
+		}
+		function unhideAll(e){
+			d3.selectAll('.node, .link').classed('nearlyHidden',false);
 		}
 	});

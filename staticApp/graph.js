@@ -4,7 +4,6 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 	],
 	function (d3, badSmell, langTools) {
 			const t = langTools.t;
-		var updateSvgArea;
 		on('configReady', function () {
 			var graph;
 			var zoom = d3.zoom()
@@ -29,7 +28,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 				.attr("height", options.centerLogoHeight)
 				.attr("opacity", options.centerLogoOpacity)
 			;
-			updateSvgArea = function updateSvgArea() {
+			function updateSvgArea() {
 				var legendWidth = document.querySelector('#legend').offsetLeft + document.querySelector("#legend").offsetWidth,
 					detailsWidth = window.innerWidth - document.querySelector("#details").offsetLeft,
 					toolsHeight = document.querySelector('#tools-panel').offsetTop + document.querySelector("#tools-panel").offsetHeight;
@@ -79,6 +78,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 					.selectAll("line")
 					.data(graphData.links)
 					.enter().append("line")
+					.attr("class", (n)=> "link ll"+n.type)
 					.attr("stroke-width", function (d) {
 						return Math.sqrt(d.value);
 					})
@@ -91,7 +91,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 						.data(graphData.nodes)
 						.enter()
 						.append("g")
-						.attr("class", "node")
+						.attr("class", (n)=> "node nl"+n.type)
 						.attr("id", function (n) {
 							return "n" + n.id;
 						})
