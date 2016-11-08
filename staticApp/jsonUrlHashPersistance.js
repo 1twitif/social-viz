@@ -77,11 +77,11 @@ function Url(defaultState){
 	// private methods
 	var pushInHash = function pushInHash(json,title){
 		history.pushState({},title,'#'+JSON.stringify(json));
-		window.dispatchEvent(new HashChangeEvent("hashchange"));
+		dispatchEvent(new HashChangeEvent("hashchange"));
 	};
 	var replaceHash = function replaceHash(json){
 		history.replaceState({},document.title,'#'+JSON.stringify(json));
-		window.dispatchEvent(new HashChangeEvent("hashchange"));
+		dispatchEvent(new HashChangeEvent("hashchange"));
 	};
 	var jsonFromHash = function jsonFromHash(){
 		return window.location.hash?JSON.parse(decodeURIComponent(window.location.hash).substr(1)):{};

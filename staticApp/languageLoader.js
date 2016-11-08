@@ -44,9 +44,9 @@ function langBrutalSwitch(){
 		if(node.attributes){
 			for(var i in node.attributes) {
 				var attr = node.attributes[i];
-				var text = attr.nodeValue;
+				var text = attr.value;
 				if(text) for(var key in allKeys) text = text.replace(allKeys[key],t(key));
-				attr.nodeValue = text;
+				attr.value = text;
 			}
 		}
 	}
@@ -93,5 +93,5 @@ function saveLocalTrad(e){
 function updateSaveTradButton(trad){
 	var saveButton = document.getElementById('trad2file');
 	saveButton.href = 'data:text/yaml;charset=utf-8,'+encodeURIComponent(jsyaml.safeDump(trad));
-	console.log(saveButton.href);
+	//console.log(saveButton.href);
 }

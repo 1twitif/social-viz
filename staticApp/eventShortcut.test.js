@@ -14,3 +14,13 @@ test('event send & receive with data', () => {
 	app.send(eventName,eventData);
 	expect(dummyCallback).lastCalledWith(eventData);
 });
+test('not custom event catch', () => {
+	const dummyCallback = jest.fn( (e)=> console.log(e) );
+	const eventName = 'hashchange';
+	app.on(eventName,dummyCallback);
+	dispatchEvent(new HashChangeEvent(eventName));
+	expect(dummyCallback).toBeCalled();
+	expect(dummyCallback).not.lastCalledWith(undefined);
+
+});
+

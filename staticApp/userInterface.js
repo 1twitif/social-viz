@@ -12,9 +12,6 @@ function slidePanel(nextStatePicker){
 	options.panels[panelNode.id]=nextStatePicker[panelNode.className];
 	send('optionsChanged',options);
 }
-function saveOptions(opt){url.save(opt);}
-on('optionsChanged', saveOptions);
-on('optionsChanged', render);
 function render(){
 	options = url.load();
 	send('render',options);

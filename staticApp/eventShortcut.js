@@ -5,7 +5,8 @@ function send(eventName,eventData){
 exports.send = send;
 function on(eventName,callback){
 	addEventListener(eventName,function(e){
-		callback(e.detail);
+		if(e.detail) callback(e.detail);
+		else callback(e);
 	});
 }
 exports.on = on;
