@@ -1,9 +1,15 @@
-define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
-		'jsonUrlHashPersistance',
-		'languageLoader'
-	],
-	function (d3, badSmell, langTools) {
-			const t = langTools.t;
+(() => {
+	const dependencies = [
+		'../node_modules/d3/build/d3',
+		'eventShortcut',
+		'fps',
+		'languageLoader',
+		'configLoader'
+	];
+	const libEnv = function (d3, ev, fps, langTools) {
+		'use strict';
+		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
+
 		on('configReady', function () {
 			var graph;
 			var zoom = d3.zoom()
@@ -41,7 +47,10 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 				updateSelection();
 				updateCenterForce();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
-			};
+			}
+
+			on('resize', () => multiTimeout(50, 500, updateSvgArea));
+			on('dataInitDone', updateSvgArea);
 
 			var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -78,7 +87,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 					.selectAll("line")
 					.data(graphData.links)
 					.enter().append("line")
-					.attr("class", (n)=> "link ll"+n.type)
+					.attr("class", (n) => "link ll" + n.type)
 					.attr("stroke-width", function (d) {
 						return Math.sqrt(d.value);
 					})
@@ -91,7 +100,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 						.data(graphData.nodes)
 						.enter()
 						.append("g")
-						.attr("class", (n)=> "node nl"+n.type)
+						.attr("class", (n) => "node nl" + n.type)
 						.attr("id", function (n) {
 							return "n" + n.id;
 						})
@@ -179,7 +188,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 							return d.target.y;
 						})
 					;
-					fpsTick();
+					fps.tick();
 				}
 
 				var linkLengthScale = d3.scaleLinear()
@@ -198,7 +207,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 					})
 				;
 				simulation.on("tick", ticked);
-				updateSvgArea();
+				send('dataInitDone');
 			});
 			function zoomed() {
 				options.zoom = {
@@ -386,5 +395,13 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 				return drawer(points);
 			}
 		});
-		return {"updateSvgArea":updateSvgArea}
-	});
+
+		return {};
+	};
+	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
+		module.exports = libEnv.apply(this, dependencies.map(require));
+		module.exports.mockable = libEnv; // module loader with mockable dependencies
+	}
+	if (typeof define !== 'undefined') define(dependencies, libEnv);
+})();
+

@@ -1,47 +1,75 @@
-if (typeof exports === 'undefined') var exports = {};
-function clone(json){
-	return JSON.parse(JSON.stringify(json))
-}
-exports.clone = clone;
-function merge(baseJson,overwritingJson){
-	var res = clone(baseJson);
-	for (var key in overwritingJson) {
-		if(typeof overwritingJson[key] === "object" && typeof res[key] !== 'undefined') {
-			res[key] = merge(res[key],overwritingJson[key]);
+(() => {
+	const dependencies = [];
+	const libEnv = function () {
+		'use strict';
+
+		function clone(json) {
+			return JSON.parse(JSON.stringify(json))
 		}
-		else res[key] = overwritingJson[key];
-	}
-	return res;
-}
-exports.merge = merge;
-function isEmpty(thing){
-	if(thing === 0) return false;
-	if(typeof thing !== "object") return !thing;
-	return JSON.stringify(thing) === '{}' || JSON.stringify(thing) === '[]';
-}
-function cleanJson(json){
-	if(Array.isArray(json)){
-		for (var i=json.length-1;i>=0;i--) {
-			if (typeof json[i] === 'object') json[i] = cleanJson(json[i]);
-			if (isEmpty(json[i])) json.splice(i,1);
+
+		function merge(baseJson, overwritingJson) {
+			let res = clone(baseJson);
+			for (let key in overwritingJson) {
+				if (typeof overwritingJson[key] === "object" && typeof res[key] !== 'undefined') {
+					res[key] = merge(res[key], overwritingJson[key]);
+				}
+				else res[key] = overwritingJson[key];
+			}
+			return res;
 		}
-	}
-	else for (var key in json) {
-		if (typeof json[key] === 'object') json[key] = cleanJson(json[key]);
-		if (isEmpty(json[key])) delete json[key];
-	}
-	return json;
-}
-exports.cleanJson = cleanJson;
-function removeDefault(json,defaultJson){
-	var res = clone(json);
-	for (var key in defaultJson) {
-		if(typeof defaultJson[key] === "object" && typeof res[key] !== 'undefined') {
-			var subRes = removeDefault(res[key],defaultJson[key]);
-			res[key] = subRes;
+
+		function mergeInOrder(orderedKey, map) {
+			let mergedData = {};
+			for (let i in orderedKey) {
+				let key = orderedKey[i];
+				if (typeof map[key] === "object") mergedData = merge(mergedData, map[key]);
+			}
+			return mergedData;
 		}
-		if(JSON.stringify(defaultJson[key])===JSON.stringify(res[key])) delete res[key];
+
+		function isEmpty(thing) {
+			if (thing === 0) return false;
+			if (typeof thing !== "object") return !thing;
+			return JSON.stringify(thing) === '{}' || JSON.stringify(thing) === '[]';
+		}
+
+		function cleanJson(json) {
+			if (Array.isArray(json)) {
+				for (let i = json.length - 1; i >= 0; i--) {
+					if (typeof json[i] === 'object') json[i] = cleanJson(json[i]);
+					if (isEmpty(json[i])) json.splice(i, 1);
+				}
+			}
+			else for (let key in json) {
+				if (typeof json[key] === 'object') json[key] = cleanJson(json[key]);
+				if (isEmpty(json[key])) delete json[key];
+			}
+			return json;
+		}
+
+		function removeDefault(json, defaultJson) {
+			let res = clone(json);
+			for (let key in defaultJson) {
+				if (typeof defaultJson[key] === "object" && typeof res[key] !== 'undefined') {
+					let subRes = removeDefault(res[key], defaultJson[key]);
+					res[key] = subRes;
+				}
+				if (JSON.stringify(defaultJson[key]) === JSON.stringify(res[key])) delete res[key];
+			}
+			return cleanJson(res);
+		}
+
+		return {
+			clone,
+			merge,
+			mergeInOrder,
+			cleanJson,
+			removeDefault
+		}
+	};
+	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
+		module.exports = libEnv.apply(this, dependencies.map(require));
+		module.exports.mockable = libEnv; // module loader with mockable dependencies
 	}
-	return cleanJson(res);
-}
-exports.removeDefault = removeDefault;
+	if (typeof define !== 'undefined') define(dependencies, libEnv);
+})();

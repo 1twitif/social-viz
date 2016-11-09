@@ -1,14 +1,19 @@
-define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
-		'//cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.min.js',
-		'structManipulation',
-		'jsonUrlHashPersistance'
-	],
-	function (d3, jsyaml, struct, badSmell) {
+(() => {
+	const dependencies = [
+		'../node_modules/d3/build/d3',
+		'../node_modules/js-yaml/dist/js-yaml',
+		'./ymlTools',
+		'./structManipulation',
+		'./eventShortcut'
+	];
+	const libEnv = function (d3, jsyaml, ymlTools, struct, ev) {
 		'use strict';
+		const on = ev.on, send = ev.send, merge = struct.merge;
+
 		let lang, langData = {}, oldLang, oldLangData;
-//TODO: drapeau langue :  https://openclassrooms.com/forum/sujet/image-dans-un-select-10327
-//TODO: adapter à gettext et weblate
-// ressources bonus : http://i18next.com/ http://slexaxton.github.io/Jed/ http://l10ns.org/
+		//TODO: drapeau langue :  https://openclassrooms.com/forum/sujet/image-dans-un-select-10327
+		//TODO: adapter à gettext et weblate
+		// ressources bonus : http://i18next.com/ http://slexaxton.github.io/Jed/ http://l10ns.org/
 		function updateLang() {
 			oldLang = lang;
 			// find language to use in supported ones ( and update langPicker )
@@ -27,7 +32,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 
 			// loadLangData
 			//if(oldLang !== lang)
-			badSmell.asyncYmlLoader([
+			ymlTools.loadMerge([
 				"staticApp/lang/" + lang + ".yml",
 				"allData/lang/" + lang + ".yml"
 			], function (data) {
@@ -55,7 +60,7 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 						let attr = node.attributes[i];
 						let text = attr.value;
 						if (text) for (let key in allKeys) text = text.replace(allKeys[key], t(key));
-						if(attr.value !== text) attr.value = text;
+						if (attr.value !== text) attr.value = text;
 					}
 				}
 			}
@@ -110,7 +115,14 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 			//console.log(saveButton.href);
 		}
 
-		return {'t':t,
-			'renderTradForm':renderTradForm //FIXME: éviter d'avoir à exposer ça.
-		};
-	});
+		return {
+			t,
+			renderTradForm //FIXME: éviter d'avoir à exposer ça.
+		}
+	};
+	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
+		module.exports = libEnv.apply(this, dependencies.map(require));
+		module.exports.mockable = libEnv; // module loader with mockable dependencies
+	}
+	if (typeof define !== 'undefined') define(dependencies, libEnv);
+})();

@@ -1,26 +1,25 @@
-define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
-		'languageLoader'
-//		'jsonUrlHashPersistance',
-	],
-	function (d3, langTools) {
-		const t = langTools.t;
+(() => {
+	const dependencies = [
+		'../node_modules/d3/build/d3',
+		'./eventShortcut',
+		'languageLoader',
+		'configLoader'
+	];
+	const libEnv = function (d3, ev,langTools) {
+		'use strict';
+		const on = ev.on, send = ev.send, t = langTools.t;
+
 		on('hashchange', render);
 		on('configReady', render);
 		on('configReady', initUI);
 		d3.selectAll('.expand').on('click', expandPanel);
 		d3.selectAll('.reduce').on('click', reducePanel);
 
-		function expandPanel() {
-			slidePanel({'hidden': 'small', 'small': 'big'});
-		}
-
-		function reducePanel() {
-			slidePanel({'big': 'small', 'small': 'hidden'});
-		}
-
+		function expandPanel() { slidePanel({'hidden': 'small', 'small': 'big'}); }
+		function reducePanel() { slidePanel({'big': 'small', 'small': 'hidden'}); }
 		function slidePanel(nextStatePicker) {
 			// met à jour les options (l'état de l'app)
-			var panelNode = d3.event.target.parentNode;
+			let panelNode = d3.event.target.parentNode;
 			options.panels[panelNode.id] = nextStatePicker[panelNode.className];
 			send('optionsChanged', options);
 		}
@@ -29,25 +28,25 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 			options = url.load();
 			send('render', options);
 		}
-
 		on('render', updatePanels);
+
 		function updatePanels(options) {
-			var panelsMoved = false;
-			for (var i in options.panels) {
-				var node = d3.select('#' + i);
-				var alreadyClassed = node.classed(options.panels[i]);
+			let panelsMoved = false;
+			for (let i in options.panels) {
+				let node = d3.select('#' + i);
+				let alreadyClassed = node.classed(options.panels[i]);
 				if (!alreadyClassed) {
 					node.node().className = options.panels[i];
 					panelsMoved = true;
 				}
 			}
-			if (panelsMoved) multiTimeout(50, 500, updateSvgArea);
+			if (panelsMoved) send('resize');
 		}
 
 		function initUI() {
 			//TODO: gérer les layersGroups
-			var legendArea = d3.select('#legend>section');
-			var legend = legendArea.selectAll('label.layer').data(options.nodeLayers).enter()
+			let legendArea = d3.select('#legend>section');
+			let legend = legendArea.selectAll('label.layer').data(options.nodeLayers).enter()
 				.append("label")
 				.attr("class", "layer")
 				.attr("id", function (l) {
@@ -80,4 +79,13 @@ define(['//d3js.org/d3.v4.min.js', //'node_modules/d3/build/d3.min.js'
 		function unhideAll(e){
 			d3.selectAll('.node, .link').classed('nearlyHidden',false);
 		}
-	});
+
+		return {};
+	};
+	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
+		module.exports = libEnv.apply(this, dependencies.map(require));
+		module.exports.mockable = libEnv; // module loader with mockable dependencies
+	}
+	if (typeof define !== 'undefined') define(dependencies, libEnv);
+})();
+

@@ -5,6 +5,16 @@ test('merge simple objects', () => {
 test('merge nested objects', () => {
 	expect(app.merge([{a: 1, b: 2}], [{b: 3, c: 4}])).toEqual([{a: 1, b: 3, c: 4}]);
 });
+test('merge inOrder', () => {
+	const orderedKey = ['bob','alice','john'];
+	const map = {
+		'alice': {a: 1, b:5, z:9},
+		'john':{j:3, z:7},
+		'bob':{b: 2, j:4, z:1}
+	};
+	const expected = {a:1,b:5,j:3,z:7};
+	expect(app.mergeInOrder(orderedKey,map)).toEqual(expected);
+});
 test('removeDefault simple objects', () => {
 	let data = {a:1,b:2,c:4};
 	let reference = {b:2,c:3};
