@@ -1,12 +1,15 @@
-var url, options={};
+var url, options;
+// rend globalement accessible la structure options
+//Object.defineProperty(window, 'options', new MonitoredStruct(inertOptions,'options'));
 
 (() => {
 	const dependencies = [
 		'./ymlTools',
 		'./urlHashStore',
-		'./eventShortcut'
+		'./smartEvents',
+		'./structManipulation'
 	];
-	const libEnv = function (ymlTools,urlHashStore,ev) {
+	const libEnv = function (ymlTools,urlHashStore,ev,struct) {
 		'use strict';
 		const on = ev.on, send = ev.send;
 
@@ -25,8 +28,6 @@ var url, options={};
 		function saveOptions(opt){url.save(opt);}
 
 // TODO : utiliser un Proxy pour déclancher les evenement OptionsChanged https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Proxy
-
-
 		return {
 		}
 	};

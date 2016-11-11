@@ -2,7 +2,7 @@
 	const dependencies = [
 		'../node_modules/js-yaml/dist/js-yaml',
 		'./structManipulation',
-		'./eventShortcut'
+		'./smartEvents'
 	];
 	const libEnv = function (jsyaml, struct, ev) {
 		'use strict';

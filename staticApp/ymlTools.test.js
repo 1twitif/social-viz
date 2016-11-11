@@ -1,4 +1,4 @@
-const ev = require('./eventShortcut');
+const ev = require('./smartEvents');
 const app = require('./ymlTools');
 
 test('convert ymlText to jsObject', () => {

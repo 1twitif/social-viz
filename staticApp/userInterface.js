@@ -1,7 +1,7 @@
 (() => {
 	const dependencies = [
 		'../node_modules/d3/build/d3',
-		'./eventShortcut',
+		'./smartEvents',
 		'languageLoader',
 		'configLoader'
 	];

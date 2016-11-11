@@ -4,7 +4,7 @@
 		'../node_modules/js-yaml/dist/js-yaml',
 		'./ymlTools',
 		'./structManipulation',
-		'./eventShortcut'
+		'./smartEvents'
 	];
 	const libEnv = function (d3, jsyaml, ymlTools, struct, ev) {
 		'use strict';

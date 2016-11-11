@@ -1,4 +1,4 @@
-const app = require('./eventShortcut');
+const app = require('./smartEvents');
 test('basic event send & receive', () => {
 	const dummyCallback = jest.fn();
 	const eventName = 'anEvent';
@@ -46,6 +46,51 @@ test('destroyable listener without conflicts', () => {
 	expect(dummyCallback2).toHaveBeenCalledTimes(1);
 	expect(dummyCallback3).toHaveBeenCalledTimes(2);
 });
+test('structured event send & receive', () => {
+	const globalCallback = jest.fn();
+	const moreSpecificCallback = jest.fn();
+	const eventName = 'global.sub.moreSpecific';
+	const eventData = 5;
+	app.on('global',globalCallback);
+	app.on('global.sub.moreSpecific',moreSpecificCallback);
+	app.send(eventName,eventData);
+	expect(globalCallback).lastCalledWith(eventData);
+	expect(moreSpecificCallback).lastCalledWith(eventData);
+});
+test('part of structured event send & receive', () => {
+	const subCallback = jest.fn();
+	const eventName = 'global.sub.moreSpecific';
+	const eventData = 5;
+	app.on('sub',subCallback);
+	app.send(eventName,eventData);
+	expect(subCallback).lastCalledWith(eventData);
+});
+test('dont listen incorrect structured event send & receive', () => {
+	const neverCalledCallback = jest.fn();
+	const eventName = 'global.sub.moreSpecific';
+	const eventData = 5;
+	app.on('global.moreSpecific',neverCalledCallback);
+	app.send(eventName,eventData);
+	expect(neverCalledCallback).not.toBeCalled();
+});
+test('clean destroy of structured event listener', () => {
+	const dummyCallback1 = jest.fn();
+	const dummyCallback2 = jest.fn();
+	const dummyCallback3 = jest.fn();
+	const eventName = 'an.event';
+	let listener1 = app.on(eventName,dummyCallback1);
+	let listener2 = app.on('event',dummyCallback2);
+	let listener3 = app.on(eventName,dummyCallback3);
+	app.send(eventName);
+	listener2.destroy();
+	listener3.destroy();
+	app.send(eventName);
+	expect(dummyCallback1).toHaveBeenCalledTimes(2);
+	expect(dummyCallback2).toHaveBeenCalledTimes(1);
+	expect(dummyCallback3).toHaveBeenCalledTimes(1);
+});
+
+
 test('callbackOrEventSender -> callback case', () => {
 	const dummyCallback = jest.fn();
 	const data = 'someData';
