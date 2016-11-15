@@ -1,49 +1,77 @@
 (() => {
 	const dependencies = [
-		'../node_modules/d3/build/d3',
 		'../node_modules/js-yaml/dist/js-yaml',
 		'./ymlTools',
 		'./structManipulation',
 		'./smartEvents'
 	];
-	const libEnv = function (d3, jsyaml, ymlTools, struct, ev) {
+	const libEnv = function (jsyaml, ymlTools, struct, ev) {
 		'use strict';
 		const on = ev.on, send = ev.send, merge = struct.merge;
 
+		const validLanguages = ['en','fr','es']; // TODO : import from options
 		let lang, langData = {}, oldLang, oldLangData;
 		//TODO: drapeau langue :  https://openclassrooms.com/forum/sujet/image-dans-un-select-10327
 		//TODO: adapter à gettext et weblate
 		// ressources bonus : http://i18next.com/ http://slexaxton.github.io/Jed/ http://l10ns.org/
+		function applySelectiveClassOnNodes(nodes,className,condition){
+			let appliedTimes = 0;
+			for (let i in nodes){
+				if(nodes.hasOwnProperty(i)){
+					const n = nodes[i];
+					if (condition(n)) {
+						appliedTimes++;
+						n.classList.add(className);
+					} else n.classList.remove(className);
+				}
+			}
+			return appliedTimes;
+		}
+		function getValidLang(){
+			let lang = localStorage.getItem('lang') || navigator.language;
+			if(!validLanguages.includes(lang)) lang = lang.substring(0, 2);
+			if(!validLanguages.includes(lang)) lang = 'en';
+			return lang;
+		}
+		function initLang(){
+			let node = document.getElementById('langPicker');
+			if(node)	node.addEventListener('change',changeLang);
+			node = document.getElementById('editTrad');
+			if(node) node.addEventListener('click', activateUserModeTrad);
+			send('lang.change',getValidLang());
+		}
+		on('lang.change',updateLangPicker);
+		function updateLangPicker(lang){
+			const htmlLangOptions = document.querySelectorAll('#langPicker option');
+			applySelectiveClassOnNodes(htmlLangOptions,'selected', (n)=>n.value === lang );
+		}
+		on('lang.change', updateLang);
 		function updateLang() {
 			oldLang = lang;
 			// find language to use in supported ones ( and update langPicker )
-			lang = localStorage.getItem('lang') || navigator.language;
-			let langFound = false;
-			d3.selectAll('#langPicker option').property("selected", function () {
-				if (this.value === lang) return langFound = true;
-				return false;
-			});
-			if (!langFound) lang = lang.substring(0, 2);
-			d3.selectAll('#langPicker option').property("selected", function () {
-				if (this.value === lang) return langFound = true;
-				return false;
-			});
-			if (!langFound) lang = d3.select('#langPicker').property("value");
+			lang = getValidLang();
 
 			// loadLangData
-			//if(oldLang !== lang)
-			ymlTools.loadMerge([
-				"staticApp/lang/" + lang + ".yml",
+			if(oldLang !== lang)
+				ymlTools.loadMerge([
+			"staticApp/lang/" + lang + ".yml",
 				"allData/lang/" + lang + ".yml"
-			], function (data) {
-				oldLangData = langData;
-				let localTrad = loadLocalTrad();
-				langData = merge(data, localTrad);
-				langBrutalSwitch();
+			], (data) => {
+				applyLocalTrad(data);
+
 			});
+			else {
+				applyLocalTrad();
+				send('lang.update', lang);
+			}
+		}
+		function applyLocalTrad(data){
+			oldLangData = langData;
+			let localTrad = loadLocalTrad();
+			langData = merge(data||langData, localTrad);
+			langBrutalSwitch();
 		}
 
-		updateLang();
 		function langBrutalSwitch() {
 			let allKeys = merge(langData, oldLangData); // allKeys handle partial traductions.
 			for (let key in allKeys) if (!oldLangData[key]) allKeys[key] = key;
@@ -66,11 +94,10 @@
 			}
 		}
 
-		d3.select('#langPicker').on('change', function (e) {
-			localStorage.setItem('lang', this.value);
-			updateLang();
-			updateDetails(); //TODO : envoyer et consomer des évènement pour éviter le couplage fort
-		});
+		function changeLang(n){
+			localStorage.setItem('lang', n.target.value);
+			send('lang.change',n.target.value);
+		}
 		function t(translateMe) {
 			if (!langData[translateMe]) {
 				langData[translateMe] = '';
@@ -78,12 +105,11 @@
 			}
 			else return langData[translateMe];
 		}
-
-		d3.select('#editTrad').on('click', function () {
+		function activateUserModeTrad(){
 			options.userMode = "trad";
 			options.selected = undefined;
 			url.save(options);
-		});
+		}
 		function renderTradForm() {
 			let formStr = '<form id="tradForm">';
 			for (let key in langData) {
@@ -115,6 +141,7 @@
 			//console.log(saveButton.href);
 		}
 
+		initLang();
 		return {
 			t,
 			renderTradForm //FIXME: éviter d'avoir à exposer ça.

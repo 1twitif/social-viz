@@ -302,6 +302,7 @@
 				updateDetails();
 			}
 
+			on('lang.update', updateDetails);
 			function updateDetails() {
 				var details = document.querySelector("#details section");
 				var tutorialContent = "<h2>Tutorial</h2>\nMettre en pause / reprendre"; //FIXME: charger ça dynamiquement.

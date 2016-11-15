@@ -1,4 +1,4 @@
-var url, options;
+var options;
 // rend globalement accessible la structure options
 //Object.defineProperty(window, 'options', new MonitoredStruct(inertOptions,'options'));
 
@@ -7,9 +7,10 @@ var url, options;
 		'./ymlTools',
 		'./urlHashStore',
 		'./smartEvents',
-		'./structManipulation'
+		'./MonitoredStruct'
+
 	];
-	const libEnv = function (ymlTools,urlHashStore,ev,struct) {
+	const libEnv = function (ymlTools,urlHashStore,ev,mStruct) {
 		'use strict';
 		const on = ev.on, send = ev.send;
 
@@ -18,7 +19,8 @@ var url, options;
 			"allData/config.yml"
 		], function(data){
 			options = data;
-			url = new urlHashStore.Url(options);	// init url with default values
+			const url = new urlHashStore.Url(options);	// init url with default values
+			mStruct.unOverwritableGlobalConst('url', url);
 			options = url.load();	// init options from url hash
 			send('configReady', options);
 		});

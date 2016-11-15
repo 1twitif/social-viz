@@ -1,10 +1,8 @@
 (() => {
 	const dependencies = [
-		'../node_modules/d3/build/d3',
-		'../node_modules/js-yaml/dist/js-yaml',
 		'./structManipulation'
 	];
-	const libEnv = function (d3, jsyaml, struct) {
+	const libEnv = function (struct) {
 		'use strict';
 
 		function Url(defaultState) {

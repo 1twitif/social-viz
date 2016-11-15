@@ -19,7 +19,8 @@
 		}
 
 		function fpsRefresh() {
-			document.getElementById('fpsValue').innerText = fpsCalc();
+			const node = document.getElementById('fpsValue');
+			if(node) node.innerText = fpsCalc();
 		}
 
 		setInterval(fpsRefresh, 1000);

@@ -1,6 +1,4 @@
-(() => {
-	const dependencies = [];
-	const libEnv = function () {
+define([],()=> {
 		'use strict';
 		function send(structuredEventName, eventData) {
 			const customEventDetail = {'eventFullName':structuredEventName,'id':eventId(),'data':eventData};
@@ -24,7 +22,7 @@
 		function callbackOrEventSender(callbackOrEvent, data) {
 			if (typeof callbackOrEvent === "string") return send(callbackOrEvent, data);
 			if (typeof callbackOrEvent === "function") return callbackOrEvent(data);
-			throw new Error('paramètres non supportés : ' + callbackOrEvent);
+			throw new Error('Parameter is nor an eventName nor a callbackFunc : ' + callbackOrEvent);
 		}
 		function eventId() {
 			return Date.now()+'-'+Math.random();
@@ -52,10 +50,4 @@
 			on,
 			callbackOrEventSender
 		}
-	};
-	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
-		module.exports = libEnv.apply(this, dependencies.map(require));
-		module.exports.mockable = libEnv; // module loader with mockable dependencies
-	}
-	if (typeof define !== 'undefined') define(dependencies, libEnv);
-})();
+});

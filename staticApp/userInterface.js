@@ -2,8 +2,8 @@
 	const dependencies = [
 		'../node_modules/d3/build/d3',
 		'./smartEvents',
-		'languageLoader',
-		'configLoader'
+		'./languageLoader',
+		'./configLoader'
 	];
 	const libEnv = function (d3, ev,langTools) {
 		'use strict';
