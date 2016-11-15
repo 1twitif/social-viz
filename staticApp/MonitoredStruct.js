@@ -33,8 +33,10 @@
 		function structureEventName(optionalPartsArray){
 			return optionalPartsArray.filter( (part)=>!!part ).join('.');
 		}
-
-		return {MonitoredStruct}
+		function unOverwritableGlobalConst(name,value){
+			Object.defineProperty(window, name, {'value':value});
+		}
+		return {MonitoredStruct,unOverwritableGlobalConst}
 	};
 	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
 		module.exports = libEnv.apply(this, dependencies.map(require));

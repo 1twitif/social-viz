@@ -69,3 +69,12 @@ test('send event on delete', () => {
 	expect(dummyCallback).toHaveBeenCalledTimes(1);
 	expect(observed.hasOwnProperty('sub')).toBeFalsy();
 });
+test('unOverwritableGlobalConst', () => {
+	app.unOverwritableGlobalConst('dummy',{'do':'me'});
+	try {
+		window.dummy = 'osef';
+	} catch(obj){}
+	expect(dummy).toEqual({'do':'me'});
+	dummy['do'] = 'you';
+	expect(dummy).toEqual({'do':'you'});
+});
