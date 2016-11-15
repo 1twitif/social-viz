@@ -1,3 +1,8 @@
+[![Code Climate](https://codeclimate.com/github/1twitif/social-viz/badges/gpa.svg)](https://codeclimate.com/github/1twitif/social-viz)
+[![Coverage](https://img.shields.io/badge/coverage-66%-yellow.svg)](https://1twitif.github.io/social-viz/coverage/Firefox%2049.0.0%20(Windows%207%200.0.0)/index.html)
+
+
+
 # Social-viz
 Visualisation de graph sociaux
 
