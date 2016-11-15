@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for staticApp\structManipulation.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">staticApp/</a> structManipulation.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.34% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>50/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.29% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>29/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.45% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>42/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(() =&gt; {
+	const dependencies = [];
+	const libEnv = function () {
+		'use strict';
+&nbsp;
+		function clone(json) {
+			return JSON.parse(JSON.stringify(json))
+		}
+&nbsp;
+		function merge(baseJson, overwritingJson) {
+			let res = clone(baseJson);
+			for (let key in overwritingJson) {
+				if (typeof overwritingJson[key] === "object" &amp;&amp; typeof res[key] !== 'undefined') {
+					res[key] = merge(res[key], overwritingJson[key]);
+				}
+				else res[key] = overwritingJson[key];
+			}
+			return res;
+		}
+&nbsp;
+		function mergeInOrder(orderedKey, map) {
+			let mergedData = {};
+			for (let i in orderedKey) {
+				let key = orderedKey[i];
+				if (typeof map[key] === "object") mergedData = merge(mergedData, map[key]);
+			}
+			return mergedData;
+		}
+&nbsp;
+		function isEmpty(thing) {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (thing === 0) <span class="cstat-no" title="statement not covered" >return false;</span>
+			if (typeof thing !== "object") return !thing;
+			return JSON.stringify(thing) === '{}' || JSON.stringify(thing) === '[]';
+		}
+&nbsp;
+		function cleanJson(json) {
+			if (Array.isArray(json)) {
+				for (let i = json.length - 1; i &gt;= 0; i--) {
+					<span class="missing-if-branch" title="else path not taken" >E</span>if (typeof json[i] === 'object') json[i] = cleanJson(json[i]);
+					if (isEmpty(json[i])) json.splice(i, 1);
+				}
+			}
+			else for (let key in json) {
+				if (typeof json[key] === 'object') json[key] = cleanJson(json[key]);
+				if (isEmpty(json[key])) delete json[key];
+			}
+			return json;
+		}
+&nbsp;
+		function removeDefault(json, defaultJson) {
+			let res = clone(json);
+			for (let key in defaultJson) {
+				if (typeof defaultJson[key] === "object" &amp;&amp; typeof res[key] !== 'undefined') {
+					let subRes = removeDefault(res[key], defaultJson[key]);
+					res[key] = subRes;
+				}
+				if (JSON.stringify(defaultJson[key]) === JSON.stringify(res[key])) delete res[key];
+			}
+			return cleanJson(res);
+		}
+&nbsp;
+		return {
+			clone,
+			merge,
+			mergeInOrder,
+			cleanJson,
+			removeDefault
+		}
+	};
+	<span class="missing-if-branch" title="if path not taken" >I</span>if (typeof module !== 'undefined' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >typeof require !== 'undefined')</span> {
+<span class="cstat-no" title="statement not covered" >		module.exports = libEnv.apply(this, dependencies.map(require));</span>
+<span class="cstat-no" title="statement not covered" >		module.exports.mockable = libEnv; </span>// module loader with mockable dependencies
+	}
+	<span class="missing-if-branch" title="else path not taken" >E</span>if (typeof define !== 'undefined') define(dependencies, libEnv);
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Nov 15 2016 08:45:52 GMT+0100 (Paris, Madrid)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
