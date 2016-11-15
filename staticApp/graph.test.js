@@ -1,4 +1,3 @@
-/*
 define(['./graph'], (app) => {
 	describe('graph', () => {
 		it('test nothing', () => {
@@ -6,4 +5,3 @@ define(['./graph'], (app) => {
 		});
 	});
 });
-*/

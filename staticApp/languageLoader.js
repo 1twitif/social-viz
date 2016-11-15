@@ -3,9 +3,10 @@
 		'../node_modules/js-yaml/dist/js-yaml',
 		'./ymlTools',
 		'./structManipulation',
-		'./smartEvents'
+		'./smartEvents',
+		'./configLoader'
 	];
-	const libEnv = function (jsyaml, ymlTools, struct, ev) {
+	const libEnv = function (jsyaml, ymlTools, struct, ev, cfg) {
 		'use strict';
 		const on = ev.on, send = ev.send, merge = struct.merge;
 
@@ -106,9 +107,8 @@
 			else return langData[translateMe];
 		}
 		function activateUserModeTrad(){
-			options.userMode = "trad";
-			options.selected = undefined;
-			url.save(options);
+			const config = cfg.getConfig();
+			config.userMode = "trad";
 		}
 		function renderTradForm() {
 			let formStr = '<form id="tradForm">';
@@ -138,11 +138,10 @@
 		function updateSaveTradButton(trad) {
 			let saveButton = document.getElementById('trad2file');
 			saveButton.href = 'data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(trad));
-			//console.log(saveButton.href);
 		}
 
-		initLang();
 		return {
+			'init':initLang,
 			t,
 			renderTradForm //FIXME: éviter d'avoir à exposer ça.
 		}

@@ -1,16 +1,17 @@
 (() => {
 	const dependencies = [
 		'../node_modules/d3/build/d3',
-		'smartEvents',
-		'fps',
-		'languageLoader',
-		'configLoader'
+		'./smartEvents',
+		'./fps',
+		'./languageLoader',
+		'./configLoader'
 	];
-	const libEnv = function (d3, ev, fps, langTools) {
+	const libEnv = function (d3, ev, fps, langTools,cfg) {
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
-
-		on('configReady', function () {
+		let options;
+		on('config.ready', function (config) {
+			options = config;
 			var graph;
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])
@@ -342,7 +343,6 @@
 			}
 
 			function updateZoom() {
-				options = url.load();
 				var zoom = options.zoom;
 
 				zoomableContainer.attr("transform",

@@ -5,48 +5,48 @@
 		'./languageLoader',
 		'./configLoader'
 	];
-	const libEnv = function (d3, ev,langTools) {
+	const libEnv = function (d3,ev,langTools,cfg) {
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t;
-
-		on('hashchange', render);
-		on('configReady', render);
-		on('configReady', initUI);
+		function init(){
+			listenerInit();
+		}
+		function listenerInit(){
+			on('config.ready', initUI);
+			on('config.ready', render);
+			on('hashchange', render);
+			on('render', updatePanels);
+		}
+		function render() { send('render', cfg.getConfig());}
 		d3.selectAll('.expand').on('click', expandPanel);
 		d3.selectAll('.reduce').on('click', reducePanel);
 
 		function expandPanel() { slidePanel({'hidden': 'small', 'small': 'big'}); }
 		function reducePanel() { slidePanel({'big': 'small', 'small': 'hidden'}); }
 		function slidePanel(nextStatePicker) {
-			// met à jour les options (l'état de l'app)
+			// met à jour l'état de l'app en modifiant la config
 			let panelNode = d3.event.target.parentNode;
-			options.panels[panelNode.id] = nextStatePicker[panelNode.className];
-			send('optionsChanged', options);
+			cfg.getConfig().panels[panelNode.id] = nextStatePicker[panelNode.className];
 		}
 
-		function render() {
-			options = url.load();
-			send('render', options);
-		}
-		on('render', updatePanels);
 
-		function updatePanels(options) {
+		function updatePanels(config) {
 			let panelsMoved = false;
-			for (let i in options.panels) {
+			for (let i in config.panels) {
 				let node = d3.select('#' + i);
-				let alreadyClassed = node.classed(options.panels[i]);
+				let alreadyClassed = node.classed(config.panels[i]);
 				if (!alreadyClassed) {
-					node.node().className = options.panels[i];
+					node.node().className = config.panels[i];
 					panelsMoved = true;
 				}
 			}
 			if (panelsMoved) send('resize');
 		}
 
-		function initUI() {
+		function initUI(config) {
 			//TODO: gérer les layersGroups
 			let legendArea = d3.select('#legend>section');
-			let legend = legendArea.selectAll('label.layer').data(options.nodeLayers).enter()
+			let legend = legendArea.selectAll('label.layer').data(config.nodeLayers).enter()
 				.append("label")
 				.attr("class", "layer")
 				.attr("id", function (l) {
@@ -65,7 +65,7 @@
 					return l.id;
 				})
 				.property("checked", function (l) {
-					return !options.hideLayers['nl' + l.id];
+					return !config.hideLayers['nl' + l.id];
 				})
 			;
 			legend.append("span").text(function (l) {
@@ -80,7 +80,7 @@
 			d3.selectAll('.node, .link').classed('nearlyHidden',false);
 		}
 
-		return {};
+		return {init};
 	};
 	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
 		module.exports = libEnv.apply(this, dependencies.map(require));

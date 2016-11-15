@@ -9,6 +9,11 @@ requirejs([
 		'languageLoader',
 		'graph',
 		'userInterface'
-	], () => console.log('chargement terminé')
+	], (cfg,langTools, graph, ui) => {
+	cfg.init();
+	langTools.init();
+	ui.init();
+	console.log('chargement terminé')
+	}
 );
 
