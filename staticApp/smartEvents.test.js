@@ -7,13 +7,6 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName);
 			expect(dummyCallback).toHaveBeenCalled();
 		});
-		it('basic event send & receive', () => {
-			const dummyCallback = new Spy();
-			const eventName = 'anEvent';
-			app.on(eventName, dummyCallback);
-			app.send(eventName);
-			expect(dummyCallback).toHaveBeenCalled();
-		});
 		it('event send & receive with data', () => {
 			const dummyCallback = new Spy();
 			const eventName = 'anEvent';
