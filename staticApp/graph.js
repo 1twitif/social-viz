@@ -1,12 +1,10 @@
-(() => {
-	const dependencies = [
+define([
 		'../node_modules/d3/build/d3',
 		'./smartEvents',
 		'./fps',
 		'./languageLoader',
 		'./configLoader'
-	];
-	const libEnv = function (d3, ev, fps, langTools,cfg) {
+	], (d3, ev, fps, langTools,cfg) => {
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
 		let options;
@@ -398,11 +396,4 @@
 		});
 
 		return {};
-	};
-	if (typeof module !== 'undefined' && typeof require !== 'undefined') {
-		module.exports = libEnv.apply(this, dependencies.map(require));
-		module.exports.mockable = libEnv; // module loader with mockable dependencies
-	}
-	if (typeof define !== 'undefined') define(dependencies, libEnv);
-})();
-
+	});
