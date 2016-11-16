@@ -18,8 +18,8 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 
 require.config({
 	paths: {
-		'node_modules/d3/build/d3': 'http://d3js.org/d3.v4.min',
 		'node_modules/js-yaml/dist/js-yaml': 'http://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.min',
+		'node_modules/d3/build/d3': 'http://d3js.org/d3.v4.min'
 	},
   // Karma serves files under /base, which is the basePath from your config file
   baseUrl: '/base',

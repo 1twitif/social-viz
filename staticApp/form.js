@@ -3,7 +3,7 @@ define([
 	'../node_modules/js-yaml/dist/js-yaml',
 	'./configLoader',
 	'./structManipulation',
-	'./MonitoredStruct',
+	'./MonitoredStruct'
 ], (ev, jsyaml, cfg) => {
 	'use strict';
 	const on = ev.on, send = ev.send;
