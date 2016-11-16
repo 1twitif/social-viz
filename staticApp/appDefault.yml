@@ -31,3 +31,9 @@ gazDispersionForce: -100
 proximityWarningDistanceRatio: 1
 gazDispersionMaxDistanceRatio: 5
 boostAgitation: {force: 0.5, temps: 3}
+form:
+  entryDefault:
+    access: public # private TODO: accessSyntax (group, distance à l'auteur...)
+    writePriority: custom # generated | none
+    dataType: text # date | number | from: enumRef | range: min max | markdown | url
+

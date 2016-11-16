@@ -33,7 +33,6 @@ var options;
 		}
 		function completeConfigWithUrlHashStore(url){
 			const fullConfig = new MonitoredStruct(url.load(),'config');	// init options from url hash
-			console.log('send config.ready');
 			send('config.ready', fullConfig);
 		}
 		function storeConfig(config){url.save(config);}
