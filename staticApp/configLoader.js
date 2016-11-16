@@ -12,25 +12,41 @@ var options;
 	];
 	const libEnv = function (ymlTools,urlHashStore,ev,mStruct) {
 		'use strict';
-		const on = ev.on, send = ev.send;
+		const on = ev.on, send = ev.send, MonitoredStruct = mStruct.MonitoredStruct;
+		let url;
+		let config;
+		function init(){
+			listenerInit();
+			ymlTools.loadMerge(['staticApp/appDefault.yml','allData/config.yml'], 'config.default');
+		}
+		function listenerInit(){
+			on('config.default', initUrlHashStore);
+			on('urlHashStore.ready', completeConfigWithUrlHashStore);
+			on('monitoredStruct.change.config', 'config.change');
+			on('monitoredStruct.delete.config', 'config.change');
+			on('config.change', storeConfig);
+			on('config.ready', setConfig);
+		}
+		function initUrlHashStore(defaultConfig) {
+			url = new urlHashStore.Url(defaultConfig);	// init url with default values
+			send('urlHashStore.ready', url);
+		}
+		function completeConfigWithUrlHashStore(url){
+			const fullConfig = new MonitoredStruct(url.load(),'config');	// init options from url hash
+			console.log('send config.ready');
+			send('config.ready', fullConfig);
+		}
+		function storeConfig(config){url.save(config);}
 
-		ymlTools.loadMerge([
-			"staticApp/appDefault.yml",
-			"allData/config.yml"
-		], function(data){
-			options = data;
-			const url = new urlHashStore.Url(options);	// init url with default values
-			mStruct.unOverwritableGlobalConst('url', url);
-			options = url.load();	// init options from url hash
-			send('configReady', options);
-		});
-
-// options stuff
-		on('optionsChanged', saveOptions);
-		function saveOptions(opt){url.save(opt);}
-
-// TODO : utiliser un Proxy pour déclancher les evenement OptionsChanged https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Proxy
+		function setConfig(fullConfig){
+			config = fullConfig;
+		}
+		function getConfig(){
+			return config;
+		}
 		return {
+			getConfig,
+			init
 		}
 	};
 	if (typeof module !== 'undefined' && typeof require !== 'undefined') {

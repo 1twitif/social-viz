@@ -8,8 +8,9 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine', 'requirejs'],
     files: [
-	    //{pattern: 'node_modules/d3/build/d3.js', included: false},
-	    //{pattern: 'node_modules/js-yaml/dist/js-yaml.js', included: false},
+	    //{pattern: 'allData/**/*.yml', included: false},
+	    {pattern: 'staticApp/**/*.yml', included: false},
+
 	    {pattern: 'staticApp/**/*.js', included: false},
 	    '.config/test-main.js'
     ],
