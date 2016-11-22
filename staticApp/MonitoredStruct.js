@@ -12,11 +12,11 @@ define([
 			'set': (obj, key, value) => {
 				if (typeof value === 'object') obj[key] = new MonitoredStruct(value, eventNameSuffix, closuredTopAncestor);
 				else obj[key] = value;
-				send(structureEventName(['monitoredStruct', 'change', eventNameSuffix]), closuredTopAncestor.smartObj);
+				send(structureEventName(['monitoredStruct', eventNameSuffix, 'change']), closuredTopAncestor.smartObj);
 				return true;
 			},
 			'deleteProperty': function (obj, key) {
-				send(structureEventName(['monitoredStruct', 'delete', eventNameSuffix]), closuredTopAncestor.smartObj);
+				send(structureEventName(['monitoredStruct', eventNameSuffix, 'delete']), closuredTopAncestor.smartObj);
 				return delete obj[key];
 			}
 		};

@@ -57,11 +57,18 @@ define([
 		});
 	}
 
+	function exportAsFile(fileName,data){
+		const a = document.createElement('a');
+		a.setAttribute('download',fileName+'.yml');
+		a.setAttribute('href','data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(data)));
+		ev.clickOn(a);
+	}
 	return {
 		loadMerge,
 		load,
 		multiLoad,
 		convert,
+		exportAsFile,
 		eventAggregator,
 		buildFunc_aggregateLengthTrigger
 	}

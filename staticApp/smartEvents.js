@@ -29,7 +29,10 @@ define([], () => {
 	function eventId() {
 		return Date.now() + '-' + Math.random();
 	}
-
+	function clickOn(element) {
+		const event = new MouseEvent('click', { 'view': window, 'bubbles': true, 'cancelable': true });
+		element.dispatchEvent(event);
+	}
 	function build_fragmentListener(eventName, listenerCallback) {
 		return build_fragmentActionFunc(addEventListener, eventName, listenerCallback);
 	}
@@ -55,6 +58,7 @@ define([], () => {
 	return {
 		send,
 		on,
+		clickOn,
 		callbackOrEventSender
 	}
 });

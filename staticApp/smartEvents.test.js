@@ -91,6 +91,12 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback3.calls.count()).toBe(1);
 		});
 	});
+	it('simulateClick', () => {
+		const dummyCallback = new Spy();
+		app.on('click', dummyCallback);
+		app.clickOn(window);
+		expect(dummyCallback).toHaveBeenCalled();
+	});
 	describe('callbackOrEventSender', () => {
 		it('call callback', () => {
 			const dummyCallback = new Spy();

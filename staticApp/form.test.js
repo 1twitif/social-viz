@@ -1,12 +1,4 @@
 define(['./form', './smartEvents'], (app,ev) => {
-	function clickOn(element) {
-		const event = new MouseEvent('click', {
-			'view': window,
-			'bubbles': true,
-			'cancelable': true
-		});
-		element.dispatchEvent(event);
-	}
 	describe('formulaire', () => {
 		describe('json -> objet formulaire', () => {
 			it("Construit un formulaire vide", () => {
@@ -40,7 +32,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 					if(anchor.querySelector('input[type="text"][name="myInput"]'))
 						eventSpy();
 				});
-				clickOn(anchor.querySelector('button'));
+				ev.clickOn(anchor.querySelector('button'));
 
 				expect(eventSpy).toHaveBeenCalled();
 			});
@@ -55,7 +47,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 					if(anchor.querySelector('input[type="date"][name="myInput"]'))
 						eventSpy();
 				});
-				clickOn(anchor.querySelector('button'));
+				ev.clickOn(anchor.querySelector('button'));
 
 				expect(eventSpy).toHaveBeenCalled();
 			});
@@ -70,7 +62,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 					if(anchor.querySelector('textarea[name="myInput"]'))
 						eventSpy();
 				});
-				clickOn(anchor.querySelector('button'));
+				ev.clickOn(anchor.querySelector('button'));
 
 				expect(eventSpy).toHaveBeenCalled();
 			});
@@ -87,7 +79,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 					if(anchor.querySelector('input[name="myInput"][required]'))
 						eventSpy();
 				});
-				clickOn(anchor.querySelector('button'));
+				ev.clickOn(anchor.querySelector('button'));
 
 				expect(eventSpy).toHaveBeenCalled();
 			});
@@ -108,7 +100,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 						&& anchor.querySelector('datalist#enumlist option'))
 						eventSpy();
 				});
-				clickOn(anchor.querySelector('button'));
+				ev.clickOn(anchor.querySelector('button'));
 
 				expect(eventSpy).toHaveBeenCalled();
 			});

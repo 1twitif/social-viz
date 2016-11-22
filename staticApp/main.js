@@ -8,13 +8,15 @@ requirejs([
 		'configLoader',
 		'languageLoader',
 		'formLoader',
+		'graphDataLoader',
 		'graph',
 		'userInterface'
-	], (cfg,langTools, formLoader, graph, ui) => {
+	], (cfg,langTools, formLoader, gData, graph, ui) => {
 	cfg.init();
 	langTools.init();
-	ui.init();
 	formLoader.init();
+	gData.init();
+	ui.init();
 
 	console.log('chargement terminé')
 	}

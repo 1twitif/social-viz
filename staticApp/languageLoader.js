@@ -115,7 +115,7 @@ define([
 		const config = cfg.getConfig();
 		config.userMode = "trad";
 	}
-
+// TODO: gros refacto pour utiliser form.js et ymlTools.exportAsFile();
 	function renderTradForm() {
 		let formStr = '<form id="tradForm">';
 		for (let key in langData) {

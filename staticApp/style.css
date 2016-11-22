@@ -280,3 +280,8 @@ form input {
   width: 50%;
   float: right;
 }
+#tradForm textarea,
+form textarea {
+  display: block;
+  width: 100%;
+}

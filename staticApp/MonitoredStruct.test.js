@@ -50,15 +50,12 @@ define(['./MonitoredStruct', './smartEvents'], function (app, ev) {
 		it('send named event on change', () => {
 			const dummyCallback1 = new Spy();
 			const dummyCallback2 = new Spy();
-			const dummyCallback3 = new Spy();
 			const observed = new app.MonitoredStruct({}, 'name');
-			ev.on('monitoredStruct.change.name', dummyCallback1);
-			ev.on('monitoredStruct.change', dummyCallback2);
-			ev.on('name', dummyCallback3);
+			ev.on('monitoredStruct.name.change', dummyCallback1);
+			ev.on('name', dummyCallback2);
 			observed.test = 'something';
 			expect(dummyCallback1.calls.count()).toBe(1);
 			expect(dummyCallback2.calls.count()).toBe(1);
-			expect(dummyCallback3.calls.count()).toBe(1);
 		});
 		it('send event on delete', () => {
 			const dummyCallback = new Spy();
