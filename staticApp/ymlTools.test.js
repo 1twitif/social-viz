@@ -4,13 +4,13 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			const dummyCallback = new Spy();
 			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}'};
 			const expected = {'filename': 'osef', 'yml': {'plop': {'id': 0, 'label': 'Publication'}}};
-			ev.on('ymlReady', dummyCallback);
+			ev.on('yml.ready', dummyCallback);
 			app.convert(inputData);
 			expect(dummyCallback).toHaveBeenCalledWith(expected);
 		});
 		xit('loadFile', () => { // fetch only available in browser context
 		 const dummyCallback = new Spy();
-		 ev.on('fileLoaded', dummyCallback);
+		 ev.on('file.ready', dummyCallback);
 		 app.load('osef.js');
 		 expect(dummyCallback).toHaveBeenCalled();
 		 });

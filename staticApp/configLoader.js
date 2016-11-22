@@ -13,6 +13,10 @@ define([
 	function init() {
 		listenerInit();
 		ymlTools.loadMerge(['staticApp/appDefault.yml', 'allData/config.yml'], 'config.default');
+
+		//FIXME : Debug :
+		on('yml.ready',(e)=>(e.filename==='allData/form.yml')?console.log(e.yml):0 );
+		ymlTools.load('allData/form.yml');
 	}
 
 	function listenerInit() {

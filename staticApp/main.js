@@ -7,12 +7,15 @@ requirejs.config({
 requirejs([
 		'configLoader',
 		'languageLoader',
+		'formLoader',
 		'graph',
 		'userInterface'
-	], (cfg,langTools, graph, ui) => {
+	], (cfg,langTools, formLoader, graph, ui) => {
 	cfg.init();
 	langTools.init();
 	ui.init();
+	formLoader.init();
+
 	console.log('chargement terminé')
 	}
 );

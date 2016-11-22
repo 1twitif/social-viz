@@ -1,28 +1,118 @@
 define([
 	'./smartEvents',
-	'../node_modules/js-yaml/dist/js-yaml',
-	'./configLoader',
+	'./languageLoader',
 	'./structManipulation',
 	'./MonitoredStruct'
-], (ev, jsyaml, cfg) => {
+], (ev, langTools) => {
 	'use strict';
-	const on = ev.on, send = ev.send;
+	const on = ev.on, send = ev.send, t = langTools.t;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
-function Form (yml, graphData,id){
-	const config = cfg.getConfig();
-	this.template = jsyaml.safeLoad(yml);
-	this.graph = graphData;
-	let entityId = id;
+	function Form(tempateJson, data, targetNodes, id) {
+		const formObject = this;
+		let config;
+		this.template = tempateJson;
+		this.data = data;
+		let entityId = id;
+		const displayAnchors = {};
+		for (let i in targetNodes) this.displayInNode(targetNodes[i]);
 
-	this.edit = function edit(id){
-		entityId = id;
-		// send event ou refresh render directe
-	};
+		this.setTemplate = (template) => this.template = template;
+		this.setConfig = (cfg) => config = cfg;
+		this.setData = (data) => this.data = data;
+		this.edit = function edit(id) {
+			entityId = id;
+			// send event ou refresh render directe
+		};
+		this.displayInNode = function displayInNode(targetNode) {
+			displayAnchors[targetNode] = targetNode;
+			this.render(targetNode);
+		};
 
-	this.render = function render(targetNode){
-		// datalist http://www.alsacreations.com/article/lire/1334-html5-element-datalist.html
+		this.render = function render(targetNode) {
+			for (let form in this.template) if (form !== 'enum' && this.template.hasOwnProperty(form))
+				((form) => {
+					const btn = buildFormSelectorButton(form);
+					targetNode.appendChild(btn);
+					btn.addEventListener('click', () => {
+						config.form.active = form;
+
+						const formNode = buildForm(formObject.template[form], form);
+						targetNode.innerHTML = '';
+						targetNode.appendChild(formNode);
+						send('form.updated', formObject);
+					});
+
+				})(form);
+
+			//const nodeForm = document.createElement('form');
+			// datalist http://www.alsacreations.com/article/lire/1334-html5-element-datalist.html
+		};
+		function buildFormSelectorButton(form) {
+			const node = document.createElement('button');
+			node.innerText = t(form);
+			return node;
+		}
+
+		function buildForm(templateToBuild, title, dataId) {
+			const formNode = document.createElement('form');
+			const titleNode = document.createElement('h2');
+			titleNode.innerText = t(title);
+			formNode.appendChild(titleNode);
+			for (let i in templateToBuild)
+				if (templateToBuild.hasOwnProperty(i)) {
+					formNode.appendChild(buildEntry(templateToBuild[i], dataId));
+				}
+			return formNode;
+		}
+
+		function buildEntry(rawEntry, dataId) {
+			const entry = parseEntry(rawEntry);
+			let node;
+			if (entry.options.dataType === 'markdown') node = document.createElement('textarea');
+			else node = document.createElement('input');
+			node.setAttribute('name', entry.name);
+
+			const label = document.createElement('label');
+			label.innerText = t(entry.name);
+			label.appendChild(node);
+
+			if (entry.options.dataType !== 'markdown') node.setAttribute('type', entry.options.dataType ? entry.options.dataType : config.form.entryDefault.dataType);
+			if (entry.options.required) node.setAttribute('required', entry.options.required);
+			if (entry.options.from) {
+				const listId = legalId(entry.options.from);
+				node.setAttribute('list', listId);
+
+				const dataList = document.createElement('datalist');
+				dataList.setAttribute('id', listId);
+				label.appendChild(dataList);
+				const listPath = entry.options.from.split('.');
+				if (listPath[0] === 'enum') {
+					let optionList = formObject.template.enum;
+					for (let i = 1; i < listPath.length; i++) {
+						optionList = optionList[listPath[i]];
+					}
+					for (let i = 0; i < optionList.length; i++) {
+						const option = optionList[i];
+						const optionNode = document.createElement('option');
+						optionNode.innerText = t(option);
+						optionNode.setAttribute('value', option);
+						dataList.appendChild(optionNode);
+					}
+				}
+			}
+
+			return label;
+		}
+
+		function parseEntry(entry) {
+			if (typeof entry === 'string') return {'name': entry, 'options': {}};
+			for (let unicKey in entry) return {'name': unicKey, 'options': entry[unicKey]};
+		}
+
+		function legalId(rawStringId) {
+			return rawStringId.replace(/[^a-zA-Z]/g, '');
+		}
 	}
-}
 
 	return {Form};
 });

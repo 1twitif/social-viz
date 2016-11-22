@@ -7,7 +7,7 @@ define([
 	const on = ev.on, send = ev.send;
 
 	function loadMerge(sourcesFiles, callbackOrEvent) {
-		eventAggregator('ymlReady',
+		eventAggregator('yml.ready',
 			buildFunc_aggregateYmlOnFileName(buildFunc_isInWhiteList(sourcesFiles)),
 			buildFunc_aggregateLengthTrigger(sourcesFiles.length),
 			(ymlList) => ev.callbackOrEventSender(callbackOrEvent, struct.mergeInOrder(sourcesFiles, ymlList)));
@@ -23,12 +23,12 @@ define([
 	function load(filePath) {
 		fetch(filePath)
 			.then((response) => response.text())
-			.then((text) => send('fileLoaded', {'filename': filePath, 'fileContent': text}));
+			.then((text) => send('file.ready', {'filename': filePath, 'fileContent': text}));
 	}
 
-	on('fileLoaded', convert);
+	on('file.ready', convert);
 	function convert(fileLoadedEvent) {
-		send('ymlReady', {
+		send('yml.ready', {
 			'filename': fileLoadedEvent.filename,
 			'yml': jsyaml.safeLoad(fileLoadedEvent.fileContent)
 		});

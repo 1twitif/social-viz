@@ -270,11 +270,13 @@ footer a {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-#tradForm label {
+#tradForm label,
+form label {
   display: block;
   clear: both;
 }
-#tradForm input {
+#tradForm input,
+form input {
   width: 50%;
   float: right;
 }

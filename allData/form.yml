@@ -1,50 +1,57 @@
 node:
-  mainType:
-    from: enum.node.mainType
-  onlyIf: mainType.physical
-    surname: required
-    firstname
-    birthDate:
-      dataType: date
-    deathDate:
-      dataType: date
-    label:
-      calculatedFrom:
+  - mainType:
+      from: enum.node.mainType
+  - if:
+      condition: mainType = physical
+      then:
+        - surname:
+            required: true
         - firstname
-        - surname
-    mainActivity:
-      from: enum.human.activity
-  comments:
-    dataType: markdown
-  sources:
-    access: private
+        - birthDate:
+            dataType: date
+        - deathDate:
+            dataType: date
+        - label:
+            calculatedFrom:
+              - firstname
+              - surname
+        - mainActivity:
+            from: enum.human.activity
+  - comments:
+      dataType: markdown
+  - sources:
+      dataType: markdown
+      access: private
 
 link:
-  source:
-    from: node
-  target:
-    from: node
-  onlyIf: source.mainType.human
-    onlyIf: target.mainType.moral
-      type:
-        from: enum.human.moral.link
+  - source:
+      from: node
+  - target:
+      from: node
+  - if:
+      condition: source.mainType = human
+      then:
+        - if:
+            condition: target.mainType = moral
+            then:
+              - type:
+                  from: enum.human.moral.link
 
 enum:
   node:
     mainType:
-      human
-      moral
-      place
-      event
-      document
-  human:
-    activity:
-      loyer
-      lobbyist
-      worker
-      manager
+      - human
+      - moral
+      - place
+      - event
+      - document
   human:
     moral:
       link:
-        own
-        workAt
+        - own
+        - workAt
+    activity:
+      - loyer
+      - lobbyist
+      - worker
+      - manager

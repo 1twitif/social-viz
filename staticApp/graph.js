@@ -3,8 +3,9 @@ define([
 		'./smartEvents',
 		'./fps',
 		'./languageLoader',
-		'./configLoader'
-	], (d3, ev, fps, langTools,cfg) => {
+		'./configLoader',
+		'./formLoader'
+	], (d3, ev, fps, langTools,cfg, formLoader) => {
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
 		let options;
@@ -308,6 +309,12 @@ define([
 				if (!options.selected && !options.userMode) details.innerHTML = tutorialContent;
 				else if (!options.userMode) details.innerHTML = renderDetails(options.selected);
 				else if (options.userMode == 'trad') langTools.renderTradForm();
+				else if (options.userMode == 'edit') {
+					const form = formLoader.getForm();
+					const anchor = details;
+					form.edit(options.selected);
+					form.displayInNode(anchor);
+				}
 				else details.innerHTML = options.userMode + t(' pas encore géré');
 				//FIXME: ugly code smell
 			}
