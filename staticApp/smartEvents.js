@@ -9,8 +9,9 @@ define([], () => {
 	function on(eventName, callback) {
 		const viewedId = {};
 		const listenerCallback = (e) => {
-			if (!e.detail) callbackOrEventSender(callback, e);
-			else if (e.detail.eventFullName.indexOf(eventName) !== -1 && !viewedId[e.detail.id]) {
+			if (!e.detail) {
+				if (e.type === eventName) callbackOrEventSender(callback, e);
+			} else if (e.detail.eventFullName.indexOf(eventName) !== -1 && !viewedId[e.detail.id]) {
 				viewedId[e.detail.id] = true;
 				callbackOrEventSender(callback, e.detail.data);
 			}
@@ -20,6 +21,30 @@ define([], () => {
 		return {destroy: build_fragmentDestroyer(eventName, listenerCallback)};
 	}
 
+	function after(eventList,callbackOrEvent){
+		let eventsTriggerMap = eventList;
+		if(typeof eventList === 'string') eventsTriggerMap = eventList.split(' ');
+		eventsTriggerMap = array2occurrenceMap(eventsTriggerMap);
+		const aggregator = {};
+		for(let eventName in eventsTriggerMap){
+			((eventName)=> {
+				let listener = on(eventName, (eventData) => {
+					--eventsTriggerMap[eventName];
+					if (!eventsTriggerMap[eventName]) listener.destroy();
+					aggregator[eventName] = eventData;
+					if (!sumValuesOf(eventsTriggerMap)) callbackOrEventSender(callbackOrEvent, aggregator);
+				});
+			})(eventName);
+		}
+	}
+	function sumValuesOf(obj){
+		return Object.keys(obj).reduce( (sum,key)=>sum+obj[key], 0 );
+	}
+	function array2occurrenceMap(array){
+		const occurrenceMap = {};
+		for(let i=0;i<array.length;i++) occurrenceMap[array[i]]= occurrenceMap[array[i]] ? 1+occurrenceMap[array[i]] : 1;
+		return occurrenceMap;
+	}
 	function callbackOrEventSender(callbackOrEvent, data) {
 		if (typeof callbackOrEvent === "string") return send(callbackOrEvent, data);
 		if (typeof callbackOrEvent === "function") return callbackOrEvent(data);
@@ -58,6 +83,7 @@ define([], () => {
 	return {
 		send,
 		on,
+		after,
 		clickOn,
 		callbackOrEventSender
 	}

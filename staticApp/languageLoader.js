@@ -34,21 +34,22 @@ define([
 		return lang;
 	}
 
-	function initLang() {
-		let node = document.getElementById('langPicker');
-		if (node) node.addEventListener('change', changeLang);
-		node = document.getElementById('editTrad');
-		if (node) node.addEventListener('click', activateUserModeTrad);
+	function init() {
+		listenerInit();
 		send('lang.change', getValidLang());
 	}
+	function listenerInit() {
+		document.getElementById('langPicker').addEventListener('change', changeLang);
+		document.getElementById('editTrad').addEventListener('click', activateUserModeTrad);
+		on('lang.change', updateLangPicker);
+		on('lang.change', updateLang);
+	}
 
-	on('lang.change', updateLangPicker);
 	function updateLangPicker(lang) {
 		const htmlLangOptions = document.querySelectorAll('#langPicker option');
 		applySelectiveClassOnNodes(htmlLangOptions, 'selected', (n) => n.value === lang);
 	}
 
-	on('lang.change', updateLang);
 	function updateLang() {
 		oldLang = lang;
 		// find language to use in supported ones ( and update langPicker )
@@ -147,7 +148,7 @@ define([
 	}
 
 	return {
-		'init': initLang,
+		init,
 		t,
 		renderTradForm //FIXME: éviter d'avoir à exposer ça.
 	}

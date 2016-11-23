@@ -66,7 +66,7 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName, eventData);
 			expect(subCallback).toHaveBeenCalledWith(eventData);
 		});
-		it('dont listen incorrect structured event send & receive', () => {
+		it('dont listen incorrect structured event', () => {
 			const neverCalledCallback = new Spy();
 			const eventName = 'global.sub.moreSpecific';
 			const eventData = 5;
@@ -74,6 +74,15 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName, eventData);
 			expect(neverCalledCallback).not.toHaveBeenCalled();
 		});
+		it('dont listen too generic event', () => {
+			const dummyCallback = new Spy();
+			app.on('hashchange.moreSpecific', dummyCallback);
+			dispatchEvent(new HashChangeEvent('hashchange'));
+			expect(dummyCallback).not.toHaveBeenCalled();
+			app.send('hashchange.moreSpecific.really');
+			expect(dummyCallback).toHaveBeenCalled();
+		});
+
 		it('clean destroy of structured event listener', () => {
 			const dummyCallback1 = new Spy();
 			const dummyCallback2 = new Spy();
@@ -89,6 +98,47 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback1.calls.count()).toBe(2);
 			expect(dummyCallback2.calls.count()).toBe(1);
 			expect(dummyCallback3.calls.count()).toBe(1);
+		});
+		it('callback after an event list reached', () => {
+			const dummyCallback = new Spy();
+			app.after('a b c d.e f g', dummyCallback);
+			app.send('a');
+			app.send('b.osef');
+			app.send('osef.c');
+			app.send('d.e.f');
+			expect(dummyCallback).not.toHaveBeenCalled();
+			app.send('g');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
+		it('callback after an event array list reached', () => {
+			const dummyCallback = new Spy();
+			app.after(['a','b'], dummyCallback);
+			app.send('a');
+			app.send('b');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
+		it('callback after an event list including multiple time same event', () => {
+			const dummyCallback = new Spy();
+			app.after('a b c b a', dummyCallback);
+			app.send('a');
+			app.send('a');
+			app.send('c');
+			app.send('b');
+			expect(dummyCallback).not.toHaveBeenCalled();
+			app.send('b');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
+		it('callback after an event list called only once', () => {
+			const dummyCallback = new Spy();
+			app.after('a a b', dummyCallback);
+			app.send('a');
+			app.send('a');
+			app.send('b');
+			expect(dummyCallback.calls.count()).toBe(1);
+			app.send('a');
+			app.send('a');
+			app.send('b');
+			expect(dummyCallback.calls.count()).toBe(1);
 		});
 	});
 	it('simulateClick', () => {
