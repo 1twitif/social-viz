@@ -21,7 +21,7 @@ define([
 			}
 		};
 		let goSmart = struct.clone(inertStruct);
-		for (let key in inertStruct) if (inertStruct.hasOwnProperty(key)) {
+		for (let key in inertStruct) {
 			if (typeof inertStruct[key] === 'object') {
 				goSmart[key] = new MonitoredStruct(inertStruct[key], eventNameSuffix, this.topAncestor);
 			} else goSmart[key] = inertStruct[key];

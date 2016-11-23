@@ -38,7 +38,7 @@ define([
 
 			} else {
 				targetNode.innerHTML = '';
-				for (let form in this.template) if (form !== 'enum' && this.template.hasOwnProperty(form))
+				for (let form in this.template) if (form !== 'enum')
 					((form) => {
 						const btn = buildFormSelectorButton(form);
 						targetNode.appendChild(btn);

@@ -9,8 +9,8 @@ define([
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
 		let options;
-		on('config.ready', function (config) {
-			options = config;
+		ev.after('config.ready data.ready form.template.ready', function () {
+			options = cfg.getConfig();
 			var graph;
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])

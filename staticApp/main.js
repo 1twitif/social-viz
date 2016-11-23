@@ -14,8 +14,8 @@ requirejs([
 	], (cfg,langTools, formLoader, gData, graph, ui) => {
 	cfg.init();
 	langTools.init();
-	formLoader.init();
 	gData.init();
+	formLoader.init();
 	ui.init();
 
 	console.log('chargement terminé')

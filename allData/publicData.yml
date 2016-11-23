@@ -1,157 +1,234 @@
 node:
-  - id: Myriel
+  - id: node-Myriel
+    label: Myriel
     type: 1
-  - id: Napoleon
+  - id: node-Napoleon
+    label: Napoleon
     type: 1
-  - id: Mlle.Baptistine
+  - id: node-MlleBaptistine
+    label: Mlle.Baptistine
     type: 1
-  - id: Mme.Magloire
+  - id: node-MmeMagloire
+    label: Mme.Magloire
     type: 1
-  - id: CountessdeLo
+  - id: node-CountessdeLo
+    label: CountessdeLo
     type: 1
-  - id: Geborand
+  - id: node-Geborand
+    label: Geborand
     type: 1
-  - id: Champtercier
+  - id: node-Champtercier
+    label: Champtercier
     type: 1
-  - id: Cravatte
+  - id: node-Cravatte
+    label: Cravatte
     type: 1
-  - id: Count
+  - id: node-Count
+    label: Count
     type: 1
-  - id: OldMan
+  - id: node-OldMan
+    label: OldMan
     type: 1
-  - id: Labarre
+  - id: node-Labarre
+    label: Labarre
     type: 2
-  - id: Valjean
+  - id: node-Valjean
+    label: Valjean
     type: 2
-  - id: Marguerite
+  - id: node-Marguerite
+    label: Marguerite
     type: 3
-  - id: Mme.deR
+  - id: node-MmedeR
+    label: Mme.deR
     type: 2
-  - id: Isabeau
+  - id: node-Isabeau
+    label: Isabeau
     type: 2
-  - id: Gervais
+  - id: node-Gervais
+    label: Gervais
     type: 2
-  - id: Tholomyes
+  - id: node-Tholomyes
+    label: Tholomyes
     type: 3
-  - id: Listolier
+  - id: node-Listolier
+    label: Listolier
     type: 3
-  - id: Fameuil
+  - id: node-Fameuil
+    label: Fameuil
     type: 3
-  - id: Blacheville
+  - id: node-Blacheville
+    label: Blacheville
     type: 3
-  - id: Favourite
+  - id: node-Favourite
+    label: Favourite
     type: 3
-  - id: Dahlia
+  - id: node-Dahlia
+    label: Dahlia
     type: 3
-  - id: Zephine
+  - id: node-Zephine
+    label: Zephine
     type: 3
-  - id: Fantine
+  - id: node-Fantine
+    label: Fantine
     type: 3
-  - id: Mme.Thenardier
+  - id: node-MmeThenardier
+    label: Mme.Thenardier
     type: 4
-  - id: Thenardier
+  - id: node-Thenardier
+    label: Thenardier
     type: 4
-  - id: Cosette
+  - id: node-Cosette
+    label: Cosette
     type: 5
-  - id: Javert
+  - id: node-Javert
+    label: Javert
     type: 4
-  - id: Fauchelevent
+  - id: node-Fauchelevent
+    label: Fauchelevent
     type: 0
-  - id: Bamatabois
+  - id: node-Bamatabois
+    label: Bamatabois
     type: 2
-  - id: Perpetue
+  - id: node-Perpetue
+    label: Perpetue
     type: 3
-  - id: Simplice
+  - id: node-Simplice
+    label: Simplice
     type: 2
-  - id: Scaufflaire
+  - id: node-Scaufflaire
+    label: Scaufflaire
     type: 2
-  - id: Woman1
+  - id: node-Woman1
+    label: Woman1
     type: 2
-  - id: Judge
+  - id: node-Judge
+    label: Judge
     type: 2
-  - id: Champmathieu
+  - id: node-Champmathieu
+    label: Champmathieu
     type: 2
-  - id: Brevet
+  - id: node-Brevet
+    label: Brevet
     type: 2
-  - id: Chenildieu
+  - id: node-Chenildieu
+    label: Chenildieu
     type: 2
-  - id: Cochepaille
+  - id: node-Cochepaille
+    label: Cochepaille
     type: 2
-  - id: Pontmercy
+  - id: node-Pontmercy
+    label: Pontmercy
     type: 4
-  - id: Boulatruelle
+  - id: node-Boulatruelle
+    label: Boulatruelle
     type: 6
-  - id: Eponine
+  - id: node-Eponine
+    label: Eponine
     type: 4
-  - id: Anzelma
+  - id: node-Anzelma
+    label: Anzelma
     type: 4
-  - id: Woman2
+  - id: node-Woman2
+    label: Woman2
     type: 5
-  - id: MotherInnocent
+  - id: node-MotherInnocent
+    label: MotherInnocent
     type: 0
-  - id: Gribier
+  - id: node-Gribier
+    label: Gribier
     type: 0
-  - id: Jondrette
+  - id: node-Jondrette
+    label: Jondrette
     type: 7
-  - id: Mme.Burgon
+  - id: node-MmeBurgon
+    label: Mme.Burgon
     type: 7
-  - id: Gavroche
+  - id: node-Gavroche
+    label: Gavroche
     type: 8
-  - id: Gillenormand
+  - id: node-Gillenormand
+    label: Gillenormand
     type: 5
-  - id: Magnon
+  - id: node-Magnon
+    label: Magnon
     type: 5
-  - id: Mlle.Gillenormand
+  - id: node-MlleGillenormand
+    label: Mlle.Gillenormand
     type: 5
-  - id: Mme.Pontmercy
+  - id: node-MmePontmercy
+    label: Mme.Pontmercy
     type: 5
-  - id: Mlle.Vaubois
+  - id: node-MlleVaubois
+    label: Mlle.Vaubois
     type: 5
-  - id: Lt.Gillenormand
+  - id: node-LtGillenormand
+    label: Lt.Gillenormand
     type: 5
-  - id: Marius
+  - id: node-Marius
+    label: Marius
     type: 8
-  - id: BaronessT
+  - id: node-BaronessT
+    label: BaronessT
     type: 5
-  - id: Mabeuf
+  - id: node-Mabeuf
+    label: Mabeuf
     type: 8
-  - id: Enjolras
+  - id: node-Enjolras
+    label: Enjolras
     type: 8
-  - id: Combeferre
+  - id: node-Combeferre
+    label: Combeferre
     type: 8
-  - id: Prouvaire
+  - id: node-Prouvaire
+    label: Prouvaire
     type: 8
-  - id: Feuilly
+  - id: node-Feuilly
+    label: Feuilly
     type: 8
-  - id: Courfeyrac
+  - id: node-Courfeyrac
+    label: Courfeyrac
     type: 8
-  - id: Bahorel
+  - id: node-Bahorel
+    label: Bahorel
     type: 8
-  - id: Bossuet
+  - id: node-Bossuet
+    label: Bossuet
     type: 8
-  - id: Joly
+  - id: node-Joly
+    label: Joly
     type: 8
-  - id: Grantaire
+  - id: node-Grantaire
+    label: Grantaire
     type: 8
-  - id: MotherPlutarch
+  - id: node-MotherPlutarch
+    label: MotherPlutarch
     type: 9
-  - id: Gueulemer
+  - id: node-Gueulemer
+    label: Gueulemer
     type: 4
-  - id: Babet
+  - id: node-Babet
+    label: Babet
     type: 4
-  - id: Claquesous
+  - id: node-Claquesous
+    label: Claquesous
     type: 4
-  - id: Montparnasse
+  - id: node-Montparnasse
+    label: Montparnasse
     type: 4
-  - id: Toussaint
+  - id: node-Toussaint
+    label: Toussaint
     type: 5
-  - id: Child1
+  - id: node-Child1
+    label: Child1
     type: 10
-  - id: Child2
+  - id: node-Child2
+    label: Child2
     type: 10
-  - id: Brujon
+  - id: node-Brujon
+    label: Brujon
     type: 4
-  - id: Mme.Hucheloup
+  - id: node-MmeHucheloup
+    label: Mme.Hucheloup
     type: 8
 link:
   - source: Napoleon
