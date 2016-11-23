@@ -231,765 +231,1273 @@ node:
     label: Mme.Hucheloup
     type: 8
 link:
-  - source: Napoleon
-    target: Myriel
+  - id: link-Napoleon-Myriel
+    label: Napoleon Myriel
+    source: node-Napoleon
+    target: node-Myriel
     value: 1
-  - source: Mlle.Baptistine
-    target: Myriel
+  - id: link-MlleBaptistine-Myriel
+    label: Mlle.Baptistine Myriel
+    source: node-MlleBaptistine
+    target: node-Myriel
     value: 8
-  - source: Mme.Magloire
-    target: Myriel
+  - id: link-MmeMagloire-Myriel
+    label: Mme.Magloire Myriel
+    source: node-MmeMagloire
+    target: node-Myriel
     value: 10
-  - source: Mme.Magloire
-    target: Mlle.Baptistine
+  - id: link-MmeMagloire-MlleBaptistine
+    label: Mme.Magloire Mlle.Baptistine
+    source: node-MmeMagloire
+    target: node-MlleBaptistine
     value: 6
-  - source: CountessdeLo
-    target: Myriel
+  - id: link-CountessdeLo-Myriel
+    label: CountessdeLo Myriel
+    source: node-CountessdeLo
+    target: node-Myriel
     value: 1
-  - source: Geborand
-    target: Myriel
+  - id: link-Geborand-Myriel
+    label: Geborand Myriel
+    source: node-Geborand
+    target: node-Myriel
     value: 1
-  - source: Champtercier
-    target: Myriel
+  - id: link-Champtercier-Myriel
+    label: Champtercier Myriel
+    source: node-Champtercier
+    target: node-Myriel
     value: 1
-  - source: Cravatte
-    target: Myriel
+  - id: link-Cravatte-Myriel
+    label: Cravatte Myriel
+    source: node-Cravatte
+    target: node-Myriel
     value: 1
-  - source: Count
-    target: Myriel
+  - id: link-Count-Myriel
+    label: Count Myriel
+    source: node-Count
+    target: node-Myriel
     value: 2
-  - source: OldMan
-    target: Myriel
+  - id: link-OldMan-Myriel
+    label: OldMan Myriel
+    source: node-OldMan
+    target: node-Myriel
     value: 1
-  - source: Valjean
-    target: Labarre
+  - id: link-Valjean-Labarre
+    label: Valjean Labarre
+    source: node-Valjean
+    target: node-Labarre
     value: 1
-  - source: Valjean
-    target: Mme.Magloire
+  - id: link-Valjean-MmeMagloire
+    label: Valjean Mme.Magloire
+    source: node-Valjean
+    target: node-MmeMagloire
     value: 3
-  - source: Valjean
-    target: Mlle.Baptistine
+  - id: link-Valjean-MlleBaptistine
+    label: Valjean Mlle.Baptistine
+    source: node-Valjean
+    target: node-MlleBaptistine
     value: 3
-  - source: Valjean
-    target: Myriel
+  - id: link-Valjean-Myriel
+    label: Valjean Myriel
+    source: node-Valjean
+    target: node-Myriel
     value: 5
-  - source: Marguerite
-    target: Valjean
+  - id: link-Marguerite-Valjean
+    label: Marguerite Valjean
+    source: node-Marguerite
+    target: node-Valjean
     value: 1
-  - source: Mme.deR
-    target: Valjean
+  - id: link-MmedeR-Valjean
+    label: Mme.deR Valjean
+    source: node-MmedeR
+    target: node-Valjean
     value: 1
-  - source: Isabeau
-    target: Valjean
+  - id: link-Isabeau-Valjean
+    label: Isabeau Valjean
+    source: node-Isabeau
+    target: node-Valjean
     value: 1
-  - source: Gervais
-    target: Valjean
+  - id: link-Gervais-Valjean
+    label: Gervais Valjean
+    source: node-Gervais
+    target: node-Valjean
     value: 1
-  - source: Listolier
-    target: Tholomyes
+  - id: link-Listolier-Tholomyes
+    label: Listolier Tholomyes
+    source: node-Listolier
+    target: node-Tholomyes
     value: 4
-  - source: Fameuil
-    target: Tholomyes
+  - id: link-Fameuil-Tholomyes
+    label: Fameuil Tholomyes
+    source: node-Fameuil
+    target: node-Tholomyes
     value: 4
-  - source: Fameuil
-    target: Listolier
+  - id: link-Fameuil-Listolier
+    label: Fameuil Listolier
+    source: node-Fameuil
+    target: node-Listolier
     value: 4
-  - source: Blacheville
-    target: Tholomyes
+  - id: link-Blacheville-Tholomyes
+    label: Blacheville Tholomyes
+    source: node-Blacheville
+    target: node-Tholomyes
     value: 4
-  - source: Blacheville
-    target: Listolier
+  - id: link-Blacheville-Listolier
+    label: Blacheville Listolier
+    source: node-Blacheville
+    target: node-Listolier
     value: 4
-  - source: Blacheville
-    target: Fameuil
+  - id: link-Blacheville-Fameuil
+    label: Blacheville Fameuil
+    source: node-Blacheville
+    target: node-Fameuil
     value: 4
-  - source: Favourite
-    target: Tholomyes
+  - id: link-Favourite-Tholomyes
+    label: Favourite Tholomyes
+    source: node-Favourite
+    target: node-Tholomyes
     value: 3
-  - source: Favourite
-    target: Listolier
+  - id: link-Favourite-Listolier
+    label: Favourite Listolier
+    source: node-Favourite
+    target: node-Listolier
     value: 3
-  - source: Favourite
-    target: Fameuil
+  - id: link-Favourite-Fameuil
+    label: Favourite Fameuil
+    source: node-Favourite
+    target: node-Fameuil
     value: 3
-  - source: Favourite
-    target: Blacheville
+  - id: link-Favourite-Blacheville
+    label: Favourite Blacheville
+    source: node-Favourite
+    target: node-Blacheville
     value: 4
-  - source: Dahlia
-    target: Tholomyes
+  - id: link-Dahlia-Tholomyes
+    label: Dahlia Tholomyes
+    source: node-Dahlia
+    target: node-Tholomyes
     value: 3
-  - source: Dahlia
-    target: Listolier
+  - id: link-Dahlia-Listolier
+    label: Dahlia Listolier
+    source: node-Dahlia
+    target: node-Listolier
     value: 3
-  - source: Dahlia
-    target: Fameuil
+  - id: link-Dahlia-Fameuil
+    label: Dahlia Fameuil
+    source: node-Dahlia
+    target: node-Fameuil
     value: 3
-  - source: Dahlia
-    target: Blacheville
+  - id: link-Dahlia-Blacheville
+    label: Dahlia Blacheville
+    source: node-Dahlia
+    target: node-Blacheville
     value: 3
-  - source: Dahlia
-    target: Favourite
+  - id: link-Dahlia-Favourite
+    label: Dahlia Favourite
+    source: node-Dahlia
+    target: node-Favourite
     value: 5
-  - source: Zephine
-    target: Tholomyes
+  - id: link-Zephine-Tholomyes
+    label: Zephine Tholomyes
+    source: node-Zephine
+    target: node-Tholomyes
     value: 3
-  - source: Zephine
-    target: Listolier
+  - id: link-Zephine-Listolier
+    label: Zephine Listolier
+    source: node-Zephine
+    target: node-Listolier
     value: 3
-  - source: Zephine
-    target: Fameuil
+  - id: link-Zephine-Fameuil
+    label: Zephine Fameuil
+    source: node-Zephine
+    target: node-Fameuil
     value: 3
-  - source: Zephine
-    target: Blacheville
+  - id: link-Zephine-Blacheville
+    label: Zephine Blacheville
+    source: node-Zephine
+    target: node-Blacheville
     value: 3
-  - source: Zephine
-    target: Favourite
+  - id: link-Zephine-Favourite
+    label: Zephine Favourite
+    source: node-Zephine
+    target: node-Favourite
     value: 4
-  - source: Zephine
-    target: Dahlia
+  - id: link-Zephine-Dahlia
+    label: Zephine Dahlia
+    source: node-Zephine
+    target: node-Dahlia
     value: 4
-  - source: Fantine
-    target: Tholomyes
+  - id: link-Fantine-Tholomyes
+    label: Fantine Tholomyes
+    source: node-Fantine
+    target: node-Tholomyes
     value: 3
-  - source: Fantine
-    target: Listolier
+  - id: link-Fantine-Listolier
+    label: Fantine Listolier
+    source: node-Fantine
+    target: node-Listolier
     value: 3
-  - source: Fantine
-    target: Fameuil
+  - id: link-Fantine-Fameuil
+    label: Fantine Fameuil
+    source: node-Fantine
+    target: node-Fameuil
     value: 3
-  - source: Fantine
-    target: Blacheville
+  - id: link-Fantine-Blacheville
+    label: Fantine Blacheville
+    source: node-Fantine
+    target: node-Blacheville
     value: 3
-  - source: Fantine
-    target: Favourite
+  - id: link-Fantine-Favourite
+    label: Fantine Favourite
+    source: node-Fantine
+    target: node-Favourite
     value: 4
-  - source: Fantine
-    target: Dahlia
+  - id: link-Fantine-Dahlia
+    label: Fantine Dahlia
+    source: node-Fantine
+    target: node-Dahlia
     value: 4
-  - source: Fantine
-    target: Zephine
+  - id: link-Fantine-Zephine
+    label: Fantine Zephine
+    source: node-Fantine
+    target: node-Zephine
     value: 4
-  - source: Fantine
-    target: Marguerite
+  - id: link-Fantine-Marguerite
+    label: Fantine Marguerite
+    source: node-Fantine
+    target: node-Marguerite
     value: 2
-  - source: Fantine
-    target: Valjean
+  - id: link-Fantine-Valjean
+    label: Fantine Valjean
+    source: node-Fantine
+    target: node-Valjean
     value: 9
-  - source: Mme.Thenardier
-    target: Fantine
+  - id: link-MmeThenardier-Fantine
+    label: Mme.Thenardier Fantine
+    source: node-MmeThenardier
+    target: node-Fantine
     value: 2
-  - source: Mme.Thenardier
-    target: Valjean
+  - id: link-MmeThenardier-Valjean
+    label: Mme.Thenardier Valjean
+    source: node-MmeThenardier
+    target: node-Valjean
     value: 7
-  - source: Thenardier
-    target: Mme.Thenardier
+  - id: link-Thenardier-MmeThenardier
+    label: Thenardier Mme.Thenardier
+    source: node-Thenardier
+    target: node-MmeThenardier
     value: 13
-  - source: Thenardier
-    target: Fantine
+  - id: link-Thenardier-Fantine
+    label: Thenardier Fantine
+    source: node-Thenardier
+    target: node-Fantine
     value: 1
-  - source: Thenardier
-    target: Valjean
+  - id: link-Thenardier-Valjean
+    label: Thenardier Valjean
+    source: node-Thenardier
+    target: node-Valjean
     value: 12
-  - source: Cosette
-    target: Mme.Thenardier
+  - id: link-Cosette-MmeThenardier
+    label: Cosette Mme.Thenardier
+    source: node-Cosette
+    target: node-MmeThenardier
     value: 4
-  - source: Cosette
-    target: Valjean
+  - id: link-Cosette-Valjean
+    label: Cosette Valjean
+    source: node-Cosette
+    target: node-Valjean
     value: 31
-  - source: Cosette
-    target: Tholomyes
+  - id: link-Cosette-Tholomyes
+    label: Cosette Tholomyes
+    source: node-Cosette
+    target: node-Tholomyes
     value: 1
-  - source: Cosette
-    target: Thenardier
+  - id: link-Cosette-Thenardier
+    label: Cosette Thenardier
+    source: node-Cosette
+    target: node-Thenardier
     value: 1
-  - source: Javert
-    target: Valjean
+  - id: link-Javert-Valjean
+    label: Javert Valjean
+    source: node-Javert
+    target: node-Valjean
     value: 17
-  - source: Javert
-    target: Fantine
+  - id: link-Javert-Fantine
+    label: Javert Fantine
+    source: node-Javert
+    target: node-Fantine
     value: 5
-  - source: Javert
-    target: Thenardier
+  - id: link-Javert-Thenardier
+    label: Javert Thenardier
+    source: node-Javert
+    target: node-Thenardier
     value: 5
-  - source: Javert
-    target: Mme.Thenardier
+  - id: link-Javert-MmeThenardier
+    label: Javert Mme.Thenardier
+    source: node-Javert
+    target: node-MmeThenardier
     value: 1
-  - source: Javert
-    target: Cosette
+  - id: link-Javert-Cosette
+    label: Javert Cosette
+    source: node-Javert
+    target: node-Cosette
     value: 1
-  - source: Fauchelevent
-    target: Valjean
+  - id: link-Fauchelevent-Valjean
+    label: Fauchelevent Valjean
+    source: node-Fauchelevent
+    target: node-Valjean
     value: 8
-  - source: Fauchelevent
-    target: Javert
+  - id: link-Fauchelevent-Javert
+    label: Fauchelevent Javert
+    source: node-Fauchelevent
+    target: node-Javert
     value: 1
-  - source: Bamatabois
-    target: Fantine
+  - id: link-Bamatabois-Fantine
+    label: Bamatabois Fantine
+    source: node-Bamatabois
+    target: node-Fantine
     value: 1
-  - source: Bamatabois
-    target: Javert
+  - id: link-Bamatabois-Javert
+    label: Bamatabois Javert
+    source: node-Bamatabois
+    target: node-Javert
     value: 1
-  - source: Bamatabois
-    target: Valjean
+  - id: link-Bamatabois-Valjean
+    label: Bamatabois Valjean
+    source: node-Bamatabois
+    target: node-Valjean
     value: 2
-  - source: Perpetue
-    target: Fantine
+  - id: link-Perpetue-Fantine
+    label: Perpetue Fantine
+    source: node-Perpetue
+    target: node-Fantine
     value: 1
-  - source: Simplice
-    target: Perpetue
+  - id: link-Simplice-Perpetue
+    label: Simplice Perpetue
+    source: node-Simplice
+    target: node-Perpetue
     value: 2
-  - source: Simplice
-    target: Valjean
+  - id: link-Simplice-Valjean
+    label: Simplice Valjean
+    source: node-Simplice
+    target: node-Valjean
     value: 3
-  - source: Simplice
-    target: Fantine
+  - id: link-Simplice-Fantine
+    label: Simplice Fantine
+    source: node-Simplice
+    target: node-Fantine
     value: 2
-  - source: Simplice
-    target: Javert
+  - id: link-Simplice-Javert
+    label: Simplice Javert
+    source: node-Simplice
+    target: node-Javert
     value: 1
-  - source: Scaufflaire
-    target: Valjean
+  - id: link-Scaufflaire-Valjean
+    label: Scaufflaire Valjean
+    source: node-Scaufflaire
+    target: node-Valjean
     value: 1
-  - source: Woman1
-    target: Valjean
+  - id: link-Woman1-Valjean
+    label: Woman1 Valjean
+    source: node-Woman1
+    target: node-Valjean
     value: 2
-  - source: Woman1
-    target: Javert
+  - id: link-Woman1-Javert
+    label: Woman1 Javert
+    source: node-Woman1
+    target: node-Javert
     value: 1
-  - source: Judge
-    target: Valjean
+  - id: link-Judge-Valjean
+    label: Judge Valjean
+    source: node-Judge
+    target: node-Valjean
     value: 3
-  - source: Judge
-    target: Bamatabois
+  - id: link-Judge-Bamatabois
+    label: Judge Bamatabois
+    source: node-Judge
+    target: node-Bamatabois
     value: 2
-  - source: Champmathieu
-    target: Valjean
+  - id: link-Champmathieu-Valjean
+    label: Champmathieu Valjean
+    source: node-Champmathieu
+    target: node-Valjean
     value: 3
-  - source: Champmathieu
-    target: Judge
+  - id: link-Champmathieu-Judge
+    label: Champmathieu Judge
+    source: node-Champmathieu
+    target: node-Judge
     value: 3
-  - source: Champmathieu
-    target: Bamatabois
+  - id: link-Champmathieu-Bamatabois
+    label: Champmathieu Bamatabois
+    source: node-Champmathieu
+    target: node-Bamatabois
     value: 2
-  - source: Brevet
-    target: Judge
+  - id: link-Brevet-Judge
+    label: Brevet Judge
+    source: node-Brevet
+    target: node-Judge
     value: 2
-  - source: Brevet
-    target: Champmathieu
+  - id: link-Brevet-Champmathieu
+    label: Brevet Champmathieu
+    source: node-Brevet
+    target: node-Champmathieu
     value: 2
-  - source: Brevet
-    target: Valjean
+  - id: link-Brevet-Valjean
+    label: Brevet Valjean
+    source: node-Brevet
+    target: node-Valjean
     value: 2
-  - source: Brevet
-    target: Bamatabois
+  - id: link-Brevet-Bamatabois
+    label: Brevet Bamatabois
+    source: node-Brevet
+    target: node-Bamatabois
     value: 1
-  - source: Chenildieu
-    target: Judge
+  - id: link-Chenildieu-Judge
+    label: Chenildieu Judge
+    source: node-Chenildieu
+    target: node-Judge
     value: 2
-  - source: Chenildieu
-    target: Champmathieu
+  - id: link-Chenildieu-Champmathieu
+    label: Chenildieu Champmathieu
+    source: node-Chenildieu
+    target: node-Champmathieu
     value: 2
-  - source: Chenildieu
-    target: Brevet
+  - id: link-Chenildieu-Brevet
+    label: Chenildieu Brevet
+    source: node-Chenildieu
+    target: node-Brevet
     value: 2
-  - source: Chenildieu
-    target: Valjean
+  - id: link-Chenildieu-Valjean
+    label: Chenildieu Valjean
+    source: node-Chenildieu
+    target: node-Valjean
     value: 2
-  - source: Chenildieu
-    target: Bamatabois
+  - id: link-Chenildieu-Bamatabois
+    label: Chenildieu Bamatabois
+    source: node-Chenildieu
+    target: node-Bamatabois
     value: 1
-  - source: Cochepaille
-    target: Judge
+  - id: link-Cochepaille-Judge
+    label: Cochepaille Judge
+    source: node-Cochepaille
+    target: node-Judge
     value: 2
-  - source: Cochepaille
-    target: Champmathieu
+  - id: link-Cochepaille-Champmathieu
+    label: Cochepaille Champmathieu
+    source: node-Cochepaille
+    target: node-Champmathieu
     value: 2
-  - source: Cochepaille
-    target: Brevet
+  - id: link-Cochepaille-Brevet
+    label: Cochepaille Brevet
+    source: node-Cochepaille
+    target: node-Brevet
     value: 2
-  - source: Cochepaille
-    target: Chenildieu
+  - id: link-Cochepaille-Chenildieu
+    label: Cochepaille Chenildieu
+    source: node-Cochepaille
+    target: node-Chenildieu
     value: 2
-  - source: Cochepaille
-    target: Valjean
+  - id: link-Cochepaille-Valjean
+    label: Cochepaille Valjean
+    source: node-Cochepaille
+    target: node-Valjean
     value: 2
-  - source: Cochepaille
-    target: Bamatabois
+  - id: link-Cochepaille-Bamatabois
+    label: Cochepaille Bamatabois
+    source: node-Cochepaille
+    target: node-Bamatabois
     value: 1
-  - source: Pontmercy
-    target: Thenardier
+  - id: link-Pontmercy-Thenardier
+    label: Pontmercy Thenardier
+    source: node-Pontmercy
+    target: node-Thenardier
     value: 1
-  - source: Boulatruelle
-    target: Thenardier
+  - id: link-Boulatruelle-Thenardier
+    label: Boulatruelle Thenardier
+    source: node-Boulatruelle
+    target: node-Thenardier
     value: 1
-  - source: Eponine
-    target: Mme.Thenardier
+  - id: link-Eponine-MmeThenardier
+    label: Eponine Mme.Thenardier
+    source: node-Eponine
+    target: node-MmeThenardier
     value: 2
-  - source: Eponine
-    target: Thenardier
+  - id: link-Eponine-Thenardier
+    label: Eponine Thenardier
+    source: node-Eponine
+    target: node-Thenardier
     value: 3
-  - source: Anzelma
-    target: Eponine
+  - id: link-Anzelma-Eponine
+    label: Anzelma Eponine
+    source: node-Anzelma
+    target: node-Eponine
     value: 2
-  - source: Anzelma
-    target: Thenardier
+  - id: link-Anzelma-Thenardier
+    label: Anzelma Thenardier
+    source: node-Anzelma
+    target: node-Thenardier
     value: 2
-  - source: Anzelma
-    target: Mme.Thenardier
+  - id: link-Anzelma-MmeThenardier
+    label: Anzelma Mme.Thenardier
+    source: node-Anzelma
+    target: node-MmeThenardier
     value: 1
-  - source: Woman2
-    target: Valjean
+  - id: link-Woman2-Valjean
+    label: Woman2 Valjean
+    source: node-Woman2
+    target: node-Valjean
     value: 3
-  - source: Woman2
-    target: Cosette
+  - id: link-Woman2-Cosette
+    label: Woman2 Cosette
+    source: node-Woman2
+    target: node-Cosette
     value: 1
-  - source: Woman2
-    target: Javert
+  - id: link-Woman2-Javert
+    label: Woman2 Javert
+    source: node-Woman2
+    target: node-Javert
     value: 1
-  - source: MotherInnocent
-    target: Fauchelevent
+  - id: link-MotherInnocent-Fauchelevent
+    label: MotherInnocent Fauchelevent
+    source: node-MotherInnocent
+    target: node-Fauchelevent
     value: 3
-  - source: MotherInnocent
-    target: Valjean
+  - id: link-MotherInnocent-Valjean
+    label: MotherInnocent Valjean
+    source: node-MotherInnocent
+    target: node-Valjean
     value: 1
-  - source: Gribier
-    target: Fauchelevent
+  - id: link-Gribier-Fauchelevent
+    label: Gribier Fauchelevent
+    source: node-Gribier
+    target: node-Fauchelevent
     value: 2
-  - source: Mme.Burgon
-    target: Jondrette
+  - id: link-MmeBurgon-Jondrette
+    label: Mme.Burgon Jondrette
+    source: node-MmeBurgon
+    target: node-Jondrette
     value: 1
-  - source: Gavroche
-    target: Mme.Burgon
+  - id: link-Gavroche-MmeBurgon
+    label: Gavroche Mme.Burgon
+    source: node-Gavroche
+    target: node-MmeBurgon
     value: 2
-  - source: Gavroche
-    target: Thenardier
+  - id: link-Gavroche-Thenardier
+    label: Gavroche Thenardier
+    source: node-Gavroche
+    target: node-Thenardier
     value: 1
-  - source: Gavroche
-    target: Javert
+  - id: link-Gavroche-Javert
+    label: Gavroche Javert
+    source: node-Gavroche
+    target: node-Javert
     value: 1
-  - source: Gavroche
-    target: Valjean
+  - id: link-Gavroche-Valjean
+    label: Gavroche Valjean
+    source: node-Gavroche
+    target: node-Valjean
     value: 1
-  - source: Gillenormand
-    target: Cosette
+  - id: link-Gillenormand-Cosette
+    label: Gillenormand Cosette
+    source: node-Gillenormand
+    target: node-Cosette
     value: 3
-  - source: Gillenormand
-    target: Valjean
+  - id: link-Gillenormand-Valjean
+    label: Gillenormand Valjean
+    source: node-Gillenormand
+    target: node-Valjean
     value: 2
-  - source: Magnon
-    target: Gillenormand
+  - id: link-Magnon-Gillenormand
+    label: Magnon Gillenormand
+    source: node-Magnon
+    target: node-Gillenormand
     value: 1
-  - source: Magnon
-    target: Mme.Thenardier
+  - id: link-Magnon-MmeThenardier
+    label: Magnon Mme.Thenardier
+    source: node-Magnon
+    target: node-MmeThenardier
     value: 1
-  - source: Mlle.Gillenormand
-    target: Gillenormand
+  - id: link-MlleGillenormand-Gillenormand
+    label: Mlle.Gillenormand Gillenormand
+    source: node-MlleGillenormand
+    target: node-Gillenormand
     value: 9
-  - source: Mlle.Gillenormand
-    target: Cosette
+  - id: link-MlleGillenormand-Cosette
+    label: Mlle.Gillenormand Cosette
+    source: node-MlleGillenormand
+    target: node-Cosette
     value: 2
-  - source: Mlle.Gillenormand
-    target: Valjean
+  - id: link-MlleGillenormand-Valjean
+    label: Mlle.Gillenormand Valjean
+    source: node-MlleGillenormand
+    target: node-Valjean
     value: 2
-  - source: Mme.Pontmercy
-    target: Mlle.Gillenormand
+  - id: link-MmePontmercy-MlleGillenormand
+    label: Mme.Pontmercy Mlle.Gillenormand
+    source: node-MmePontmercy
+    target: node-MlleGillenormand
     value: 1
-  - source: Mme.Pontmercy
-    target: Pontmercy
+  - id: link-MmePontmercy-Pontmercy
+    label: Mme.Pontmercy Pontmercy
+    source: node-MmePontmercy
+    target: node-Pontmercy
     value: 1
-  - source: Mlle.Vaubois
-    target: Mlle.Gillenormand
+  - id: link-MlleVaubois-MlleGillenormand
+    label: Mlle.Vaubois Mlle.Gillenormand
+    source: node-MlleVaubois
+    target: node-MlleGillenormand
     value: 1
-  - source: Lt.Gillenormand
-    target: Mlle.Gillenormand
+  - id: link-LtGillenormand-MlleGillenormand
+    label: Lt.Gillenormand Mlle.Gillenormand
+    source: node-LtGillenormand
+    target: node-MlleGillenormand
     value: 2
-  - source: Lt.Gillenormand
-    target: Gillenormand
+  - id: link-LtGillenormand-Gillenormand
+    label: Lt.Gillenormand Gillenormand
+    source: node-LtGillenormand
+    target: node-Gillenormand
     value: 1
-  - source: Lt.Gillenormand
-    target: Cosette
+  - id: link-LtGillenormand-Cosette
+    label: Lt.Gillenormand Cosette
+    source: node-LtGillenormand
+    target: node-Cosette
     value: 1
-  - source: Marius
-    target: Mlle.Gillenormand
+  - id: link-Marius-MlleGillenormand
+    label: Marius Mlle.Gillenormand
+    source: node-Marius
+    target: node-MlleGillenormand
     value: 6
-  - source: Marius
-    target: Gillenormand
+  - id: link-Marius-Gillenormand
+    label: Marius Gillenormand
+    source: node-Marius
+    target: node-Gillenormand
     value: 12
-  - source: Marius
-    target: Pontmercy
+  - id: link-Marius-Pontmercy
+    label: Marius Pontmercy
+    source: node-Marius
+    target: node-Pontmercy
     value: 1
-  - source: Marius
-    target: Lt.Gillenormand
+  - id: link-Marius-LtGillenormand
+    label: Marius Lt.Gillenormand
+    source: node-Marius
+    target: node-LtGillenormand
     value: 1
-  - source: Marius
-    target: Cosette
+  - id: link-Marius-Cosette
+    label: Marius Cosette
+    source: node-Marius
+    target: node-Cosette
     value: 21
-  - source: Marius
-    target: Valjean
+  - id: link-Marius-Valjean
+    label: Marius Valjean
+    source: node-Marius
+    target: node-Valjean
     value: 19
-  - source: Marius
-    target: Tholomyes
+  - id: link-Marius-Tholomyes
+    label: Marius Tholomyes
+    source: node-Marius
+    target: node-Tholomyes
     value: 1
-  - source: Marius
-    target: Thenardier
+  - id: link-Marius-Thenardier
+    label: Marius Thenardier
+    source: node-Marius
+    target: node-Thenardier
     value: 2
-  - source: Marius
-    target: Eponine
+  - id: link-Marius-Eponine
+    label: Marius Eponine
+    source: node-Marius
+    target: node-Eponine
     value: 5
-  - source: Marius
-    target: Gavroche
+  - id: link-Marius-Gavroche
+    label: Marius Gavroche
+    source: node-Marius
+    target: node-Gavroche
     value: 4
-  - source: BaronessT
-    target: Gillenormand
+  - id: link-BaronessT-Gillenormand
+    label: BaronessT Gillenormand
+    source: node-BaronessT
+    target: node-Gillenormand
     value: 1
-  - source: BaronessT
-    target: Marius
+  - id: link-BaronessT-Marius
+    label: BaronessT Marius
+    source: node-BaronessT
+    target: node-Marius
     value: 1
-  - source: Mabeuf
-    target: Marius
+  - id: link-Mabeuf-Marius
+    label: Mabeuf Marius
+    source: node-Mabeuf
+    target: node-Marius
     value: 1
-  - source: Mabeuf
-    target: Eponine
+  - id: link-Mabeuf-Eponine
+    label: Mabeuf Eponine
+    source: node-Mabeuf
+    target: node-Eponine
     value: 1
-  - source: Mabeuf
-    target: Gavroche
+  - id: link-Mabeuf-Gavroche
+    label: Mabeuf Gavroche
+    source: node-Mabeuf
+    target: node-Gavroche
     value: 1
-  - source: Enjolras
-    target: Marius
+  - id: link-Enjolras-Marius
+    label: Enjolras Marius
+    source: node-Enjolras
+    target: node-Marius
     value: 7
-  - source: Enjolras
-    target: Gavroche
+  - id: link-Enjolras-Gavroche
+    label: Enjolras Gavroche
+    source: node-Enjolras
+    target: node-Gavroche
     value: 7
-  - source: Enjolras
-    target: Javert
+  - id: link-Enjolras-Javert
+    label: Enjolras Javert
+    source: node-Enjolras
+    target: node-Javert
     value: 6
-  - source: Enjolras
-    target: Mabeuf
+  - id: link-Enjolras-Mabeuf
+    label: Enjolras Mabeuf
+    source: node-Enjolras
+    target: node-Mabeuf
     value: 1
-  - source: Enjolras
-    target: Valjean
+  - id: link-Enjolras-Valjean
+    label: Enjolras Valjean
+    source: node-Enjolras
+    target: node-Valjean
     value: 4
-  - source: Combeferre
-    target: Enjolras
+  - id: link-Combeferre-Enjolras
+    label: Combeferre Enjolras
+    source: node-Combeferre
+    target: node-Enjolras
     value: 15
-  - source: Combeferre
-    target: Marius
+  - id: link-Combeferre-Marius
+    label: Combeferre Marius
+    source: node-Combeferre
+    target: node-Marius
     value: 5
-  - source: Combeferre
-    target: Gavroche
+  - id: link-Combeferre-Gavroche
+    label: Combeferre Gavroche
+    source: node-Combeferre
+    target: node-Gavroche
     value: 6
-  - source: Combeferre
-    target: Mabeuf
+  - id: link-Combeferre-Mabeuf
+    label: Combeferre Mabeuf
+    source: node-Combeferre
+    target: node-Mabeuf
     value: 2
-  - source: Prouvaire
-    target: Gavroche
+  - id: link-Prouvaire-Gavroche
+    label: Prouvaire Gavroche
+    source: node-Prouvaire
+    target: node-Gavroche
     value: 1
-  - source: Prouvaire
-    target: Enjolras
+  - id: link-Prouvaire-Enjolras
+    label: Prouvaire Enjolras
+    source: node-Prouvaire
+    target: node-Enjolras
     value: 4
-  - source: Prouvaire
-    target: Combeferre
+  - id: link-Prouvaire-Combeferre
+    label: Prouvaire Combeferre
+    source: node-Prouvaire
+    target: node-Combeferre
     value: 2
-  - source: Feuilly
-    target: Gavroche
+  - id: link-Feuilly-Gavroche
+    label: Feuilly Gavroche
+    source: node-Feuilly
+    target: node-Gavroche
     value: 2
-  - source: Feuilly
-    target: Enjolras
+  - id: link-Feuilly-Enjolras
+    label: Feuilly Enjolras
+    source: node-Feuilly
+    target: node-Enjolras
     value: 6
-  - source: Feuilly
-    target: Prouvaire
+  - id: link-Feuilly-Prouvaire
+    label: Feuilly Prouvaire
+    source: node-Feuilly
+    target: node-Prouvaire
     value: 2
-  - source: Feuilly
-    target: Combeferre
+  - id: link-Feuilly-Combeferre
+    label: Feuilly Combeferre
+    source: node-Feuilly
+    target: node-Combeferre
     value: 5
-  - source: Feuilly
-    target: Mabeuf
+  - id: link-Feuilly-Mabeuf
+    label: Feuilly Mabeuf
+    source: node-Feuilly
+    target: node-Mabeuf
     value: 1
-  - source: Feuilly
-    target: Marius
+  - id: link-Feuilly-Marius
+    label: Feuilly Marius
+    source: node-Feuilly
+    target: node-Marius
     value: 1
-  - source: Courfeyrac
-    target: Marius
+  - id: link-Courfeyrac-Marius
+    label: Courfeyrac Marius
+    source: node-Courfeyrac
+    target: node-Marius
     value: 9
-  - source: Courfeyrac
-    target: Enjolras
+  - id: link-Courfeyrac-Enjolras
+    label: Courfeyrac Enjolras
+    source: node-Courfeyrac
+    target: node-Enjolras
     value: 17
-  - source: Courfeyrac
-    target: Combeferre
+  - id: link-Courfeyrac-Combeferre
+    label: Courfeyrac Combeferre
+    source: node-Courfeyrac
+    target: node-Combeferre
     value: 13
-  - source: Courfeyrac
-    target: Gavroche
+  - id: link-Courfeyrac-Gavroche
+    label: Courfeyrac Gavroche
+    source: node-Courfeyrac
+    target: node-Gavroche
     value: 7
-  - source: Courfeyrac
-    target: Mabeuf
+  - id: link-Courfeyrac-Mabeuf
+    label: Courfeyrac Mabeuf
+    source: node-Courfeyrac
+    target: node-Mabeuf
     value: 2
-  - source: Courfeyrac
-    target: Eponine
+  - id: link-Courfeyrac-Eponine
+    label: Courfeyrac Eponine
+    source: node-Courfeyrac
+    target: node-Eponine
     value: 1
-  - source: Courfeyrac
-    target: Feuilly
+  - id: link-Courfeyrac-Feuilly
+    label: Courfeyrac Feuilly
+    source: node-Courfeyrac
+    target: node-Feuilly
     value: 6
-  - source: Courfeyrac
-    target: Prouvaire
+  - id: link-Courfeyrac-Prouvaire
+    label: Courfeyrac Prouvaire
+    source: node-Courfeyrac
+    target: node-Prouvaire
     value: 3
-  - source: Bahorel
-    target: Combeferre
+  - id: link-Bahorel-Combeferre
+    label: Bahorel Combeferre
+    source: node-Bahorel
+    target: node-Combeferre
     value: 5
-  - source: Bahorel
-    target: Gavroche
+  - id: link-Bahorel-Gavroche
+    label: Bahorel Gavroche
+    source: node-Bahorel
+    target: node-Gavroche
     value: 5
-  - source: Bahorel
-    target: Courfeyrac
+  - id: link-Bahorel-Courfeyrac
+    label: Bahorel Courfeyrac
+    source: node-Bahorel
+    target: node-Courfeyrac
     value: 6
-  - source: Bahorel
-    target: Mabeuf
+  - id: link-Bahorel-Mabeuf
+    label: Bahorel Mabeuf
+    source: node-Bahorel
+    target: node-Mabeuf
     value: 2
-  - source: Bahorel
-    target: Enjolras
+  - id: link-Bahorel-Enjolras
+    label: Bahorel Enjolras
+    source: node-Bahorel
+    target: node-Enjolras
     value: 4
-  - source: Bahorel
-    target: Feuilly
+  - id: link-Bahorel-Feuilly
+    label: Bahorel Feuilly
+    source: node-Bahorel
+    target: node-Feuilly
     value: 3
-  - source: Bahorel
-    target: Prouvaire
+  - id: link-Bahorel-Prouvaire
+    label: Bahorel Prouvaire
+    source: node-Bahorel
+    target: node-Prouvaire
     value: 2
-  - source: Bahorel
-    target: Marius
+  - id: link-Bahorel-Marius
+    label: Bahorel Marius
+    source: node-Bahorel
+    target: node-Marius
     value: 1
-  - source: Bossuet
-    target: Marius
+  - id: link-Bossuet-Marius
+    label: Bossuet Marius
+    source: node-Bossuet
+    target: node-Marius
     value: 5
-  - source: Bossuet
-    target: Courfeyrac
+  - id: link-Bossuet-Courfeyrac
+    label: Bossuet Courfeyrac
+    source: node-Bossuet
+    target: node-Courfeyrac
     value: 12
-  - source: Bossuet
-    target: Gavroche
+  - id: link-Bossuet-Gavroche
+    label: Bossuet Gavroche
+    source: node-Bossuet
+    target: node-Gavroche
     value: 5
-  - source: Bossuet
-    target: Bahorel
+  - id: link-Bossuet-Bahorel
+    label: Bossuet Bahorel
+    source: node-Bossuet
+    target: node-Bahorel
     value: 4
-  - source: Bossuet
-    target: Enjolras
+  - id: link-Bossuet-Enjolras
+    label: Bossuet Enjolras
+    source: node-Bossuet
+    target: node-Enjolras
     value: 10
-  - source: Bossuet
-    target: Feuilly
+  - id: link-Bossuet-Feuilly
+    label: Bossuet Feuilly
+    source: node-Bossuet
+    target: node-Feuilly
     value: 6
-  - source: Bossuet
-    target: Prouvaire
+  - id: link-Bossuet-Prouvaire
+    label: Bossuet Prouvaire
+    source: node-Bossuet
+    target: node-Prouvaire
     value: 2
-  - source: Bossuet
-    target: Combeferre
+  - id: link-Bossuet-Combeferre
+    label: Bossuet Combeferre
+    source: node-Bossuet
+    target: node-Combeferre
     value: 9
-  - source: Bossuet
-    target: Mabeuf
+  - id: link-Bossuet-Mabeuf
+    label: Bossuet Mabeuf
+    source: node-Bossuet
+    target: node-Mabeuf
     value: 1
-  - source: Bossuet
-    target: Valjean
+  - id: link-Bossuet-Valjean
+    label: Bossuet Valjean
+    source: node-Bossuet
+    target: node-Valjean
     value: 1
-  - source: Joly
-    target: Bahorel
+  - id: link-Joly-Bahorel
+    label: Joly Bahorel
+    source: node-Joly
+    target: node-Bahorel
     value: 5
-  - source: Joly
-    target: Bossuet
+  - id: link-Joly-Bossuet
+    label: Joly Bossuet
+    source: node-Joly
+    target: node-Bossuet
     value: 7
-  - source: Joly
-    target: Gavroche
+  - id: link-Joly-Gavroche
+    label: Joly Gavroche
+    source: node-Joly
+    target: node-Gavroche
     value: 3
-  - source: Joly
-    target: Courfeyrac
+  - id: link-Joly-Courfeyrac
+    label: Joly Courfeyrac
+    source: node-Joly
+    target: node-Courfeyrac
     value: 5
-  - source: Joly
-    target: Enjolras
+  - id: link-Joly-Enjolras
+    label: Joly Enjolras
+    source: node-Joly
+    target: node-Enjolras
     value: 5
-  - source: Joly
-    target: Feuilly
+  - id: link-Joly-Feuilly
+    label: Joly Feuilly
+    source: node-Joly
+    target: node-Feuilly
     value: 5
-  - source: Joly
-    target: Prouvaire
+  - id: link-Joly-Prouvaire
+    label: Joly Prouvaire
+    source: node-Joly
+    target: node-Prouvaire
     value: 2
-  - source: Joly
-    target: Combeferre
+  - id: link-Joly-Combeferre
+    label: Joly Combeferre
+    source: node-Joly
+    target: node-Combeferre
     value: 5
-  - source: Joly
-    target: Mabeuf
+  - id: link-Joly-Mabeuf
+    label: Joly Mabeuf
+    source: node-Joly
+    target: node-Mabeuf
     value: 1
-  - source: Joly
-    target: Marius
+  - id: link-Joly-Marius
+    label: Joly Marius
+    source: node-Joly
+    target: node-Marius
     value: 2
-  - source: Grantaire
-    target: Bossuet
+  - id: link-Grantaire-Bossuet
+    label: Grantaire Bossuet
+    source: node-Grantaire
+    target: node-Bossuet
     value: 3
-  - source: Grantaire
-    target: Enjolras
+  - id: link-Grantaire-Enjolras
+    label: Grantaire Enjolras
+    source: node-Grantaire
+    target: node-Enjolras
     value: 3
-  - source: Grantaire
-    target: Combeferre
+  - id: link-Grantaire-Combeferre
+    label: Grantaire Combeferre
+    source: node-Grantaire
+    target: node-Combeferre
     value: 1
-  - source: Grantaire
-    target: Courfeyrac
+  - id: link-Grantaire-Courfeyrac
+    label: Grantaire Courfeyrac
+    source: node-Grantaire
+    target: node-Courfeyrac
     value: 2
-  - source: Grantaire
-    target: Joly
+  - id: link-Grantaire-Joly
+    label: Grantaire Joly
+    source: node-Grantaire
+    target: node-Joly
     value: 2
-  - source: Grantaire
-    target: Gavroche
+  - id: link-Grantaire-Gavroche
+    label: Grantaire Gavroche
+    source: node-Grantaire
+    target: node-Gavroche
     value: 1
-  - source: Grantaire
-    target: Bahorel
+  - id: link-Grantaire-Bahorel
+    label: Grantaire Bahorel
+    source: node-Grantaire
+    target: node-Bahorel
     value: 1
-  - source: Grantaire
-    target: Feuilly
+  - id: link-Grantaire-Feuilly
+    label: Grantaire Feuilly
+    source: node-Grantaire
+    target: node-Feuilly
     value: 1
-  - source: Grantaire
-    target: Prouvaire
+  - id: link-Grantaire-Prouvaire
+    label: Grantaire Prouvaire
+    source: node-Grantaire
+    target: node-Prouvaire
     value: 1
-  - source: MotherPlutarch
-    target: Mabeuf
+  - id: link-MotherPlutarch-Mabeuf
+    label: MotherPlutarch Mabeuf
+    source: node-MotherPlutarch
+    target: node-Mabeuf
     value: 3
-  - source: Gueulemer
-    target: Thenardier
+  - id: link-Gueulemer-Thenardier
+    label: Gueulemer Thenardier
+    source: node-Gueulemer
+    target: node-Thenardier
     value: 5
-  - source: Gueulemer
-    target: Valjean
+  - id: link-Gueulemer-Valjean
+    label: Gueulemer Valjean
+    source: node-Gueulemer
+    target: node-Valjean
     value: 1
-  - source: Gueulemer
-    target: Mme.Thenardier
+  - id: link-Gueulemer-MmeThenardier
+    label: Gueulemer Mme.Thenardier
+    source: node-Gueulemer
+    target: node-MmeThenardier
     value: 1
-  - source: Gueulemer
-    target: Javert
+  - id: link-Gueulemer-Javert
+    label: Gueulemer Javert
+    source: node-Gueulemer
+    target: node-Javert
     value: 1
-  - source: Gueulemer
-    target: Gavroche
+  - id: link-Gueulemer-Gavroche
+    label: Gueulemer Gavroche
+    source: node-Gueulemer
+    target: node-Gavroche
     value: 1
-  - source: Gueulemer
-    target: Eponine
+  - id: link-Gueulemer-Eponine
+    label: Gueulemer Eponine
+    source: node-Gueulemer
+    target: node-Eponine
     value: 1
-  - source: Babet
-    target: Thenardier
+  - id: link-Babet-Thenardier
+    label: Babet Thenardier
+    source: node-Babet
+    target: node-Thenardier
     value: 6
-  - source: Babet
-    target: Gueulemer
+  - id: link-Babet-Gueulemer
+    label: Babet Gueulemer
+    source: node-Babet
+    target: node-Gueulemer
     value: 6
-  - source: Babet
-    target: Valjean
+  - id: link-Babet-Valjean
+    label: Babet Valjean
+    source: node-Babet
+    target: node-Valjean
     value: 1
-  - source: Babet
-    target: Mme.Thenardier
+  - id: link-Babet-MmeThenardier
+    label: Babet Mme.Thenardier
+    source: node-Babet
+    target: node-MmeThenardier
     value: 1
-  - source: Babet
-    target: Javert
+  - id: link-Babet-Javert
+    label: Babet Javert
+    source: node-Babet
+    target: node-Javert
     value: 2
-  - source: Babet
-    target: Gavroche
+  - id: link-Babet-Gavroche
+    label: Babet Gavroche
+    source: node-Babet
+    target: node-Gavroche
     value: 1
-  - source: Babet
-    target: Eponine
+  - id: link-Babet-Eponine
+    label: Babet Eponine
+    source: node-Babet
+    target: node-Eponine
     value: 1
-  - source: Claquesous
-    target: Thenardier
+  - id: link-Claquesous-Thenardier
+    label: Claquesous Thenardier
+    source: node-Claquesous
+    target: node-Thenardier
     value: 4
-  - source: Claquesous
-    target: Babet
+  - id: link-Claquesous-Babet
+    label: Claquesous Babet
+    source: node-Claquesous
+    target: node-Babet
     value: 4
-  - source: Claquesous
-    target: Gueulemer
+  - id: link-Claquesous-Gueulemer
+    label: Claquesous Gueulemer
+    source: node-Claquesous
+    target: node-Gueulemer
     value: 4
-  - source: Claquesous
-    target: Valjean
+  - id: link-Claquesous-Valjean
+    label: Claquesous Valjean
+    source: node-Claquesous
+    target: node-Valjean
     value: 1
-  - source: Claquesous
-    target: Mme.Thenardier
+  - id: link-Claquesous-MmeThenardier
+    label: Claquesous Mme.Thenardier
+    source: node-Claquesous
+    target: node-MmeThenardier
     value: 1
-  - source: Claquesous
-    target: Javert
+  - id: link-Claquesous-Javert
+    label: Claquesous Javert
+    source: node-Claquesous
+    target: node-Javert
     value: 1
-  - source: Claquesous
-    target: Eponine
+  - id: link-Claquesous-Eponine
+    label: Claquesous Eponine
+    source: node-Claquesous
+    target: node-Eponine
     value: 1
-  - source: Claquesous
-    target: Enjolras
+  - id: link-Claquesous-Enjolras
+    label: Claquesous Enjolras
+    source: node-Claquesous
+    target: node-Enjolras
     value: 1
-  - source: Montparnasse
-    target: Javert
+  - id: link-Montparnasse-Javert
+    label: Montparnasse Javert
+    source: node-Montparnasse
+    target: node-Javert
     value: 1
-  - source: Montparnasse
-    target: Babet
+  - id: link-Montparnasse-Babet
+    label: Montparnasse Babet
+    source: node-Montparnasse
+    target: node-Babet
     value: 2
-  - source: Montparnasse
-    target: Gueulemer
+  - id: link-Montparnasse-Gueulemer
+    label: Montparnasse Gueulemer
+    source: node-Montparnasse
+    target: node-Gueulemer
     value: 2
-  - source: Montparnasse
-    target: Claquesous
+  - id: link-Montparnasse-Claquesous
+    label: Montparnasse Claquesous
+    source: node-Montparnasse
+    target: node-Claquesous
     value: 2
-  - source: Montparnasse
-    target: Valjean
+  - id: link-Montparnasse-Valjean
+    label: Montparnasse Valjean
+    source: node-Montparnasse
+    target: node-Valjean
     value: 1
-  - source: Montparnasse
-    target: Gavroche
+  - id: link-Montparnasse-Gavroche
+    label: Montparnasse Gavroche
+    source: node-Montparnasse
+    target: node-Gavroche
     value: 1
-  - source: Montparnasse
-    target: Eponine
+  - id: link-Montparnasse-Eponine
+    label: Montparnasse Eponine
+    source: node-Montparnasse
+    target: node-Eponine
     value: 1
-  - source: Montparnasse
-    target: Thenardier
+  - id: link-Montparnasse-Thenardier
+    label: Montparnasse Thenardier
+    source: node-Montparnasse
+    target: node-Thenardier
     value: 1
-  - source: Toussaint
-    target: Cosette
+  - id: link-Toussaint-Cosette
+    label: Toussaint Cosette
+    source: node-Toussaint
+    target: node-Cosette
     value: 2
-  - source: Toussaint
-    target: Javert
+  - id: link-Toussaint-Javert
+    label: Toussaint Javert
+    source: node-Toussaint
+    target: node-Javert
     value: 1
-  - source: Toussaint
-    target: Valjean
+  - id: link-Toussaint-Valjean
+    label: Toussaint Valjean
+    source: node-Toussaint
+    target: node-Valjean
     value: 1
-  - source: Child1
-    target: Gavroche
+  - id: link-Child1-Gavroche
+    label: Child1 Gavroche
+    source: node-Child1
+    target: node-Gavroche
     value: 2
-  - source: Child2
-    target: Gavroche
+  - id: link-Child2-Gavroche
+    label: Child2 Gavroche
+    source: node-Child2
+    target: node-Gavroche
     value: 2
-  - source: Child2
-    target: Child1
+  - id: link-Child2-Child1
+    label: Child2 Child1
+    source: node-Child2
+    target: node-Child1
     value: 3
-  - source: Brujon
-    target: Babet
+  - id: link-Brujon-Babet
+    label: Brujon Babet
+    source: node-Brujon
+    target: node-Babet
     value: 3
-  - source: Brujon
-    target: Gueulemer
+  - id: link-Brujon-Gueulemer
+    label: Brujon Gueulemer
+    source: node-Brujon
+    target: node-Gueulemer
     value: 3
-  - source: Brujon
-    target: Thenardier
+  - id: link-Brujon-Thenardier
+    label: Brujon Thenardier
+    source: node-Brujon
+    target: node-Thenardier
     value: 3
-  - source: Brujon
-    target: Gavroche
+  - id: link-Brujon-Gavroche
+    label: Brujon Gavroche
+    source: node-Brujon
+    target: node-Gavroche
     value: 1
-  - source: Brujon
-    target: Eponine
+  - id: link-Brujon-Eponine
+    label: Brujon Eponine
+    source: node-Brujon
+    target: node-Eponine
     value: 1
-  - source: Brujon
-    target: Claquesous
+  - id: link-Brujon-Claquesous
+    label: Brujon Claquesous
+    source: node-Brujon
+    target: node-Claquesous
     value: 1
-  - source: Brujon
-    target: Montparnasse
+  - id: link-Brujon-Montparnasse
+    label: Brujon Montparnasse
+    source: node-Brujon
+    target: node-Montparnasse
     value: 1
-  - source: Mme.Hucheloup
-    target: Bossuet
+  - id: link-MmeHucheloup-Bossuet
+    label: Mme.Hucheloup Bossuet
+    source: node-MmeHucheloup
+    target: node-Bossuet
     value: 1
-  - source: Mme.Hucheloup
-    target: Joly
+  - id: link-MmeHucheloup-Joly
+    label: Mme.Hucheloup Joly
+    source: node-MmeHucheloup
+    target: node-Joly
     value: 1
-  - source: Mme.Hucheloup
-    target: Grantaire
+  - id: link-MmeHucheloup-Grantaire
+    label: Mme.Hucheloup Grantaire
+    source: node-MmeHucheloup
+    target: node-Grantaire
     value: 1
-  - source: Mme.Hucheloup
-    target: Bahorel
+  - id: link-MmeHucheloup-Bahorel
+    label: Mme.Hucheloup Bahorel
+    source: node-MmeHucheloup
+    target: node-Bahorel
     value: 1
-  - source: Mme.Hucheloup
-    target: Courfeyrac
+  - id: link-MmeHucheloup-Courfeyrac
+    label: Mme.Hucheloup Courfeyrac
+    source: node-MmeHucheloup
+    target: node-Courfeyrac
     value: 1
-  - source: Mme.Hucheloup
-    target: Gavroche
+  - id: link-MmeHucheloup-Gavroche
+    label: Mme.Hucheloup Gavroche
+    source: node-MmeHucheloup
+    target: node-Gavroche
     value: 1
-  - source: Mme.Hucheloup
-    target: Enjolras
+  - id: link-MmeHucheloup-Enjolras
+    label: Mme.Hucheloup Enjolras
+    source: node-MmeHucheloup
+    target: node-Enjolras
     value: 1

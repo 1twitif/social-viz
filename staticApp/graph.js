@@ -4,14 +4,17 @@ define([
 		'./fps',
 		'./languageLoader',
 		'./configLoader',
-		'./formLoader'
-	], (d3, ev, fps, langTools,cfg, formLoader) => {
+		'./formLoader',
+		'./graphDataLoader',
+		'./structManipulation'
+	], (d3, ev, fps, langTools,cfg, formLoader,graphDataLoader,struct) => {
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
 		let options;
 		ev.after('config.ready data.ready form.template.ready', function () {
 			options = cfg.getConfig();
-			var graph;
+			const fullGraph = graphDataLoader.getData();
+			let currentGraph = struct.clone(fullGraph);
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])
 				.on("zoom", zoomed);
@@ -62,22 +65,19 @@ define([
 				;
 			updateCenterForce();
 
-			d3.json("allData/publicData.json", function (error, graphData) {
-				if (error) throw error;
-				graph = graphData;
 				simulation
-					.nodes(graphData.nodes)
+					.nodes(currentGraph.node)
 					.force("link",
 						d3.forceLink()
 							.id(function (d) {
 								return d.id;
 							})
-							.links(graphData.links)
+							.links(currentGraph.link)
 					)
 				;
-				computeNodesDegree(graphData);
+				computeNodesDegree(currentGraph);
 				var nodeRadiusScale = d3.scaleLinear()
-					.domain(d3.extent(graphData.nodes, function (n) {
+					.domain(d3.extent(currentGraph.node, function (n) {
 						return n.degree;
 					}))
 					.range([options.nodeMinRatio, options.nodeMaxRatio]);
@@ -85,7 +85,7 @@ define([
 				var link = zoomableContainer.append("g")
 					.attr("class", "links")
 					.selectAll("line")
-					.data(graphData.links)
+					.data(currentGraph.link)
 					.enter().append("line")
 					.attr("class", (n) => "link ll" + n.type)
 					.attr("stroke-width", function (d) {
@@ -97,12 +97,12 @@ define([
 				var node = zoomableContainer.append("g")
 						.attr("class", "nodes")
 						.selectAll("g.node")
-						.data(graphData.nodes)
+						.data(currentGraph.node)
 						.enter()
 						.append("g")
 						.attr("class", (n) => "node nl" + n.type)
 						.attr("id", function (n) {
-							return "n" + n.id;
+							return n.id;
 						})
 						.on("dblclick", dblclick)
 						.call(d3.drag()
@@ -151,11 +151,11 @@ define([
 						return n.r;
 					})
 					.text(function (n) {
-						return t(n.id)
+						return t(n.label)
 					});
 				node.append("title")
-					.text(function (d) {
-						return t(d.id);
+					.text(function (n) {
+						return t(n.label);
 					});
 
 
@@ -192,7 +192,7 @@ define([
 				}
 
 				var linkLengthScale = d3.scaleLinear()
-					.domain(d3.extent(graphData.nodes, function (n) {
+					.domain(d3.extent(currentGraph.node, function (n) {
 						return n.degree;
 					}))
 					.range([options.linkLengthMinRatio, options.linkLengthMaxRatio]);
@@ -208,14 +208,14 @@ define([
 				;
 				simulation.on("tick", ticked);
 				send('dataInitDone');
-			});
+
+
 			function zoomed() {
 				options.zoom = {
 					"x": round(d3X2CenterRatioX(d3.event.transform.x, d3.event.transform.k), options.zoomPrecisionXY),
 					"y": round(d3Y2CenterRatioY(d3.event.transform.y, d3.event.transform.k), options.zoomPrecisionXY),
 					"k": round(d3.event.transform.k, options.zoomPrecisionK)
 				};
-				url.save(options);
 				updateZoom();
 				if (options.confiner) agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			}
@@ -225,7 +225,7 @@ define([
 				d.dragOriginX = d.x;
 				d.dragOriginY = d.y;
 				d.wasSelected = false;
-				if (options.selected !== "n" + d.id) options.selected = "n" + d.id;
+				if (options.selected !== d.id) options.selected = d.id;
 				else d.wasSelected = true;
 				updateSelection();
 				updateCenterForce();
@@ -247,14 +247,13 @@ define([
 					var d3ToCentricX = d3.scaleLinear().domain([0, width]).range([-1, 1]);
 					var d3ToCentricY = d3.scaleLinear().domain([0, height]).range([-1, 1]);
 					if (!options.fixedNodes) options.fixedNodes = {};
-					options.fixedNodes["n" + d.id] = {
+					options.fixedNodes[d.id] = {
 						"x": round(d3ToCentricX(d.x), 2),
 						"y": round(d3ToCentricY(d.y), 2)
 					};
 				} else if (d.wasSelected) {
 					options.selected = undefined;
 				}
-				url.save(options);
 				updateSelection();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			}
@@ -263,8 +262,7 @@ define([
 				d3.select(this).classed("fixed", d.fixed = false);
 				d.fx = null;
 				d.fy = null;
-				options.fixedNodes["n" + d.id] = undefined;
-				url.save(options);
+				options.fixedNodes[d.id] = undefined;
 				updateZoom();
 				updateCenterForce();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
@@ -320,16 +318,16 @@ define([
 			}
 
 			function renderDetails(id) {
-				var detailsFunctions = {"n": renderNodeDetails};
-				return detailsFunctions[id.substring(0, 1)](id.substring(1));
+				const detailsFunctions = {"node": renderNodeDetails};
+				return detailsFunctions[id.split('-')[0]](id);
 			}
 
 			function renderNodeDetails(id) {
-				var n = d3.select('#n' + id).node().__data__;
+				var n = d3.select('#' + id).node().__data__;
 				var res = "<h1>" + n.id + "</h1>\n<div>Voisins ( " + n.degree + " ) :</div>\n<ul>";
-				for (var i = 0; i < graph.links.length; ++i) {
-					if (graph.links[i].source.id === id) res += "<li>" + graph.links[i].value + " " + graph.links[i].target.id + " ( " + graph.links[i].target.degree + " ) </li>";
-					if (graph.links[i].target.id === id) res += "<li>" + graph.links[i].value + " " + graph.links[i].source.id + " ( " + graph.links[i].source.degree + " ) </li>";
+				for (var i = 0; i < currentGraph.link.length; ++i) {
+					if (currentGraph.link[i].source.id === id) res += "<li>" + currentGraph.link[i].value + " " + currentGraph.link[i].target.id + " ( " + currentGraph.link[i].target.degree + " ) </li>";
+					if (currentGraph.link[i].target.id === id) res += "<li>" + currentGraph.link[i].value + " " + currentGraph.link[i].source.id + " ( " + currentGraph.link[i].source.degree + " ) </li>";
 				}
 				return res + "</ul>";
 			}
@@ -340,10 +338,10 @@ define([
 			}
 
 			function computeNodesDegree(graph) {
-				for (var i = 0; i < graph.nodes.length; ++i) graph.nodes[i].degree = 0;
-				for (var i = 0; i < graph.links.length; ++i) {
-					++graph.links[i].source.degree;
-					++graph.links[i].target.degree;
+				for (var i = 0; i < graph.node.length; ++i) graph.node[i].degree = 0;
+				for (var i = 0; i < graph.link.length; ++i) {
+					++graph.link[i].source.degree;
+					++graph.link[i].target.degree;
 				}
 			}
 
