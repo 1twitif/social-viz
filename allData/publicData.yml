@@ -1,4 +1,4 @@
-nodes:
+node:
   - id: Myriel
     type: 1
   - id: Napoleon
@@ -153,7 +153,7 @@ nodes:
     type: 4
   - id: Mme.Hucheloup
     type: 8
-links:
+link:
   - source: Napoleon
     target: Myriel
     value: 1

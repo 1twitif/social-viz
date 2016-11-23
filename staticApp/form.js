@@ -11,7 +11,7 @@ define([
 		const formObject = this;
 		let config;
 		this.template = tempateJson;
-		this.data = data;
+		this.data = data || {};
 		let entityId = id;
 		const displayAnchors = {};
 		for (let i in targetNodes) this.displayInNode(targetNodes[i]);
@@ -29,20 +29,26 @@ define([
 		};
 
 		this.render = function render(targetNode) {
-			for (let form in this.template) if (form !== 'enum' && this.template.hasOwnProperty(form))
-				((form) => {
-					const btn = buildFormSelectorButton(form);
-					targetNode.appendChild(btn);
-					btn.addEventListener('click', () => {
-						config.form.active = form;
+			if (config.form.active) {
+				const form = config.form.active;
+				const formNode = buildForm(formObject.template[form], form);
+				targetNode.innerHTML = '';
+				targetNode.appendChild(formNode);
+				send('form.updated', formObject);
 
-						const formNode = buildForm(formObject.template[form], form);
-						targetNode.innerHTML = '';
-						targetNode.appendChild(formNode);
-						send('form.updated', formObject);
-					});
+			} else {
+				targetNode.innerHTML = '';
+				for (let form in this.template) if (form !== 'enum' && this.template.hasOwnProperty(form))
+					((form) => {
+						const btn = buildFormSelectorButton(form);
+						targetNode.appendChild(btn);
+						btn.addEventListener('click', () => {
+							config.form.active = form;
+							render(targetNode);
+						});
 
-				})(form);
+					})(form);
+			}
 
 			//const nodeForm = document.createElement('form');
 			// datalist http://www.alsacreations.com/article/lire/1334-html5-element-datalist.html
@@ -98,9 +104,17 @@ define([
 						optionNode.setAttribute('value', option);
 						dataList.appendChild(optionNode);
 					}
-				}
+				} else if(typeof formObject.data[listPath[0]] !== 'undefined'){
+					const data = formObject.data[listPath[0]];
+					for (let i = 0; i < data.length; i++) {
+						const option = data[i];
+						const optionNode = document.createElement('option');
+						optionNode.innerText = t(option.label);
+						optionNode.setAttribute('value', option.id);
+						dataList.appendChild(optionNode);
+					}
+				} else console.log('from non reconnu : ',entry.options.from);
 			}
-
 			return label;
 		}
 
