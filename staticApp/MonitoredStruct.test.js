@@ -22,11 +22,17 @@ define(['./MonitoredStruct', './smartEvents'], function (app, ev) {
 			expect(dummyCallback).toHaveBeenCalled();
 		});
 		it('send event on deep-sub-change', () => {
-			const dummyCallback = new Spy();
+			const dummyCallback1 = new Spy();
+			const dummyCallback2 = new Spy();
 			const observed = new app.MonitoredStruct({'sub': [{'deep': true}]});
-			ev.on('monitoredStruct.change', dummyCallback);
+			ev.on('monitoredStruct.change', dummyCallback1);
+			ev.on('monitoredStruct.change.undefined.sub.0.deep', dummyCallback2);
 			observed.sub[0].deep = 'not a boolean';
-			expect(dummyCallback).toHaveBeenCalledWith({'sub': [{'deep': 'not a boolean'}]});
+			expect(dummyCallback1).toHaveBeenCalledWith({'sub': [{'deep': 'not a boolean'}]});
+			expect(dummyCallback1.calls.count()).toBe(1);
+			expect(dummyCallback2).toHaveBeenCalledWith({'sub': [{'deep': 'not a boolean'}]});
+			expect(dummyCallback2.calls.count()).toBe(1);
+
 		});
 		it('send event on re-change field', () => {
 			const dummyCallback = new Spy();
@@ -51,7 +57,7 @@ define(['./MonitoredStruct', './smartEvents'], function (app, ev) {
 			const dummyCallback1 = new Spy();
 			const dummyCallback2 = new Spy();
 			const observed = new app.MonitoredStruct({}, 'name');
-			ev.on('monitoredStruct.name.change', dummyCallback1);
+			ev.on('monitoredStruct.change.name', dummyCallback1);
 			ev.on('name', dummyCallback2);
 			observed.test = 'something';
 			expect(dummyCallback1.calls.count()).toBe(1);

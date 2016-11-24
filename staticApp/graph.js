@@ -11,10 +11,15 @@ define([
 		'use strict';
 		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
 		let options;
-		ev.after('config.ready data.ready form.template.ready', function () {
+		ev.after('config.ready data.ready form.template.ready',
+			()=>setTimeout(()=>send('graph.init'),10));
+		ev.after('graph.init', function () {
 			options = cfg.getConfig();
+
 			const fullGraph = graphDataLoader.getData();
 			let currentGraph = struct.clone(fullGraph);
+
+
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])
 				.on("zoom", zoomed);
@@ -310,7 +315,6 @@ define([
 				else if (options.userMode == 'edit') {
 					const form = formLoader.getForm();
 					const anchor = details;
-					form.edit(options.selected);
 					form.displayInNode(anchor);
 				}
 				else details.innerHTML = options.userMode + t(' pas encore géré');

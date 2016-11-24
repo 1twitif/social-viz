@@ -7,7 +7,7 @@ define([
 ], (ymlTools, Store, ev, mStruct) => {
 	'use strict';
 	const on = ev.on, send = ev.send;
-	let url;
+	let urlHashStore;
 	let config;
 
 	function init() {
@@ -18,14 +18,14 @@ define([
 	function listenerInit() {
 		on('config.default', initUrlHashStore);
 		on('urlHashStore.ready', completeConfigWithUrlHashStore);
-		on('monitoredStruct.config.delete', 'config.change');
-		on('config.change', storeConfig);
+		on('config delete', 'config.change');
+		on('config change', storeConfig);
 		on('config.ready', setConfig);
 	}
 
 	function initUrlHashStore(defaultConfig) {
-		url = new Store.UrlHashStore(defaultConfig);	// init url with default values
-		send('urlHashStore.ready', url);
+		urlHashStore = new Store.UrlHashStore(defaultConfig);	// init url with default values
+		send('urlHashStore.ready', urlHashStore);
 	}
 
 	function completeConfigWithUrlHashStore(url) {
@@ -34,7 +34,7 @@ define([
 	}
 
 	function storeConfig(config) {
-		url.save(config);
+		urlHashStore.save(config);
 	}
 
 	function setConfig(fullConfig) {

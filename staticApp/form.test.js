@@ -26,7 +26,8 @@ define(['./form', './smartEvents'], (app,ev) => {
 			it("Affiche directement le formulaire adequat si la config le demande", () => {
 				const form = new app.Form({"myForm":['myInput']});
 				form.setConfig({
-					'form':{'entryDefault':{'dataType':'text'},'active':'myForm'},
+					'form':{'entryDefault':{'dataType':'text'}},
+					'selected':'myForm-new',
 					'userMode':'edit'
 				});
 				const anchor = document.createElement('div');
@@ -108,8 +109,8 @@ define(['./form', './smartEvents'], (app,ev) => {
 
 				const eventSpy = new Spy();
 				ev.on('form.updated', ()=>{
-					if(anchor.querySelector('input[name="myInput"][list="enumlist"]')
-						&& anchor.querySelector('datalist#enumlist option'))
+					if(anchor.querySelector('input[name="myInput"][list*="enum"]')
+						&& anchor.querySelector('datalist option'))
 						eventSpy();
 				});
 				ev.clickOn(anchor.querySelector('button'));
@@ -124,7 +125,8 @@ define(['./form', './smartEvents'], (app,ev) => {
 					]
 				});
 				form.setConfig({
-					'form':{'entryDefault':{'dataType':'text'},'active':'myForm'}
+					'form':{'entryDefault':{'dataType':'text'}},
+					'selected':'myForm-new'
 				});
 				form.setData({myForm:[
 					{id:'myForm-plop-2546',myInput:'plop',label:'Plop',parent:''}
@@ -133,6 +135,32 @@ define(['./form', './smartEvents'], (app,ev) => {
 				form.displayInNode(anchor);
 
 				expect(anchor.innerHTML).toMatch('Plop');
+			});
+			it("genère un id dès qu'un champ après le label est modifié", () => {
+				const form = new app.Form({
+					"myForm":['before','label','after']});
+				form.setConfig({
+					'form':{'entryDefault':{'dataType':'text'}},
+					'selected':'myForm-new'
+				});
+				form.edit('myForm-new');
+				const anchor = document.createElement('div');
+				form.displayInNode(anchor);
+
+				const eventSpy = new Spy();
+				anchor.addEventListener('change', ()=>{
+					if(anchor.querySelector('input[name="id"][value^="myForm-safe-Label-"]'))
+						eventSpy();
+				});
+				function changeInputValue(inputNode,value){
+					inputNode.setAttribute('value',value);
+					inputNode.dispatchEvent(new Event('change',{target:inputNode,bubbles:true}));
+				}
+				changeInputValue(anchor.querySelector('input[name="before"]'),'osef');
+				changeInputValue(anchor.querySelector('input[name="label"]'),'!safe Labél');
+				expect(eventSpy).not.toHaveBeenCalled();
+				changeInputValue(anchor.querySelector('input[name="after"]'),'osef');
+				expect(eventSpy).toHaveBeenCalled();
 			});
 		});
 		describe('affichage / saisie -> données exportable et affichable', () => {

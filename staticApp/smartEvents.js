@@ -11,9 +11,15 @@ define([], () => {
 		const listenerCallback = (e) => {
 			if (!e.detail) {
 				if (e.type === eventName) callbackOrEventSender(callback, e);
-			} else if (e.detail.eventFullName.indexOf(eventName) !== -1 && !viewedId[e.detail.id]) {
-				viewedId[e.detail.id] = true;
-				callbackOrEventSender(callback, e.detail.data);
+			} else if (!viewedId[e.detail.id]) {
+				const eventNameFraments = occurrenceMap(eventName);
+				for(let frament in eventNameFraments) {
+					if(e.detail.eventFullName.indexOf(frament) !== -1) eventNameFraments[frament]--;
+				}
+				if (!sumValuesOf(eventNameFraments)){
+					viewedId[e.detail.id] = true;
+					callbackOrEventSender(callback, e.detail.data);
+				}
 			}
 		};
 		const listen = build_fragmentListener(eventName, listenerCallback);
@@ -22,9 +28,7 @@ define([], () => {
 	}
 
 	function after(eventList,callbackOrEvent){
-		let eventsTriggerMap = eventList;
-		if(typeof eventList === 'string') eventsTriggerMap = eventList.split(' ');
-		eventsTriggerMap = array2occurrenceMap(eventsTriggerMap);
+		const eventsTriggerMap = occurrenceMap(eventList);
 		const aggregator = {};
 		for(let eventName in eventsTriggerMap){
 			((eventName)=> {
@@ -39,6 +43,11 @@ define([], () => {
 	}
 	function sumValuesOf(obj){
 		return Object.keys(obj).reduce( (sum,key)=>sum+obj[key], 0 );
+	}
+	function occurrenceMap(stringOrArray){
+		let array = stringOrArray;
+		if(typeof array === 'string') array = array.split(' ');
+		return array2occurrenceMap(array);
 	}
 	function array2occurrenceMap(array){
 		const occurrenceMap = {};
@@ -77,7 +86,7 @@ define([], () => {
 	}
 
 	function fragmentAndApply(dotMarkedString, action) {
-		dotMarkedString.split('.').forEach(action);
+		dotMarkedString.split(/ |\./g).forEach(action);
 	}
 
 	return {

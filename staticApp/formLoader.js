@@ -21,6 +21,7 @@ define([
 		on('config.ready', readyToUseForm.setConfig);
 		on('data.ready', readyToUseForm.setData);
 		on('form.template.ready', readyToUseForm.setTemplate);
+
 	}
 	function activateEditorMode() {
 		const config = cfg.getConfig();

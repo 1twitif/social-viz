@@ -23,8 +23,8 @@ define([
 		ymlTools.load('allData/publicData.yml');
 	}
 	function listenerInit() {
-		on('graph.data.ready', setData);
-		on('graph.data.change', (data)=>localStore.save(data));
+		on('graph.data ready', setData);
+		on('graph.data change', (data)=>localStore.save(data));
 	}
 	function setData(data){
 		graphData = data;

@@ -1,9 +1,10 @@
 define([
 	'./smartEvents',
+	'./stringTools',
 	'./languageLoader',
 	'./structManipulation',
 	'./MonitoredStruct'
-], (ev, langTools) => {
+], (ev, strTools, langTools) => {
 	'use strict';
 	const on = ev.on, send = ev.send, t = langTools.t;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
@@ -15,6 +16,7 @@ define([
 		let entityId = id;
 		const displayAnchors = {};
 		for (let i in targetNodes) this.displayInNode(targetNodes[i]);
+		on('config.selected change', (config) => formObject.edit(config.selected));
 
 		this.setTemplate = (template) => this.template = template;
 		this.setConfig = (cfg) => config = cfg;
@@ -29,25 +31,24 @@ define([
 		};
 
 		this.render = function render(targetNode) {
-			if (config.form.active) {
-				const form = config.form.active;
+			targetNode.innerHTML = '';
+
+			for (let form in formObject.template) if (form !== 'enum')
+				((form) => {
+					const btn = buildFormSelectorButton(form);
+					targetNode.appendChild(btn);
+					btn.addEventListener('click', () => {
+						config.selected = form + '-new';
+						render(targetNode);
+					});
+				})(form);
+
+			if (config.selected) {
+				const form = config.selected.split('-')[0];
 				const formNode = buildForm(formObject.template[form], form);
-				targetNode.innerHTML = '';
 				targetNode.appendChild(formNode);
 				send('form.updated', formObject);
 
-			} else {
-				targetNode.innerHTML = '';
-				for (let form in this.template) if (form !== 'enum')
-					((form) => {
-						const btn = buildFormSelectorButton(form);
-						targetNode.appendChild(btn);
-						btn.addEventListener('click', () => {
-							config.form.active = form;
-							render(targetNode);
-						});
-
-					})(form);
 			}
 
 			//const nodeForm = document.createElement('form');
@@ -59,16 +60,40 @@ define([
 			return node;
 		}
 
-		function buildForm(templateToBuild, title, dataId) {
+		function buildForm(templateToBuild, title) {
 			const formNode = document.createElement('form');
-			const titleNode = document.createElement('h2');
-			titleNode.innerText = t(title);
-			formNode.appendChild(titleNode);
+			formNode.appendChild(buildTitle(title));
+			formNode.appendChild(buildId(entityId));
 			for (let i in templateToBuild)
 				if (templateToBuild.hasOwnProperty(i)) {
-					formNode.appendChild(buildEntry(templateToBuild[i], dataId));
+					formNode.appendChild(buildEntry(templateToBuild[i], entityId));
 				}
 			return formNode;
+		}
+
+		function buildId(dataId) {
+			const idNode = document.createElement('input');
+			idNode.setAttribute('name', 'id');
+			idNode.setAttribute('value', dataId);
+			idNode.setAttribute('disabled', true);
+
+			const label = buildLabel('id');
+			label.appendChild(idNode);
+			return label;
+		}
+
+		function buildTitle(title) {
+			return buildNode('h2', title);
+		}
+
+		function buildLabel(text) {
+			return buildNode('label', text);
+		}
+
+		function buildNode(tag, textContent) {
+			const node = document.createElement(tag);
+			node.innerText = t(textContent);
+			return node;
 		}
 
 		function buildEntry(rawEntry, dataId) {
@@ -77,9 +102,9 @@ define([
 			if (entry.options.dataType === 'markdown') node = document.createElement('textarea');
 			else node = document.createElement('input');
 			node.setAttribute('name', entry.name);
+			node.addEventListener('change', formChange);
 
-			const label = document.createElement('label');
-			label.innerText = t(entry.name);
+			const label = buildLabel(entry.name);
 			label.appendChild(node);
 
 			if (entry.options.dataType !== 'markdown') node.setAttribute('type', entry.options.dataType ? entry.options.dataType : config.form.entryDefault.dataType);
@@ -104,7 +129,7 @@ define([
 						optionNode.setAttribute('value', option);
 						dataList.appendChild(optionNode);
 					}
-				} else if(typeof formObject.data[listPath[0]] !== 'undefined'){
+				} else if (typeof formObject.data[listPath[0]] !== 'undefined') {
 					const data = formObject.data[listPath[0]];
 					for (let i = 0; i < data.length; i++) {
 						const option = data[i];
@@ -113,9 +138,39 @@ define([
 						optionNode.setAttribute('value', option.id);
 						dataList.appendChild(optionNode);
 					}
-				} else console.log('from non reconnu : ',entry.options.from);
+				} else console.log('from non reconnu : ', entry.options.from);
 			}
 			return label;
+		}
+
+		function formChange(event) {
+			//event.target;
+			const formNode = getAncestor(event.target, 'form');
+			const labelNode = formNode.querySelector('input[name="label"]');
+			if (labelNode.value) {
+				const idNode = formNode.querySelector('input[name="id"]');
+				let id = idNode.value;
+				if (id.split('-')[1] === 'new') {
+					const formInputs = formNode.querySelectorAll('input,textarea');
+					let timeToSetId = false;
+					let afterLabel = false;
+					for (let i = 0; i < Object.keys(formInputs).length; i++) {
+						if (afterLabel && formInputs[i].value) timeToSetId = true;
+						if (formInputs[i] === labelNode) afterLabel = true;
+					}
+					if (timeToSetId) {
+						const label = labelNode.value;
+						id = strTools.clean(id.split('-')[0] + '-' + label + '-' + btoa(btoa(Math.random())).substr(8, 5));
+						idNode.setAttribute('value', id);
+					}
+				}
+			}
+		}
+
+		function getAncestor(node, ancestorQuery) {
+			if (node.parentNode.querySelector(ancestorQuery)) return node;
+			if (node.parentNode === node || !node.parentNode) throw new SQLException('no ancestor matching : ' + ancestorQuery);
+			return getAncestor(node.parentNode, ancestorQuery);
 		}
 
 		function parseEntry(entry) {

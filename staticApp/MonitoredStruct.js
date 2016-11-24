@@ -10,20 +10,20 @@ define([
 		const closuredTopAncestor = this.topAncestor;
 		const handler = {
 			'set': (obj, key, value) => {
-				if (typeof value === 'object') obj[key] = new MonitoredStruct(value, eventNameSuffix, closuredTopAncestor);
+				if (typeof value === 'object') obj[key] = new MonitoredStruct(value, eventNameSuffix+'.'+key, closuredTopAncestor);
 				else obj[key] = value;
-				send(structureEventName(['monitoredStruct', eventNameSuffix, 'change']), closuredTopAncestor.smartObj);
+				send(structureEventName(['monitoredStruct', 'change', eventNameSuffix+'.'+key]), closuredTopAncestor.smartObj);
 				return true;
 			},
 			'deleteProperty': function (obj, key) {
-				send(structureEventName(['monitoredStruct', eventNameSuffix, 'delete']), closuredTopAncestor.smartObj);
+				send(structureEventName(['monitoredStruct', 'delete', eventNameSuffix+'.'+key]), closuredTopAncestor.smartObj);
 				return delete obj[key];
 			}
 		};
 		let goSmart = struct.clone(inertStruct);
 		for (let key in inertStruct) {
 			if (typeof inertStruct[key] === 'object') {
-				goSmart[key] = new MonitoredStruct(inertStruct[key], eventNameSuffix, this.topAncestor);
+				goSmart[key] = new MonitoredStruct(inertStruct[key], eventNameSuffix+'.'+key, this.topAncestor);
 			} else goSmart[key] = inertStruct[key];
 		}
 		this.smartObj = new Proxy(goSmart, handler);

@@ -66,6 +66,18 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName, eventData);
 			expect(subCallback).toHaveBeenCalledWith(eventData);
 		});
+		it('unordered part of structured event send & receive', () => {
+			const dummyCallback = new Spy();
+			app.on('global.sub any', dummyCallback);
+			app.send('any.global.sub.moreSpecific');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
+		it('unordered part catch', () => {
+			const dummyCallback = new Spy();
+			app.on('config change', dummyCallback);
+			app.send('config.change');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
 		it('dont listen incorrect structured event', () => {
 			const neverCalledCallback = new Spy();
 			const eventName = 'global.sub.moreSpecific';
