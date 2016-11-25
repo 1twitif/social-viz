@@ -10,7 +10,7 @@ define([
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
 	function Form(tempateJson, data, targetNodes, id) {
 		const formObject = this;
-		let config;
+		let config = {};
 		this.template = tempateJson;
 		this.data = data || {};
 		let entityId = id;
@@ -107,18 +107,29 @@ define([
 			node.setAttribute('name', entry.name);
 			node.addEventListener('change', formChange);
 
+			for (let specificity in entry) applyEntrySpecificity(specificity,node,entry);
+
 			const label = buildLabel(entry.name);
 			label.appendChild(node);
-
-			if (entry.dataType !== 'markdown') node.setAttribute('type', entry.dataType ? entry.dataType : config.form.entryDefault.dataType);
-			if (entry.required) node.setAttribute('required', entry.required);
-			if (entry.from) {
-				node.setAttribute('list', legalId(entry.from));
-				label.appendChild(buildDataList(entry));
-			}
 			return label;
 		}
-
+		const entrySpecificityFuncs = {};
+		function applyEntrySpecificity(specificity,node,entry){
+			if(entrySpecificityFuncs[specificity]) entrySpecificityFuncs[specificity](node,entry);
+		}
+		entrySpecificityFuncs['from'] = (node,entry)=>{
+			const id = dataListId(entry.from);
+			node.setAttribute('list', id);
+			const exist = document.getElementById(id);
+			if(exist) exist.parentNode.removeChild(exist);
+			document.body.appendChild(buildDataList(entry));
+		};
+		entrySpecificityFuncs['required'] = (node,entry)=>{
+			node.setAttribute('required', entry.required);
+		};
+		entrySpecificityFuncs['dataType'] = (node,entry)=>{
+			node.setAttribute('type', entry.dataType);
+		};
 
 		function getEnumFromTemplate(from) {
 			const listPath = from.split('.');
@@ -160,7 +171,7 @@ define([
 			if (isStaticEnumRef(entry.from)) dataList = buildStaticEnumDataList(getEnumFromTemplate(entry.from));
 			else if (isValidDynamicFromRef(entry.from)) dataList = buildDynamicDataList(formObject.data[entry.from]);
 			else console.log('from non reconnu : ', entry.from);
-			dataList.setAttribute('id', legalId(entry.from));
+			dataList.setAttribute('id', dataListId(entry.from));
 			return dataList;
 		}
 
@@ -249,9 +260,10 @@ define([
 			}
 		}
 
-		function legalId(rawStringId) {
-			return rawStringId.replace(/[^a-zA-Z]/g, '');
+		function dataListId(rawStringId) {
+			return strTools.clean('dataList-'+rawStringId);
 		}
+
 	}
 
 	return {Form};
