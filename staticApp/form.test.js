@@ -1,4 +1,8 @@
 define(['./form', './smartEvents'], (app,ev) => {
+	function changeInputValue(inputNode,value){
+		inputNode.value = value;
+		inputNode.dispatchEvent(new Event('change',{target:inputNode,bubbles:true}));
+	}
 	describe('formulaire', () => {
 		describe('json -> objet formulaire', () => {
 			it("Construit un formulaire vide", () => {
@@ -152,10 +156,6 @@ define(['./form', './smartEvents'], (app,ev) => {
 					if(anchor.querySelector('input[name="id"][value^="myForm-safe-Label-"]'))
 						eventSpy();
 				});
-				function changeInputValue(inputNode,value){
-					inputNode.setAttribute('value',value);
-					inputNode.dispatchEvent(new Event('change',{target:inputNode,bubbles:true}));
-				}
 				changeInputValue(anchor.querySelector('input[name="before"]'),'osef');
 				changeInputValue(anchor.querySelector('input[name="label"]'),'!safe Labél');
 				expect(eventSpy).not.toHaveBeenCalled();
@@ -163,9 +163,38 @@ define(['./form', './smartEvents'], (app,ev) => {
 				expect(eventSpy).toHaveBeenCalled();
 			});
 		});
+		it("charge les données existante quand il y en a", () => {
+			const id = 'myForm-dummy';
+			const form = new app.Form({"myForm":['before','label','after']});
+			const data = {'myForm':{}};
+			data.myForm[id] = {'id':id,'before':'someContent'};
+			form.setData(data);
+			form.setConfig({'form':{'entryDefault':{'dataType':'text'}},'selected':id});
+			form.edit(id);
+			const anchor = document.createElement('div');
+			form.displayInNode(anchor);
+
+			expect(anchor.querySelector('input[name="before"]').value).toEqual('someContent');
+		});
 		describe('affichage / saisie -> données exportable et affichable', () => {
-			it('test nothing', () => {
-				expect(1).toBe(1);
+			it("sauvegarde les données saisies dès qu'un id est défini", () => {
+				const form = new app.Form({"myForm":['before','label','after']});
+				form.setConfig({'form':{'entryDefault':{'dataType':'text'}},
+					'selected':'myForm-new'
+				});
+				const data = {'myForm':{}};
+				form.setData(data);
+				form.edit('myForm-new');
+				const anchor = document.createElement('div');
+				form.displayInNode(anchor);
+
+				changeInputValue(anchor.querySelector('input[name="before"]'),'not Yet');
+				changeInputValue(anchor.querySelector('input[name="label"]'),'!safe Labél');
+				expect(data).toEqual({'myForm':{}});
+				changeInputValue(anchor.querySelector('input[name="after"]'),'Yet !');
+				expect(JSON.stringify(data)).toMatch('{"myForm":{"myForm-safe-Label-');
+				expect(JSON.stringify(data)).toMatch('"before":"not Yet","label":"!safe Labél","after":"Yet !"}}}');
+
 			});
 		});
 	});

@@ -92,15 +92,18 @@ define([
 
 		function buildNode(tag, textContent) {
 			const node = document.createElement(tag);
-			node.innerText = t(textContent);
+			if(tag==='input') node.value = textContent;
+			else if(tag==='textarea')node.innerText = textContent;
+			else node.innerText = t(textContent);
 			return node;
 		}
 
 		function buildEntry(rawEntry, dataId) {
 			const entry = parseEntry(rawEntry);
 			let node;
-			if (entry.options.dataType === 'markdown') node = document.createElement('textarea');
-			else node = document.createElement('input');
+			const userContent = findData(dataId)[entry.name] || '';
+			if (entry.options.dataType === 'markdown') node = buildNode('textarea', userContent);
+			else node = buildNode('input', userContent);
 			node.setAttribute('name', entry.name);
 			node.addEventListener('change', formChange);
 
@@ -144,12 +147,12 @@ define([
 		}
 
 		function formChange(event) {
-			//event.target;
 			const formNode = getAncestor(event.target, 'form');
+			const idNode = formNode.querySelector('input[name="id"]');
+			let id = idNode.value;
+
 			const labelNode = formNode.querySelector('input[name="label"]');
-			if (labelNode.value) {
-				const idNode = formNode.querySelector('input[name="id"]');
-				let id = idNode.value;
+			if (labelNode && labelNode.value) {
 				if (id.split('-')[1] === 'new') {
 					const formInputs = formNode.querySelectorAll('input,textarea');
 					let timeToSetId = false;
@@ -160,13 +163,39 @@ define([
 					}
 					if (timeToSetId) {
 						const label = labelNode.value;
-						id = strTools.clean(id.split('-')[0] + '-' + label + '-' + btoa(btoa(Math.random())).substr(8, 5));
+						id = strTools.clean(extractType(id) + '-' + label + '-' + btoa(btoa(Math.random())).substr(8, 5));
 						idNode.setAttribute('value', id);
 					}
 				}
 			}
+			if(id.split('-')[1]!=='new'){
+				const key = event.target.name;
+				let value = event.target.value;
+				if(!formObject.data[extractType(id)]) formObject.data[extractType(id)] = {};
+				const collection = formObject.data[extractType(id)];
+				if(!collection[id]){
+					const formInputs = formNode.querySelectorAll('input,textarea');
+					const newEntity = {};
+					for (let i = 0; i < Object.keys(formInputs).length; i++) {
+						if (formInputs[i].value) newEntity[formInputs[i].name] = formInputs[i].value;
+						collection[id] = newEntity;
+						send('new.data.' + extractType(id), id)
+					}
+				}
+				collection[id][key] = value;
+			}
 		}
 
+		function findData(dataId){
+			if (!dataId) return {};
+			const candidates = formObject.data[extractType(dataId)];
+			//if(candidates) return candidates.find((d)=>d.id===dataId) || {};
+			if(candidates) return candidates[dataId] || {};
+			return {};
+		}
+		function extractType(dataId){
+			return dataId.split('-')[0];
+		}
 		function getAncestor(node, ancestorQuery) {
 			if (node.parentNode.querySelector(ancestorQuery)) return node;
 			if (node.parentNode === node || !node.parentNode) throw new SQLException('no ancestor matching : ' + ancestorQuery);
