@@ -55,7 +55,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 			});
 			it("Affiche une textarea markdown", () => {
 				form.setTemplate({"myForm": [{'myInput': {dataType: 'markdown'}}]});
-				expect(anchor.querySelector('textarea[name="myInput"]')).toBeTruthy();
+				expect(anchor.getElementsByTagName('textarea').length).toBe(1);
 			});
 			it("gère les champs requis", () => {
 				form.setTemplate({"myForm": [{'myInput': {'required': true}}]});
