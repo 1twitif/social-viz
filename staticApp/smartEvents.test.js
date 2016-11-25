@@ -70,9 +70,9 @@ define(['./smartEvents'], (app) => {
 			const dummyCallback = new Spy();
 			app.on('global.sub any', dummyCallback);
 			app.send('any.global.sub.moreSpecific');
-			expect(dummyCallback.calls.count()).toBe(1);
+			expect(dummyCallback).toHaveBeenCalled();
 		});
-		it('unordered part catch', () => {
+		it('unordered part catch with standard change event', () => {
 			const dummyCallback = new Spy();
 			app.on('config change', dummyCallback);
 			app.send('config.change');
@@ -131,25 +131,19 @@ define(['./smartEvents'], (app) => {
 		});
 		it('callback after an event list including multiple time same event', () => {
 			const dummyCallback = new Spy();
-			app.after('a b c b a', dummyCallback);
-			app.send('a');
-			app.send('a');
-			app.send('c');
+			app.after('a b a', dummyCallback);
 			app.send('b');
+			app.send('a');
 			expect(dummyCallback).not.toHaveBeenCalled();
-			app.send('b');
+			app.send('a');
 			expect(dummyCallback.calls.count()).toBe(1);
 		});
 		it('callback after an event list called only once', () => {
 			const dummyCallback = new Spy();
-			app.after('a a b', dummyCallback);
+			app.after('a', dummyCallback);
 			app.send('a');
-			app.send('a');
-			app.send('b');
 			expect(dummyCallback.calls.count()).toBe(1);
 			app.send('a');
-			app.send('a');
-			app.send('b');
 			expect(dummyCallback.calls.count()).toBe(1);
 		});
 	});
