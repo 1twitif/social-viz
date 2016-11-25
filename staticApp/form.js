@@ -8,18 +8,17 @@ define([
 	'use strict';
 	const on = ev.on, send = ev.send, t = langTools.t;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
-	function Form(tempateJson, data, targetNodes, id) {
+	function Form(tempateJson, data) {
 		const formObject = this;
 		let config = {};
 		this.template = tempateJson || {};
 		this.data = data || {};
-		let entityId = id;
+		let entityId;
 		const displayAnchors = {};
-		for (let i in targetNodes) this.displayInNode(targetNodes[i]);
 		on('config.selected change', (config) => formObject.edit(config.selected));
 
-		this.render = ()=> {
-			for(let anchor in displayAnchors) formObject.renderOn(displayAnchors[anchor]);
+		this.render = () => {
+			for (let anchor in displayAnchors) formObject.renderOn(displayAnchors[anchor]);
 		};
 		this.setTemplate = (template) => {
 			formObject.template = template;
@@ -27,7 +26,7 @@ define([
 		};
 		this.setConfig = (cfg) => {
 			config = cfg;
-			if(config.selected) entityId = config.selected;
+			if (config.selected) entityId = config.selected;
 			formObject.render();
 		};
 		this.setData = (data) => {
@@ -43,7 +42,7 @@ define([
 			this.renderOn(targetNode);
 		};
 
-		this.renderOn = (targetNode)=> {
+		this.renderOn = (targetNode) => {
 			targetNode.innerHTML = '';
 
 			for (let form in formObject.template) if (form !== 'enum')
@@ -67,21 +66,18 @@ define([
 			//const nodeForm = document.createElement('form');
 			// datalist http://www.alsacreations.com/article/lire/1334-html5-element-datalist.html
 		};
+		function buildForm(templateToBuild, title) {
+			const formNode = document.createElement('form');
+			formNode.appendChild(buildNode('h2', title));
+			formNode.appendChild(buildId(entityId));
+			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i], entityId));
+			return formNode;
+		}
+
 		function buildFormSelectorButton(form) {
 			const node = document.createElement('button');
 			node.innerText = t(form);
 			return node;
-		}
-
-		function buildForm(templateToBuild, title) {
-			const formNode = document.createElement('form');
-			formNode.appendChild(buildTitle(title));
-			formNode.appendChild(buildId(entityId));
-			for (let i in templateToBuild)
-				if (templateToBuild.hasOwnProperty(i)) {
-					formNode.appendChild(buildEntry(templateToBuild[i], entityId));
-				}
-			return formNode;
 		}
 
 		function buildId(dataId) {
@@ -90,17 +86,9 @@ define([
 			idNode.setAttribute('value', dataId);
 			idNode.setAttribute('disabled', true);
 
-			const label = buildLabel('id');
+			const label = buildNode('label', 'id');
 			label.appendChild(idNode);
 			return label;
-		}
-
-		function buildTitle(title) {
-			return buildNode('h2', title);
-		}
-
-		function buildLabel(text) {
-			return buildNode('label', text);
 		}
 
 		function buildNode(tag, textContent) {
@@ -120,39 +108,38 @@ define([
 			node.setAttribute('name', entry.name);
 			node.addEventListener('change', formChange);
 
-			for (let specificity in entry) applyEntrySpecificity(specificity,node,entry);
+			for (let specificity in entry) applyEntrySpecificity(specificity, node, entry);
 
 			const label = buildLabel(entry.name);
 			label.appendChild(node);
 			return label;
 		}
+
 		const entrySpecificityFuncs = {};
-		function applyEntrySpecificity(specificity,node,entry){
-			if(entrySpecificityFuncs[specificity]) entrySpecificityFuncs[specificity](node,entry);
+
+		function applyEntrySpecificity(specificity, node, entry) {
+			if (entrySpecificityFuncs[specificity]) entrySpecificityFuncs[specificity](node, entry);
 		}
-		entrySpecificityFuncs['from'] = (node,entry)=>{
+
+		entrySpecificityFuncs['from'] = (node, entry) => {
 			const id = dataListId(entry.from);
 			node.setAttribute('list', id);
 			const exist = document.getElementById(id);
-			if(exist) exist.parentNode.removeChild(exist);
+			if (exist) exist.parentNode.removeChild(exist);
 			document.body.appendChild(buildDataList(entry));
 		};
-		entrySpecificityFuncs['required'] = (node,entry)=>{
+		entrySpecificityFuncs['required'] = (node, entry) => {
 			node.setAttribute('required', entry.required);
 		};
-		entrySpecificityFuncs['dataType'] = (node,entry)=>{
+		entrySpecificityFuncs['dataType'] = (node, entry) => {
 			node.setAttribute('type', entry.dataType);
 		};
 
 		function getEnumFromTemplate(from) {
 			const listPath = from.split('.');
-			if (listPath[0] === 'enum') {
-				let optionList = formObject.template.enum || {};
-				for (let i = 1; i < listPath.length; i++) {
-					optionList = optionList[listPath[i]];
-				}
-				return optionList;
-			}
+			let optionList = formObject.template.enum;
+			for (let i = 1; i < listPath.length; i++) optionList = optionList[listPath[i]];
+			return optionList;
 		}
 
 		function buildStaticEnumDataList(optionList) {
@@ -187,45 +174,13 @@ define([
 			return dataList;
 		}
 
-		function isStaticEnumRef(from) {
-			return from.split('.')[0] === 'enum'
-		}
-
-		function generateId(type, title) {
-			return strTools.clean(type + '-' + title + '-' + btoa(btoa(Math.random())).substr(8, 5));
-		}
-
-		function setIdWhenLabelIsStable(formNode) {
-			let id = formNode.id.value;
-			const labelNode = formNode.label;
-			if (labelNode && labelNode.value) {
-				if (id.split('-')[1] === 'new') {
-					const formInputs = formNode.querySelectorAll('input,textarea');
-					let timeToSetId = false;
-					let afterLabel = false;
-					for (let i = 0; i < Object.keys(formInputs).length; i++) {
-						if (afterLabel && formInputs[i].value) timeToSetId = true;
-						if (formInputs[i] === labelNode) afterLabel = true;
-					}
-					if (timeToSetId) {
-						id = generateId(extractType(id), labelNode.value);
-						formNode.id.setAttribute('value', id);
-					}
-				}
-			}
-		}
-
 		function formChange(event) {
 			const formNode = getAncestor(event.target, 'form');
 			setIdWhenLabelIsStable(formNode);
-
-			let id = formNode.id.value;
+			const id = formNode.id.value;
 			if (canISave(id)) saveChangedData(id, event.target, formNode);
 		}
 
-		function canISave(id) {
-			return id.split('-')[1] !== 'new';
-		}
 
 		function saveChangedData(id, changedNode, formNode) {
 			const key = changedNode.name;
@@ -249,29 +204,65 @@ define([
 			if (candidates) return candidates.find((d) => d.id === dataId) || {};
 			return {};
 		}
+	}
 
-		function extractType(dataId) {
-			return dataId.split('-')[0];
+	// independent utility functions
+	function setIdWhenLabelIsStable(formNode) {
+		let id = formNode.id.value;
+		const labelNode = formNode.label;
+		if (labelNode && labelNode.value && isCreationTempId(id) && isAfterLabelValue(formNode)) {
+			id = generateId(extractType(id), labelNode.value);
+			formNode.id.setAttribute('value', id);
 		}
+	}
 
-		function getAncestor(node, ancestorQuery) {
-			if (node.parentNode.querySelector(ancestorQuery)) return node;
-			if (node.parentNode === node || !node.parentNode) throw new SQLException('no ancestor matching : ' + ancestorQuery);
-			return getAncestor(node.parentNode, ancestorQuery);
+	function isAfterLabelValue(formNode) {
+		let timeToSetId = false;
+		let afterLabel = false;
+		const formInputs = formNode.querySelectorAll('input,textarea');
+		for (let i = 0; i < Object.keys(formInputs).length; i++) {
+			if (afterLabel && formInputs[i].value) timeToSetId = true;
+			if (formInputs[i] === formNode.label) afterLabel = true;
 		}
+		return timeToSetId;
+	}
 
-		function parseEntry(entry) {
-			if (typeof entry === 'string') return {'name': entry};
-			for (let unicKey in entry) {
-				entry[unicKey].name = unicKey;
-				return entry[unicKey];
-			}
+	function isStaticEnumRef(from) {
+		return from.split('.')[0] === 'enum'
+	}
+
+	function generateId(type, title) {
+		return strTools.clean(type + '-' + title + '-' + btoa(btoa(Math.random())).substr(8, 5));
+	}
+
+	function isCreationTempId(id) {
+		return id.split('-')[1] === 'new'
+	}
+
+	function canISave(id) {
+		return !isCreationTempId(id);
+	}
+
+	function extractType(dataId) {
+		return dataId.split('-')[0];
+	}
+
+	function dataListId(rawStringId) {
+		return strTools.clean('dataList-' + rawStringId);
+	}
+
+	function getAncestor(node, ancestorQuery) {
+		if (node.parentNode.querySelector(ancestorQuery)) return node;
+		if (node.parentNode === node || !node.parentNode) throw new Exception('no ancestor matching : ' + ancestorQuery);
+		return getAncestor(node.parentNode, ancestorQuery);
+	}
+
+	function parseEntry(entry) {
+		if (typeof entry === 'string') return {'name': entry};
+		for (let unicKey in entry) {
+			entry[unicKey].name = unicKey;
+			return entry[unicKey];
 		}
-
-		function dataListId(rawStringId) {
-			return strTools.clean('dataList-'+rawStringId);
-		}
-
 	}
 
 	return {Form};
