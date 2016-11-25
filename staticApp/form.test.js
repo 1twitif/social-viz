@@ -4,52 +4,51 @@ define(['./form', './smartEvents'], (app, ev) => {
 		inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
 	}
 
+	describe('selection de formulaire', () => {
+		let form, anchor;
+		beforeEach(() => {
+			form = new app.Form();
+			anchor = document.createElement('div');
+			form.displayInNode(anchor);
+		});
+		it("Affiche les formulaires disponnibles", () => {
+			form.setTemplate({"plop": [], "plip": []});
+			expect(anchor.innerHTML).toMatch('plop');
+			expect(anchor.innerHTML).toMatch('plip');
+		});
+		it("N'affiche pas enum comme un formulaire", () => {
+			form.setTemplate({"plop": [], "enum": []});
+			expect(anchor.innerHTML).toMatch('plop');
+			expect(anchor.innerHTML).not.toMatch('enum');
+		});
+		it("Charge le formulaire au click sur le bouton correspondant", () => {
+			form.setTemplate({"plop": ['myInput'], "plip": []});
+
+			expect(anchor.innerHTML).toMatch('plop');
+			expect(anchor.innerHTML).not.toMatch('myInput');
+
+			const eventSpy = new Spy();
+			ev.on('form.updated', () => {
+				if (anchor.querySelector('input[name="myInput"]')) eventSpy();
+			});
+			ev.clickOn(anchor.querySelector('button'));
+			expect(eventSpy).toHaveBeenCalled();
+		});
+		it("Affiche directement le formulaire adequat si la config le demande", () => {
+			form.setTemplate({"myForm": ['myInput']});
+			form.setConfig({'selected': 'myForm-new'});
+			expect(anchor.querySelector('input[name="myInput"]')).toBeTruthy();
+		});
+	});
 	describe('formulaire', () => {
-		describe('selection de formulaire', () => {
-			let form, anchor;
-			beforeEach(() => {
-				form = new app.Form();
-				anchor = document.createElement('div');
-				form.displayInNode(anchor);
-			});
-			it("Affiche les formulaires disponnibles", () => {
-				form.setTemplate({"plop": [], "plip": []});
-				expect(anchor.innerHTML).toMatch('plop');
-				expect(anchor.innerHTML).toMatch('plip');
-			});
-			it("N'affiche pas enum comme un formulaire", () => {
-				form.setTemplate({"plop": [], "enum": []});
-				expect(anchor.innerHTML).toMatch('plop');
-				expect(anchor.innerHTML).not.toMatch('enum');
-			});
-			it("Charge le formulaire au click sur le bouton correspondant", () => {
-				form.setTemplate({"plop": ['myInput'], "plip": []});
-
-				expect(anchor.innerHTML).toMatch('plop');
-				expect(anchor.innerHTML).not.toMatch('myInput');
-
-				const eventSpy = new Spy();
-				ev.on('form.updated', () => {
-					if (anchor.querySelector('input[name="myInput"]')) eventSpy();
-				});
-				ev.clickOn(anchor.querySelector('button'));
-				expect(eventSpy).toHaveBeenCalled();
-			});
-			it("Affiche directement le formulaire adequat si la config le demande", () => {
-				form.setTemplate({"myForm": ['myInput']});
-				form.setConfig({'selected': 'myForm-new'});
-				expect(anchor.querySelector('input[name="myInput"]')).toBeTruthy();
-			});
+		let form, anchor;
+		beforeEach(() => {
+			form = new app.Form();
+			form.setConfig({'selected': 'myForm-new'});
+			anchor = document.createElement('div');
+			form.displayInNode(anchor);
 		});
 		describe('affichage', () => {
-			let form, anchor;
-			beforeEach(() => {
-				form = new app.Form();
-				form.setConfig({'selected': 'myForm-new'});
-				anchor = document.createElement('div');
-				form.displayInNode(anchor);
-			});
-
 			it("Affiche un input date", () => {
 				form.setTemplate({"myForm": [{'myInput': {dataType: 'date'}}]});
 				expect(anchor.querySelector('input[type="date"][name="myInput"]')).toBeTruthy();
@@ -108,13 +107,6 @@ define(['./form', './smartEvents'], (app, ev) => {
 			});
 		});
 		describe('affichage / saisie -> données exportable et affichable', () => {
-			let form, anchor;
-			beforeEach(() => {
-				form = new app.Form();
-				form.setConfig({'selected': 'myForm-new'});
-				anchor = document.createElement('div');
-				form.displayInNode(anchor);
-			});
 			it("sauvegarde les données saisies dès qu'un id est défini", () => {
 				form.setTemplate({"myForm": ['before', 'label', 'after']});
 				const data = {'myForm': []};
