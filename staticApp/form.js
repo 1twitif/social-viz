@@ -110,7 +110,7 @@ define([
 
 			for (let specificity in entry) applyEntrySpecificity(specificity, node, entry);
 
-			const label = buildLabel(entry.name);
+			const label = buildNode('label',entry.name);
 			label.appendChild(node);
 			return label;
 		}
