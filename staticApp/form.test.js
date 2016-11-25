@@ -166,8 +166,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 		it("charge les données existante quand il y en a", () => {
 			const id = 'myForm-dummy';
 			const form = new app.Form({"myForm":['before','label','after']});
-			const data = {'myForm':{}};
-			data.myForm[id] = {'id':id,'before':'someContent'};
+			const data = {'myForm':[{'id':id,'before':'someContent'}]};
 			form.setData(data);
 			form.setConfig({'form':{'entryDefault':{'dataType':'text'}},'selected':id});
 			form.edit(id);
@@ -182,7 +181,7 @@ define(['./form', './smartEvents'], (app,ev) => {
 				form.setConfig({'form':{'entryDefault':{'dataType':'text'}},
 					'selected':'myForm-new'
 				});
-				const data = {'myForm':{}};
+				const data = {'myForm':[]};
 				form.setData(data);
 				form.edit('myForm-new');
 				const anchor = document.createElement('div');
@@ -190,11 +189,10 @@ define(['./form', './smartEvents'], (app,ev) => {
 
 				changeInputValue(anchor.querySelector('input[name="before"]'),'not Yet');
 				changeInputValue(anchor.querySelector('input[name="label"]'),'!safe Labél');
-				expect(data).toEqual({'myForm':{}});
+				expect(data).toEqual({'myForm':[]});
 				changeInputValue(anchor.querySelector('input[name="after"]'),'Yet !');
-				expect(JSON.stringify(data)).toMatch('{"myForm":{"myForm-safe-Label-');
-				expect(JSON.stringify(data)).toMatch('"before":"not Yet","label":"!safe Labél","after":"Yet !"}}}');
-
+				expect(JSON.stringify(data)).toMatch('{"myForm":\\\[{"id":"myForm-safe-Label-');
+				expect(JSON.stringify(data)).toMatch('"before":"not Yet","label":"!safe Labél","after":"Yet !"}]}');
 			});
 		});
 	});
