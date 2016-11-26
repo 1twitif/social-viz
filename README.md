@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/1twitif/social-viz.svg?branch=master)](https://travis-ci.org/1twitif/social-viz)
 [![Coverage Status](https://coveralls.io/repos/github/1twitif/social-viz/badge.svg?branch=master)](https://coveralls.io/github/1twitif/social-viz?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/34309e41bb63406cae117f68e1a41d72)](https://www.codacy.com/app/github_97/social-viz)
 [![Code Climate](https://codeclimate.com/github/1twitif/social-viz/badges/gpa.svg)](https://codeclimate.com/github/1twitif/social-viz)
 [![bitHound Overall Score](https://www.bithound.io/github/1twitif/social-viz/badges/score.svg)](https://www.bithound.io/github/1twitif/social-viz)
-[![license](https://img.shields.io/github/license/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/blob/master/LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 # Social-viz
 Visualisation de graph sociaux
@@ -13,38 +15,35 @@ Visualisation de graph sociaux
 #### Santé du code
 
 [![Code Climate](https://codeclimate.com/github/1twitif/social-viz/badges/gpa.svg)](https://codeclimate.com/github/1twitif/social-viz)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/34309e41bb63406cae117f68e1a41d72)](https://www.codacy.com/app/github_97/social-viz)
+[![bitHound Overall Score](https://www.bithound.io/github/1twitif/social-viz/badges/score.svg)](https://www.bithound.io/github/1twitif/social-viz)
+[![bitHound Code](https://www.bithound.io/github/1twitif/social-viz/badges/code.svg)](https://www.bithound.io/github/1twitif/social-viz)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/1twitif/social-viz/badge.svg)](https://snyk.io/test/github/1twitif/social-viz/)
 [![Coverage Status](https://coveralls.io/repos/github/1twitif/social-viz/badge.svg?branch=master)](https://coveralls.io/github/1twitif/social-viz?branch=master)
+[![Issue Count](https://codeclimate.com/github/1twitif/social-viz/badges/issue_count.svg)](https://codeclimate.com/github/1twitif/social-viz)
 
 [![Build Status](https://travis-ci.org/1twitif/social-viz.svg?branch=master)](https://travis-ci.org/1twitif/social-viz)
 [![Docker Automated build](https://img.shields.io/docker/automated/1twitif/social-viz.svg)](https://hub.docker.com/r/1twitif/social-viz/)
-
-[![Known Vulnerabilities](https://snyk.io/test/github/1twitif/social-viz/badge.svg)](https://snyk.io/test/github/1twitif/social-viz/)
-
-[![Issue Count](https://codeclimate.com/github/1twitif/social-viz/badges/issue_count.svg)](https://codeclimate.com/github/1twitif/social-viz)
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/34309e41bb63406cae117f68e1a41d72)](https://www.codacy.com/app/github_97/social-viz)
-
-[![bitHound Overall Score](https://www.bithound.io/github/1twitif/social-viz/badges/score.svg)](https://www.bithound.io/github/1twitif/social-viz)
-[![bitHound Code](https://www.bithound.io/github/1twitif/social-viz/badges/code.svg)](https://www.bithound.io/github/1twitif/social-viz)
 
 [![bitHound Dependencies](https://www.bithound.io/github/1twitif/social-viz/badges/dependencies.svg)](https://www.bithound.io/github/1twitif/social-viz/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/1twitif/social-viz/badges/devDependencies.svg)](https://www.bithound.io/github/1twitif/social-viz/master/dependencies/npm)
 
 #### Dynamisme du projet
 
-[![Issue Stats](https://img.shields.io/issuestats/i/github/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/issues)
-[![Pull Stats](https://img.shields.io/issuestats/p/github/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/pulls)
-
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/1twitif/social-viz.svg)](http://isitmaintained.com/project/1twitif/social-viz "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/1twitif/social-viz.svg)](http://isitmaintained.com/project/1twitif/social-viz "Percentage of issues still open")
+
+[![Issue Stats](https://img.shields.io/issuestats/i/github/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/issues)
+[![Pull Stats](https://img.shields.io/issuestats/p/github/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/pulls)
 
 [![Issues Open](https://img.shields.io/github/issues/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/issues)
 [![Pull Request](https://img.shields.io/github/issues-pr/1twitif/social-viz.svg)](https://github.com/1twitif/social-viz/pulls)
 
-[![Commits count](https://img.shields.io/github/commits-since/1twitif/social-viz/start.svg)](https://github.com/1twitif/social-viz/graphs/commit-activity)
-
 [![dependencies Status](https://david-dm.org/1twitif/social-viz/status.svg)](https://david-dm.org/1twitif/social-viz)
 [![devDependencies Status](https://david-dm.org/1twitif/social-viz/dev-status.svg)](https://david-dm.org/1twitif/social-viz?type=dev)
+
+[![Commits count](https://img.shields.io/github/commits-since/1twitif/social-viz/start.svg)](https://github.com/1twitif/social-viz/graphs/commit-activity)
 
 #### Santé communautaire
  
