@@ -19,7 +19,7 @@ module.exports = function(config) {
 	    'staticApp/**/!(*.test|*.spec|*.mock).js': 'coverage'
     },
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress','coverage'],
+    reporters: ['progress','coverage','coveralls'],
 	  coverageReporter: {
 		  type : 'lcov',
 		  dir : 'coverage/'

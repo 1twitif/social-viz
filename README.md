@@ -1,12 +1,23 @@
 [![Code Climate](https://codeclimate.com/github/1twitif/social-viz/badges/gpa.svg)](https://codeclimate.com/github/1twitif/social-viz)
 [![Coverage](https://img.shields.io/badge/coverage-23-red.svg)](https://1twitif.github.io/social-viz/coverage/Firefox%2049.0.0%20(Windows%207%200.0.0)/lcov-report/staticApp/index.html)
 
-
-
 # Social-viz
 Visualisation de graph sociaux
 
 ## [Démo en ligne](https://1twitif.github.io/social-viz/)
+
+## Suivi qualité
+
+[![Code Climate](https://codeclimate.com/github/1twitif/social-viz/badges/gpa.svg)](https://codeclimate.com/github/1twitif/social-viz)
+[![Coverage](https://img.shields.io/badge/coverage-23-red.svg)](https://1twitif.github.io/social-viz/coverage/Firefox%2049.0.0%20(Windows%207%200.0.0)/lcov-report/staticApp/index.html)
+
+[![Build Status](https://travis-ci.org/1twitif/social-viz.svg?branch=master)](https://travis-ci.org/1twitif/social-viz)
+
+[![dependencies Status](https://david-dm.org/1twitif/social-viz/status.svg)](https://david-dm.org/1twitif/social-viz)
+[![devDependencies Status](https://david-dm.org/1twitif/social-viz/dev-status.svg)](https://david-dm.org/1twitif/social-viz?type=dev)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/1twitif/social-viz/badge.svg)](https://snyk.io/test/github/1twitif/social-viz/)
+
 
 ## Usage basique (sans authentification ni édition des données)
 
