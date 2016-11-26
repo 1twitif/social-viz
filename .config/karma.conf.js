@@ -1,9 +1,6 @@
-// Karma configuration
-// Generated on Tue Nov 15 2016 01:44:25 GMT+0100 (Paris, Madrid)
-
 module.exports = function(config) {
   config.set({
-    // base path that will be used to resolve all patterns (eg. files, exclude)
+     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '../',
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine', 'requirejs'],
@@ -37,6 +34,12 @@ module.exports = function(config) {
 	  browsers: [],
 	  autoWatch: true,
     singleRun: false,
-    concurrency: Infinity
+    concurrency: Infinity,
+	  customLaunchers: {
+		  Chrome_travis_ci: {
+			  base: 'Chrome',
+			  flags: ['--no-sandbox']
+		  }
+	  }
   })
 };
