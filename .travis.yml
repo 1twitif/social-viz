@@ -10,6 +10,6 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.de
+  - sudo dpkg -i google-chrome*.deb
 script:
   - ./node_modules/.bin/karma start --browsers Firefox,Chrome_travis_ci --single-run
