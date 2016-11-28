@@ -2,7 +2,7 @@ node:
   - mainType:
       from: enum.node.mainType
   - if:
-      condition: mainType = physical
+      condition: mainType = human
       then:
         - surname:
             required: true

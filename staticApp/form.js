@@ -16,6 +16,7 @@ define([
 		let entityId;
 		const displayAnchors = {};
 		on('config.selected change', (config) => formObject.edit(config.selected));
+		on('form.if', runIfTriggers);
 
 		this.render = () => {
 			for (let anchor in displayAnchors) formObject.renderOn(displayAnchors[anchor]);
@@ -56,15 +57,13 @@ define([
 				})(form);
 
 			if (config.selected) {
-				const form = config.selected.split('-')[0];
+				const form = extractType(config.selected);
 				const formNode = buildForm(formObject.template[form], form);
 				targetNode.appendChild(formNode);
+				runIfTriggers();
 				send('form.updated', formObject);
 
 			}
-
-			//const nodeForm = document.createElement('form');
-			// datalist http://www.alsacreations.com/article/lire/1334-html5-element-datalist.html
 		};
 		function buildForm(templateToBuild, title) {
 			const formNode = document.createElement('form');
@@ -101,18 +100,58 @@ define([
 
 		function buildEntry(rawEntry, dataId) {
 			const entry = parseEntry(rawEntry);
+			if(entry.name === 'if') return buildIf(entry);
 			let node;
-			const userContent = findData(dataId)[entry.name] || '';
-			if (entry.dataType === 'markdown') node = buildNode('textarea', userContent);
-			else node = buildNode('input', userContent);
+			const entryData = findData(dataId)[entry.name] || '';
+			if (entry.dataType === 'markdown') node = buildNode('textarea', entryData);
+			else node = buildNode('input', entryData);
 			node.setAttribute('name', entry.name);
 			node.addEventListener('change', formChange);
+			node.addEventListener('input', runIfTriggers);
+
 
 			for (let specificity in entry) applyEntrySpecificity(specificity, node, entry);
 
 			const label = buildNode('label',entry.name);
 			label.appendChild(node);
 			return label;
+		}
+
+		function buildIf(ifTemplate){
+			const ifAnchor = document.createElement('div');
+			ifAnchor.setAttribute('class','ifAnchor');
+			const ifId = generateId('if');
+			ifAnchor.setAttribute('id',ifId);
+			const ifTrigger = buildIfTrigger(ifTemplate, ifId);
+			registerIfTrigger(ifTrigger, ifId);
+			return ifAnchor;
+		}
+		function buildIfTrigger(ifTemplate,ifId){
+			return ()=>{
+				const ifAnchor = document.getElementById(ifId);
+				const formNode = getAncestor(ifAnchor,'form');
+				const conditionPart = ifTemplate.condition.split('=');
+				conditionPart[0] = conditionPart[0].trim();
+				conditionPart[1] = conditionPart[1].trim();
+				if(formNode[conditionPart[0]].value === conditionPart[1]){
+					if(!ifAnchor.innerHTML){
+						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], entityId));
+						send('form.if.displayed', ifId);
+					}
+				} else {
+					ifAnchor.innerHTML = '';
+				}
+			}
+		}
+		const ifTriggerList = {};
+		function registerIfTrigger(ifTrigger,ifId){
+			ifTriggerList[ifId] = ifTrigger;
+		}
+		function runIfTriggers(){
+			for(let ifId in ifTriggerList){
+				if(document.getElementById(ifId)) ifTriggerList[ifId]();
+				else delete ifTriggerList[ifId];
+			}
 		}
 
 		const entrySpecificityFuncs = {};
@@ -232,6 +271,7 @@ define([
 	}
 
 	function generateId(type, title) {
+		if(!title) title = '';
 		return strTools.clean(type + '-' + title + '-' + btoa(btoa(Math.random())).substr(8, 5));
 	}
 
@@ -264,6 +304,5 @@ define([
 			return entry[unicKey];
 		}
 	}
-
 	return {Form};
 });

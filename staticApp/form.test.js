@@ -1,6 +1,7 @@
 define(['./form', './smartEvents'], (app, ev) => {
 	function changeInputValue(inputNode, value) {
 		inputNode.value = value;
+		inputNode.dispatchEvent(new Event('input', {target: inputNode, bubbles: true}));
 		inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
 	}
 
@@ -45,7 +46,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 		beforeEach(() => {
 			form = new app.Form();
 			form.setConfig({'selected': 'myForm-new'});
-			anchor = document.createElement('div');
+			anchor = document.body; //.createElement('div');
 			form.displayInNode(anchor);
 		});
 		describe('affichage', () => {
@@ -85,6 +86,49 @@ define(['./form', './smartEvents'], (app, ev) => {
 				});
 				expect(document.getElementById('dataList-myForm').innerHTML).toMatch('Plop');
 			});
+			it("n'affiche pas les if comme des input", () => {
+				form.setTemplate({"myForm": [
+					'name',
+					{'if': {condition: 'name = bob',then:['message']}}
+				]});
+				expect(anchor.querySelector('input[name="if"]')).toBeFalsy();
+			});
+			it("affiche les if quand les conditions sont remplies", () => {
+				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
+				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}] });
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				form.edit('myForm-bob');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+			});
+			it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
+				form.setTemplate({"myForm": [
+					'name',
+					'city',
+					{'if': {condition: 'name = bob',then:[
+						{'if': {condition: 'city = bordeaux',then:[
+							'message'
+						]}}
+					]}}
+				]});
+				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob', 'city': 'bordeaux'}] });
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				form.edit('myForm-bob');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+			});
+			it("affiche les if après un changement remplissant ses conditions", () => {
+				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
+			});
+			it("masque les if dont les conditions ne sont plus remplies", () => {
+				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'alice');
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy(); // safer with input spy
+			});
+
 			it("genère un id dès qu'un champ après le label est modifié", () => {
 				form.setTemplate({"myForm": ['before', 'label', 'after']});
 				const eventSpy = new Spy();
