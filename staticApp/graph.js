@@ -18,6 +18,8 @@ define([
 
 			const fullGraph = graphDataLoader.getData();
 			let currentGraph = struct.clone(fullGraph);
+			if(!currentGraph.node) currentGraph.node = {};
+			if(!currentGraph.link) currentGraph.link = {};
 
 			on('data change',(data)=>{
 				currentGraph = struct.merge(currentGraph, data);
@@ -376,7 +378,7 @@ define([
 
 			function updateZoom() {
 				var zoom = options.zoom;
-
+				if(!zoom) return;
 				zoomableContainer.attr("transform",
 					"translate(" + centerRatioX2D3X(zoom.x) + "," + centerRatioY2D3Y(zoom.y) + ") scale(" + zoom.k + ")");
 			}

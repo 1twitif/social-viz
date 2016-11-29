@@ -16,8 +16,52 @@ define([
 		on('config.ready', render);
 		on('hashchange', render);
 		on('render', updatePanels);
+		on('error', displayError);
 	}
-
+	function displayError(error){
+		let errorBox = getOrCreate('errorBox');
+		let errorLine = document.createElement('a');
+		errorLine.innerHTML = buildErrorMessage(error);
+		errorLine.setAttribute('class','error');
+		errorLine.setAttribute('data-timestamp',Date.now());
+		errorLine.setAttribute('href','#{"tutorial":"error.'+error.type+'"}');
+		errorBox.appendChild(errorLine);
+		setTimeout(fadeError,10000);
+		setTimeout(fadeError,15000);
+	}
+	function fadeError(){
+		const errors = document.querySelectorAll('#errorBox .error');
+		for(let i in errors){
+			if(errors.hasOwnProperty(i)){
+				const error = errors[i];
+				if(error.getAttribute('data-timestamp')<Date.now()-10000 && !error.classList.contains('fade'))
+					error.classList.add('fade');
+				if(error.getAttribute('data-timestamp')<Date.now()-15000)
+					error.parentNode.removeChild(error);
+			}
+		}
+	}
+	const errorMessageBuilderCatalog = {};
+	errorMessageBuilderCatalog["file.load.error.404"] = (error)=>{
+		if(error.value.indexOf('allData') !== -1){
+			return t('error 404, file not found : ')+'allData'+error.value.split('allData')[1];
+		}
+		return t('error 404, file not found : ')+error.value;
+	};
+	errorMessageBuilderCatalog["default"] = (error) => 'error : '+JSON.stringify(error);
+	function buildErrorMessage(error){
+		if(errorMessageBuilderCatalog[error.type]) return errorMessageBuilderCatalog[error.type](error);
+		else return errorMessageBuilderCatalog['default'](error);
+	}
+	function getOrCreate(id){
+		let node = document.getElementById(id);
+		if(!node){
+			node = document.createElement('div');
+			node.setAttribute('id',id);
+			document.body.appendChild(node);
+		}
+		return node;
+	}
 	function render() {
 		send('render', cfg.getConfig());
 	}
@@ -55,6 +99,7 @@ define([
 
 	function initUI(config) {
 		//TODO: gérer les layersGroups
+		if(! config.nodeLayers) config.nodeLayers = {};
 		let legendArea = d3.select('#legend>section');
 		let legend = legendArea.selectAll('label.layer').data(config.nodeLayers).enter()
 			.append("label")

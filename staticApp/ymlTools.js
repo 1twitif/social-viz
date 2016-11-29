@@ -22,15 +22,23 @@ define([
 
 	function load(filePath) {
 		fetch(filePath)
-			.then((response) => response.text())
+			.then((response) => {
+			if(response.ok)	return response.text();
+			else {
+				send('file.load.error.'+response.status,{'type':'file.load.error.'+response.status, 'value':response.url});
+				return '';
+			}
+			})
 			.then((text) => send('file.ready', {'filename': filePath, 'fileContent': text}));
 	}
 
 	on('file.ready', convert);
 	function convert(fileLoadedEvent) {
+		let yml = jsyaml.safeLoad(fileLoadedEvent.fileContent);
+		if(!yml || yml === "undefined") yml = {};
 		send('yml.ready', {
 			'filename': fileLoadedEvent.filename,
-			'yml': jsyaml.safeLoad(fileLoadedEvent.fileContent)
+			'yml': yml
 		});
 	}
 
