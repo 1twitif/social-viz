@@ -25,6 +25,8 @@ define([
 	function listenerInit() {
 		on('graph.data ready', setData);
 		on('graph.data change', (data)=>localStore.save(data));
+		document.getElementById('exportData').addEventListener('click', exportData);
+
 	}
 	function setData(data){
 		graphData = data;
@@ -33,5 +35,8 @@ define([
 		return graphData;
 	}
 
+	function exportData(){
+		ymlTools.exportAsFile('social-viz-data',getData());
+	}
 	return {init, getData}
 });

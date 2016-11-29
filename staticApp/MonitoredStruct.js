@@ -10,6 +10,7 @@ define([
 		const closuredTopAncestor = this.topAncestor;
 		const handler = {
 			'set': (obj, key, value) => {
+				if(JSON.stringify(obj[key]) === JSON.stringify(value) ) return true;
 				if (typeof value === 'object') obj[key] = new MonitoredStruct(value, eventNameSuffix+'.'+key, closuredTopAncestor);
 				else obj[key] = value;
 				send(structureEventName(['monitoredStruct', 'change', eventNameSuffix+'.'+key]), closuredTopAncestor.smartObj);

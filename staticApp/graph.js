@@ -19,6 +19,11 @@ define([
 			const fullGraph = graphDataLoader.getData();
 			let currentGraph = struct.clone(fullGraph);
 
+			on('data change',(data)=>{
+				currentGraph = struct.merge(currentGraph, data);
+				console.log('update graph');
+				updateGraph(currentGraph);
+			});
 
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])
@@ -58,7 +63,7 @@ define([
 			}
 
 			on('resize', () => multiTimeout(50, 500, updateSvgArea));
-			on('dataInitDone', updateSvgArea);
+			on('dataInitDone', () => multiTimeout(50, 500, updateSvgArea));
 
 			var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -70,6 +75,13 @@ define([
 				;
 			updateCenterForce();
 
+			let allLinksG = zoomableContainer.append("g")
+				.attr("class", "links");
+			let allNodesG = zoomableContainer.append("g")
+				.attr("class", "nodes");
+
+
+			function updateGraph(currentGraph){
 				simulation
 					.nodes(currentGraph.node)
 					.force("link",
@@ -81,28 +93,32 @@ define([
 					)
 				;
 				computeNodesDegree(currentGraph);
-				var nodeRadiusScale = d3.scaleLinear()
+				console.log(currentGraph);
+
+				let nodeRadiusScale = d3.scaleLinear()
 					.domain(d3.extent(currentGraph.node, function (n) {
 						return n.degree;
 					}))
 					.range([options.nodeMinRatio, options.nodeMaxRatio]);
 
-				var link = zoomableContainer.append("g")
-					.attr("class", "links")
+				let link = allLinksG
 					.selectAll("line")
-					.data(currentGraph.link)
-					.enter().append("line")
+					.data(currentGraph.link);
+
+				let linkEnter = link.enter().append("line")
 					.attr("class", (n) => "link ll" + n.type)
 					.attr("stroke-width", function (d) {
 						return Math.sqrt(d.value);
 					})
 					.attr("stroke", 'grey');
 
+				link.exit().remove();
+				link = linkEnter.merge(link).attr("class","merged");
 
-				var node = zoomableContainer.append("g")
-						.attr("class", "nodes")
-						.selectAll("g.node")
-						.data(currentGraph.node)
+				let node = allNodesG
+					.selectAll("g.node")
+					.data(currentGraph.node);
+				let nodeEnter = node
 						.enter()
 						.append("g")
 						.attr("class", (n) => "node nl" + n.type)
@@ -116,7 +132,7 @@ define([
 							.on("end", dragended))
 					;
 
-				node.append("circle")
+				nodeEnter.append("circle")
 					.attr("cx", 0).attr("cy", 0)
 					.attr("r", function (n) {
 						return n.r = options.nodeBaseRadius * nodeRadiusScale(n.degree);
@@ -125,14 +141,14 @@ define([
 					.attr("fill", function (d) {
 						return color(d.type);
 					});
-				node.append("path")
+				nodeEnter.append("path")
 					.attr("d", function (n) {
 						return points2Path(regularPolygon(0, 0, n.r, options.fixedNode.sides), options.fixedNode.tension);
 					})
 					.attr("fill", function (d) {
 						return color(d.type);
 					});
-				node.append("image")
+				nodeEnter.append("image")
 					.attr("xlink:href", function (n) {
 						return options.nodeLayers[n.type] ? options.nodeLayers[n.type].picto : options.defaultPicto;
 					})
@@ -149,7 +165,7 @@ define([
 						return n.r;
 					})
 				;
-				node.append("text")
+				nodeEnter.append("text")
 					.attr("text-anchor", "middle")
 					.attr("dx", 0)
 					.attr("dy", function (n) {
@@ -158,43 +174,14 @@ define([
 					.text(function (n) {
 						return t(n.label)
 					});
-				node.append("title")
+				nodeEnter.append("title")
 					.text(function (n) {
 						return t(n.label);
 					});
+				node = nodeEnter.merge(node);
+				node.exit().remove();
 
 
-				function ticked() {
-					node
-						.attr("transform", function (n) {
-							if (options.confiner) {
-								var zx = centerRatioX2D3X(options.zoom.x),
-									zy = centerRatioY2D3Y(options.zoom.y);
-								var limiteGauche = n.r - zx / options.zoom.k;
-								var limiteHaut = n.r - zy / options.zoom.k;
-								var limiteDroite = (width - zx) / options.zoom.k - n.r;
-								var limiteBas = (height - zy) / options.zoom.k - n.r;
-								n.x = Math.max(limiteGauche, Math.min(limiteDroite, n.x));
-								n.y = Math.max(limiteHaut, Math.min(limiteBas, n.y));
-							}
-							return "translate(" + n.x + "," + n.y + ")";
-						});
-					link
-						.attr("x1", function (d) {
-							return d.source.x;
-						})
-						.attr("y1", function (d) {
-							return d.source.y;
-						})
-						.attr("x2", function (d) {
-							return d.target.x;
-						})
-						.attr("y2", function (d) {
-							return d.target.y;
-						})
-					;
-					fps.tick();
-				}
 
 				var linkLengthScale = d3.scaleLinear()
 					.domain(d3.extent(currentGraph.node, function (n) {
@@ -211,7 +198,44 @@ define([
 						return distanceMin + distanceMin * linkLengthScale(Math.min(link.source.degree, link.target.degree));
 					})
 				;
-				simulation.on("tick", ticked);
+				//simulation.restart()
+			}
+			updateGraph(currentGraph);
+			function ticked() {
+				allNodesG.selectAll("g.node")
+					.attr("transform", function (n) {
+						if (options.confiner) {
+							var zx = centerRatioX2D3X(options.zoom.x),
+								zy = centerRatioY2D3Y(options.zoom.y);
+							var limiteGauche = n.r - zx / options.zoom.k;
+							var limiteHaut = n.r - zy / options.zoom.k;
+							var limiteDroite = (width - zx) / options.zoom.k - n.r;
+							var limiteBas = (height - zy) / options.zoom.k - n.r;
+							n.x = Math.max(limiteGauche, Math.min(limiteDroite, n.x));
+							n.y = Math.max(limiteHaut, Math.min(limiteBas, n.y));
+						}
+						return "translate(" + n.x + "," + n.y + ")";
+					});
+				allLinksG.selectAll("line")
+					.attr("x1", function (d) {
+						return d.source.x;
+					})
+					.attr("y1", function (d) {
+						return d.source.y;
+					})
+					.attr("x2", function (d) {
+						return d.target.x;
+					})
+					.attr("y2", function (d) {
+						return d.target.y;
+					})
+				;
+				fps.tick();
+			}
+			simulation.on("tick", ticked);
+
+
+
 				send('dataInitDone');
 
 

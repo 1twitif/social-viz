@@ -28,6 +28,7 @@ link:
       from: node
   - target:
       from: node
+  - label
   - if:
       condition: source.mainType = human
       then:
@@ -36,6 +37,11 @@ link:
             then:
               - type:
                   from: enum.human.moral.link
+  - comments:
+      dataType: markdown
+  - sources:
+      dataType: markdown
+      access: private
 
 enum:
   node:

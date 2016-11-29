@@ -257,6 +257,10 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(JSON.stringify(data)).toMatch('{"myForm":\\\[{"id":"myForm-safe-Label-');
 				expect(JSON.stringify(data)).toMatch('"before":"not Yet","label":"!safe Labél","after":"Yet !"}]}');
 			});
+			// mise à jour
+			// suppression
+			// export
+			// hors test : persistance localstorage
 		});
 	});
 });
