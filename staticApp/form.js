@@ -278,7 +278,6 @@ define([
 
 	function getAncestor(node, ancestorQuery) {
 		if (node.parentNode.querySelector(ancestorQuery)) return node;
-		if (node.parentNode === node || !node.parentNode) throw new Exception('no ancestor matching : ' + ancestorQuery);
 		return getAncestor(node.parentNode, ancestorQuery);
 	}
 
@@ -318,10 +317,10 @@ define([
 	const operands = {};
 	operands['='] = (a,b)=> a === b;
 	operands['!='] = (a,b)=> a !== b;
-	operands['>'] = (a,b)=> a > b;
-	operands['<'] = (a,b)=> a < b;
-	operands['>='] = (a,b)=> a >= b;
-	operands['<='] = (a,b)=> a <= b;
+	operands['>='] = (a,b)=> parseFloat(a) >= parseFloat(b);
+	operands['<='] = (a,b)=> parseFloat(a) <= parseFloat(b);
+	operands['>'] = (a,b)=> parseFloat(a) > parseFloat(b);
+	operands['<'] = (a,b)=> parseFloat(a) < parseFloat(b);
 	operands['^='] = (a,b)=> a.substring(0,b.length) === b;
 	operands['$='] = (a,b)=> a.substr(-b.length) === b;
 	operands['*='] = (a,b)=> a.indexOf(b) !== -1;

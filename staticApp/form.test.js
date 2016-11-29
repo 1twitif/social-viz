@@ -120,6 +120,13 @@ define(['./form', './smartEvents'], (app, ev) => {
 				changeInputValue(anchor.querySelector('input[name="name"]'), 'barjo');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 			});
+			it("if gère les inégalité numérique", () => {
+				form.setTemplate({"myForm": ['count', {'if': {condition: 'count < 11', then: ['delayRestock']}}]});
+				changeInputValue(anchor.querySelector('input[name="count"]'), '9');
+				expect(anchor.querySelector('input[name="delayRestock"]')).toBeTruthy();
+				changeInputValue(anchor.querySelector('input[name="count"]'), '101');
+				expect(anchor.querySelector('input[name="delayRestock"]')).toBeFalsy();
+			});
 			it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
 				form.setTemplate({
 					"myForm": [
@@ -146,16 +153,16 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 			});
 			it("affiche les if après un changement remplissant ses conditions", () => {
-				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
+				form.setTemplate({"myForm": ['count', {'if': {condition: 'count >= 5', then: ['message']}}]});
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
-				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
+				changeInputValue(anchor.querySelector('input[name="count"]'), '5');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
 			});
 			it("masque les if dont les conditions ne sont plus remplies", () => {
-				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
-				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
+				form.setTemplate({"myForm": ['count', {'if': {condition: 'count <= 9', then: ['message']}}]});
+				changeInputValue(anchor.querySelector('input[name="count"]'), '5');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
-				changeInputValue(anchor.querySelector('input[name="name"]'), 'alice');
+				changeInputValue(anchor.querySelector('input[name="count"]'), '11');
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy(); // safer with input spy
 			});
 			it("gèrer les conditions faisant référence à d'autres entitées", () => {
