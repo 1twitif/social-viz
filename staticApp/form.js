@@ -130,10 +130,7 @@ define([
 			return ()=>{
 				const ifAnchor = document.getElementById(ifId);
 				const formNode = getAncestor(ifAnchor,'form');
-				const conditionPart = ifTemplate.condition.split('=');
-				conditionPart[0] = conditionPart[0].trim();
-				conditionPart[1] = conditionPart[1].trim();
-				if(formNode[conditionPart[0]].value === conditionPart[1]){
+				if(isConditionOk(ifTemplate.condition,formNode)){
 					if(!ifAnchor.innerHTML){
 						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], entityId));
 						send('form.if.displayed', ifId);
@@ -142,6 +139,12 @@ define([
 					ifAnchor.innerHTML = '';
 				}
 			}
+		}
+		function isConditionOk(condition,formNode){
+			const conditionPart = condition.split('=');
+			conditionPart[0] = conditionPart[0].trim();
+			conditionPart[1] = conditionPart[1].trim();
+			return formNode[conditionPart[0]].value === conditionPart[1];
 		}
 		const ifTriggerList = {};
 		function registerIfTrigger(ifTrigger,ifId){

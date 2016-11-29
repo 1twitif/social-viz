@@ -87,46 +87,79 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(document.getElementById('dataList-myForm').innerHTML).toMatch('Plop');
 			});
 			it("n'affiche pas les if comme des input", () => {
-				form.setTemplate({"myForm": [
-					'name',
-					{'if': {condition: 'name = bob',then:['message']}}
-				]});
+				form.setTemplate({
+					"myForm": [
+						'name',
+						{'if': {condition: 'name = bob', then: ['message']}}
+					]
+				});
 				expect(anchor.querySelector('input[name="if"]')).toBeFalsy();
 			});
 			it("affiche les if quand les conditions sont remplies", () => {
-				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
-				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}] });
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
+				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}]});
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
 				form.edit('myForm-bob');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 			});
 			it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
-				form.setTemplate({"myForm": [
-					'name',
-					'city',
-					{'if': {condition: 'name = bob',then:[
-						{'if': {condition: 'city = bordeaux',then:[
-							'message'
-						]}}
-					]}}
-				]});
-				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob', 'city': 'bordeaux'}] });
+				form.setTemplate({
+					"myForm": [
+						'name',
+						'city',
+						{
+							'if': {
+								condition: 'name = bob', then: [
+									{
+										'if': {
+											condition: 'city = bordeaux', then: [
+												'message'
+											]
+										}
+									}
+								]
+							}
+						}
+					]
+				});
+				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob', 'city': 'bordeaux'}]});
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
 				form.edit('myForm-bob');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 			});
 			it("affiche les if après un changement remplissant ses conditions", () => {
-				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
 				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
 			});
 			it("masque les if dont les conditions ne sont plus remplies", () => {
-				form.setTemplate({"myForm": [ 'name', {'if': {condition: 'name = bob',then:['message']}} ]});
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
 				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
 				changeInputValue(anchor.querySelector('input[name="name"]'), 'alice');
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy(); // safer with input spy
+			});
+			it("gèrer les conditions faisant référence à d'autres entitées", () => {
+				form.setTemplate({
+					"link": [
+						{'source': {'from': 'node'}},
+						{'if': {condition: 'node.type = lambda', then: ['lambdaQualification']}}
+					],
+					"node": ['type']
+				});
+				form.setData({
+					'node': [
+						{'id': 'node-1', 'type': 'lambda'},
+						{'id': 'node-2', 'type': 'not-lambda'}
+					]
+				});
+				form.edit('link-new');
+				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="source"]'), 'node-1');
+				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeTruthy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="source"]'), 'node-2');
+				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
 			});
 
 			it("genère un id dès qu'un champ après le label est modifié", () => {
