@@ -13,7 +13,6 @@ define([
 		let config = {};
 		this.template = tempateJson || {};
 		this.data = data || {};
-		let entityId;
 		const displayAnchors = {};
 		on('config.selected change', (config) => formObject.edit(config.selected));
 		on('form.if', runIfTriggers);
@@ -27,7 +26,6 @@ define([
 		};
 		this.setConfig = (cfg) => {
 			config = cfg;
-			if (config.selected) entityId = config.selected;
 			formObject.render();
 		};
 		this.setData = (data) => {
@@ -35,7 +33,7 @@ define([
 			formObject.render();
 		};
 		this.edit = function edit(id) {
-			entityId = id;
+			config.selected = id;
 			formObject.render();
 		};
 		this.displayInNode = function displayInNode(targetNode) {
@@ -68,8 +66,8 @@ define([
 		function buildForm(templateToBuild, title) {
 			const formNode = document.createElement('form');
 			formNode.appendChild(buildNode('h2', title));
-			formNode.appendChild(buildId(entityId));
-			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i], entityId));
+			formNode.appendChild(buildId(config.selected));
+			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i], config.selected));
 			return formNode;
 		}
 
@@ -132,7 +130,7 @@ define([
 				const formNode = getAncestor(ifAnchor,'form');
 				if(isConditionOk(ifTemplate.condition,formNode)){
 					if(!ifAnchor.innerHTML){
-						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], entityId));
+						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], config.selected));
 						send('form.if.displayed', ifId);
 					}
 				} else {
@@ -140,11 +138,20 @@ define([
 				}
 			}
 		}
+
 		function isConditionOk(condition,formNode){
-			const conditionPart = condition.split('=');
-			conditionPart[0] = conditionPart[0].trim();
-			conditionPart[1] = conditionPart[1].trim();
-			return formNode[conditionPart[0]].value === conditionPart[1];
+			const operand = operandFinder(condition);
+			const conditionPart = condition.split(operand);
+			const dataRef = conditionPart[0].trim();
+			const expectedValue = conditionPart[1].trim();
+			return operands[operand](followRef(dataRef, formNode), expectedValue);
+		}
+		function followRef(dataRef,formNode){
+			const refParts = dataRef.split('.');
+			let ref = refParts.shift();
+			let linkedData = formNode[ref].value;
+			while(ref = refParts.shift()) linkedData = findData(linkedData)[ref];
+			return linkedData;
 		}
 		const ifTriggerList = {};
 		function registerIfTrigger(ifTrigger,ifId){
@@ -269,6 +276,20 @@ define([
 		return timeToSetId;
 	}
 
+	function getAncestor(node, ancestorQuery) {
+		if (node.parentNode.querySelector(ancestorQuery)) return node;
+		if (node.parentNode === node || !node.parentNode) throw new Exception('no ancestor matching : ' + ancestorQuery);
+		return getAncestor(node.parentNode, ancestorQuery);
+	}
+
+	function parseEntry(entry) {
+		if (typeof entry === 'string') return {'name': entry};
+		for (let unicKey in entry) {
+			entry[unicKey].name = unicKey;
+			return entry[unicKey];
+		}
+	}
+
 	function isStaticEnumRef(from) {
 		return from.split('.')[0] === 'enum'
 	}
@@ -294,18 +315,27 @@ define([
 		return strTools.clean('dataList-' + rawStringId);
 	}
 
-	function getAncestor(node, ancestorQuery) {
-		if (node.parentNode.querySelector(ancestorQuery)) return node;
-		if (node.parentNode === node || !node.parentNode) throw new Exception('no ancestor matching : ' + ancestorQuery);
-		return getAncestor(node.parentNode, ancestorQuery);
+	const operands = {};
+	operands['='] = (a,b)=> a === b;
+	operands['!='] = (a,b)=> a !== b;
+	operands['>'] = (a,b)=> a > b;
+	operands['<'] = (a,b)=> a < b;
+	operands['>='] = (a,b)=> a >= b;
+	operands['<='] = (a,b)=> a <= b;
+	operands['^='] = (a,b)=> a.substring(0,b.length) === b;
+	operands['$='] = (a,b)=> a.substr(-b.length) === b;
+	operands['*='] = (a,b)=> a.indexOf(b) !== -1;
+
+	function escapeRegExp(string) {
+		return string.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&');
 	}
 
-	function parseEntry(entry) {
-		if (typeof entry === 'string') return {'name': entry};
-		for (let unicKey in entry) {
-			entry[unicKey].name = unicKey;
-			return entry[unicKey];
-		}
+	function operandFinder(condition){
+		let tabKey = [];
+		for(let operand in operands) tabKey.push(escapeRegExp(operand));
+		const regexp = new RegExp('('+tabKey.join('|')+')');
+		return condition.match(regexp)[0];
 	}
+
 	return {Form};
 });

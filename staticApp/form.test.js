@@ -102,6 +102,24 @@ define(['./form', './smartEvents'], (app, ev) => {
 				form.edit('myForm-bob');
 				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 			});
+			it("gère d'autres opérandes que =", () => {
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name != bob', then: ['message']}}]});
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'bob');
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name *= jo', then: ['message']}}]});
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'marjorie');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name ^= jo', then: ['message']}}]});
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'john');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name $= jo', then: ['message']}}]});
+				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+				changeInputValue(anchor.querySelector('input[name="name"]'), 'barjo');
+				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+			});
 			it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
 				form.setTemplate({
 					"myForm": [
@@ -144,7 +162,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 				form.setTemplate({
 					"link": [
 						{'source': {'from': 'node'}},
-						{'if': {condition: 'node.type = lambda', then: ['lambdaQualification']}}
+						{'if': {condition: 'source.type = lambda', then: ['lambdaQualification']}}
 					],
 					"node": ['type']
 				});
@@ -160,6 +178,42 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeTruthy(); // safer with input spy
 				changeInputValue(anchor.querySelector('input[name="source"]'), 'node-2');
 				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
+			});
+			it("gèrer les conditions faisant référence à d'autres entitées en cascade", () => {
+				form.setTemplate({
+					"link": [
+						{'citizen': {'from': 'citizen'}},
+						{'if': {condition: 'citizen.state.latitude > 20', then: ['temperature']}}
+					],
+					"citizen": [{'state':{'from':'state'}}],
+					"state": ['latitude']
+				});
+				form.setData({
+					'citizen': [
+						{'id': 'citizen-1', 'state': ''},
+						{'id': 'citizen-2', 'state': 'state-42'},
+						{'id': 'citizen-3', 'state': 'state-3'},
+						{'id': 'citizen-4', 'state': 'state-4'},
+						{'id': 'citizen-5', 'state': 'state-5'}
+					],
+					"state": [
+						{'id': 'state-3'},
+						{'id': 'state-4', 'latitude': 22},
+						{'id': 'state-5', 'latitude': 5}
+					]
+				});
+				form.edit('link-new');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeFalsy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="citizen"]'), 'citizen-1');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeFalsy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="citizen"]'), 'citizen-2');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeFalsy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="citizen"]'), 'citizen-3');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeFalsy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="citizen"]'), 'citizen-4');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeTruthy(); // safer with input spy
+				changeInputValue(anchor.querySelector('input[name="citizen"]'), 'citizen-5');
+				expect(anchor.querySelector('input[name="temperature"]')).toBeFalsy(); // safer with input spy
 			});
 
 			it("genère un id dès qu'un champ après le label est modifié", () => {
