@@ -60,8 +60,8 @@ Visualisation de graph sociaux
 
 Remplacez la dernière étape de l'usage basique par ce qui suit :
 
-- Télécharger `https://d3js.org/d3.v4.min.js` et placer le dans le dossier du projet.
-- Télécharger `https://caddyserver.com/download` et placer le dans le dossier du projet (ou utiliser xampp ou autre serveur web).
+- Télécharger [d3js](https://d3js.org/d3.v4.min.js) et placer le dans le dossier du projet.
+- Télécharger [caddyserver](https://caddyserver.com/download) et placer le dans le dossier du projet (ou utiliser xampp ou autre serveur web).
 - Lancez le serveur `caddy` et consultez le site à [l'adresse indiqué](http://localhost:2015/) avec un navigateur moderne.
 
 ## Installation complète

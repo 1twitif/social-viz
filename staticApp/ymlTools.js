@@ -64,7 +64,7 @@ define([
 			}
 		});
 	}
-
+	// http://webreflection.blogspot.fr/2011/08/html5-how-to-create-downloads-on-fly.html
 	function exportAsFile(fileName,data){
 		const a = document.createElement('a');
 		a.setAttribute('download',fileName+'.yml');

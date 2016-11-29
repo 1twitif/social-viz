@@ -14,6 +14,7 @@
 <nav id="tools-panel" class="small">
 	<section id="advanced-tools">
 		<!-- TODO: https://github.com/nodeca/js-yaml -> fichiers de config avec commentaire et syntaxe plus lisible -->
+		<!--
 		<label>Force de répulsion anti collision <input type="number"></label>
 		<label>Force de répulsion de proximité <input type="number"></label>
 		<label>Distance de répulsion de porximité <input type="number"></label>
@@ -27,6 +28,7 @@
 		<label>Coéficient de force des liens (vitesse d'agencement) <input type="number"></label>
 
 		<label>Force d'attraction de zone <input type="number"></label>
+		-->
 		<!-- TODO: zones :
 		gooey method : http://www.visualcinnamon.com/2015/05/gooey-effect.html
 		convex hull method : http://bl.ocks.org/mbostock/4341699 & https://github.com/d3/d3-polygon/blob/master/README.md#polygonHull
@@ -45,7 +47,7 @@
         courbe cf http://bl.ocks.org/d3noob/5155181 et http://bl.ocks.org/mbostock/4600693 et http://www.nytimes.com/interactive/2013/02/20/movies/among-the-oscar-contenders-a-host-of-connections.html,
         à angle droit cf
 		-->
-
+<!--
     Options filtres et réglages ||
     survol d'un lien -> affiche son type et sa pondération le cas échéant
     survol d'un noeud ou d'un lien -> atténue les éléments de légende d'autre type
@@ -54,32 +56,32 @@
     Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
     Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
     double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
+		-->
 		<button id="editionMode" title="Passer en mode édition">Editer</button>
 		<button id="editTrad" title="Formulaire de traduction">Traduction</button>
     <label>FPS : <span id="fpsValue"></span></label>
 </section>
 <section id="main-tools">
+<!--
     <a>Afficher les réglages avancés</a>
     <a title="flux RSS des mise à jour de données">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>
-	<!-- TODO: http://webreflection.blogspot.fr/2011/08/html5-how-to-create-downloads-on-fly.html -->
     <a title="sauvegarder en pdf pour l'impression">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>
     <a title="exporter (svg, json des données affiché, json total des données publiques">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>
+	-->
 	<a id="exportData">exporter les données disponnibles</a>
+<!--
     <a title="partager la carte (FB,twitter,embed...)">
         <img src="staticApp/appImg/unknow.svg" class="picto">
     </a>
     <label>Zoom <input type="number">%</label>
     <label title="Garder tous les éléments à l'écran">
         <input type="checkbox"/> Confiner
-    </label>
-    <label title="Auto-activé en maintenant la touche Majuscule enfoncée">
-        <input type="checkbox"/> Multi-sélection
     </label>
     <label title="Distance maximum aux neuds sélectionnés">
         <img src="staticApp/appImg/unknow.svg" class="picto">
@@ -119,6 +121,7 @@
             <option>...</option>
         </select>
     </label>
+    -->
     <!-- TODO: drapeau langue :  https://openclassrooms.com/forum/sujet/image-dans-un-select-10327 -->
 		<select id="langPicker">
 			<option value="fr">Français</option>
