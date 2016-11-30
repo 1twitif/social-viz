@@ -100,6 +100,7 @@ define([
 	function initUI(config) {
 		//TODO: gérer les layersGroups
 		if(! config.nodeLayers) config.nodeLayers = {};
+		if(! config.hideLayers) config.hideLayers = {};
 		let legendArea = d3.select('#legend>section');
 		let legend = legendArea.selectAll('label.layer').data(config.nodeLayers).enter()
 			.append("label")
