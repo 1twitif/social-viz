@@ -6,6 +6,8 @@ node_js:
   - 6
 addons:
   firefox: latest
+  code_climate:
+    repo_token: 8479d939bbb054f7fd1d3a09f0f1bda07cd327e074e6100f893ab354b3dec18f
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
