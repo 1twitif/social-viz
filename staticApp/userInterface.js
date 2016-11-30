@@ -102,6 +102,7 @@ define([
 		if(! config.nodeLayers) config.nodeLayers = {};
 		if(! config.hideLayers) config.hideLayers = {};
 		let legendArea = d3.select('#legend>section');
+		// TODO : utiliser des requêtes pour sélectionné ce qui fait partie d'un layer
 		let legend = legendArea.selectAll('label.layer').data(config.nodeLayers).enter()
 			.append("label")
 			.attr("class", "layer")
