@@ -19,6 +19,7 @@ before_install:
 script:
   - ./node_modules/.bin/karma start --browsers Firefox,Chrome_travis_ci --single-run
 after_success:
-  - codeclimate-test-reporter < (ls coverage/**/lcov.info |grep Firefox)
+  - cp coverage/**/lcov.info ./
+  - codeclimate-test-reporter < lcov.info
   - bithound check git@github.com:1twitif/social-viz.git
-  - ./node_modules/.bin/codacy-coverage < (ls coverage/**/lcov.info |grep Firefox)
+  - ./node_modules/.bin/codacy-coverage < lcov.info
