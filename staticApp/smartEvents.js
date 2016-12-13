@@ -13,8 +13,8 @@ define([], () => {
 				if (e.type === eventName) callbackOrEventSender(callback, e);
 			} else if (!viewedId[e.detail.id]) {
 				const eventNameFraments = occurrenceMap(eventName);
-				for(let frament in eventNameFraments) {
-					if(e.detail.eventFullName.indexOf(frament) !== -1) eventNameFraments[frament]--;
+				for(let fragment in eventNameFraments) {
+					if(e.detail.eventFullName.indexOf(fragment) !== -1) eventNameFraments[fragment]--;
 				}
 				if (!sumValuesOf(eventNameFraments)){
 					viewedId[e.detail.id] = true;

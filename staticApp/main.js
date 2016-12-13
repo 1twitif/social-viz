@@ -18,7 +18,8 @@ requirejs([
 	formLoader.init();
 	ui.init();
 
-	console.log('chargement terminé')
+	console.log('chargement terminé');
+	//console.log('config diffusée'); (catch init event mais si chargé trop tard, va demander après coup lors de l'évènement disant que tout est chargé)
 	}
 );
 
