@@ -8,11 +8,9 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			app.convert(inputData);
 			expect(dummyCallback).toHaveBeenCalledWith(expected);
 		});
-		it('loadFile', () => {
-			const dummyCallback = new Spy();
-			ev.on('file.ready', dummyCallback);
+		it('loadFile', (done) => {
+			ev.on('file.ready', done);
 			app.load('/base/staticApp/ymlTools.js');
-			setTimeout(()=>expect(dummyCallback).toHaveBeenCalled(),200);
 		});
 		it('eventAggregator test', () => {
 			const dummyCallback = new Spy();

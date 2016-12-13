@@ -6,7 +6,9 @@ module.exports = function(config) {
     frameworks: ['jasmine', 'requirejs'],
     files: [
 	    //{pattern: 'allData/**/*.yml', included: false},
-	    {pattern: 'staticApp/**/*.yml', included: false},
+			{pattern: 'staticApp/**/*.yml', included: false},
+			{pattern: 'node_modules/d3/build/d3.js', included: false},
+			{pattern: 'node_modules/js-yaml/dist/js-yaml.js', included: false},
 
 	    {pattern: 'staticApp/**/*.js', included: false},
 	    '.config/test-main.js'

@@ -1,9 +1,13 @@
 const allTestFiles = [];
 const TEST_REGEXP = /(spec|test)\.js$/i;
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 200;
 function Spy(name) {
 	this.spy = jasmine.createSpy(name?name:'dummy');
 	return this.spy;
+}
+function later(func) {
+	setTimeout(func,100);
 }
 // Get a list of all the test files to include
 Object.keys(window.__karma__.files).forEach(function (file) {
@@ -17,10 +21,6 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 });
 
 require.config({
-	paths: {
-		'node_modules/js-yaml/dist/js-yaml': 'http://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.min',
-		'node_modules/d3/build/d3': 'http://d3js.org/d3.v4.min'
-	},
   // Karma serves files under /base, which is the basePath from your config file
   baseUrl: '/base',
 
