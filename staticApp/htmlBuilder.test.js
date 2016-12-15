@@ -42,5 +42,34 @@ define(['./htmlBuilder'], (app) => {
 				expect(langPicker.lang.value).toBe('fr');
 			});
 		});
+		describe('addNodeTo variations', () => {
+			let id, me, here;
+			beforeEach(() => {
+				id = "myId";
+				me = app.buildNode('div');
+				me.id = id;
+				here = document.createElement('section');
+			});
+			it('addOrReplace', () => {
+				expect(here.querySelector("div#"+id)).toBeFalsy();
+				app.addOrReplace(me, here);
+				expect(here.querySelector("div#"+id)).toBeTruthy();
+				me = app.buildNode('span');
+				me.id = id;
+				app.addOrReplace(me, here);
+				expect(here.querySelector("div#"+id)).toBeFalsy();
+				expect(here.querySelector("span#"+id)).toBeTruthy();
+			});
+			it('addOnce', () => {
+				expect(here.querySelector("div#"+id)).toBeFalsy();
+				app.addOnce(me, here);
+				expect(here.querySelector("div#"+id)).toBeTruthy();
+				me = app.buildNode('span');
+				me.id = id;
+				app.addOnce(me, here);
+				expect(here.querySelector("div#"+id)).toBeTruthy();
+				expect(here.querySelector("span#"+id)).toBeFalsy();
+			});
+		});
 	});
 });

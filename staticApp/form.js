@@ -166,9 +166,7 @@ define([
 		entrySpecificityFuncs['from'] = (node, entry) => {
 			const id = dataListId(entry.from);
 			node.setAttribute('list', id);
-			const exist = document.getElementById(id);
-			if (exist) exist.parentNode.removeChild(exist);
-			document.body.appendChild(buildDataList(entry));
+			htmlBuilder.addOrReplace(buildDataList(entry),document.body);
 		};
 		entrySpecificityFuncs['required'] = (node, entry) => {
 			node.setAttribute('required', entry.required);

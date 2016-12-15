@@ -27,6 +27,14 @@ define([
 		}
 		return form;
 	}
+	function addOrReplace(me,here){
+		const used = here.querySelector('#'+me.id);
+		if(used)here.removeChild(used);
+		here.appendChild(me);
+	}
+	function addOnce(me,here){
+		if(!here.querySelector('#'+me.id)) here.appendChild(me);
+	}
 
-	return {buildNode, buildLangPicker}
+	return {buildNode, buildLangPicker, addOrReplace, addOnce}
 });
