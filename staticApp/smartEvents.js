@@ -26,6 +26,16 @@ define([], () => {
 		listen();
 		return {destroy: build_fragmentDestroyer(eventName, listenerCallback)};
 	}
+	function need(name,callback){
+		const oneShotReady = on(name+'.ready',internalCallBack);
+		const oneShotAsked = on(name+'.asked',internalCallBack);
+		function internalCallBack(res) {
+			oneShotAsked.destroy();
+			oneShotReady.destroy();
+			callback(res);
+		}
+		send('need.'+name);
+	}
 
 	function after(eventList,callbackOrEvent){
 		const eventsTriggerMap = occurrenceMap(eventList);
@@ -92,6 +102,7 @@ define([], () => {
 	return {
 		send,
 		on,
+		need,
 		after,
 		clickOn,
 		callbackOrEventSender

@@ -6,9 +6,6 @@ function Spy(name) {
 	this.spy = jasmine.createSpy(name?name:'dummy');
 	return this.spy;
 }
-function later(func) {
-	setTimeout(func,100);
-}
 // Get a list of all the test files to include
 Object.keys(window.__karma__.files).forEach(function (file) {
   if (TEST_REGEXP.test(file)) {

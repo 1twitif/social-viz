@@ -1,12 +1,13 @@
 define([
 	'./smartEvents',
 	'./stringTools',
+	'./htmlBuilder',
 	'./languageLoader',
 	'./structManipulation',
 	'./MonitoredStruct'
-], (ev, strTools, langTools) => {
+], (ev, strTools, htmlBuilder,langTools) => {
 	'use strict';
-	const on = ev.on, send = ev.send, t = langTools.t;
+	const on = ev.on, send = ev.send, t = langTools.t, buildNode = htmlBuilder.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
 	function Form(tempateJson, data) {
 		const formObject = this;
@@ -86,14 +87,6 @@ define([
 			const label = buildNode('label', 'id');
 			label.appendChild(idNode);
 			return label;
-		}
-
-		function buildNode(tag, textContent) {
-			const node = document.createElement(tag);
-			if (tag === 'input') node.value = textContent;
-			else if (tag === 'textarea') node.innerText = textContent;
-			else node.innerText = t(textContent);
-			return node;
 		}
 
 		function buildEntry(rawEntry, dataId) {

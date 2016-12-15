@@ -111,6 +111,25 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback2.calls.count()).toBe(1);
 			expect(dummyCallback3.calls.count()).toBe(1);
 		});
+
+		it('need available thing', (done) => {
+			app.on('need.config', ()=>app.send('config.asked'));
+			app.need('config',done);
+		});
+		it('need futur thing', (done) => {
+			app.need('config',done);
+			app.send('config.ready');
+		});
+		it('need trigger only once', () => {
+			const dummyCallback = new Spy();
+			app.on('need.config', ()=>app.send('config.asked'));
+			app.need('config',dummyCallback);
+			app.send('config.ready');
+			app.send('config.ready');
+			expect(dummyCallback.calls.count()).toBe(1);
+		});
+
+
 		it('callback after an event list reached', () => {
 			const dummyCallback = new Spy();
 			app.after('a b c d.e f g', dummyCallback);
