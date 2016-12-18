@@ -36,6 +36,14 @@ define([], () => {
 		}
 		send('need.'+name);
 	}
+	function give(triggerName,givable){
+		const getter = mustBeAFunc(givable);
+		on("need."+triggerName,()=>send(triggerName+".asked", getter()));
+		send(triggerName+".ready", getter());
+	}
+	function mustBeAFunc(dataOrFunc){
+		return typeof dataOrFunc === "function" ? dataOrFunc : () => dataOrFunc;
+	}
 
 	function after(eventList,callbackOrEvent){
 		const eventsTriggerMap = occurrenceMap(eventList);
@@ -103,6 +111,7 @@ define([], () => {
 		send,
 		on,
 		need,
+		give,
 		after,
 		clickOn,
 		callbackOrEventSender

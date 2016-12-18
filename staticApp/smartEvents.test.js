@@ -129,6 +129,22 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback.calls.count()).toBe(1);
 		});
 
+		it('give send givable when called', (done) => {
+			app.on('callGivable.ready', done);
+			app.give('callGivable','someConfig');
+		});
+		it('give send givable when asked by event', (done) => {
+			app.give('askedGivable','someConfig');
+			app.need('askedGivable',done);
+		});
+		it('give send givable return if givable is a function', (done) => {
+			const g = {};
+			function getG(){return g;}
+			app.give('funcGivable',getG);
+			g.update = true;
+			app.need('funcGivable', (res)=> res.update ? done() :0 );
+		});
+
 
 		it('callback after an event list reached', () => {
 			const dummyCallback = new Spy();
