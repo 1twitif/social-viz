@@ -19,9 +19,11 @@ define([
 		while(tradPaths.length) tradPaths.pop();
 	}
 
-	function init(){
-		setTradPath("staticApp/lang/");
-		setTradPath("allData/lang/");
+	function init(config){
+		if(!config) return ev.need('config',init);
+		for(let i in config.traductionFilesPath) setTradPath(config.traductionFilesPath[i]);
+		ev.give('tradLoader', { loadTrad, getTradData } );
+		send('tradLoader.conf.ok');
 	}
 
 	function setTradPath(tradPath){
@@ -63,6 +65,5 @@ define([
 	function getTradData(){
 		return activeTradData;
 	}
-
-	return { init, reset, setTradPath, loadTrad, getTradData };
+	return { init, reset, loadTrad, getTradData };
 });

@@ -4,7 +4,7 @@ require.config({map: {
 		"staticApp/tradLoader": {"staticApp/ymlTools":"mock/ymlTools"}
 }});
 // test
-define(['staticApp/tradLoader'], (app) => {
+define(['./tradLoader','./smartEvents'], (app,ev) => {
 	describe('tradLoader', () => {
 		beforeEach(function() {
 			app.reset();
@@ -15,20 +15,30 @@ define(['staticApp/tradLoader'], (app) => {
 			app.loadTrad('fr');
 			expect(app.getTradData()).toBeTruthy();
 		});
+		it('usage externe asynchrone', (done) => {
+			app.init();
+			ev.give('config',{});
+			ev.need('tradLoader',(initialisedApp)=>{
+				expect(initialisedApp.getTradData()).toBeFalsy();
+				initialisedApp.loadTrad('fr');
+				expect(initialisedApp.getTradData()).toBeTruthy();
+				done();
+			});
+		});
 		it("chargement avec fichier", () => {
-			app.setTradPath("path/");
+			app.init({traductionFilesPath:["path/"]});
 			expect(app.getTradData()).toBeFalsy();
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');
 		});
 		it("chargement avec fichier et modification locale", () => {
-			app.setTradPath("path/");
+			app.init({traductionFilesPath:["path/"]});
 			localStorage.setItem('trad.fr',JSON.stringify({'key':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('toto');
 		});
 		it("chargement avec fichier et ajout local", () => {
-			app.setTradPath("path/");
+			app.init({traductionFilesPath:["path/"]});
 			localStorage.setItem('trad.fr',JSON.stringify({'k2':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');
