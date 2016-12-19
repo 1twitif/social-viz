@@ -18,6 +18,9 @@ supportedLanguages:
   - en
   - fr
   - es
+traductionFilesPaths:
+  - "staticApp/lang/"
+  - "allData/lang/"
 nodeBaseRadius: 32
 nodeMinRatio: 0.75
 nodeMaxRatio: 2

@@ -6,9 +6,11 @@ require.config({map: {
 // test
 define(['./tradLoader','./smartEvents'], (app,ev) => {
 	describe('tradLoader', () => {
-		beforeEach(function() {
+		beforeEach((done)=>{
 			app.reset();
+			ev.reset();
 			localStorage.clear();
+			setTimeout(done,0);
 		});
 		it('chargement à vide', () => {
 			expect(app.getTradData()).toBeFalsy();
@@ -26,19 +28,19 @@ define(['./tradLoader','./smartEvents'], (app,ev) => {
 			});
 		});
 		it("chargement avec fichier", () => {
-			app.init({traductionFilesPath:["path/"]});
+			app.init({traductionFilesPaths:["path/"]});
 			expect(app.getTradData()).toBeFalsy();
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');
 		});
 		it("chargement avec fichier et modification locale", () => {
-			app.init({traductionFilesPath:["path/"]});
+			app.init({traductionFilesPaths:["path/"]});
 			localStorage.setItem('trad.fr',JSON.stringify({'key':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('toto');
 		});
 		it("chargement avec fichier et ajout local", () => {
-			app.init({traductionFilesPath:["path/"]});
+			app.init({traductionFilesPaths:["path/"]});
 			localStorage.setItem('trad.fr',JSON.stringify({'k2':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');
