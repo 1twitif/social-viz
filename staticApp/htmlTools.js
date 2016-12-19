@@ -36,5 +36,19 @@ define([
 		if(!here.querySelector('#'+me.id)) here.appendChild(me);
 	}
 
-	return {buildNode, buildLangPicker, addOrReplace, addOnce}
+	function applySelectiveClassOnNodes(nodes, className, condition) {
+		let appliedTimes = 0;
+		for (let i in nodes) {
+			if (nodes.hasOwnProperty(i)) {
+				const n = nodes[i];
+				if (condition(n)) {
+					appliedTimes++;
+					n.classList.add(className);
+				} else n.classList.remove(className);
+			}
+		}
+		return appliedTimes;
+	}
+
+	return {buildNode, buildLangPicker, addOrReplace, addOnce, applySelectiveClassOnNodes}
 });

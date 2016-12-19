@@ -10,7 +10,7 @@ require.config({map: {
 // test
 define(['./tradChooser', './smartEvents'], (app, ev) => {
 	beforeEach(() => {
-		ev.on('need.config',()=>ev.send('config.asked',{"supportedLanguages":['en','fr','ca']}));
+		//ev.give('config',{"supportedLanguages":['en','fr','ca']});
 		//document.body.setAttribute('id','langPicker'); // utiliser addOrReplace
 	});
 

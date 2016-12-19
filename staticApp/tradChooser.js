@@ -1,9 +1,9 @@
 define([
 	'./smartEvents',
-	'./htmlBuilder',
+	'./htmlTools',
 	'./tradRenderer',
 	'./tradLoader'
-], (ev, htmlB, tradR, tradL) => {
+], (ev, htmlTools, tradR, tradL) => {
 	'use strict';
 	const on = ev.on, send = ev.send, need = ev.need, after = ev.after, t = tradR.t;
 
@@ -11,21 +11,6 @@ define([
 
 	//TODO: adapter à gettext et weblate
 	// ressources bonus : http://i18next.com/ http://slexaxton.github.io/Jed/ http://l10ns.org/
-
-	//FIXME: ranger ça ailleurs
-	function applySelectiveClassOnNodes(nodes, className, condition) {
-		let appliedTimes = 0;
-		for (let i in nodes) {
-			if (nodes.hasOwnProperty(i)) {
-				const n = nodes[i];
-				if (condition(n)) {
-					appliedTimes++;
-					n.classList.add(className);
-				} else n.classList.remove(className);
-			}
-		}
-		return appliedTimes;
-	}
 
 	function getValidLang() {
 		let lang = localStorage.getItem('lang') || navigator.language;
@@ -54,7 +39,7 @@ define([
 	}
 	function updateLangPicker(lang) {
 		const htmlLangOptions = document.querySelectorAll('#langPicker option');
-		applySelectiveClassOnNodes(htmlLangOptions, 'selected', (n) => n.value === lang);
+		htmlTools.applySelectiveClassOnNodes(htmlLangOptions, 'selected', (n) => n.value === lang);
 	}
 
 	function updateLang() {

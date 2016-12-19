@@ -1,9 +1,9 @@
 // mocks
 define( 'mock/tradRenderer', ()=>{ return { t: (translateMe)=>translateMe+'-TRAD-OK' }; } );
-require.config({ map: { "staticApp/htmlBuilder": { "staticApp/tradRenderer":"mock/tradRenderer" } } });
+require.config({ map: { "staticApp/htmlTools": { "staticApp/tradRenderer":"mock/tradRenderer" } } });
 // test
-define(['./htmlBuilder'], (app) => {
-	describe('htmlBuilder', () => {
+define(['./htmlTools'], (app) => {
+	describe('htmlTools', () => {
 		describe('buildNode', () => {
 			it('build usual node', () => {
 				const node = app.buildNode('p','Lorem ipsum');
@@ -71,5 +71,6 @@ define(['./htmlBuilder'], (app) => {
 				expect(here.querySelector("span#"+id)).toBeFalsy();
 			});
 		});
+		//TODO: test applySelectiveClassOnNodes
 	});
 });

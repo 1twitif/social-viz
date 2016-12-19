@@ -1,13 +1,13 @@
 define([
 	'./smartEvents',
 	'./stringTools',
-	'./htmlBuilder',
+	'./htmlTools',
 	'./languageLoader',
 	'./structManipulation',
 	'./MonitoredStruct'
-], (ev, strTools, htmlBuilder,langTools) => {
+], (ev, strTools, htmlTools,langTools) => {
 	'use strict';
-	const on = ev.on, send = ev.send, t = langTools.t, buildNode = htmlBuilder.buildNode;
+	const on = ev.on, send = ev.send, t = langTools.t, buildNode = htmlTools.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
 	function Form(tempateJson, data) {
 		const formObject = this;
@@ -166,7 +166,7 @@ define([
 		entrySpecificityFuncs['from'] = (node, entry) => {
 			const id = dataListId(entry.from);
 			node.setAttribute('list', id);
-			htmlBuilder.addOrReplace(buildDataList(entry),document.body);
+			htmlTools.addOrReplace(buildDataList(entry),document.body);
 		};
 		entrySpecificityFuncs['required'] = (node, entry) => {
 			node.setAttribute('required', entry.required);
