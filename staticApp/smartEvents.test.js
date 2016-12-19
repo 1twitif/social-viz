@@ -1,5 +1,8 @@
 define(['./smartEvents'], (app) => {
 	describe('smartEvents', () => {
+		beforeEach(()=>{
+			app.reset();
+		});
 		it('send & receive basic event', () => {
 			const dummyCallback = new Spy();
 			const eventName = 'anEvent';
@@ -143,6 +146,17 @@ define(['./smartEvents'], (app) => {
 			app.give('funcGivable',getG);
 			g.update = true;
 			app.need('funcGivable', (res)=> res.update ? done() :0 );
+		});
+		it('destroyable give', () => {
+			const dummyCallback = new Spy();
+			const first = app.give('config', 'firstConfig');
+			const second = app.give('config', 'secondConfig');
+			app.on('config.asked',dummyCallback);
+			app.send('need.config');
+			expect(dummyCallback.calls.count()).toBe(2);
+			first.destroy();
+			app.send('need.config');
+			expect(dummyCallback.calls.count()).toBe(3);
 		});
 
 

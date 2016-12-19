@@ -1,5 +1,9 @@
 define([], () => {
 	'use strict';
+	const allListeners = [];
+	function reset(){
+		while(allListeners.length) allListeners.pop().destroy();
+	}
 
 	function send(structuredEventName, eventData) {
 		const customEventDetail = {'eventFullName': structuredEventName, 'id': eventId(), 'data': eventData};
@@ -24,7 +28,9 @@ define([], () => {
 		};
 		const listen = build_fragmentListener(eventName, listenerCallback);
 		listen();
-		return {destroy: build_fragmentDestroyer(eventName, listenerCallback)};
+		const destroyer = {destroy: build_fragmentDestroyer(eventName, listenerCallback)};
+		allListeners.push(destroyer);
+		return destroyer;
 	}
 	function need(name,callback){
 		const oneShotReady = on(name+'.ready',internalCallBack);
@@ -38,8 +44,8 @@ define([], () => {
 	}
 	function give(triggerName,givable){
 		const getter = mustBeAFunc(givable);
-		on("need."+triggerName,()=>send(triggerName+".asked", getter()));
 		send(triggerName+".ready", getter());
+		return on("need."+triggerName,()=>send(triggerName+".asked", getter()));
 	}
 	function mustBeAFunc(dataOrFunc){
 		return typeof dataOrFunc === "function" ? dataOrFunc : () => dataOrFunc;
@@ -114,6 +120,7 @@ define([], () => {
 		give,
 		after,
 		clickOn,
-		callbackOrEventSender
+		callbackOrEventSender,
+		reset
 	}
 });
