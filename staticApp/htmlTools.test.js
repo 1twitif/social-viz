@@ -45,30 +45,39 @@ define(['./htmlTools'], (app) => {
 		describe('addNodeTo variations', () => {
 			let id, me, here;
 			beforeEach(() => {
+				here = document.createElement('section');
 				id = "myId";
 				me = app.buildNode('div');
 				me.id = id;
-				here = document.createElement('section');
 			});
-			it('addOrReplace', () => {
-				expect(here.querySelector("div#"+id)).toBeFalsy();
-				app.addOrReplace(me, here);
-				expect(here.querySelector("div#"+id)).toBeTruthy();
-				me = app.buildNode('span');
-				me.id = id;
-				app.addOrReplace(me, here);
-				expect(here.querySelector("div#"+id)).toBeFalsy();
-				expect(here.querySelector("span#"+id)).toBeTruthy();
+			describe("add new node", () =>{
+				it('with addOrReplace', () => {
+					expect(here.querySelector("div#"+id)).toBeFalsy();
+					app.addOrReplace(me, here);
+					expect(here.querySelector("div#"+id)).toBeTruthy();
+				});
+				it('with addOnce', () => {
+					expect(here.querySelector("div#"+id)).toBeFalsy();
+					app.addOnce(me, here);
+					expect(here.querySelector("div#"+id)).toBeTruthy();
+				});
 			});
-			it('addOnce', () => {
-				expect(here.querySelector("div#"+id)).toBeFalsy();
-				app.addOnce(me, here);
-				expect(here.querySelector("div#"+id)).toBeTruthy();
-				me = app.buildNode('span');
-				me.id = id;
-				app.addOnce(me, here);
-				expect(here.querySelector("div#"+id)).toBeTruthy();
-				expect(here.querySelector("span#"+id)).toBeFalsy();
+			describe("interact with allready taken id", () =>{
+				beforeEach(() => {
+					app.addOnce(me, here);
+					me = app.buildNode('span');
+					me.id = id;
+				});
+				it("don't replace existing node when use addOnce", () => {
+					app.addOnce(me, here);
+					expect(here.querySelector("div#"+id)).toBeTruthy();
+					expect(here.querySelector("span#"+id)).toBeFalsy();
+				});
+				it("replace existing node when use addOrReplace", () => {
+					app.addOrReplace(me, here);
+					expect(here.querySelector("div#"+id)).toBeFalsy();
+					expect(here.querySelector("span#"+id)).toBeTruthy();
+				});
 			});
 		});
 		//TODO: test applySelectiveClassOnNodes
