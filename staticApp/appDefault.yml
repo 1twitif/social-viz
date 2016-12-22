@@ -14,6 +14,11 @@ fixedNode:
   precisionXY: 2
 defaultPicto: staticApp/appImg/unknow.svg
 
+fps:
+  refreshEvery: 1 # seconds
+  sampleOn: 5 # seconds
+  decimals: 1
+  displayerId: fpsValue
 supportedLanguages:
   - en
   - fr
