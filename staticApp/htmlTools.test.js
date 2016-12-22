@@ -5,24 +5,24 @@ require.config({ map: { "staticApp/htmlTools": { "staticApp/tradRenderer":"mock/
 define(['./htmlTools'], (app) => {
 	describe('htmlTools', () => {
 		describe('buildNode', () => {
-			it('build usual node', () => {
-				const node = app.buildNode('p','Lorem ipsum');
+			it('build node of asked type', () => {
+				const node = app.buildNode('p');
 				expect(node.tagName.toLowerCase()).toBe('p');
+			});
+			it('build usual node with translated content', () => {
+				const node = app.buildNode('p','Lorem ipsum');
 				expect(node.innerText).toBe('Lorem ipsum-TRAD-OK');
 			});
-			it('build usual node with no content', () => {
+			it('build usual node with no content (so no dumb empty translation)', () => {
 				const node = app.buildNode('div');
-				expect(node.tagName.toLowerCase()).toBe('div');
 				expect(node.innerText).toBe('');
 			});
-			it('build input node', () => {
+			it("build input node and don't translate data", () => {
 				const node = app.buildNode('input','Lorem ipsum');
-				expect(node.tagName.toLowerCase()).toBe('input');
 				expect(node.value).toBe('Lorem ipsum');
 			});
-			it('build textArea node', () => {
+			it("build textArea node and don't translate data", () => {
 				const node = app.buildNode('textarea','Lorem ipsum');
-				expect(node.tagName.toLowerCase()).toBe('textarea');
 				expect(node.innerText).toBe('Lorem ipsum');
 			});
 		});

@@ -1,8 +1,8 @@
 define([
 	"./tradRenderer"
 ], (tradR) => {
-	const t = tradR.t;
 	'use strict';
+	const t = tradR.t;
 
 	function buildNode(tag, textContent) {
 		const node = document.createElement(tag);
