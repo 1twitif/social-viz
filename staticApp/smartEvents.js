@@ -50,7 +50,6 @@ define([], () => {
 	function mustBeAFunc(dataOrFunc){
 		return typeof dataOrFunc === "function" ? dataOrFunc : () => dataOrFunc;
 	}
-
 	function after(eventList,callbackOrEvent){
 		const eventsTriggerMap = occurrenceMap(eventList);
 		const aggregator = {};

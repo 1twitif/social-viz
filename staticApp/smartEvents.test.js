@@ -3,12 +3,10 @@ define(['./smartEvents'], (app) => {
 		beforeEach(()=>{
 			app.reset();
 		});
-		it('send & receive basic event', () => {
-			const dummyCallback = new Spy();
+		it('send & receive basic event', (done) => {
 			const eventName = 'anEvent';
-			app.on(eventName, dummyCallback);
+			app.on(eventName, done);
 			app.send(eventName);
-			expect(dummyCallback).toHaveBeenCalled();
 		});
 		it('event send & receive with data', () => {
 			const dummyCallback = new Spy();
@@ -69,11 +67,9 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName, eventData);
 			expect(subCallback).toHaveBeenCalledWith(eventData);
 		});
-		it('unordered part of structured event send & receive', () => {
-			const dummyCallback = new Spy();
-			app.on('global.sub any', dummyCallback);
+		it('unordered part of structured event send & receive', (done) => {
+			app.on('global.sub any', done);
 			app.send('any.global.sub.moreSpecific');
-			expect(dummyCallback).toHaveBeenCalled();
 		});
 		it('unordered part catch with standard change event', () => {
 			const dummyCallback = new Spy();
@@ -196,11 +192,9 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback.calls.count()).toBe(1);
 		});
 	});
-	it('simulateClick', () => {
-		const dummyCallback = new Spy();
-		app.on('click', dummyCallback);
+	it('simulateClick', (done) => {
+		app.on('click', done);
 		app.clickOn(window);
-		expect(dummyCallback).toHaveBeenCalled();
 	});
 	describe('callbackOrEventSender', () => {
 		it('call callback', () => {
