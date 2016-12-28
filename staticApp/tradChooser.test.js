@@ -43,5 +43,6 @@ define(['./tradChooser', './smartEvents'], (app, ev) => {
 			});
 			app.init();
 		});
+		//TODO: tester plus finement getValidLang
 	});
 });
