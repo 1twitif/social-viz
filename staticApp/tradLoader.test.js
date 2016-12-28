@@ -28,19 +28,19 @@ define(['./tradLoader','./smartEvents'], (app,ev) => {
 			});
 		});
 		it("chargement avec fichier", () => {
-			app.init({traductionFilesPaths:["path/"]});
+			app.init({trad:{traductionFilesPaths:["path/"]}});
 			expect(app.getTradData()).toBeFalsy();
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');
 		});
 		it("chargement avec fichier et modification locale", () => {
-			app.init({traductionFilesPaths:["path/"]});
+			app.init({trad:{traductionFilesPaths:["path/"]}});
 			localStorage.setItem('trad.fr',JSON.stringify({'key':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('toto');
 		});
 		it("chargement avec fichier et ajout local", () => {
-			app.init({traductionFilesPaths:["path/"]});
+			app.init({trad:{traductionFilesPaths:["path/"]}});
 			localStorage.setItem('trad.fr',JSON.stringify({'k2':'toto'}));
 			app.loadTrad('fr');
 			expect(app.getTradData()['key']).toEqual('value');

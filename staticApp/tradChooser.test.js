@@ -1,10 +1,8 @@
 // mocks
 define( 'mock/tradRenderer', ()=>{ return { t: (translateMe)=>translateMe+'-TRAD-OK' }; } );
-define( 'mock/tradLoader', ()=>{ return { t: (translateMe)=>'osef' }; } );
 require.config({map: {
 	"staticApp/tradChooser": {
-		"staticApp/tradRenderer":"mock/tradRenderer",
-		"staticApp/tradLoader":"mock/tradLoader"
+		"staticApp/tradRenderer":"mock/tradRenderer"
 	}
 }});
 // test
@@ -15,10 +13,35 @@ define(['./tradChooser', './smartEvents'], (app, ev) => {
 	});
 
 	describe('tradChooser', () => {
-		xit('le sélecteur de langue envoi un évènement au changement de langue', (done) => {
-			const langPicker = app.buildLangPicker(['en','fr','ca'], 'fr');
+		let anchor;
+		beforeEach((done)=>{
+			//app.reset();
+			ev.reset();
+			localStorage.clear();
+			anchor = document.body;
+			anchor.id = "langPicker";
+			ev.give('config',{trad:{supportedLanguages:['en','fr','ca'],langPickerId: anchor.id}});
+			setTimeout(done,0);
+		});
+		it('init envoi tradChooser.ready une fois chargé avec ses prérequis', (done) => {
+			ev.give('tradLoader',{loadTrad:()=>"osef"});
+			ev.on('tradChooser.ready',done);
+			app.init();
+		});
+		it('le sélecteur de langue envoi un évènement au changement de langue', (done) => {
+			ev.give('tradLoader',{loadTrad:()=>"osef"});
 			ev.on('ca lang change', done);
-			ev.clickOn(langPicker.querySelector('[value="ca"]'));
+			ev.on('tradChooser.ready',()=>{
+				ev.clickOn(anchor.querySelector('[value="ca"]'));
+			});
+			app.init();
+		});
+		it('quand on change de langue : déclanche le chargement de la langue adéquoite', (done) => {
+			ev.give('tradLoader',{loadTrad:done});
+			ev.on('tradChooser.ready',()=>{
+				ev.clickOn(anchor.querySelector('[value="ca"]'));
+			});
+			app.init();
 		});
 	});
 });

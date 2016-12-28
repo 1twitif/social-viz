@@ -1,13 +1,13 @@
 define([
 	'./smartEvents',
 	'./htmlTools',
-	'./tradRenderer',
-	'./tradLoader'
-], (ev, htmlTools, tradR, tradL) => {
+	'./tradRenderer'
+], (ev, htmlTools, tradR) => {
 	'use strict';
-	const on = ev.on, send = ev.send, need = ev.need, after = ev.after, t = tradR.t;
+	const on = ev.on, send = ev.send, need = ev.need, t = tradR.t;
 
-	let validLanguages = [], lang, langData = {}, oldLang, oldLangData;
+	let validLanguages = [], langPickerId, lang, langData = {}, oldLang, oldLangData;
+	let tradLoader;
 
 	//TODO: adapter à gettext et weblate
 	// ressources bonus : http://i18next.com/ http://slexaxton.github.io/Jed/ http://l10ns.org/
@@ -21,53 +21,37 @@ define([
 
 	function init() {
 		listenerInit();
-		need('config',(config)=>{
-			validLanguages = config.supportedLanguages;
-			send('lang.conf.ok');
-		});
-		after(['lang.conf.ok'],()=>{
+		ev.after(['tradChooser.conf.ok','tradChooser.tradLoader.ok'],()=>{
 			send('lang.change', getValidLang());
-			send('lang.ready');
+			send('tradChooser.ready');
+		});
+		need('config',(config)=>{
+			validLanguages = config.trad.supportedLanguages;
+			langPickerId = config.trad.langPickerId;
+			send('tradChooser.conf.ok');
+		});
+		need('tradLoader',(tradL)=>{
+			tradLoader = tradL;
+			send('tradChooser.tradLoader.ok');
+		});
 
-		})
 	}
 	function listenerInit() {
-		document.getElementById('langPicker').addEventListener('change', changeLang);
-		// TODO : langPicker -> radio plutôt que select
 		on('lang.change', updateLangPicker);
 		on('lang.change', updateLang);
 	}
 	function updateLangPicker(lang) {
-		const htmlLangOptions = document.querySelectorAll('#langPicker option');
-		htmlTools.applySelectiveClassOnNodes(htmlLangOptions, 'selected', (n) => n.value === lang);
+		const langPicker = htmlTools.buildLangPicker(validLanguages,lang);
+		langPicker.addEventListener('change', (e)=>changeLang(e.target.value));
+		const anchor = document.getElementById(langPickerId);
+		htmlTools.addOrReplace(langPicker,anchor);
 	}
 
-	function updateLang() {
-		oldLang = lang;
-		// find language to use in supported ones ( and update langPicker )
-		lang = getValidLang();
-
-		// loadLangData
-		//FIXME: loader stuff
-		if (oldLang !== lang)
-			ymlTools.loadMerge([
-				"staticApp/lang/" + lang + ".yml",
-				"allData/lang/" + lang + ".yml"
-			], (data) => {
-				applyLocalTrad(data);
-
-			});
-		else {
-			applyLocalTrad();
-			send('lang.update', lang);
-		}
-	}
-
-	function applyLocalTrad(data) {
-		oldLangData = langData;
-		let localTrad = loadLocalTrad();
-		langData = merge(data || langData, localTrad);
-		langBrutalSwitch();
+	function updateLang(lang) {
+		tradLoader.loadTrad(lang);
+		// event -> tradChargé -> écouté par tradRenderer pour mettre à jour sa tard.
+		//langBrutalSwitch(); // TODO : déplacer dans tradRenderer (et peutêtre rendre moins brutal)
+		send('lang.updated', lang);
 	}
 
 	function langBrutalSwitch() {
@@ -92,8 +76,7 @@ define([
 		}
 	}
 
-	function changeLang(n) {
-		const newLang = n.target.value;
+	function changeLang(newLang) {
 		localStorage.setItem('lang', newLang);
 		send(newLang+'.lang.change', newLang);
 	}

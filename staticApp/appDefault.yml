@@ -19,13 +19,15 @@ fps:
   sampleOn: 5 # seconds
   decimals: 1
   displayerId: fpsValue
-supportedLanguages:
-  - en
-  - fr
-  - es
-traductionFilesPaths:
-  - "staticApp/lang/"
-  - "allData/lang/"
+trad:
+  langPickerId: langPicker
+  supportedLanguages:
+    - en
+    - fr
+    - es
+  traductionFilesPaths:
+    - "staticApp/lang/"
+    - "allData/lang/"
 nodeBaseRadius: 32
 nodeMinRatio: 0.75
 nodeMaxRatio: 2

@@ -21,7 +21,8 @@ define([
 
 	function init(config){
 		if(!config) return ev.need('config',init);
-		for(let i in config.traductionFilesPaths) setTradPath(config.traductionFilesPaths[i]);
+		if (config.trad && config.trad.traductionFilesPaths)
+			for(let i in config.trad.traductionFilesPaths) setTradPath(config.trad.traductionFilesPaths[i]);
 		ev.give('tradLoader', { loadTrad, getTradData } );
 		send('tradLoader.conf.ok');
 	}
