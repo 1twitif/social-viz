@@ -1,53 +1,26 @@
 define(['./conditionEvaluator'], (app) => {
 	describe('conditionEvaluator', () => {
 		describe('opérandes', () => {
-			it("=", () => {
-				expect(app.evaluate("1 = 1")).toBe(true);
-				expect(app.evaluate("1 = 0")).toBe(false);
-				expect(app.evaluate("bob = bob")).toBe(true);
-				expect(app.evaluate("bob = notBob")).toBe(false);
-			});
-			it("!=", () => {
-				expect(app.evaluate("1 != 0")).toBe(true);
-				expect(app.evaluate("1 != 1")).toBe(false);
-			});
-			it("*=", () => {
-				expect(app.evaluate("marjorie *= jo")).toBe(true);
-				expect(app.evaluate("marjorie *= ja")).toBe(false);
-			});
-			it("^=", () => {
-				expect(app.evaluate("john ^= jo")).toBe(true);
-				expect(app.evaluate("marjorie ^= jo")).toBe(false);
-			});
-			it("$=", () => {
-				expect(app.evaluate("barjo $= jo")).toBe(true);
-				expect(app.evaluate("marjorie $= jo")).toBe(false);
-			});
-			it("<", () => {
-				expect(app.evaluate("9 < 11")).toBe(true);
-				expect(app.evaluate("9 < 9")).toBe(false);
-				expect(app.evaluate("101 < 11")).toBe(false);
-			});
-			it("<=", () => {
-				expect(app.evaluate("9 <= 11")).toBe(true);
-				expect(app.evaluate("9 <= 9")).toBe(true);
-				expect(app.evaluate("101 <= 11")).toBe(false);
-			});
-			it(">", () => {
-				expect(app.evaluate("11 > 9")).toBe(true);
-				expect(app.evaluate("9 > 9")).toBe(false);
-				expect(app.evaluate("11 > 101")).toBe(false);
-			});
-			it(">=", () => {
-				expect(app.evaluate("11 >= 9")).toBe(true);
-				expect(app.evaluate("9 >= 9")).toBe(true);
-				expect(app.evaluate("11 >= 101")).toBe(false);
-			});
+			const testCases = {
+				"1 = 1": true,          "1 = 0": false,
+				"bob = bob": true,      "bob = notBob": false,
+				"1 != 0": true,         "1 != 1": false,
+				"marjorie *= jo": true, "marjorie *= ja": false,
+				"john ^= jo": true,     "marjorie ^= jo": false,
+				"barjo $= jo": true,    "marjorie $= jo": false,
+				"9 < 11": true,  "9 < 9": false, "101 < 11": false,
+				"9 <= 11": true, "9 <= 9": true, "101 <= 11": false,
+				"11 > 9": true,  "9 > 9": false, "11 > 101": false,
+				"11 >= 9": true, "9 >= 9": true, "11 >= 101": false
+			};
+			for (let test in testCases) {
+				it(test, () => expect(app.evaluate(test)).toBe(testCases[test]));
+			}
 		});
 		describe("comparaison dynamique", () => {
 			it(">=", () => {
-				expect(app.evaluate("stock > 1",{"stock":2})).toBe(true);
-				expect(app.evaluate("stock > 1",{"stock":1})).toBe(false);
+				expect(app.evaluate("stock > 1", {"stock": 2})).toBe(true);
+				expect(app.evaluate("stock > 1", {"stock": 1})).toBe(false);
 			});
 			it("gèrer les conditions faisant référence à d'autres entitées", () => {
 				const dataBase = {
@@ -56,8 +29,8 @@ define(['./conditionEvaluator'], (app) => {
 						{'id': 'node-2', 'type': 'not-lambda'}
 					]
 				};
-				expect(app.evaluate("source.type = lambda",{"source":"node-1"},dataBase)).toBe(true);
-				expect(app.evaluate("source.type = lambda",{"source":"node-2"},dataBase)).toBe(false);
+				expect(app.evaluate("source.type = lambda", {"source": "node-1"}, dataBase)).toBe(true);
+				expect(app.evaluate("source.type = lambda", {"source": "node-2"}, dataBase)).toBe(false);
 			});
 			it("gèrer les conditions faisant référence à d'autres entitées en cascade", () => {
 				const dataBase = {
@@ -74,12 +47,12 @@ define(['./conditionEvaluator'], (app) => {
 						{'id': 'state-5', 'latitude': 5}
 					]
 				};
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":""},dataBase)).toBe(false);
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":"citizen-1"},dataBase)).toBe(false);
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":"citizen-2"},dataBase)).toBe(false);
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":"citizen-3"},dataBase)).toBe(false);
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":"citizen-4"},dataBase)).toBe(true);
-				expect(app.evaluate("citizen.state.latitude > 20",{"citizen":"citizen-5"},dataBase)).toBe(false);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": ""}, dataBase)).toBe(false);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": "citizen-1"}, dataBase)).toBe(false);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": "citizen-2"}, dataBase)).toBe(false);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": "citizen-3"}, dataBase)).toBe(false);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": "citizen-4"}, dataBase)).toBe(true);
+				expect(app.evaluate("citizen.state.latitude > 20", {"citizen": "citizen-5"}, dataBase)).toBe(false);
 			});
 		});
 	});
