@@ -2,10 +2,9 @@ define([
 	'./smartEvents',
 	'./stringTools',
 	'./htmlTools',
-	'./languageLoader',
-	'./structManipulation',
-	'./MonitoredStruct'
-], (ev, strTools, htmlTools,langTools) => {
+	'./conditionEvaluator',
+	'./languageLoader'
+], (ev, strTools, htmlTools,condiEval, langTools) => {
 	'use strict';
 	const on = ev.on, send = ev.send, t = langTools.t, buildNode = htmlTools.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
@@ -121,7 +120,8 @@ define([
 			return ()=>{
 				const ifAnchor = document.getElementById(ifId);
 				const formNode = getAncestor(ifAnchor,'form');
-				if(isConditionOk(ifTemplate.condition,formNode)){
+				const formData = domForm2json(formNode);
+				if( condiEval.evaluate(ifTemplate.condition, formData, formObject.data, formObject.template) ){
 					if(!ifAnchor.innerHTML){
 						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], config.selected));
 						send('form.if.displayed', ifId);
@@ -130,21 +130,6 @@ define([
 					ifAnchor.innerHTML = '';
 				}
 			}
-		}
-
-		function isConditionOk(condition,formNode){
-			const operand = operandFinder(condition);
-			const conditionPart = condition.split(operand);
-			const dataRef = conditionPart[0].trim();
-			const expectedValue = conditionPart[1].trim();
-			return operands[operand](followRef(dataRef, formNode), expectedValue);
-		}
-		function followRef(dataRef,formNode){
-			const refParts = dataRef.split('.');
-			let ref = refParts.shift();
-			let linkedData = formNode[ref].value;
-			while(ref = refParts.shift()) linkedData = findData(linkedData)[ref];
-			return linkedData;
 		}
 		const ifTriggerList = {};
 		function registerIfTrigger(ifTrigger,ifId){
@@ -228,14 +213,18 @@ define([
 			if (!formObject.data[extractType(id)]) formObject.data[extractType(id)] = [];
 			const data = findData(id);
 			if (!data.id) {
-				const formInputs = formNode.querySelectorAll('input,textarea');
-				const newEntity = {};
-				for (let i = 0; i < Object.keys(formInputs).length; i++)
-					if (formInputs[i].value) newEntity[formInputs[i].name] = formInputs[i].value;
+				const newEntity = domForm2json(formNode);
 				formObject.data[extractType(id)].push(newEntity);
 				send('new.data.' + extractType(id), id)
 			}
 			data[key] = value;
+		}
+		function domForm2json(formNode){
+			const formInputs = formNode.querySelectorAll('input,textarea');
+			const json = {};
+			for (let i = 0; i < Object.keys(formInputs).length; i++)
+				if (formInputs[i].value) json[formInputs[i].name] = formInputs[i].value;
+			return json;
 		}
 
 		function findData(dataId) {
@@ -303,28 +292,6 @@ define([
 
 	function dataListId(rawStringId) {
 		return strTools.clean('dataList-' + rawStringId);
-	}
-
-	const operands = {};
-	operands['='] = (a,b)=> a === b;
-	operands['!='] = (a,b)=> a !== b;
-	operands['>='] = (a,b)=> parseFloat(a) >= parseFloat(b);
-	operands['<='] = (a,b)=> parseFloat(a) <= parseFloat(b);
-	operands['>'] = (a,b)=> parseFloat(a) > parseFloat(b);
-	operands['<'] = (a,b)=> parseFloat(a) < parseFloat(b);
-	operands['^='] = (a,b)=> a.substring(0,b.length) === b;
-	operands['$='] = (a,b)=> a.substr(-b.length) === b;
-	operands['*='] = (a,b)=> a.indexOf(b) !== -1;
-
-	function escapeRegExp(string) {
-		return string.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&');
-	}
-
-	function operandFinder(condition){
-		let tabKey = [];
-		for(let operand in operands) tabKey.push(escapeRegExp(operand));
-		const regexp = new RegExp('('+tabKey.join('|')+')');
-		return condition.match(regexp)[0];
 	}
 
 	return {Form};
