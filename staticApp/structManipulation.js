@@ -6,6 +6,7 @@ define([], () => {
 	}
 
 	function merge(baseJson, overwritingJson) {
+		if(typeof baseJson !== "object") return clone(overwritingJson);
 		let res = clone(baseJson);
 		for (let key in overwritingJson) {
 			if (typeof overwritingJson[key] === "object" && typeof res[key] !== 'undefined') {
@@ -20,13 +21,13 @@ define([], () => {
 		let mergedData = {};
 		for (let i in orderedKey) {
 			let key = orderedKey[i];
-			if (typeof map[key] === "object") mergedData = merge(mergedData, map[key]);
+			mergedData = merge(mergedData, map[key]);
 		}
 		return mergedData;
 	}
 
 	function isEmpty(thing) {
-		if (thing === 0) return false;
+		if (thing === 0 || thing === false) return false;
 		if (typeof thing !== "object") return !thing;
 		return JSON.stringify(thing) === '{}' || JSON.stringify(thing) === '[]';
 	}

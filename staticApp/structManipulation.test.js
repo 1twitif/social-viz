@@ -6,6 +6,9 @@ define(['./structManipulation'], (app) => {
 		it('merge nested objects', () => {
 			expect(app.merge([{a: 1, b: 2}], [{b: 3, c: 4}])).toEqual([{a: 1, b: 3, c: 4}]);
 		});
+		it('merge correctly overwrite', () => {
+			expect(app.merge({a: 1, b: 2}, {b: []})).toEqual({a: 1, b: []});
+		});
 		it('merge inOrder', () => {
 			const orderedKey = ['bob', 'alice', 'john'];
 			const map = {
@@ -47,6 +50,16 @@ define(['./structManipulation'], (app) => {
 		it('cleanJson on more nested json', () => {
 			let data = [{}, {}, {}, {}];
 			let expected = [];
+			expect(app.cleanJson(data)).toEqual(expected);
+		});
+		it('for cleanJson 0 is not null', () => {
+			let data = [0];
+			let expected = [0];
+			expect(app.cleanJson(data)).toEqual(expected);
+		});
+		it('for cleanJson false is not null', () => {
+			let data = [false];
+			let expected = [false];
 			expect(app.cleanJson(data)).toEqual(expected);
 		});
 	});
