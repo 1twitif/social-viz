@@ -10,6 +10,10 @@ define([
 	let urlHashStore;
 	let config;
 
+	function reset(){
+		urlHashStore = false;
+		config = false;
+	}
 	function init() {
 		listenerInit();
 		ymlTools.loadMerge(['staticApp/appDefault.yml', 'allData/config.yml'], 'config.default');
@@ -20,7 +24,6 @@ define([
 		on('urlHashStore.ready', completeConfigWithUrlHashStore);
 		on('config delete', 'config.change');
 		on('config change', storeConfig);
-		on('config.ready', setConfig);
 	}
 
 	function initUrlHashStore(defaultConfig) {
@@ -30,7 +33,8 @@ define([
 
 	function completeConfigWithUrlHashStore(url) {
 		const fullConfig = new mStruct.MonitoredStruct(url.load(), 'config');	// init options from url hash
-		send('config.ready', fullConfig);
+		setConfig(fullConfig);
+		ev.give("config",getConfig);
 	}
 
 	function storeConfig(config) {
@@ -46,6 +50,7 @@ define([
 	}
 
 	return {
+		reset,
 		getConfig,
 		init
 	}
