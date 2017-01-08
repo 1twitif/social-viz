@@ -26,6 +26,10 @@ define([], () => {
 		return mergedData;
 	}
 
+	function isNullEmpty(thing) {
+		if(thing === null) return true;
+		return isEmpty(thing);
+	}
 	function isEmpty(thing) {
 		if (thing === 0 || thing === false) return false;
 		if (typeof thing !== "object") return !thing;
@@ -33,15 +37,17 @@ define([], () => {
 	}
 
 	function cleanJson(json) {
+		if(json === null) return json;
+		if(typeof json !== "object") return json;
 		if (Array.isArray(json)) {
 			for (let i = json.length - 1; i >= 0; i--) {
 				if (typeof json[i] === 'object') json[i] = cleanJson(json[i]);
-				if (isEmpty(json[i])) json.splice(i, 1);
+				if (isNullEmpty(json[i])) json.splice(i, 1);
 			}
 		}
 		else for (let key in json) {
 			if (typeof json[key] === 'object') json[key] = cleanJson(json[key]);
-			if (isEmpty(json[key])) delete json[key];
+			if (isNullEmpty(json[key])) delete json[key];
 		}
 		return json;
 	}
@@ -50,12 +56,24 @@ define([], () => {
 		let res = clone(json);
 		for (let key in defaultJson) {
 			if (typeof defaultJson[key] === "object" && typeof res[key] !== 'undefined') {
-				let subRes = removeDefault(res[key], defaultJson[key]);
-				res[key] = subRes;
+				res[key] = removeDefault(res[key], defaultJson[key]);
 			}
 			if (JSON.stringify(defaultJson[key]) === JSON.stringify(res[key])) delete res[key];
 		}
 		return cleanJson(res);
+	}
+	function diff(refJson,newJson) {
+		const res = Array.isArray(refJson) ? [] : {};
+		for (let key in newJson) {
+			if (typeof newJson[key] === "object" && typeof refJson[key] === 'object') {
+				let subRes = diff(refJson[key], newJson[key]);
+				if(!isEmpty(subRes)) res[key] = subRes;
+			} else if(newJson[key] != refJson[key]) res[key] = newJson[key];
+		}
+		for (let key in refJson) {
+			if(isEmpty(newJson[key])) res[key] = null;
+		}
+		return res;
 	}
 
 	return {
@@ -63,6 +81,7 @@ define([], () => {
 		merge,
 		mergeInOrder,
 		cleanJson,
-		removeDefault
+		removeDefault,
+		diff
 	}
 });
