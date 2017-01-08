@@ -39,17 +39,21 @@ define([], () => {
 	function cleanJson(json) {
 		if(json === null) return json;
 		if(typeof json !== "object") return json;
-		if (Array.isArray(json)) {
-			for (let i = json.length - 1; i >= 0; i--) {
-				if (typeof json[i] === 'object') json[i] = cleanJson(json[i]);
-				if (isNullEmpty(json[i])) json.splice(i, 1);
-			}
-		}
-		else for (let key in json) {
-			if (typeof json[key] === 'object') json[key] = cleanJson(json[key]);
-			if (isNullEmpty(json[key])) delete json[key];
-		}
+		if (Array.isArray(json)) cleanArray(json);
+		else cleanObject(json);
 		return json;
+	}
+	function cleanArray(array){
+		for (let i = array.length - 1; i >= 0; i--) {
+			if (typeof array[i] === 'object') array[i] = cleanJson(array[i]);
+			if (isNullEmpty(array[i])) array.splice(i, 1);
+		}
+	}
+	function cleanObject(obj){
+		for (let key in obj) {
+			if (typeof obj[key] === 'object') obj[key] = cleanJson(obj[key]);
+			if (isNullEmpty(obj[key])) delete obj[key];
+		}
 	}
 
 	function removeDefault(json, defaultJson) {
@@ -68,12 +72,15 @@ define([], () => {
 			if (typeof newJson[key] === "object" && typeof refJson[key] === 'object') {
 				let subRes = diff(refJson[key], newJson[key]);
 				if(!isEmpty(subRes)) res[key] = subRes;
-			} else if(newJson[key] != refJson[key]) res[key] = newJson[key];
+			} else if(newJson[key] !== refJson[key]) res[key] = newJson[key];
 		}
+		diffDeletionPass(refJson,newJson,res);
+		return res;
+	}
+	function diffDeletionPass(refJson,newJson,res) {
 		for (let key in refJson) {
 			if(isEmpty(newJson[key])) res[key] = null;
 		}
-		return res;
 	}
 
 	return {
