@@ -13,9 +13,7 @@ define(['./conditionEvaluator'], (app) => {
 				"11 > 9": true,  "9 > 9": false, "11 > 101": false,
 				"11 >= 9": true, "9 >= 9": true, "11 >= 101": false
 			};
-			for (let test in testCases) {
-				it(test, () => expect(app.evaluate(test)).toBe(testCases[test]));
-			}
+			Object.keys(testCases).forEach( (test)=>it(test, ()=>expect(app.evaluate(test)).toBe(testCases[test]) ) );
 		});
 		describe("comparaison dynamique", () => {
 			it(">=", () => {
