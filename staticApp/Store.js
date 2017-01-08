@@ -28,11 +28,10 @@ define([
 	function Store(defaultState, storeId, safeGet, safeSet) {
 		const referenceState = struct.clone(defaultState);
 		this.load = function load() {
-			return struct.merge(referenceState, safeGet(storeId));
+			return struct.cleanJson(struct.merge(referenceState, safeGet(storeId)));
 		};
 		this.save = function save(json) {
-			const lastState = this.load();
-			const newState = struct.removeDefault(struct.merge(lastState, json), referenceState);
+			const newState = struct.diff(referenceState,json);
 			safeSet(storeId,newState);
 		};
 	}
