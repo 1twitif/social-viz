@@ -43,6 +43,19 @@ define(['./tradChooser', './smartEvents'], (app, ev) => {
 			});
 			app.init();
 		});
-		//TODO: tester plus finement getValidLang
+		it('en cas de langue inconnue, choisi une langue par défaut', (done) => {
+			localStorage.setItem('lang','wtfLang');
+			ev.give('tradLoader',{loadTrad:(lang)=>{
+				if(lang === "en") done();
+			}});
+			app.init();
+		});
+		it('en cas de langue inconnue, essai de choisir la langue connu la plus proche', (done) => {
+			localStorage.setItem('lang','fr-FR');
+			ev.give('tradLoader',{loadTrad:(lang)=>{
+				if(lang === "fr") done();
+			}});
+			app.init();
+		});
 	});
 });
