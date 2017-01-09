@@ -151,7 +151,9 @@ define([
 		entrySpecificityFuncs['from'] = (node, entry) => {
 			const id = dataListId(entry.from);
 			node.setAttribute('list', id);
-			htmlTools.addOrReplace(buildDataList(entry),document.body);
+			const dataList = getDataList(entry);
+			const htmlDataList = buildFromDataList(dataList, id);
+			htmlTools.addOrReplace(htmlDataList,document.body);
 		};
 		entrySpecificityFuncs['required'] = (node, entry) => {
 			node.setAttribute('required', entry.required);
@@ -167,36 +169,34 @@ define([
 			return optionList;
 		}
 
-		function buildStaticEnumDataList(optionList) {
-			const dataList = document.createElement('datalist');
-			for (let i = 0; i < optionList.length; i++) {
-				const option = optionList[i];
-				const optionNode = document.createElement('option');
-				optionNode.innerText = t(option);
-				optionNode.setAttribute('value', option);
-				dataList.appendChild(optionNode);
+		function getDataList(entry) {
+			let source,method;
+			if (isStaticEnumRef(entry.from)){
+				source = getEnumFromTemplate(entry.from);
+				method = (map,item)=>map[item]=item ;
+			} else {
+				source = formObject.data[entry.from] || [];
+				method = (map,item)=>map[item.id]=item.label ;
 			}
-			return dataList;
+			return convertDataList(source,method);
+		}
+		function convertDataList(dataSource,conversionFunc){
+			const map = {};
+			for(let i = 0; i < dataSource.length;i++) conversionFunc(map,dataSource[i]);
+			return map;
 		}
 
-		function buildDynamicDataList(entityList) {
-			const dataList = document.createElement('datalist');
-			for (let i = 0; i < entityList.length; i++) {
-				const option = entityList[i];
+		function buildFromDataList(dataList, id) {
+			const html = document.createElement('datalist');
+			for (let key in dataList) {
+				let value = dataList[key];
 				const optionNode = document.createElement('option');
-				optionNode.innerText = t(option.label);
-				optionNode.setAttribute('value', option.id);
-				dataList.appendChild(optionNode);
+				optionNode.innerText = t(value);
+				optionNode.setAttribute('value', key);
+				html.appendChild(optionNode);
 			}
-			return dataList;
-		}
-
-		function buildDataList(entry) {
-			let dataList;
-			if (isStaticEnumRef(entry.from)) dataList = buildStaticEnumDataList(getEnumFromTemplate(entry.from));
-			else dataList = buildDynamicDataList(formObject.data[entry.from] || {});
-			dataList.setAttribute('id', dataListId(entry.from));
-			return dataList;
+			html.setAttribute('id', id);
+			return html;
 		}
 
 		function formChange(event) {
