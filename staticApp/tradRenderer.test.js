@@ -22,33 +22,26 @@ define(['./tradRenderer', './smartEvents'], (app, ev) => {
 			expect(app.t('référenceTrad')).toBe('référenceTrad');
 		});
 		describe('refreshTrad', () => {
-			function baseTradText(){
-				anchor.innerHTML = "key";
+			function baseRefreshTrad(contenuTest){
+				anchor.innerHTML = contenuTest;
 				ev.send("trad.loaded",{'key': 'value'});
 			}
 			it("traduit les chaines statiques du html", () => {
-				baseTradText();
+				baseRefreshTrad("key");
 				expect(anchor.innerHTML).toBe("value");
 			});
 			it("re-traduit les chaines statiques déjà traduites", () => {
-				baseTradText();
+				baseRefreshTrad("key");
 				ev.send("trad.loaded",{'key': 'valeur'});
 				expect(anchor.innerHTML).toBe("valeur");
 			});
-			it("traduit les attributs dans le html", () => {
-				anchor.innerHTML = '<input placeholder="key"/>';
-				ev.send("trad.loaded",{'key': 'value'});
-				expect(anchor.querySelector('input').placeholder).toBe("value");
+			it("traduit les attributs de données", () => {
+				baseRefreshTrad('<input placeholder="key" value="key" title="key"/>');
+				expect(anchor.querySelector('input').outerHTML).not.toMatch("key");
 			});
-			it("ne traduit pas les id", () => {
-				anchor.innerHTML = '<input id="key"/>';
-				ev.send("trad.loaded",{'key': 'value'});
-				expect(anchor.querySelector('input').id).toBe("key");
-			});
-			it("ne traduit pas les class", () => {
-				anchor.innerHTML = '<input class="key"/>';
-				ev.send("trad.loaded",{'key': 'value'});
-				expect(anchor.querySelector('input').className).toBe("key");
+			it("ne traduit pas les attributs systèmes (id, class, type)", () => {
+				baseRefreshTrad('<input id="key" class="key" type="key"/>');
+				expect(anchor.querySelector('input').outerHTML).not.toMatch("value");
 			});
 		});
 	});

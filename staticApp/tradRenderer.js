@@ -35,22 +35,21 @@ define(['./smartEvents', './structManipulation'], (ev,struct) => {
 	}
 	function refreshTextTrad(node, allKeys) {
 		if (node.data) {
-			let text = node.data;
-			for (let key in allKeys) text = text.replace(allKeys[key], t(key));
-			node.data = text;
+			node.data = multiTranslate(node.data,allKeys);
 		}
 	}
 	function refreshAttributesTrad(node, allKeys) {
 		if (node.attributes) {
-			for (let i in node.attributes) {
-				let attr = node.attributes[i];
-
+			for (let attr of node.attributes) {
 				if (attr.name === "class" || attr.name === "id" || attr.name === "type") continue;
-				let text = attr.value;
-				if (text) for (let key in allKeys) text = text.replace(allKeys[key], t(key));
+				let text = multiTranslate(attr.value,allKeys);
 				if (attr.value !== text) attr.value = text;
 			}
 		}
+	}
+	function multiTranslate(translateMe,detectionList){
+		if (translateMe) for (let key in detectionList) translateMe = translateMe.replace(detectionList[key], t(key));
+		return translateMe;
 	}
 
 	return {
