@@ -1,13 +1,21 @@
-define([], () => {
+define(['./smartEvents', './structManipulation'], (ev,struct) => {
 	'use strict';
 	let tradData = {}, oldTradData = {};
 
+	function reset(){
+		tradData = {};
+		oldTradData = {};
+	}
+
 	function init(){
-		//on('trad loaded', setTrad);
+		ev.on('trad loaded', (tradMap)=>{
+			setTrad(tradMap);
+			refreshTrad();
+		});
 	}
 	function setTrad(tradMap){
+		oldTradData = tradData;
 		tradData = tradMap;
-		//langBrutalSwitch();
 	}
 	function t(translateMe) {
 		if (tradData[translateMe])
@@ -16,9 +24,9 @@ define([], () => {
 	}
 
 	//FIXME: rendre langBrutalSwith de nouveau fonctionnel
-	function langBrutalSwitch() {
-		let allKeys = merge(langData, oldLangData); // allKeys handle partial traductions.
-		for (let key in allKeys) if (!oldLangData[key]) allKeys[key] = key;
+	function refreshTrad() { // ex langBrutalSwitch
+		let allKeys = struct.merge(tradData, oldTradData); // allKeys handle partial traductions.
+		for (let key in allKeys) if (!oldTradData[key]) allKeys[key] = key;
 		let walker = document.createTreeWalker(document, NodeFilter.SHOW_ALL, null, false);
 		let node;
 		while (node = walker.nextNode()) {
@@ -30,6 +38,8 @@ define([], () => {
 			if (node.attributes) {
 				for (let i in node.attributes) {
 					let attr = node.attributes[i];
+
+					if(attr.name === "class" || attr.name === "id" || attr.name === "type") continue;
 					let text = attr.value;
 					if (text) for (let key in allKeys) text = text.replace(allKeys[key], t(key));
 					if (attr.value !== text) attr.value = text;
@@ -39,7 +49,8 @@ define([], () => {
 	}
 
 	return {
-		t,
-		setTrad
+		init,
+		reset,
+		t
 	}
 });
