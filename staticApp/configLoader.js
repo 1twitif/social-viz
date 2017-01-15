@@ -51,7 +51,7 @@ define([
 
 	return {
 		reset,
-		getConfig,
-		init
+		init,
+		getConfig
 	}
 });

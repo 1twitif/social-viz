@@ -21,9 +21,6 @@ define([
 		history.replaceState({}, document.title, '#' + JSON.stringify(hashData));
 		dispatchEvent(new HashChangeEvent("hashchange"));
 	}
-	function saveStateInHistory(title){
-		history.pushState({}, title, location.hash);
-	}
 
 	function Store(defaultState, storeId, safeGet, safeSet) {
 		const referenceState = struct.clone(defaultState);
@@ -46,7 +43,6 @@ define([
 	return {
 		Store,
 		LocalStore,
-		UrlHashStore,
-		saveStateInHistory
+		UrlHashStore
 	}
 });
