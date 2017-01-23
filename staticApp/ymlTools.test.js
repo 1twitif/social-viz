@@ -1,5 +1,8 @@
 define(['./ymlTools', './smartEvents'], (app, ev) => {
 	describe('ymlTools', () => {
+		beforeEach(()=>{
+			ev.reset();
+		});
 		it('convert ymlText to jsObject', () => {
 			const dummyCallback = new Spy();
 			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}'};
@@ -11,6 +14,10 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 		it('loadFile', (done) => {
 			ev.on('file.ready', done);
 			app.load('/base/staticApp/ymlTools.js');
+		});
+		it('multiLoad', (done) => {
+			ev.after('file.ready file.ready', done);
+			app.multiLoad(['/base/staticApp/ymlTools.js', '/base/staticApp/ymlTools.test.js']);
 		});
 		it('eventAggregator test', () => {
 			const dummyCallback = new Spy();

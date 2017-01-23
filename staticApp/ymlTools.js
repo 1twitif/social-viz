@@ -15,19 +15,23 @@ define([
 	}
 
 	function multiLoad(sourcesFiles) {
-		for (let i in sourcesFiles) {
-			load(sourcesFiles[i]);
+		for (let file of sourcesFiles) {
+			load(file);
 		}
 	}
 
 	function load(filePath) {
+		//TODO: plus orienté promesse avec du catch pour les erreurs.
 		fetch(filePath)
 			.then((response) => {
-			if(response.ok)	return response.text();
-			else {
-				send('file.load.error.'+response.status,{'type':'file.load.error.'+response.status, 'value':response.url});
-				return '';
-			}
+				if (response.ok)  return response.text();
+				else {
+					send('file.load.error.' + response.status, {
+						'type': 'file.load.error.' + response.status,
+						'value': response.url
+					});
+					return '';
+				}
 			})
 			.then((text) => send('file.ready', {'filename': filePath, 'fileContent': text}));
 	}
@@ -35,7 +39,7 @@ define([
 	on('file.ready', convert);
 	function convert(fileLoadedEvent) {
 		let yml = jsyaml.safeLoad(fileLoadedEvent.fileContent);
-		if(!yml || yml === "undefined") yml = {};
+		if (!yml || yml === "undefined") yml = {};
 		send('yml.ready', {
 			'filename': fileLoadedEvent.filename,
 			'yml': yml
@@ -64,13 +68,15 @@ define([
 			}
 		});
 	}
+
 	// http://webreflection.blogspot.fr/2011/08/html5-how-to-create-downloads-on-fly.html
-	function exportAsFile(fileName,data){
+	function exportAsFile(fileName, data) {
 		const a = document.createElement('a');
-		a.setAttribute('download',fileName+'.yml');
-		a.setAttribute('href','data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(data)));
+		a.setAttribute('download', fileName + '.yml');
+		a.setAttribute('href', 'data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(data)));
 		ev.clickOn(a);
 	}
+
 	return {
 		loadMerge,
 		load,
