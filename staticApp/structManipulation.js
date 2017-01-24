@@ -19,10 +19,7 @@ define([], () => {
 
 	function mergeInOrder(orderedKey, map) {
 		let mergedData = {};
-		for (let i in orderedKey) {
-			let key = orderedKey[i];
-			mergedData = merge(mergedData, map[key]);
-		}
+		for (let key of orderedKey) mergedData = merge(mergedData, map[key]);
 		return mergedData;
 	}
 

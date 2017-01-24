@@ -123,7 +123,7 @@ define([
 				const formData = domForm2json(formNode);
 				if( condiEval.evaluate(ifTemplate.condition, formData, formObject.data, formObject.template) ){
 					if(!ifAnchor.innerHTML){
-						for (let i in ifTemplate.then) ifAnchor.appendChild(buildEntry(ifTemplate.then[i], config.selected));
+						for (let entry of ifTemplate.then) ifAnchor.appendChild(buildEntry(entry, config.selected));
 						send('form.if.displayed', ifId);
 					}
 				} else {

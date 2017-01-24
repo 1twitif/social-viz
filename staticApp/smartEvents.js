@@ -1,5 +1,6 @@
 define([], () => {
 	'use strict';
+	//TODO: regarder la termionologie du pattern Acteurs et des publish subscribe
 	const allListeners = [];
 	function reset(){
 		while(allListeners.length) allListeners.pop().destroy();

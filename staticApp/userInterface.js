@@ -31,14 +31,11 @@ define([
 	}
 	function fadeError(){
 		const errors = document.querySelectorAll('#errorBox .error');
-		for(let i in errors){
-			if(errors.hasOwnProperty(i)){
-				const error = errors[i];
-				if(error.getAttribute('data-timestamp')<Date.now()-10000 && !error.classList.contains('fade'))
-					error.classList.add('fade');
-				if(error.getAttribute('data-timestamp')<Date.now()-15000)
-					error.parentNode.removeChild(error);
-			}
+		for(let error of errors){
+			if(error.getAttribute('data-timestamp')<Date.now()-10000 && !error.classList.contains('fade'))
+				error.classList.add('fade');
+			if(error.getAttribute('data-timestamp')<Date.now()-15000)
+				error.parentNode.removeChild(error);
 		}
 	}
 	const errorMessageBuilderCatalog = {};

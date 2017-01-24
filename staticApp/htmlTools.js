@@ -1,7 +1,6 @@
 define([
 	"./tradRenderer"
 ], (tradR) => {
-	'use strict';
 	const t = tradR.t;
 
 	function buildNode(tag, textContent) {
@@ -14,13 +13,13 @@ define([
 	function buildLangPicker(langs, activeLang){
 		const form = buildNode('form');
 		form.setAttribute('id','langPickerForm');
-		for(let i in langs) {
-			const input = buildNode('input',langs[i])
-			if(langs[i]===activeLang) input.checked = true;
+		for(let lang of langs) {
+			const input = buildNode('input',lang);
+			if(lang===activeLang) input.checked = true;
 			input.setAttribute('type','radio');
 			input.setAttribute('name','lang');
 			const label = buildNode('label');
-			const labelContent = buildNode('span','lang-'+langs[i]);
+			const labelContent = buildNode('span','lang-'+lang);
 			label.appendChild(input);
 			label.appendChild(labelContent);
 			form.appendChild(label);
@@ -38,14 +37,11 @@ define([
 
 	function applySelectiveClassOnNodes(nodes, className, condition) {
 		let appliedTimes = 0;
-		for (let i in nodes) {
-			if (nodes.hasOwnProperty(i)) {
-				const n = nodes[i];
-				if (condition(n)) {
-					appliedTimes++;
-					n.classList.add(className);
-				} else n.classList.remove(className);
-			}
+		for (let n of nodes) {
+			if (condition(n)) {
+				appliedTimes++;
+				n.classList.add(className);
+			} else n.classList.remove(className);
 		}
 		return appliedTimes;
 	}
