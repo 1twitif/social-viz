@@ -2,7 +2,6 @@ define([
 	'./smartEvents',
 	'./htmlTools'
 ], (ev, htmlTools) => {
-	'use strict';
 	const on = ev.on, send = ev.send;
 
 	let validLanguages = [], langPickerId, lang, tradLoader;
@@ -25,7 +24,6 @@ define([
 			tradLoader = tradL;
 			send('tradChooser.tradLoader.ok');
 		});
-
 	}
 	function listenerInit() {
 		on('lang.change', updateLangPicker);

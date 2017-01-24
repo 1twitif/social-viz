@@ -1,5 +1,4 @@
 define(['./smartEvents', './structManipulation'], (ev,struct) => {
-	'use strict';
 	let tradData = {}, oldTradData = {};
 
 	function reset(){
@@ -18,9 +17,7 @@ define(['./smartEvents', './structManipulation'], (ev,struct) => {
 		tradData = tradMap;
 	}
 	function t(translateMe) {
-		if (tradData[translateMe])
-			return tradData[translateMe];
-		else return translateMe;
+		return tradData[translateMe] ? tradData[translateMe] : translateMe ;
 	}
 
 	function refreshTrad() {
