@@ -3,10 +3,10 @@ define([
 	'./stringTools',
 	'./htmlTools',
 	'./conditionEvaluator',
-	'./languageLoader'
-], (ev, strTools, htmlTools,condiEval, langTools) => {
+	'./trad'
+], (ev, strTools, htmlTools,condiEval, trad) => {
 	'use strict';
-	const on = ev.on, send = ev.send, t = langTools.t, buildNode = htmlTools.buildNode;
+	const on = ev.on, send = ev.send, t = trad.t, buildNode = htmlTools.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
 	function Form(tempateJson, data) {
 		const formObject = this;

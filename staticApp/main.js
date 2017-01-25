@@ -5,20 +5,26 @@ requirejs.config({
 		}
 });
 requirejs([
+		"smartEvents",
 		'configLoader',
-		'languageLoader',
+		'trad',
 		'formLoader',
 		'graphDataLoader',
 		'graph',
 		'userInterface'
-	], (cfg,langTools, formLoader, gData, graph, ui) => {
+	], (ev, cfg,trad, formLoader, gData, graph, ui) => {
+	console.log('chargement des fichiers js terminé');
+	ev.need('config',(c)=>console.log("config diffusée : ",c));
+	ev.on("lang.change", (lang)=>console.log("langue active : ",lang));
+	ev.on("trad.applied", ()=>console.log("traduction appliquée"));
+	ev.need('graph.data',(d)=>console.log("données du graph disponnible : ",d));
 	cfg.init();
-	langTools.init();
+	trad.init();
 	gData.init();
 	formLoader.init();
 	ui.init();
+	console.log('initialisation terminé');
 
-	console.log('chargement terminé');
 	//console.log('config diffusée'); (catch init event mais si chargé trop tard, va demander après coup lors de l'évènement disant que tout est chargé)
 	}
 );

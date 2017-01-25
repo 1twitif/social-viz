@@ -189,6 +189,20 @@ a:hover {
   height: 100%;
   overflow: auto;
 }
+#search {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  width: 300px;
+}
+#langPicker {
+  position: absolute;
+  right: 300px;
+  bottom: 0px;
+  width: 150px;
+  height: 60px;
+}
 .hidden,
 .small,
 .big {
@@ -298,6 +312,12 @@ form label {
 form input {
   width: 50%;
   float: right;
+}
+#tradForm input[type="radio"],
+form input[type="radio"] {
+  width: auto;
+  float: none;
+  margin-right: 5px;
 }
 #tradForm textarea,
 form textarea {

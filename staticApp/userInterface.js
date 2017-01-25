@@ -1,11 +1,11 @@
 define([
 	'../node_modules/d3/build/d3',
 	'./smartEvents',
-	'./languageLoader',
+	'./trad',
 	'./configLoader'
-], (d3, ev, langTools, cfg) => {
+], (d3, ev, trad, cfg) => {
 	'use strict';
-	const on = ev.on, send = ev.send, t = langTools.t;
+	const on = ev.on, send = ev.send, t = trad.t;
 
 	function init() {
 		listenerInit();

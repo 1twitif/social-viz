@@ -29,6 +29,7 @@ define(['./smartEvents', './structManipulation'], (ev,struct) => {
 			refreshTextTrad(node, allKeys);
 			refreshAttributesTrad(node, allKeys);
 		}
+		ev.send("trad.applied");
 	}
 	function refreshTextTrad(node, allKeys) {
 		if (node.data) {

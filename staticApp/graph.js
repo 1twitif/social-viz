@@ -2,14 +2,14 @@ define([
 		'../node_modules/d3/build/d3',
 		'./smartEvents',
 		'./fps',
-		'./languageLoader',
+		'./trad',
 		'./configLoader',
 		'./formLoader',
 		'./graphDataLoader',
 		'./structManipulation'
-	], (d3, ev, fps, langTools,cfg, formLoader,graphDataLoader,struct) => {
+	], (d3, ev, fps, trad,cfg, formLoader,graphDataLoader,struct) => {
 		'use strict';
-		const on = ev.on, send = ev.send, t = langTools.t, multiTimeout = fps.multiTimeout;
+		const on = ev.on, send = ev.send, t = trad.t, multiTimeout = fps.multiTimeout;
 		let options;
 		ev.after('config.ready data.ready form.template.ready',
 			()=>setTimeout(()=>send('graph.init'),10));
@@ -337,7 +337,7 @@ define([
 				var tutorialContent = "<h2>Tutorial</h2>\nMettre en pause / reprendre"; //FIXME: charger ça dynamiquement.
 				if (!options.selected && !options.userMode) details.innerHTML = tutorialContent;
 				else if (!options.userMode) details.innerHTML = renderDetails(options.selected);
-				else if (options.userMode == 'trad') langTools.renderTradForm();
+				else if (options.userMode == 'trad') trad.renderTradForm();
 				else if (options.userMode == 'edit') {
 					const form = formLoader.getForm();
 					const anchor = details;
