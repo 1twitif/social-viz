@@ -6,9 +6,8 @@ require.config({map: {
 // test
 define(['./trad', './smartEvents'], (app, ev) => {
 	describe('trad', () => {
-		afterEach(()=>{
-			ev.reset();
-		});
+		beforeEach(ev.reset);
+		afterEach(ev.reset);
 		it("initialise le nécessaire pour pouvoir traduire", () => {
 			app.init();
 			expect(app.t("key")).toBe("value");

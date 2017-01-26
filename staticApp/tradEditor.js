@@ -1,8 +1,8 @@
 define(['./smartEvents', './ymlTools'], (ev, ymlTools) => {
 	let config, getTradData;
 	function init() {
-		ev.on("config.userMode change",chooseToRenderTradForm);
 		ev.after(['tradEditor.conf.ok', 'tradEditor.tradLoader.ok', 'trad.applied'],()=>{
+			ev.on("config.userMode change",chooseToRenderTradForm);
 			chooseToRenderTradForm();
 		});
 		ev.need('config',(cfg)=>{
