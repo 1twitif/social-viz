@@ -1,14 +1,17 @@
 define([
 	'./form',
 	'./smartEvents',
-	'./ymlTools',
-	'./configLoader'
-], (formLib, ev, ymlTools,cfg) => {
+	'./ymlTools'
+], (formLib, ev, ymlTools) => {
 	'use strict';
 	const on = ev.on, send = ev.send;
 
-	let readyToUseForm;
+	let readyToUseForm, config;
 	function init(){
+		ev.after(["config.ready",'data.ready','form.template.ready'],()=>{
+			chooseToDisplayForm();
+		});
+		ev.need("config", (cfg)=> config=cfg );
 		readyToUseForm = new formLib.Form();
 		listenerInit();
 		on('yml.ready',(e)=>(e.filename==='allData/form.yml')?send('form.template.ready',e.yml):0 );
@@ -21,12 +24,23 @@ define([
 		on('config.ready', readyToUseForm.setConfig);
 		on('data.ready', readyToUseForm.setData);
 		on('form.template.ready', readyToUseForm.setTemplate);
-
+		ev.on("config.userMode change", chooseToDisplayForm);
 	}
 	function activateEditorMode() {
-		const config = cfg.getConfig();
 		config.userMode = "edit";
 	}
+	function chooseToDisplayForm(){
+		if (config.userMode === "edit") displayForm();
+	}
+	function displayForm(){
+		const anchor = document.querySelector("#details section");
+		const form = getForm();
+		form.edit(config.selected);
+		form.displayInNode(anchor);
+		console.log(anchor);
+		console.log(config.selected);
+	}
+
 	function getForm(){
 		return readyToUseForm;
 	}

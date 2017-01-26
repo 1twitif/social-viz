@@ -1,5 +1,7 @@
 define(['./fps','./smartEvents'], (app,ev) => {
 	describe('fps', () => {
+		beforeEach(ev.reset);
+		afterEach(ev.reset);
 		describe('unit test', () => {
 			it('one tick, one fps', () => {
 				app.init({"fps":{"sampleOn":1}});

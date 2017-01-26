@@ -20,6 +20,7 @@ fps:
   decimals: 1
   displayerId: fpsValue
 trad:
+  tradModeTriggerId: editTrad
   langPickerId: langPicker
   supportedLanguages:
     - en

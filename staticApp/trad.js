@@ -1,13 +1,14 @@
 define([
 	'./tradChooser',
 	'./tradLoader',
-	'./tradRenderer'
-], (tChooser, tLoader, tRenderer) => {
+	'./tradRenderer',
+	'./tradEditor'
+], (tChooser, tLoader, tRenderer, tEditor) => {
 	function init() {
 		tChooser.init();
 		tLoader.init();
 		tRenderer.init();
-		//tEditor.init();
+		tEditor.init();
 	}
 
 	return {

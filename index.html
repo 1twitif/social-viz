@@ -47,82 +47,82 @@
         courbe cf http://bl.ocks.org/d3noob/5155181 et http://bl.ocks.org/mbostock/4600693 et http://www.nytimes.com/interactive/2013/02/20/movies/among-the-oscar-contenders-a-host-of-connections.html,
         à angle droit cf
 		-->
-<!--
-    Options filtres et réglages ||
-    survol d'un lien -> affiche son type et sa pondération le cas échéant
-    survol d'un noeud ou d'un lien -> atténue les éléments de légende d'autre type
-    clic sur un noeud ou un lien -> le sélectionne et ouvre sa description
-    double-clic sur un noeud -> centre et fige le noeud
-    Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
-    Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
-    double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
-		-->
+		<!--
+        Options filtres et réglages ||
+        survol d'un lien -> affiche son type et sa pondération le cas échéant
+        survol d'un noeud ou d'un lien -> atténue les éléments de légende d'autre type
+        clic sur un noeud ou un lien -> le sélectionne et ouvre sa description
+        double-clic sur un noeud -> centre et fige le noeud
+        Ctrl+Glisser déplacer sur un noeud -> figer un noeud à sa position de laché
+        Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
+        double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
+            -->
 		<button id="editionMode" title="Passer en mode édition">Editer</button>
 		<button id="editTrad" title="Formulaire de traduction">Traduction</button>
-    <label>FPS : <span id="fpsValue"></span></label>
-</section>
-<section id="main-tools">
-<!--
-    <a>Afficher les réglages avancés</a>
-    <a title="flux RSS des mise à jour de données">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-    </a>
-    <a title="sauvegarder en pdf pour l'impression">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-    </a>
-    <a title="exporter (svg, json des données affiché, json total des données publiques">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-    </a>
-	-->
-	<a id="exportData">exporter les données disponnibles</a>
-<!--
-    <a title="partager la carte (FB,twitter,embed...)">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-    </a>
-    <label>Zoom <input type="number">%</label>
-    <label title="Garder tous les éléments à l'écran">
-        <input type="checkbox"/> Confiner
-    </label>
-    <label title="Distance maximum aux neuds sélectionnés">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-        <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>∞</option>
-        </select>
-    </label>
-    <label title="Estomper les liens selon">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-        <select>
-            <option>leur date de fin</option>
-            <option>leur fugacité</option>
-            <option>...</option>
-        </select>
-    </label>
-    <label title="Epaisseur des liens selon">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-        <select>
-            <option>rien (epaisseur constante)</option>
-            <option>leur durée dans le temps</option>
-            <option>leur ampleur/importance</option>
-            <option>...</option>
-        </select>
-    </label>
-    <label title="Taille des acteur selon">
-        <img src="staticApp/appImg/unknow.svg" class="picto">
-        <select>
-            <option>rien (taille constante)</option>
-            <option>leur capital</option>
-            <option>leur nombre de liens</option>
-            <option>le nombre de leur subordonnés</option>
-            <option>...</option>
-        </select>
-    </label>
-    -->
-		<div id="langPicker"/>
+		<label>FPS : <span id="fpsValue"></span></label>
+	</section>
+	<section id="main-tools">
+		<!--
+        <a>Afficher les réglages avancés</a>
+        <a title="flux RSS des mise à jour de données">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+        </a>
+        <a title="sauvegarder en pdf pour l'impression">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+        </a>
+        <a title="exporter (svg, json des données affiché, json total des données publiques">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+        </a>
+        -->
+		<a id="exportData">exporter les données disponnibles</a>
+		<!--
+        <a title="partager la carte (FB,twitter,embed...)">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+        </a>
+        <label>Zoom <input type="number">%</label>
+        <label title="Garder tous les éléments à l'écran">
+            <input type="checkbox"/> Confiner
+        </label>
+        <label title="Distance maximum aux neuds sélectionnés">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+            <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>∞</option>
+            </select>
+        </label>
+        <label title="Estomper les liens selon">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+            <select>
+                <option>leur date de fin</option>
+                <option>leur fugacité</option>
+                <option>...</option>
+            </select>
+        </label>
+        <label title="Epaisseur des liens selon">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+            <select>
+                <option>rien (epaisseur constante)</option>
+                <option>leur durée dans le temps</option>
+                <option>leur ampleur/importance</option>
+                <option>...</option>
+            </select>
+        </label>
+        <label title="Taille des acteur selon">
+            <img src="staticApp/appImg/unknow.svg" class="picto">
+            <select>
+                <option>rien (taille constante)</option>
+                <option>leur capital</option>
+                <option>leur nombre de liens</option>
+                <option>le nombre de leur subordonnés</option>
+                <option>...</option>
+            </select>
+        </label>
+        -->
+		<div id="langPicker"></div>
 		<input id="search" type="search" placeholder="Rechercher..."/>
 	</section>
 	<button class="reduce bottom">-</button>
@@ -151,13 +151,14 @@
 <aside id="sponsor">
 	<h2>Partenaires</h2>
 </aside>
-<footer><a href="">Mentions légales</a><a href="//www.github.com/1twitif/social-viz"><img src="staticApp/appImg/github.svg" class="picto"> Code source AGPLv3</a></footer>
+<footer><a href="">Mentions légales</a><a href="//www.github.com/1twitif/social-viz"><img
+	src="staticApp/appImg/github.svg" class="picto"> Code source AGPLv3</a></footer>
 <script id="no-ie" type="application/javascript">
-	if (navigator.userAgent.indexOf('MSIE') != -1 || (navigator.userAgent.indexOf('Trident') != -1 && navigator.userAgent.indexOf('rv:11'))){
+	if (navigator.userAgent.indexOf('MSIE') != -1 || (navigator.userAgent.indexOf('Trident') != -1 && navigator.userAgent.indexOf('rv:11'))) {
 		var lang = navigator.userLanguage || navigator.language || navigator.browserLanguage;
-		if(lang.substr(0,2)==='fr' || lang.substr(0,2)==='es') lang = lang.substr(0,2) + '.html';
-		else lang='';
-		window.location.href = 'no-ie/'+lang;
+		if (lang.substr(0, 2) === 'fr' || lang.substr(0, 2) === 'es') lang = lang.substr(0, 2) + '.html';
+		else lang = '';
+		window.location.href = 'no-ie/' + lang;
 	}
 </script>
 <script data-main="staticApp/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>

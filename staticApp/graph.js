@@ -95,7 +95,6 @@ define([
 					)
 				;
 				computeNodesDegree(currentGraph);
-				console.log(currentGraph);
 
 				let nodeRadiusScale = d3.scaleLinear()
 					.domain(d3.extent(currentGraph.node, function (n) {
@@ -333,17 +332,11 @@ define([
 
 			on('lang.update', updateDetails);
 			function updateDetails() {
+				return;
 				var details = document.querySelector("#details section");
 				var tutorialContent = "<h2>Tutorial</h2>\nMettre en pause / reprendre"; //FIXME: charger ça dynamiquement.
 				if (!options.selected && !options.userMode) details.innerHTML = tutorialContent;
 				else if (!options.userMode) details.innerHTML = renderDetails(options.selected);
-				else if (options.userMode == 'trad') trad.renderTradForm();
-				else if (options.userMode == 'edit') {
-					const form = formLoader.getForm();
-					const anchor = details;
-					form.edit(options.selected);
-					form.displayInNode(anchor);
-				}
 				else details.innerHTML = options.userMode + t(' pas encore géré');
 				//FIXME: ugly code smell
 			}
