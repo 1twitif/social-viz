@@ -27,7 +27,8 @@ define([
 				goSmart[key] = new MonitoredStruct(inertStruct[key], eventNameSuffix+'.'+key, this.topAncestor);
 			} else goSmart[key] = inertStruct[key];
 		}
-		this.smartObj = new Proxy(goSmart, handler);
+		if(typeof goSmart === 'object' && goSmart !== null) this.smartObj = new Proxy(goSmart, handler);
+		else this.smartObj = goSmart;
 		return this.smartObj;
 	}
 
