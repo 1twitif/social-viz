@@ -11,7 +11,7 @@ define([
 		'use strict';
 		const on = ev.on, send = ev.send, t = trad.t, multiTimeout = fps.multiTimeout;
 		let options;
-		ev.after('config.ready data.ready form.template.ready',
+		ev.after(['config.ready', 'data.ready', 'form.template.ready', 'trad loaded'],
 			()=>setTimeout(()=>send('graph.init'),10));
 		ev.after('graph.init', function () {
 			options = cfg.getConfig();

@@ -35,7 +35,7 @@ nodeMaxRatio: 2
 linkStrengthRatio: 0.8
 linkLengthMinRatio: 0
 linkLengthMaxRatio: 2
-confiner: true
+confiner: false
 zoom: {k: 1, x: 0, y: 0}
 zoomMin: 0.2
 zoomMax: 3

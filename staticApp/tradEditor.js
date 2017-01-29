@@ -39,7 +39,7 @@ define(['./smartEvents', './ymlTools'], (ev, ymlTools) => {
 		let details = document.querySelector("#details section");
 		details.innerHTML = formStr;
 		document.getElementById("trad2file").addEventListener('click', ()=>{
-			ymlTools.exportAsFile("lang.yml", getTradData());
+			ymlTools.exportAsFile("lang", getTradData());
 		});
 	}
 
