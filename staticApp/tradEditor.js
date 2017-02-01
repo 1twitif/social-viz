@@ -1,5 +1,5 @@
 define(['./smartEvents', './htmlTools', './ymlTools'], (ev, htmlTools, ymlTools) => {
-	let config, getTradData;
+	let config, getTradData, activeLanguage;
 	function init() {
 		ev.after(['tradEditor.conf.ok', 'tradEditor.tradLoader.ok', 'trad.applied'],()=>{
 			ev.on("config.userMode change",chooseToRenderTradForm);
@@ -17,6 +17,7 @@ define(['./smartEvents', './htmlTools', './ymlTools'], (ev, htmlTools, ymlTools)
 			getTradData = nsTradLoader.getTradData;
 			ev.send('tradEditor.tradLoader.ok');
 		});
+		ev.on("lang.change",(lang)=> activeLanguage = lang);
 	}
 
 	function activateUserModeTrad() {
@@ -48,8 +49,9 @@ define(['./smartEvents', './htmlTools', './ymlTools'], (ev, htmlTools, ymlTools)
 		const trad2file = buildNode("a","Sauvegarder le fichier de langue complet");
 		trad2file.class = "button";
 		trad2file.addEventListener('click', ()=>{
-			ymlTools.exportAsFile("lang", getTradData());
+			ymlTools.exportAsFile(activeLanguage, getTradData());
 		});
+		formNode.appendChild(trad2file);
 		//return formNode;
 
 		let details = document.querySelector(config.trad.formAnchorSelector);
