@@ -64,7 +64,7 @@ define([
 			}
 		};
 		function buildForm(templateToBuild, title) {
-			const formNode = document.createElement('form');
+			const formNode = buildNode('form');
 			formNode.appendChild(buildNode('h2', title));
 			formNode.appendChild(buildId(config.selected));
 			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i], config.selected));

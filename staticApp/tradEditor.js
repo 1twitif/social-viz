@@ -1,4 +1,4 @@
-define(['./smartEvents', './ymlTools'], (ev, ymlTools) => {
+define(['./smartEvents', './htmlTools', './ymlTools'], (ev, htmlTools, ymlTools) => {
 	let config, getTradData;
 	function init() {
 		ev.after(['tradEditor.conf.ok', 'tradEditor.tradLoader.ok', 'trad.applied'],()=>{
@@ -28,24 +28,39 @@ define(['./smartEvents', './ymlTools'], (ev, ymlTools) => {
 
 // TODO: gros refacto pour utiliser form.js et ymlTools.exportAsFile();
 	function renderTradForm() {
+		const buildNode = htmlTools.buildNode;
 		const tradData = getTradData();
-		let formStr = '<form id="tradForm">';
+		const formNode = buildNode('form');
+		formNode.id = "tradForm";
+		formNode.appendChild(buildNode('h2', "formulaire de traduction"));
+
 		for (let key in tradData) {
-			formStr += '<label>' + key + '<input name="' + key + '" value="' + tradData[key] + '" onchange="saveLocalTrad(this)"/></label>';
+			const input = buildNode("input",tradData[key]);
+			input.name = key;
+			input.addEventListener('change', saveLocalTrad);
+
+			const label = document.createElement("label")
+			label.innerText = key;
+			label.appendChild(input);
+			formNode.appendChild(label);
 		}
-		formStr += '<a id="trad2file" class="button">Sauvegarder le fichier de langue complet</a>';
-		//formStr += '<a class="button" onclick="updateLang()">Appliquer localement</a>';
-		formStr += '</form>';
-		let details = document.querySelector("#details section");
-		details.innerHTML = formStr;
-		document.getElementById("trad2file").addEventListener('click', ()=>{
+
+		const trad2file = buildNode("a","Sauvegarder le fichier de langue complet");
+		trad2file.class = "button";
+		trad2file.addEventListener('click', ()=>{
 			ymlTools.exportAsFile("lang", getTradData());
 		});
+		//return formNode;
+
+		let details = document.querySelector(config.trad.formAnchorSelector);
+		details.innerHTML = "";
+		details.appendChild(formNode);
 	}
 
-	function saveLocalTrad(e) {
+	function saveLocalTrad(event) {
 		const tradData = getTradData();
-		tradData[e.name] = e.value;
+		const node = event.target;
+		tradData[node.name] = node.value;
 	}
 
 	return {init};

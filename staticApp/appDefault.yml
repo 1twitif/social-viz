@@ -22,6 +22,7 @@ fps:
 trad:
   tradModeTriggerId: editTrad
   langPickerId: langPicker
+  formAnchorSelector: "#details section"
   supportedLanguages:
     - en
     - fr

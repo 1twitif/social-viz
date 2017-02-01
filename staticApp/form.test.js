@@ -1,10 +1,4 @@
 define(['./form', './smartEvents'], (app, ev) => {
-	function changeInputValue(inputNode, value) {
-		inputNode.value = value;
-		inputNode.dispatchEvent(new Event('input', {target: inputNode, bubbles: true}));
-		inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
-	}
-
 	describe('selection de formulaire', () => {
 		let form, anchor;
 		beforeEach(() => {
