@@ -7,7 +7,7 @@ requirejs.config({
 requirejs([
 		"smartEvents",
 		'configLoader',
-		'trad',
+		'./trad/trad',
 		'formLoader',
 		'graphDataLoader',
 		'graph',

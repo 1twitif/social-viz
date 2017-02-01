@@ -1,6 +1,6 @@
 define([
-	'./smartEvents',
-	'./htmlTools'
+	'../smartEvents',
+	'../htmlTools'
 ], (ev, htmlTools) => {
 	const on = ev.on, send = ev.send;
 

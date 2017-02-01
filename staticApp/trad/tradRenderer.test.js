@@ -1,4 +1,4 @@
-define(['./tradRenderer', './smartEvents'], (app, ev) => {
+define(['./tradRenderer', '../smartEvents'], (app, ev) => {
 	describe('tradRenderer', () => {
 		let anchor;
 		beforeEach((done)=>{

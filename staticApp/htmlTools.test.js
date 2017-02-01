@@ -1,6 +1,6 @@
 // mocks
 define( 'mock/tradRenderer', ()=>{ return { t: (translateMe)=>translateMe+'-TRAD-OK' }; } );
-require.config({ map: { "staticApp/htmlTools": { "staticApp/tradRenderer":"mock/tradRenderer" } } });
+require.config({ map: { "staticApp/htmlTools": { "staticApp/trad/tradRenderer":"mock/tradRenderer" } } });
 // test
 define(['./htmlTools'], (app) => {
 	describe('htmlTools', () => {

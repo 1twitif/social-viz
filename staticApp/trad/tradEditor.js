@@ -1,4 +1,4 @@
-define(['./smartEvents', './htmlTools', './ymlTools'], (ev, htmlTools, ymlTools) => {
+define(['../smartEvents', '../htmlTools', '../ymlTools'], (ev, htmlTools, ymlTools) => {
 	let config, getTradData, activeLanguage;
 	function init() {
 		ev.after(['tradEditor.conf.ok', 'tradEditor.tradLoader.ok', 'trad.applied'],()=>{

@@ -2,7 +2,7 @@ define([
 		'../node_modules/d3/build/d3',
 		'./smartEvents',
 		'./fps',
-		'./trad',
+		'./trad/trad',
 		'./configLoader',
 		'./formLoader',
 		'./graphDataLoader',

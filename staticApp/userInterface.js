@@ -1,7 +1,7 @@
 define([
 	'../node_modules/d3/build/d3',
 	'./smartEvents',
-	'./trad',
+	'./trad/trad',
 	'./configLoader'
 ], (d3, ev, trad, cfg) => {
 	'use strict';

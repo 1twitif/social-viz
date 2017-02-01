@@ -1,10 +1,10 @@
 // mocks
 define( 'mock/ymlTools', ()=>{ return { loadMerge: (fileList,callback)=>callback({'key':'value'}) }; } );
 require.config({map: {
-		"staticApp/tradLoader": {"staticApp/ymlTools":"mock/ymlTools"}
+		"staticApp/trad/tradLoader": {"staticApp/ymlTools":"mock/ymlTools"}
 }});
 // test
-define(['./tradLoader','./smartEvents'], (app,ev) => {
+define(['./tradLoader','../smartEvents'], (app, ev) => {
 	describe('tradLoader', () => {
 		beforeEach((done)=>{
 			app.reset();

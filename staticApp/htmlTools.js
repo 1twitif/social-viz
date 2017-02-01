@@ -1,5 +1,5 @@
 define([
-	"./tradRenderer"
+	"./trad/tradRenderer"
 ], (tradR) => {
 	const t = tradR.t;
 

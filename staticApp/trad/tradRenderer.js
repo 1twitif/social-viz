@@ -1,4 +1,4 @@
-define(['./smartEvents', './structManipulation'], (ev,struct) => {
+define(['../smartEvents', '../structManipulation'], (ev, struct) => {
 	let tradData = {}, oldTradData = {};
 
 	function reset(){

@@ -1,10 +1,10 @@
 define([
-	'./smartEvents',
-	'./structManipulation',
-	'./Store',
-	'./ymlTools',
-	'./keyRecorder',
-	'./MonitoredStruct'
+	'../smartEvents',
+	'../structManipulation',
+	'../Store',
+	'../ymlTools',
+	'../keyRecorder',
+	'../MonitoredStruct'
 ], (ev, struct, Store, ymlTools, keyRecorder, mStruct) => {
 	'use strict';
 	const on = ev.on, send = ev.send;

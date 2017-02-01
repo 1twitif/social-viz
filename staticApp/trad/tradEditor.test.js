@@ -1,4 +1,4 @@
-define(['./tradEditor', './smartEvents', './MonitoredStruct'], (app,ev,mStruct) => {
+define(['./tradEditor', '../smartEvents', '../MonitoredStruct'], (app, ev, mStruct) => {
 	beforeEach(ev.reset);
 	afterEach(ev.reset);
 	describe('tradEditor', () => {

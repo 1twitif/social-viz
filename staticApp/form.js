@@ -3,7 +3,7 @@ define([
 	'./stringTools',
 	'./htmlTools',
 	'./conditionEvaluator',
-	'./trad'
+	'./trad/trad'
 ], (ev, strTools, htmlTools,condiEval, trad) => {
 	'use strict';
 	const on = ev.on, send = ev.send, t = trad.t, buildNode = htmlTools.buildNode;

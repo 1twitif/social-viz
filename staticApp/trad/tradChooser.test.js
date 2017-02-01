@@ -1,12 +1,12 @@
 // mocks
 define( 'mock/tradRenderer', ()=>{ return { t: (translateMe)=>translateMe+'-TRAD-OK' }; } );
 require.config({map: {
-	"staticApp/tradChooser": {
-		"staticApp/tradRenderer":"mock/tradRenderer"
+	"staticApp/trad/tradChooser": {
+		"staticApp/trad/tradRenderer":"mock/tradRenderer"
 	}
 }});
 // test
-define(['./tradChooser', './smartEvents'], (app, ev) => {
+define(['./tradChooser', '../smartEvents'], (app, ev) => {
 	beforeEach(() => {
 		//ev.give('config',{"supportedLanguages":['en','fr','ca']});
 		//document.body.setAttribute('id','langPicker'); // utiliser addOrReplace
