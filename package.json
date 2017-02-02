@@ -27,6 +27,7 @@
   "dependencies": {
     "d3": "^4.2.7",
     "js-yaml": "^3.6.1",
+    "mathjs": "^3.9.0",
     "requirejs": "^2.3.2"
   },
   "devDependencies": {

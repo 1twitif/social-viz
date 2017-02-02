@@ -194,6 +194,15 @@ define(['./form', './smartEvents'], (app, ev) => {
 					done();
 				},0)
 			});
+			xit("gère les champs en autoCalc complexe", (done) => {
+				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: '{one}^2 "and {two} seconds from " {select count(link) from link where source = two or target = two)}'}}]});
+				form.setData({'myForm': [{'id': id, 'before': 'someContent'}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plop');
+					done();
+				},0)
+			});
 
 		});
 		describe('affichage / saisie -> données exportable et affichable', () => {

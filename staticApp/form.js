@@ -3,8 +3,9 @@ define([
 	'./stringTools',
 	'./htmlTools',
 	'./conditionEvaluator',
-	'./trad/trad'
-], (ev, strTools, htmlTools,condiEval, trad) => {
+	'./trad/trad',
+	'../node_modules/mathjs/dist/math'
+], (ev, strTools, htmlTools,condiEval, trad, math) => {
 	'use strict';
 	const on = ev.on, send = ev.send, t = trad.t, buildNode = htmlTools.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
@@ -162,19 +163,35 @@ define([
 			node.setAttribute('type', entry.dataType);
 		};
 		entrySpecificityFuncs['autoCalc'] = (node, entry) => {
+			// https://github.com/redhivesoftware/math-expression-evaluator ou http://mathjs.org/docs/getting_started.html
 			const formula = entry.autoCalc;
-			const formulaParts = formula.split(' ');
-			const updateFunc = ()=>{
-				let autoCalcValue = [];
-				for(let part of formulaParts){
+			if(formula.indexOf("{")=== -1){ //syntaxe basique
+				const formulaParts = formula.split(' ');
+				const updateFunc = ()=>{
+					let autoCalcValue = [];
+					for(let part of formulaParts){
 						autoCalcValue.push(document.querySelector('[name="'+part+'"]').value);
-				}
-				node.value = autoCalcValue.join(' ').trim();
-			};
-			for(let part of formulaParts){
-				((part)=> setTimeout(()=>{
+					}
+					node.value = autoCalcValue.join(' ').trim();
+				};
+				for(let part of formulaParts){
+					((part)=> setTimeout(()=>{
 						document.querySelector('[name="'+part+'"]').addEventListener('input', updateFunc);
 					},0) )(part);
+				}
+			} else { // syntaxe avancée
+				let triggerFields = []; // listen form input
+				let dynamicDatas = []; // listen MonitoredStruct change
+
+				const updateFunc = ()=>{
+					// injecte dynamic data from triggerFields and dynamicDatas
+					// cut formula in litterals and expressions parts
+					// math.eval expressions parts
+					// concatenate litterals and expression parts
+					// return
+					// update autoCalc field
+				};
+
 			}
 		};
 		function getEnumFromTemplate(from) {
