@@ -176,6 +176,25 @@ define(['./form', './smartEvents'], (app, ev) => {
 				form.edit(id);
 				expect(anchor.querySelector('input[name="before"]').value).toEqual('someContent');
 			});
+
+			it("remplie automatiquement les champs en autoCalc", (done) => {
+				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "one two"}}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="one"]'), 'plip');
+					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plip plop');
+					done();
+				},0)
+			});
+			it("remplie automatiquement les champs en autoCalc sans laisser d'espace superflu", (done) => {
+				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "one two"}}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plop');
+					done();
+				},0)
+			});
+
 		});
 		describe('affichage / saisie -> données exportable et affichable', () => {
 			it("sauvegarde les données saisies dès qu'un id est défini", () => {

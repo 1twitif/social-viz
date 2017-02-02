@@ -12,9 +12,7 @@ node:
         - deathDate:
             dataType: date
         - label:
-            calculatedFrom:
-              - firstname
-              - surname
+            autoCalc: firstname surname
         - mainActivity:
             from: enum.human.activity
   - comments:

@@ -161,7 +161,22 @@ define([
 		entrySpecificityFuncs['dataType'] = (node, entry) => {
 			node.setAttribute('type', entry.dataType);
 		};
-
+		entrySpecificityFuncs['autoCalc'] = (node, entry) => {
+			const formula = entry.autoCalc;
+			const formulaParts = formula.split(' ');
+			const updateFunc = ()=>{
+				let autoCalcValue = [];
+				for(let part of formulaParts){
+						autoCalcValue.push(document.querySelector('[name="'+part+'"]').value);
+				}
+				node.value = autoCalcValue.join(' ').trim();
+			};
+			for(let part of formulaParts){
+				((part)=> setTimeout(()=>{
+						document.querySelector('[name="'+part+'"]').addEventListener('input', updateFunc);
+					},0) )(part);
+			}
+		};
 		function getEnumFromTemplate(from) {
 			const listPath = from.split('.');
 			let optionList = formObject.template.enum;
