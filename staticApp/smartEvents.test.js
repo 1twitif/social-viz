@@ -196,6 +196,32 @@ define(['./smartEvents'], (app) => {
 		app.on('click', done);
 		app.clickOn(window);
 	});
+	describe("changeInputValue", () => {
+		let dummyCallback, input;
+		beforeEach(()=>{
+			dummyCallback = new Spy();
+			input = document.createElement("input");
+			input.addEventListener("change",dummyCallback);
+			input.addEventListener("input",dummyCallback);
+		});
+		it('simulate writing in input field', () => {
+			app.changeInputValue(input,"toto");
+			expect(dummyCallback.calls.count()).toBe(2);
+			expect(input.value).toEqual("toto");
+		});
+		it("don't change if there is no changes", () => {
+			app.changeInputValue(input,"");
+			expect(dummyCallback.calls.count()).toBe(0);
+		});
+		it("simulate for textarea as well", () => {
+			input = document.createElement("textarea");
+			input.addEventListener("change",dummyCallback);
+			input.addEventListener("input",dummyCallback);
+			app.changeInputValue(input,"plop");
+			expect(dummyCallback.calls.count()).toBe(2);
+			expect(input.innerText).toEqual("plop");
+		});
+	});
 	describe('callbackOrEventSender', () => {
 		it('call callback', () => {
 			const dummyCallback = new Spy();

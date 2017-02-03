@@ -1,4 +1,5 @@
 define(['./form', './smartEvents'], (app, ev) => {
+	const changeInputValue = ev.changeInputValue;
 	describe('selection de formulaire', () => {
 		let form, anchor;
 		beforeEach(() => {

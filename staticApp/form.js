@@ -169,7 +169,9 @@ define([
 				for(let part of formulaParts){
 						autoCalcValue.push(document.querySelector('[name="'+part+'"]').value);
 				}
-				node.value = autoCalcValue.join(' ').trim();
+				ev.changeInputValue(node, autoCalcValue.join(' ').trim());
+				//TODO: gérer l'écrasement ou non des données utilisateur
+				//TODO: indiquer le pattern quand le champ est vide
 			};
 			for(let part of formulaParts){
 				((part)=> setTimeout(()=>{

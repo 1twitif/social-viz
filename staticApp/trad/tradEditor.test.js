@@ -29,7 +29,7 @@ define(['./tradEditor', '../smartEvents', '../MonitoredStruct'], (app, ev, mStru
 			ev.give("tradLoader", {getTradData: ()=>tradData});
 			app.init();
 			ev.send("trad.applied");
-			changeInputValue(document.querySelector('#tradForm input[name="key"]'), "anyThingElse");
+			ev.changeInputValue(document.querySelector('#tradForm input[name="key"]'), "anyThingElse");
 			expect(tradData.key).toBe("anyThingElse");
 		});
 

@@ -6,11 +6,6 @@ function Spy(name) {
 	this.spy = jasmine.createSpy(name?name:'dummy');
 	return this.spy;
 }
-function changeInputValue(inputNode, value) {
-	inputNode.value = value;
-	inputNode.dispatchEvent(new Event('input', {target: inputNode, bubbles: true}));
-	inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
-}
 // Get a list of all the test files to include
 Object.keys(window.__karma__.files).forEach(function (file) {
   if (TEST_REGEXP.test(file)) {

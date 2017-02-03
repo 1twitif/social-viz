@@ -91,6 +91,24 @@ define([], () => {
 		const event = new MouseEvent('click', { 'view': window, 'bubbles': true, 'cancelable': true });
 		element.dispatchEvent(event);
 	}
+	function changeInputValue(inputNode, value) {
+		let changed = false;
+		if(inputNode.nodeName === 'TEXTAREA'){
+			if(inputNode.innerText != value){
+				inputNode.innerHTML = value;
+				changed = true;
+			}
+		} else {
+			if(inputNode.value != value){
+				inputNode.value = value;
+				changed = true;
+			}
+		}
+		if(changed){
+			inputNode.dispatchEvent(new Event('input', {target: inputNode, bubbles: true}));
+			inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
+		}
+	}
 	function build_fragmentListener(eventName, listenerCallback) {
 		return build_fragmentActionFunc(addEventListener, eventName, listenerCallback);
 	}
@@ -120,6 +138,7 @@ define([], () => {
 		give,
 		after,
 		clickOn,
+		changeInputValue,
 		callbackOrEventSender,
 		reset
 	}
