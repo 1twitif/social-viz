@@ -2,39 +2,105 @@ node:
   - mainType:
       from: enum.node.mainType
   - if:
-      condition: mainType = human
+      condition: mainType = Personne physique
       then:
         - surname:
             required: true
         - firstname
-        - birthDate:
-            dataType: date
-        - deathDate:
-            dataType: date
         - label:
             autoCalc: firstname surname
-        - mainActivity:
-            from: enum.human.activity
-  - comments:
-      dataType: markdown
-  - sources:
-      dataType: markdown
-      access: private
-
+        - Naissance:
+            dataType: date
+        - Mort:
+            dataType: date
+        - Activité principale:
+            from: enum.lien.fonction
+  - if:
+      condition: mainType = Personne morale
+      then:
+        - RaisonSociale:
+            required: true
+        - label:
+            autoCalc: RaisonSociale
+        - Statut:
+            from: enum.node.statut
+        - SecteurActivité:
+            from: enum.node.secteur
+        - if:
+            condition: SecteurActivité = Hydrocarbures
+            then:
+              - ActivitéHydrocarbure:
+                  from: enum.node.activitéHydrocarbure
+        - SiègeSocial
+  - if:
+      condition: mainType = Publication
+      then:
+        - Titre:
+            required: true
+        - label:
+            autoCalc: Titre
+        - Date de publication:
+            dataType: date
+        - Maison d'édition
+        - Siège social
+        - comments:
+           dataType: markdown
+        - sources:
+           dataType: markdown
+           access: private
+  - if:
+      condition: mainType = Evènement
+      then:
+        - NomEvènement:
+            required: true
+        - label:
+            autoCalc: NomEvènement
+        - Date de l'évènement:
+            dataType: date
+        - Lieu de l'évènement:
+  - if:
+      condition: mainType = Lieu
+      then:
+        - NomLieu:
+            required: true
+        - label:
+            autoCalc: NomLieu
+        - Type de lieu:
+            from: enum.node.lieu
+        - Siège social
+  - if:
+      condition: mainType = Projet
+      then:
+        - NomProjet:
+            required: true
+        - label:
+            autoCalc: NomProjet
+        - Type de projet :
+            from: enum.node.projet
+        - Siège social
 link:
   - source:
       from: node
   - target:
       from: node
-  - label
   - if:
-      condition: source.mainType = human
+      condition: source.mainType = Personne physique
       then:
         - if:
-            condition: target.mainType = moral
+            condition: cible.mainType = Personne morale
             then:
               - type:
-                  from: enum.human.moral.link
+                  from: enum.lien.fonction
+              - label :
+                  autoCalc: enum.lien.fonction
+  - Type de lien :
+      from: enum.lien.typeDeLien
+  - label:
+      from: enum.lien.fonction
+  - Début du lien:
+      dataType: date
+  - Fin du lien :
+      dataType: date
   - comments:
       dataType: markdown
   - sources:
@@ -44,18 +110,102 @@ link:
 enum:
   node:
     mainType:
-      - human
-      - moral
-      - place
-      - event
-      - document
-  human:
-    moral:
-      link:
-        - own
-        - workAt
-    activity:
-      - loyer
-      - lobbyist
-      - worker
-      - manager
+      - Personne physique
+      - Personne morale
+      - Publication
+      - Evènement
+      - Lieu
+      - Projet
+    statut:
+      - Administration d'Etat
+      - Entreprise locale publique
+      - Agence et établissement public
+      - Association
+      - Consortium
+      - Entreprise d’Etat
+      - Entreprise locale privée
+      - Entreprise locale publique
+      - Entreprise nationale privée
+      - Entreprise transnationale
+      - Fondation
+      - Institut
+      - Mairie
+      - Media
+      - Parlement provincial
+      - Parti politique
+      - Sénat
+      - Syndicat
+      - Tribunal national
+      - Tribunal provincial
+      - Université
+    secteur:
+      - Administration
+      - Assurance
+      - Banque
+      - Chimie
+      - Communication
+      - Construction
+      - Electricité
+      - Enseignement & RD
+      - Hydrocarbures
+      - Lobbying
+      - Transport
+      - Agroalimentaire
+      - Autre
+    activitéHydrocarbure:
+      - Extraction
+      - Ingénierie – Service - Maintenance
+      - Fournisseur d’eau
+      - Fournisseur de produits chimiques
+      - Fournisseur de sable ou de proppant
+      - Ingénierie – Maintenance
+      - Lobbying
+      - Sécurité
+      - Traitement des déchets
+      - Tubage
+      - Autre
+    lieu:
+      - Ville
+      - Batiment
+    projet:
+      - Exploration
+      - Exploitation
+  lien:
+    typeDeLien:
+      - Editeur
+      - Emploi
+      - Entrepôt
+      - Familial
+      - Financement
+      - Gouvernance
+      - Lobbying
+      - Organisation
+      - Partenariat académique
+      - Partenariat économique
+      - Partenariat technique
+      - Prestation
+      - Membre
+      - Proche
+      - Saisine
+      - Siège
+      - Sous-tutelle
+      - Autre
+    fonction:
+      - Administrateur
+      - Avocat
+      - Cadre supérieur
+      - Député provincial
+      - Enseignant -  Chercheur
+      - Gouverneur
+      - Haut fonctionnaire
+      - Journaliste
+      - Magistrat
+      - Maire
+      - Membre
+      - Ministre ou Secrétaire
+      - Président
+      - Sénateur
+      - Syndicaliste
+      - Vice-gouverneur
+      - Autre
+

@@ -109,7 +109,7 @@ define([
 				let linkEnter = link.enter().append("line")
 					.attr("class", (n) => "link ll" + n.type)
 					.attr("stroke-width", function (d) {
-						return Math.sqrt(d.value);
+						return Math.sqrt(d.value || 1);
 					})
 					.attr("stroke", 'grey');
 
