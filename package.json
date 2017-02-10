@@ -4,7 +4,15 @@
   "description": "Visualisation de graph sociaux",
   "main": "srvApp",
   "scripts": {
-    "test": "karma start .config/karma.conf.js"
+    "test": "karma start .config/karma.conf.js",
+		"build": "npm run build.requirejs",
+		"build.importData": "echo in temp file",
+		"build.requirejs": "r_js -o .config/requirejs.build.conf.js",
+		"build.stylus": "stylus --compress staticApp/style.styl build/style.built.css",
+		"build.assets": "",
+		"build.cleaning": "",
+		"build.test":""
+
   },
   "repository": {
     "type": "git",
