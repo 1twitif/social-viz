@@ -1,3 +1,4 @@
+//TODO: remplacer requirejs par jspm pour un meilleur support ES6
 ({
 	baseUrl: "../staticApp/",
 	paths: {
