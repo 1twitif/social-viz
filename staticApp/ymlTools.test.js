@@ -7,7 +7,7 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 		afterEach(ev.reset);
 		it('convert ymlText to jsObject', () => {
 			const dummyCallback = new Spy();
-			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}'};
+			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}\n'};
 			const expected = {'filename': 'osef', 'yml': {'plop': {'id': 0, 'label': 'Publication'}}};
 			ev.on('yml.ready', dummyCallback);
 			app.convert(inputData);
