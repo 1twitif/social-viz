@@ -7,7 +7,7 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 		afterEach(ev.reset);
 		it('convert ymlText to jsObject', () => {
 			const dummyCallback = new Spy();
-			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}\n'};
+			const inputData = {"filename": "osef", "fileContent": "plop: {id: 0, label: Publication}\n"};
 			const expected = {'filename': 'osef', 'yml': {'plop': {'id': 0, 'label': 'Publication'}}};
 			ev.on('yml.ready', dummyCallback);
 			app.convert(inputData);
@@ -54,8 +54,8 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 				expect(result.second).toBe("overwritten");
 				done();
 			});
-			ev.send('file.ready', {'filename': 'secondFile.uglyestMock', 'fileContent': "second: overwritten"});
-			ev.send('file.ready', {'filename': 'firstFile.uglyestMock', 'fileContent': "second: initial\nfirst: true"});
+			ev.send('file.ready', {'filename': 'secondFile.uglyestMock', 'fileContent': "second: overwritten\n"});
+			ev.send('file.ready', {'filename': 'firstFile.uglyestMock', 'fileContent': "second: initial\nfirst: true\n"});
 
 			window.fetch = backup;
 		});
