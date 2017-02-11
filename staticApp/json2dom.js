@@ -9,6 +9,8 @@ define([], () => {
 			if(typeof value === 'object' && value !== null) json2dom(value,child);
 			else child.innerHTML = value;
 			parent.appendChild(child);
+			if(key === "id") parent.id = value;
+			if(key === "class") parent.setAttribute("class",value);
 		}
 		return parent;
 	}
@@ -30,5 +32,32 @@ define([], () => {
 		if(string==='false') return false;
 		return string;
 	}
-	return {json2dom,dom2json};
+	function nameSpaceResolver(nsPrefix){
+		const ns = {
+			'svg' : 'http://www.w3.org/2000/svg',
+			'xlink': 'https://www.w3.org/1999/xlink'
+		};
+		return ns[nsPrefix] || null;
+	}
+	function xpath(xPathQuery,element, resultType=XPathResult.ANY_TYPE){
+		const doc = element.ownerDocument;
+		const rawXPathResult = doc.evaluate(xPathQuery,element,nameSpaceResolver,resultType,null);
+		switch (rawXPathResult.resultType){
+			case XPathResult.NUMBER_TYPE: return rawXPathResult.numberValue;
+			case XPathResult.STRING_TYPE: return rawXPathResult.stringValue;
+			case XPathResult.BOOLEAN_TYPE: return rawXPathResult.booleanValue;
+		}
+		const res = [];
+		let item = rawXPathResult.iterateNext();
+		while (item){
+			res.push(item);
+			item = rawXPathResult.iterateNext();
+		}
+		if (res.length === 1) {
+			if (res[0].nodeType === Node.TEXT_NODE) return res[0].textContent;
+			if(resultType === XPathResult.ANY_TYPE || resultType === XPathResult.FIRST_ORDERED_NODE_TYPE) return res[0];
+		}
+		return res;
+	}
+	return {json2dom,dom2json,xpath};
 });
