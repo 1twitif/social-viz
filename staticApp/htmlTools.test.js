@@ -81,30 +81,29 @@ define(['./htmlTools'], (app) => {
 			});
 		describe("applySelectiveClassOnNodes", () =>{
 			let nodeSet, condition;
+			function setClass(nodeSet,classes){
+				nodeSet.forEach((n)=> n.setAttribute("class",classes) );
+			}
 			beforeEach(() => {
 				nodeSet = [
 					document.createElement("first"),
-					document.createElement("second"),
+					document.createElement("second")
 				];
 				condition = (n)=> n.localName !== "second";
 			});
 			it("addClass", () => {
-				expect(nodeSet[0].className).toBeFalsy();
-				expect(nodeSet[1].className).toBeFalsy();
 				app.applySelectiveClassOnNodes(nodeSet, "notSecond", condition);
 				expect(nodeSet[0].className).toBe("notSecond");
 				expect(nodeSet[1].className).toBeFalsy();
 			});
 			it("no conflit with other classes", () => {
-				nodeSet[0].setAttribute("class","plop");
-				nodeSet[1].setAttribute("class","plop");
+				setClass(nodeSet,"plop");
 				app.applySelectiveClassOnNodes(nodeSet, "notSecond", condition);
 				expect(nodeSet[0].classList.length).toBe(2);
 				expect(nodeSet[1].classList.length).toBe(1);
 			});
 			it("remove when needed", () => {
-				nodeSet[0].setAttribute("class","plop notSecond");
-				nodeSet[1].setAttribute("class","plop notSecond");
+				setClass(nodeSet,"plop notSecond");
 				app.applySelectiveClassOnNodes(nodeSet, "notSecond", condition);
 				expect(nodeSet[0].classList.length).toBe(2);
 				expect(nodeSet[1].classList.length).toBe(1);
