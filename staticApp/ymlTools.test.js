@@ -2,7 +2,9 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 	describe('ymlTools', () => {
 		beforeEach(()=>{
 			ev.reset();
+			app.init();
 		});
+		afterEach(ev.reset);
 		it('convert ymlText to jsObject', () => {
 			const dummyCallback = new Spy();
 			const inputData = {'filename': 'osef', 'fileContent': 'plop: {id: 0, label: Publication}'};
@@ -41,6 +43,15 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			const comparator = app.buildFunc_aggregateLengthTrigger(5);
 			const testDataTrue = [2, 2, 2, 2, 2];
 			expect(comparator(testDataTrue)).toBe(true);
+		});
+		it("loadMerge with good overwriting",(done)=>{
+			app.loadMerge(['firstFile.uglyestMock','secondFile.uglyestMock'],(result)=>{
+				expect(result.first).toBe(true);
+				expect(result.second).toBe("overwritten");
+				done();
+			});
+			ev.send('file.ready', {'filename': 'secondFile.uglyestMock', 'fileContent': "second: overwritten"});
+			ev.send('file.ready', {'filename': 'firstFile.uglyestMock', 'fileContent': "second: initial\nfirst: true"});
 		});
 	});
 });

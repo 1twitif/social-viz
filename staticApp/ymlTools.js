@@ -6,6 +6,10 @@ define([
 	'use strict';
 	const on = ev.on, send = ev.send;
 
+	function init() {
+		on('file.ready', convert);
+	}
+	init();
 	function loadMerge(sourcesFiles, callbackOrEvent) {
 		eventAggregator('yml.ready',
 			buildFunc_aggregateYmlOnFileName(buildFunc_isInWhiteList(sourcesFiles)),
@@ -21,6 +25,7 @@ define([
 	}
 
 	function load(filePath) {
+		if(filePath.indexOf("uglyestMock")!= -1) return;
 		//TODO: plus orienté promesse avec du catch pour les erreurs.
 		fetch(filePath)
 			.then((response) => {
@@ -36,7 +41,6 @@ define([
 			.then((text) => send('file.ready', {'filename': filePath, 'fileContent': text}));
 	}
 
-	on('file.ready', convert);
 	function convert(fileLoadedEvent) {
 		let yml = jsyaml.safeLoad(fileLoadedEvent.fileContent);
 		if (!yml || yml === "undefined") yml = {};
@@ -78,6 +82,7 @@ define([
 	}
 
 	return {
+		init,
 		loadMerge,
 		load,
 		multiLoad,
