@@ -25,7 +25,6 @@ define([
 	}
 
 	function load(filePath) {
-		if(filePath.indexOf("uglyestMock")!= -1) return;
 		//TODO: plus orienté promesse avec du catch pour les erreurs.
 		fetch(filePath)
 			.then((response) => {

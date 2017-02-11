@@ -45,6 +45,10 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			expect(comparator(testDataTrue)).toBe(true);
 		});
 		it("loadMerge with good overwriting",(done)=>{
+			//mock à l'arrache
+			const backup = window.fetch;
+			window.fetch = ()=>{return{then:()=>{return{then:()=>'osef'}}}};
+
 			app.loadMerge(['firstFile.uglyestMock','secondFile.uglyestMock'],(result)=>{
 				expect(result.first).toBe(true);
 				expect(result.second).toBe("overwritten");
@@ -52,6 +56,8 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			});
 			ev.send('file.ready', {'filename': 'secondFile.uglyestMock', 'fileContent': "second: overwritten"});
 			ev.send('file.ready', {'filename': 'firstFile.uglyestMock', 'fileContent': "second: initial\nfirst: true"});
+
+			window.fetch = backup;
 		});
 	});
 });
