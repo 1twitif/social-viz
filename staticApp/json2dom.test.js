@@ -6,7 +6,7 @@ define(['./json2dom'], (app) => {
 			expect(domObj.getElementsByTagName('valeurs')[0].innerText).toEqual('false');
 		});
 		it('convert back generated dom to json', () => {
-			const jsonObj = {clef:'valeur',clef2:['tableau',['de'],{valeurs:false}]};
+			const jsonObj = {clef:'valeur',clef2:['tableau',['de'],{valeurs:false,or:true,numeric:0}]};
 			const identic = app.dom2json(app.json2dom(jsonObj));
 			expect(identic).toEqual(jsonObj);
 		});
@@ -33,9 +33,16 @@ define(['./json2dom'], (app) => {
 
 			expect(app.xpath("count(//*)",domObj)).toBe(5);
 			expect(app.xpath("/*[3]/text()",domObj)).toBe("text");
+			expect(app.xpath("/*[3]",domObj,XPathResult.STRING_TYPE)).toBe("text");
 			expect(app.xpath("/*[2] = 3",domObj)).toBe(true);
 			expect(app.xpath("..",app.xpath("//a",domObj))).toBe(app.xpath("/*[4]",domObj));
 			expect(app.xpath("//a",domObj,XPathResult.UNORDERED_NODE_ITERATOR_TYPE)[0]).toBe(app.xpath("//a",domObj));
+			expect(app.xpath("//a",domObj,XPathResult.FIRST_ORDERED_NODE_TYPE)).toBe(app.xpath("//a",domObj));
+		});
+		it('query in hybrid html/svg dom', () => {
+			document.body.appendChild(document.createElement("svg"));
+			document.body.appendChild(document.createElement("unknown-namespace:plop"));
+			expect(app.xpath("//svg:svg",document.body)).toBeTruthy();
 		});
 	});
 });
