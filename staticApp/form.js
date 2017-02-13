@@ -13,13 +13,9 @@ define([
 		let config = {};
 		this.template = tempateJson || {};
 		this.data = data || {};
-		const displayAnchors = {};
 		on('config.selected change', (config) => formObject.edit(config.selected));
 		on('form.if', runIfTriggers);
 
-		this.render = () => {
-			for (let anchor in displayAnchors) formObject.renderOn(displayAnchors[anchor]);
-		};
 		this.setTemplate = (template) => {
 			formObject.template = template;
 			formObject.render();
@@ -37,32 +33,26 @@ define([
 			formObject.render();
 		};
 		this.displayInNode = function displayInNode(targetNode) {
-			displayAnchors[targetNode] = targetNode;
-			this.renderOn(targetNode);
+			formObject.displayAnchor = targetNode;
+			this.render();
 		};
 
-		this.renderOn = (targetNode) => {
-			targetNode.innerHTML = '';
+		this.render = () => {
+			if(typeof formObject.displayAnchor === "undefined") return ;
+			formObject.displayAnchor.innerHTML = '';
 
-			for (let form in formObject.template) if (form !== 'enum')
-				((form) => {
-					const btn = buildFormSelectorButton(form);
-					targetNode.appendChild(btn);
-					btn.addEventListener('click', () => {
-						config.selected = form + '-new';
-						formObject.renderOn(targetNode);
-					});
-				})(form);
+			for (let form in formObject.template) if (form !== 'enum') formObject.displayAnchor.appendChild(buildFormSelectorButton(form));
 
 			if (config.selected) {
 				const form = extractType(config.selected);
-				const formNode = buildForm(formObject.template[form], form);
-				targetNode.appendChild(formNode);
+				const formNode = buildForm(formObject.template[form], "form.title."+form);
+				formObject.displayAnchor.appendChild(formNode);
 				runIfTriggers();
 				send('form.updated', formObject);
 
 			}
 		};
+
 		function buildForm(templateToBuild, title) {
 			const formNode = buildNode('form');
 			formNode.appendChild(buildNode('h2', title));
@@ -72,9 +62,12 @@ define([
 		}
 
 		function buildFormSelectorButton(form) {
-			const node = document.createElement('button');
-			node.innerText = t(form);
-			return node;
+			const btn = buildNode('button', 'new.'+form);
+			btn.addEventListener('click', () => {
+				config.selected = form + '-new';
+				formObject.render();
+			});
+			return btn;
 		}
 
 		function buildId(dataId) {

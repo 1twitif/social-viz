@@ -53,22 +53,20 @@ a {
 a:hover {
   text-decoration: underline;
 }
-#main-menu {
-  background: #888;
+#logoArea {
+  background-color: #a5bfc0;
   position: fixed;
   top: 0;
   left: 0;
   height: 120px;
-  width: 240px;
-  border-bottom-right-radius: 60px;
+  width: 180px;
   z-index: 2;
 }
 #tools-panel {
-  background-color: #aaa;
+  background-color: #7c9899;
   position: fixed;
   top: 0;
   left: 180px;
-  padding-left: 60px;
   right: 0;
   height: 320px;
 }
@@ -86,13 +84,13 @@ a:hover {
 }
 #tools-panel #advanced-tools {
   height: 260px;
-  background-color: #999;
+  background-color: #788888;
 }
 #tools-panel #main-tools {
   height: 60px;
 }
 #legend {
-  background-color: #ccc;
+  background-color: #a5bfc0;
   position: fixed;
   display: block;
   top: 120px;
@@ -150,7 +148,7 @@ a:hover {
   top: 320px;
 }
 #details {
-  background-color: #ccc;
+  background-color: #788888;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -163,26 +161,46 @@ a:hover {
   right: 0;
 }
 #details.big {
-  width: 66vw;
+  width: 600px;
 }
 #details.big .expand {
   display: none;
 }
 #details section {
+  background-color: #d7e1e2;
+  margin: 10px;
+  margin-top: 80px;
   padding: 10px;
+  padding-bottom: 40px;
 }
-#details section >:last-child {
-  margin-bottom: 130px;
-}
-#sponsor {
-  background: #888;
+footer {
+  background-color: #7c9899;
   position: fixed;
   bottom: 0;
   right: 0;
-  height: 120px;
-  width: 240px;
-  border-top-left-radius: 60px;
+  height: 30px;
+  width: 300px;
   z-index: 2;
+  text-align: center;
+}
+footer a {
+  margin: 0 10px;
+  line-height: 30px;
+  display: inline-block;
+}
+footer .expand,
+footer .reduce {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 0;
+  border-top-left-radius: 30px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  margin-top: 0;
+  margin-left: -30px;
+  background-color: #7c9899;
 }
 #legend > section,
 #details > section {
@@ -208,22 +226,6 @@ a:hover {
 .big {
   transition: all 0.5s;
 }
-footer {
-  background-color: rgba(0,0,0,0.1);
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 30px;
-  line-height: 30px;
-  z-index: -1;
-  text-align: center;
-  opacity: 0.7;
-}
-footer a {
-  margin: 0 20px;
-  display: inline-block;
-}
 #viz {
   position: fixed;
   z-index: -2;
@@ -231,10 +233,8 @@ footer a {
 #errorBox {
   background-color: rgba(0,0,0,0.2);
   position: fixed;
-  left: 50%;
-  width: 400px;
-  margin-left: -200px;
-  bottom: 30px;
+  left: 180px;
+  bottom: 0;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -251,7 +251,6 @@ footer a {
 .reduce {
   font-weight: bold;
   font-size: 20px;
-  color: #eee;
   background: rgba(136,136,136,0.7);
   border: 0;
   position: absolute;

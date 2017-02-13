@@ -7,13 +7,12 @@
 	<link rel="stylesheet" href="allData/customStyle.css"/>
 </head>
 <body>
-<nav id="main-menu"><h1><a>Logo<br/>Accueil</a></h1>
+<nav id="logoArea"><h1><a>Logo<br/>Accueil</a></h1>
 	<a>Versions imprimables</a>
 	<a>Contact</a>
 </nav>
 <nav id="tools-panel" class="small">
 	<section id="advanced-tools">
-		<!-- TODO: https://github.com/nodeca/js-yaml -> fichiers de config avec commentaire et syntaxe plus lisible -->
 		<!--
 		<label>Force de répulsion anti collision <input type="number"></label>
 		<label>Force de répulsion de proximité <input type="number"></label>
@@ -148,11 +147,12 @@
 	<button class="reduce left">-</button>
 	<button class="expand left">+</button>
 </article>
-<aside id="sponsor">
-	<h2>Partenaires</h2>
-</aside>
-<footer><a href="">Mentions légales</a><a href="//www.github.com/1twitif/social-viz"><img
-	src="staticApp/appImg/github.svg" class="picto"> Code source AGPLv3</a></footer>
+<footer>
+	<a href="">Mentions légales</a><a href="">Partenaires</a><a href="">AGATAs*</a>
+	<a href="//www.github.com/1twitif/social-viz" title="Application Libre de droit, code source disponnible en AGPLv3">AGPLv3</a>
+	<button class="reduce">-</button>
+	<button class="expand">+</button>
+</footer>
 <script id="no-ie" type="application/javascript">
 	if (navigator.userAgent.indexOf('MSIE') != -1 || (navigator.userAgent.indexOf('Trident') != -1 && navigator.userAgent.indexOf('rv:11'))) {
 		var lang = navigator.userLanguage || navigator.language || navigator.browserLanguage;
