@@ -23,6 +23,9 @@ define(['./tradChooser', '../smartEvents'], (app, ev) => {
 			ev.give('config',{trad:{supportedLanguages:['en','fr','ca'],langPickerId: anchor.id}});
 			setTimeout(done,0);
 		});
+		afterEach(()=>{
+			document.body.innerHTML = '';
+		});
 		it('init envoi tradChooser.ready une fois chargé avec ses prérequis', (done) => {
 			ev.give('tradLoader',{loadTrad:()=>"osef"});
 			ev.on('tradChooser.ready',done);

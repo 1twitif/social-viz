@@ -2,9 +2,9 @@ define([
 	'./smartEvents',
 	'./stringTools',
 	'./htmlTools',
-	'./conditionEvaluator',
-	'./trad/trad'
-], (ev, strTools, htmlTools,condiEval, trad) => {
+	'./trad/trad',
+	'./json2dom'
+], (ev, strTools, htmlTools, trad, json2dom) => {
 	'use strict';
 	const on = ev.on, send = ev.send, t = trad.t, buildNode = htmlTools.buildNode;
 	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Classes
@@ -114,7 +114,21 @@ define([
 				const ifAnchor = document.getElementById(ifId);
 				const formNode = getAncestor(ifAnchor,'form');
 				const formData = domForm2json(formNode);
-				if( condiEval.evaluate(ifTemplate.condition, formData, formObject.data, formObject.template) ){
+
+				const explorable = json2dom.json2dom(formObject.data);
+				const activeForm = document.createElement('activeForm');
+				json2dom.json2dom(formData, activeForm);
+				explorable.appendChild(activeForm);
+				const templateEnum = document.createElement('enum');
+				json2dom.json2dom(formObject.template.enum || {}, templateEnum);
+				explorable.appendChild(templateEnum);
+
+				let conditionXPath = ifTemplate.condition;
+
+				//window.top.explorable = explorable;
+				//window.top.xpath = json2dom.xpath;
+
+				if( json2dom.xpath(conditionXPath, activeForm, XPathResult.BOOLEAN_TYPE) ){
 					if(!ifAnchor.innerHTML){
 						for (let entry of ifTemplate.then) ifAnchor.appendChild(buildEntry(entry, config.selected));
 						send('form.if.displayed', ifId);

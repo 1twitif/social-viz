@@ -8,7 +8,10 @@ define(['./tradRenderer', '../smartEvents'], (app, ev) => {
 			app.init();
 			setTimeout(done,0);
 		});
-		afterEach(ev.reset);
+		afterEach(()=>{
+			ev.reset();
+			document.body.innerHTML = '';
+		});
 		it('traduction basique', () => {
 			ev.send("trad.loaded",{'key': 'value'});
 			expect(app.t('key')).toBe('value');

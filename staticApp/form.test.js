@@ -91,7 +91,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(anchor.querySelector('input[name="if"]')).toBeFalsy();
 			});
 			it("affiche les if quand les conditions sont remplies", () => {
-				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = bob', then: ['message']}}]});
+				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = "bob"', then: ['message']}}]});
 				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}]});
 				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
 				form.edit('myForm-bob');
@@ -111,10 +111,10 @@ define(['./form', './smartEvents'], (app, ev) => {
 						'city',
 						{
 							'if': {
-								condition: 'name = bob', then: [
+								condition: 'name = "bob"', then: [
 									{
 										'if': {
-											condition: 'city = bordeaux', then: [
+											condition: 'city = "bordeaux"', then: [
 												'message'
 											]
 										}
@@ -139,7 +139,9 @@ define(['./form', './smartEvents'], (app, ev) => {
 				form.setTemplate({
 					"link": [
 						{'source': {'from': 'node'}},
-						{'if': {condition: 'source.type = lambda', then: ['lambdaQualification']}}
+						//{'if': {condition: 'source.type = lambda', then: ['lambdaQualification']}} TODO: re rendre cette syntaxe utilisable.
+						{'if': {condition: "/node/*[id=/activeForm/source and type = 'lambda']", then: ['lambdaQualification']}}
+
 					],
 					"node": ['type']
 				});
