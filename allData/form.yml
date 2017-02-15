@@ -8,7 +8,7 @@ node: # nom réservé, utiliser la trad pour le changer
             required: true
         - firstname
         - label:
-            autoCalc: firstname surname
+            autoCalc: concat(firstname,' ',surname)
         - Naissance:
             dataType: date
         - Mort:

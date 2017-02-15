@@ -100,6 +100,20 @@ define([
 			return label;
 		}
 
+		function buildActiveExplorable(){
+			const formNode = formObject.displayAnchor.querySelector('form');
+			const formData = domForm2json(formNode);
+
+			const explorable = json2dom.json2dom(formObject.data);
+			const activeForm = document.createElement('activeForm');
+			json2dom.json2dom(formData, activeForm);
+			explorable.appendChild(activeForm);
+			const templateEnum = document.createElement('enum');
+			json2dom.json2dom(formObject.template.enum || {}, templateEnum);
+			explorable.appendChild(templateEnum);
+
+			return activeForm;
+		}
 		function buildIf(ifTemplate){
 			const ifAnchor = document.createElement('div');
 			ifAnchor.setAttribute('class','ifAnchor');
@@ -111,23 +125,11 @@ define([
 		}
 		function buildIfTrigger(ifTemplate,ifId){
 			return ()=>{
-				const ifAnchor = document.getElementById(ifId);
-				const formNode = getAncestor(ifAnchor,'form');
-				const formData = domForm2json(formNode);
-
-				const explorable = json2dom.json2dom(formObject.data);
-				const activeForm = document.createElement('activeForm');
-				json2dom.json2dom(formData, activeForm);
-				explorable.appendChild(activeForm);
-				const templateEnum = document.createElement('enum');
-				json2dom.json2dom(formObject.template.enum || {}, templateEnum);
-				explorable.appendChild(templateEnum);
+				const activeForm = buildActiveExplorable();
 
 				let conditionXPath = ifTemplate.condition;
 
-				//window.top.explorable = explorable;
-				//window.top.xpath = json2dom.xpath;
-
+				const ifAnchor = document.getElementById(ifId);
 				if( json2dom.xpath(conditionXPath, activeForm, XPathResult.BOOLEAN_TYPE) ){
 					if(!ifAnchor.innerHTML){
 						for (let entry of ifTemplate.then) ifAnchor.appendChild(buildEntry(entry, config.selected));
@@ -147,6 +149,13 @@ define([
 				if(document.getElementById(ifId)) ifTriggerList[ifId]();
 				else delete ifTriggerList[ifId];
 			}
+		}
+		const autoCalcFuncList = {};
+		function registerAutoCalcFunc(autoCalcFunc,id){
+			autoCalcFuncList[id] = autoCalcFunc;
+		}
+		function runAutoCalcFuncs(){
+			for(let id in autoCalcFuncList) autoCalcFuncList[id]();
 		}
 
 		const entrySpecificityFuncs = {};
@@ -169,22 +178,18 @@ define([
 			node.setAttribute('type', entry.dataType);
 		};
 		entrySpecificityFuncs['autoCalc'] = (node, entry) => {
-			const formula = entry.autoCalc;
-			const formulaParts = formula.split(' ');
+			node.placeholder = t(entry.autoCalc);
 			const updateFunc = ()=>{
-				let autoCalcValue = [];
-				for(let part of formulaParts){
-						autoCalcValue.push(document.querySelector('[name="'+part+'"]').value);
+				const autoValue = json2dom.xpath('string('+entry.autoCalc+')', buildActiveExplorable()).trim();
+				const oldAutoValue = node.getAttribute("data-auto") || '';
+				const userValue = node.value || '';
+
+				if(oldAutoValue == userValue || entry.autoOverwriteCustom){
+					ev.changeInputValue(node, autoValue);
+					node.setAttribute("data-auto", autoValue);
 				}
-				ev.changeInputValue(node, autoCalcValue.join(' ').trim());
-				//TODO: gérer l'écrasement ou non des données utilisateur
-				//TODO: indiquer le pattern quand le champ est vide
 			};
-			for(let part of formulaParts){
-				((part)=> setTimeout(()=>{
-						document.querySelector('[name="'+part+'"]').addEventListener('input', updateFunc);
-					},0) )(part);
-			}
+			registerAutoCalcFunc(updateFunc,entry.name+'-'+entry.autoCalc);
 		};
 		function getEnumFromTemplate(from) {
 			const listPath = from.split('.');
@@ -224,6 +229,7 @@ define([
 		}
 
 		function formChange(event) {
+			runAutoCalcFuncs();
 			const formNode = getAncestor(event.target, 'form');
 			setIdWhenLabelIsStable(formNode);
 			const id = formNode.id.value;

@@ -39,10 +39,17 @@ define(['./form', './smartEvents'], (app, ev) => {
 	describe('formulaire', () => {
 		let form, anchor;
 		beforeEach(() => {
+			ev.reset();
+			document.body.innerHTML = "";
 			form = new app.Form();
 			form.setConfig({'selected': 'myForm-new'});
 			anchor = document.body; //.createElement('div');
 			form.displayInNode(anchor);
+		});
+		afterEach((done)=>{
+			ev.reset();
+			document.body.innerHTML = "";
+			setTimeout(done,0);
 		});
 		describe('affichage', () => {
 			it("Affiche un input date", () => {
@@ -181,7 +188,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 			});
 
 			it("remplie automatiquement les champs en autoCalc", (done) => {
-				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "one two"}}]});
+				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "concat(one,' ',two)"}}]});
 				setTimeout(()=>{
 					changeInputValue(anchor.querySelector('input[name="one"]'), 'plip');
 					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
@@ -190,10 +197,36 @@ define(['./form', './smartEvents'], (app, ev) => {
 				},0)
 			});
 			it("remplie automatiquement les champs en autoCalc sans laisser d'espace superflu", (done) => {
-				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "one two"}}]});
+				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "concat(one,' ',two)"}}]});
 				setTimeout(()=>{
 					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
 					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plop');
+					done();
+				},0)
+			});
+			it("retiens la valeur modifié par l'utilisateur des champs en autoCalc", (done) => {
+				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one"}}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="myInput"]'), 'userInput');
+					changeInputValue(anchor.querySelector('input[name="one"]'), 'autoInput');
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('userInput');
+					done();
+				},0);
+			});
+			it("si autoOverwriteCustom est défini, les autoCalc écrase la valeur précédent", (done) => {
+				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one",autoOverwriteCustom:true}}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="myInput"]'), 'userInput');
+					changeInputValue(anchor.querySelector('input[name="one"]'), 'autoInput');
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('autoInput');
+					done();
+				},0)
+			});
+			it("autoCalc avec calcul", (done) => {
+				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one * 2"}}]});
+				setTimeout(()=>{
+					changeInputValue(anchor.querySelector('input[name="one"]'), 3);
+					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('6');
 					done();
 				},0)
 			});
