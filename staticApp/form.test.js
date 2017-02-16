@@ -179,6 +179,12 @@ define(['./form', './smartEvents'], (app, ev) => {
 				changeInputValue(anchor.querySelector('input[name="after"]'), 'aftosef');
 				expect(eventSpy).toHaveBeenCalled();
 			});
+			it("genère des id d'une longueur modérée", () => {
+				form.setTemplate({"myForm": ['label', 'after']});
+				changeInputValue(anchor.querySelector('input[name="label"]'), 'un nom à rallonge, mais vraiment trop long, si si je vous assure !');
+				changeInputValue(anchor.querySelector('input[name="after"]'), 'touch');
+				expect(anchor.querySelector('input[name="id"]').value).toMatch('myForm-un-nom-a-rallonge-m-');
+			});
 			it("charge les données existante quand il y en a", () => {
 				const id = 'myForm-dummy';
 				form.setTemplate({"myForm": ['before', 'label', 'after']});

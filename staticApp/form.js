@@ -305,7 +305,7 @@ define([
 
 	function generateId(type, title) {
 		if(!title) title = '';
-		return strTools.clean(type + '-' + title + '-' + btoa(btoa(Math.random())).substr(8, 5));
+		return strTools.clean(type + '-' + title.substring(0,20) + '-' + btoa(btoa(Math.random())).substr(8, 5));
 	}
 
 	function isCreationTempId(id) {
