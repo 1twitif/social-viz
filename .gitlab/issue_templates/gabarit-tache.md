@@ -1,28 +1,31 @@
 ## Histoire
-**En tant que** {personas_ayant_un_besoin}
+**En tant que** {personas ayant un besoin}
 
-**Je peux** {action_répondant_au_besoin}
+**Je peux** {action répondant au besoin}
 
-**Afin de** {description_du_besoin}
+**Afin de** {description du besoin}
 
 ## Degré de pertinence du besoin
 
 - [ ] **le besoin** émane d'un des concernées
 - [ ] ou d'un membre de l'équipe qui n'a pas lui même ce besoin ?
+
 ---
 - [ ] **l'action** pour répondre au besoin émane d'un des concernées
 - [ ] ou d'un membre de l'équipe qui n'a pas lui même ce besoin ?
 
 # Actions intermédiaires
 
-- [ ] reformuler l'histoire pour s'assurer d'une bonne compréhension de la demande
-- [ ] reformulation validé par l'auteur de la demande
-- [ ] évaluation sommaire de la quantité de travail pour compléter la tache, en l'état actuel du projet
+- [ ] **reformuler** l'histoire pour s'assurer d'une bonne compréhension de la demande
+- [ ] **reformulation validée** par l'auteur de la demande
+- [ ] **évaluation** sommaire de la quantité de travail pour compléter la tache, en l'état actuel du projet
+
 ---
 - [ ] {etape_de_réalisation}
 - [ ] {etape_de_réalisation}
 - [ ] {etape_de_réalisation}
 - [ ] {etape_de_réalisation}
+
 ---
 - [ ] validation **technique** par l'équipe (ça fonctionne ?)
 - [ ] validation **ergonomique** par l'équipe (c'est pratique ?)
