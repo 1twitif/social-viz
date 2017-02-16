@@ -176,66 +176,432 @@ node:
   - id: node-Enjolras
     label: Enjolras
     type: 8
-  - id: node-Combeferre
-    label: Combeferre
+  - id: node-Aranguren-Juan-Jose-ZzBPV
+    label: Aranguren Juan Jose
     type: 8
-  - id: node-Prouvaire
-    label: Prouvaire
+    mainType: Personne physique
+    surname: Juan Jose
+    firstname: Aranguren
+    Naissance: Df
+    index: 59
+    x: -74.85540699153151
+    'y': -17.224054230412072
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Capurro-Doris-TTBPV
+    label: Capurro Doris
     type: 8
-  - id: node-Feuilly
-    label: Feuilly
+    mainType: Personne physique
+    surname: Doris
+    firstname: Capurro
+    Naissance: Ff
+    index: 60
+    x: 67.39471132676982
+    'y': -38.18314923079765
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Coco-Guillermo-TTFOV
+    label: Coco Guillermo
     type: 8
-  - id: node-Courfeyrac
-    label: Courfeyrac
+    mainType: Personne physique
+    surname: Guillermo
+    firstname: Coco
+    Naissance: 15R
+    index: 61
+    x: -24.100779669432555
+    'y': 74.29099823885439
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Crexell-Lucia-WTFOR
+    label: Crexell Lucia
     type: 8
-  - id: node-Bahorel
-    label: Bahorel
+    mainType: Personne physique
+    surname: Lucia
+    firstname: Crexell
+    Naissance: '34'
+    index: 62
+    x: -32.67627295640393
+    'y': -71.63980168648281
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Crexell-Nicolas-a3pOV
+    label: Crexell Nicolas
     type: 8
-  - id: node-Bossuet
-    label: Bossuet
+    mainType: Personne physique
+    surname: Nicolas
+    firstname: Crexell
+    Naissance: '12'
+    index: 63
+    x: 73.06868734670485
+    'y': 30.999466599112544
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Crexell-Sapag-Luz-QTRNV
+    label: Crexell-Sapag Luz
     type: 8
-  - id: node-Joly
-    label: Joly
+    mainType: Personne physique
+    surname: Luz
+    firstname: Crexell-Sapag
+    Naissance: '24'
+    index: 64
+    x: -75.40987395007019
+    'y': 26.7086298943717
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Esquivel-Ricardo-VTJOa
+    label: Esquivel Ricardo
     type: 8
-  - id: node-Grantaire
-    label: Grantaire
+    mainType: Personne physique
+    surname: Ricardo
+    firstname: Esquivel
+    Naissance: '23'
+    index: 65
+    x: 37.855801046705174
+    'y': -71.1824299045226
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Eurnekian-Eduardo-ZzNOa
+    label: Eurnekian Eduardo
     type: 8
-  - id: node-MotherPlutarch
-    label: MotherPlutarch
+    mainType: Personne physique
+    surname: Eduardo
+    firstname: Eurnekian
+    Naissance: '19'
+    index: 66
+    x: 20.3239076497276
+    'y': 78.657096169674
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Crexell-Luz-RXdOV
+    label: Sapag-Crexell Luz
     type: 9
-  - id: node-Gueulemer
-    label: Gueulemer
+    mainType: Personne physique
+    surname: Luz
+    firstname: Sapag-Crexell
+    Naissance: '12'
+    index: 67
+    x: -68.6324298562459
+    'y': -44.6048155699302
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Galuccio-Miguel-SXpOV
+    label: Galuccio Miguel
     type: 4
-  - id: node-Babet
-    label: Babet
+    mainType: Personne physique
+    surname: Miguel
+    firstname: Galuccio
+    Naissance: '23'
+    index: 68
+    x: 81.33782515425389
+    'y': -13.570490012376958
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Gonzales-Daniel-VTVNR
+    label: Gonzalès Daniel
     type: 4
-  - id: node-Claquesous
-    label: Claquesous
+    mainType: Personne physique
+    surname: Daniel
+    firstname: Gonzalès
+    Naissance: '&2'
+    index: 69
+    x: -51.18148047664099
+    'y': 65.42519435369844
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Guistiani-Ruben-azJPV
+    label: Guistiani Ruben
     type: 4
-  - id: node-Montparnasse
-    label: Montparnasse
+    mainType: Personne physique
+    surname: Ruben
+    firstname: Guistiani
+    Naissance: '20'
+    index: 70
+    x: -6.501056102210902
+    'y': -83.41304615919447
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Gutierrez-Miguel-Angel-VXhOa
+    label: Gutierrez Miguel Angel
     type: 4
-  - id: node-Toussaint
-    label: Toussaint
+    mainType: Personne physique
+    surname: Miguel Angel
+    firstname: Gutierrez
+    Naissance: '20'
+    index: 71
+    x: 61.57353364008794
+    'y': 57.5213000120213
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Hosanski-Jean-Marc-QTNOa
+    label: Hosanski Jean Marc
     type: 5
-  - id: node-Child1
-    label: Child1
+    mainType: Personne physique
+    surname: Jean Marc
+    firstname: Hosanski
+    Naissance: '20'
+    index: 72
+    x: -84.84877515776738
+    'y': -0.8278612363409139
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Maiolo-Yolanda-UXpNe
+    label: Maiolo Yolanda
     type: 10
-  - id: node-Child2
-    label: Child2
+    mainType: Personne physique
+    surname: Yolanda
+    firstname: Maiolo
+    Naissance: '17'
+    index: 73
+    x: 63.56090828162586
+    'y': -57.09650548338965
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Martinez-de-Hoz-Jose-Alfredo-a3hNV
+    label: Martinez de Hoz Jose Alfredo
     type: 10
-  - id: node-Brujon
-    label: Brujon
+    mainType: Personne physique
+    surname: Jose Alfredo
+    firstname: Martinez de Hoz
+    Naissance: '15'
+    index: 74
+    x: -8.356354241304723
+    'y': 85.61641982583616
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Mehren-Mario-TXpOR
+    label: Mehren Mario
     type: 4
-  - id: node-MmeHucheloup
-    label: Mme.Hucheloup
+    mainType: Personne physique
+    surname: Mario
+    firstname: Mehren
+    Naissance: '13'
+    index: 75
+    x: -52.01930418721218
+    'y': -69.23865966263567
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Menem-Carlos-Nair-UTROe
+    label: Menem Carlos Nair
     type: 8
+    mainType: Personne physique
+    surname: Carlos Nair
+    firstname: Menem
+    Naissance: '13'
+    index: 76
+    x: 85.69309573315454
+    'y': 16.02165233889483
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Pechen-Ana-VTJOV
+    mainType: Personne physique
+    surname: Ana
+    firstname: Pechen
+    label: Pechen Ana
+    type: 8
+    Naissance: '13'
+    index: 77
+    x: -74.49520848340097
+    'y': 46.37309471034498
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Pereyra-Guillermo-Juan-RTNPV
+    mainType: Personne physique
+    surname: Juan
+    firstname: Pereyra Guillermo
+    label: Pereyra Guillermo Juan
+    type: 8
+    Naissance: '12'
+    index: 78
+    x: 23.758663326403614
+    'y': -85.06189462351874
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Poneman-Daniel-azVNR
+    mainType: Personne physique
+    surname: Daniel
+    firstname: Poneman
+    label: Poneman Daniel
+    type: 8
+    Naissance: '14'
+    index: 79
+    x: 40.194792922708864
+    'y': 79.27407282271142
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Adamo-QXdPR
+    mainType: Personne physique
+    surname: Adamo
+    firstname: Sapag
+    label: Sapag Adamo
+    type: 8
+    Naissance: '24'
+    index: 80
+    x: -83.71210207962406
+    'y': -31.50053912888796
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Carlos-YzBNR
+    mainType: Personne physique
+    surname: Carlos
+    firstname: Sapag
+    label: Sapag Carlos
+    type: 8
+    Naissance: '23'
+    index: 81
+    x: 83.52217739526044
+    'y': -33.52679351137899
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Elias-azBNe
+    mainType: Personne physique
+    surname: Elias
+    firstname: Sapag
+    label: Sapag Elias
+    type: 8
+    Naissance: '11'
+    index: 82
+    x: -39.179261383870426
+    'y': 81.63936230406482
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Felipe-YzNPV
+    mainType: Personne physique
+    surname: Felipe
+    firstname: Sapag
+    label: Sapag Felipe
+    type: 8
+    Naissance: '23'
+    index: 83
+    x: -26.4166475224289
+    'y': -87.19037064765669
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Jorge-VTVNe
+    mainType: Personne physique
+    surname: Jorge
+    firstname: Sapag
+    label: Sapag Jorge
+    type: 8
+    Naissance: '21'
+    index: 84
+    x: 78.84578820243294
+    'y': 46.72624190684592
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Sapag-Luis-TTRPV
+    mainType: Personne physique
+    surname: Luis
+    firstname: Sapag
+    label: Sapag Luis
+    type: 8
+    Naissance: '25'
+    index: 85
+    x: -90.233911389071
+    'y': 18.916691979024318
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Urcera-Claudio-TTROa
+    mainType: Personne physique
+    surname: Claudio
+    firstname: Urcera
+    label: Urcera Claudio
+    type: 8
+    Naissance: '23'
+    index: 86
+    x: 54.07293293162175
+    'y': -75.340015424556
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Argentina-Oil-Gas-VXdPV
+    mainType: Evènement
+    NomEvènement: Argentina Oil & Gas
+    label: Argentina Oil & Gas
+    type: 8
+    Date de l'évènement: Annuel
+    index: 87
+    x: 11.083634450004226
+    'y': 92.612920520728
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-Energia-TXpNa
+    mainType: Publication
+    Titre: Energia
+    label: Energia
+    type: 8
+    Type de publication: Magazine
+    index: 88
+    x: -71.13719950202413
+    'y': -61.151441904579976
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-L-ABC-des-hydrocarbures-WXpNa
+    mainType: Publication
+    Titre: L'ABC des hydrocarbures contenus dans les gisements non conventiels
+    label: L'ABC des hydrocarbures contenus dans les gisements non conventiels
+    type: 8
+    Type de publication: Rapport
+    index: 89
+    x: 94.2927937071088
+    'y': -2.978095852826337
+    vy: 0
+    vx: 0
+    degree: 0
+  - id: node-National-Geographique-YzFOV
+    mainType: Publication
+    Titre: National Géographique
+    label: National Géographique
+    type: 8
+    Type de publication: Magazine
+    index: 90
+    x: -67.89514554197386
+    'y': 66.25895571041087
+    vy: 0
+    vx: 0
+    degree: 0
+    Date de publication: '2013'
 link:
-  - id: link-Napoleon-Myriel
-    label: Napoleon Myriel
+  - id: link-Administrateur-Y3dPR
+    label: Administrateur
     source: node-Napoleon
     target: node-Myriel
     value: 1
+    Source: node-YPF-RTRPR
+    Cible: node-AMERICAN-ENERGY-PARTNERS-QXpNR
+    Type de lien: Partenariat économique
+    Début du lien: '12'
+    Fin du lien: '12'
+    comments: dd
+    sources: dkr
   - id: link-MlleBaptistine-Myriel
     label: Mlle.Baptistine Myriel
     source: node-MlleBaptistine
@@ -961,543 +1327,3 @@ link:
     source: node-Enjolras
     target: node-Valjean
     value: 4
-  - id: link-Combeferre-Enjolras
-    label: Combeferre Enjolras
-    source: node-Combeferre
-    target: node-Enjolras
-    value: 15
-  - id: link-Combeferre-Marius
-    label: Combeferre Marius
-    source: node-Combeferre
-    target: node-Marius
-    value: 5
-  - id: link-Combeferre-Gavroche
-    label: Combeferre Gavroche
-    source: node-Combeferre
-    target: node-Gavroche
-    value: 6
-  - id: link-Combeferre-Mabeuf
-    label: Combeferre Mabeuf
-    source: node-Combeferre
-    target: node-Mabeuf
-    value: 2
-  - id: link-Prouvaire-Gavroche
-    label: Prouvaire Gavroche
-    source: node-Prouvaire
-    target: node-Gavroche
-    value: 1
-  - id: link-Prouvaire-Enjolras
-    label: Prouvaire Enjolras
-    source: node-Prouvaire
-    target: node-Enjolras
-    value: 4
-  - id: link-Prouvaire-Combeferre
-    label: Prouvaire Combeferre
-    source: node-Prouvaire
-    target: node-Combeferre
-    value: 2
-  - id: link-Feuilly-Gavroche
-    label: Feuilly Gavroche
-    source: node-Feuilly
-    target: node-Gavroche
-    value: 2
-  - id: link-Feuilly-Enjolras
-    label: Feuilly Enjolras
-    source: node-Feuilly
-    target: node-Enjolras
-    value: 6
-  - id: link-Feuilly-Prouvaire
-    label: Feuilly Prouvaire
-    source: node-Feuilly
-    target: node-Prouvaire
-    value: 2
-  - id: link-Feuilly-Combeferre
-    label: Feuilly Combeferre
-    source: node-Feuilly
-    target: node-Combeferre
-    value: 5
-  - id: link-Feuilly-Mabeuf
-    label: Feuilly Mabeuf
-    source: node-Feuilly
-    target: node-Mabeuf
-    value: 1
-  - id: link-Feuilly-Marius
-    label: Feuilly Marius
-    source: node-Feuilly
-    target: node-Marius
-    value: 1
-  - id: link-Courfeyrac-Marius
-    label: Courfeyrac Marius
-    source: node-Courfeyrac
-    target: node-Marius
-    value: 9
-  - id: link-Courfeyrac-Enjolras
-    label: Courfeyrac Enjolras
-    source: node-Courfeyrac
-    target: node-Enjolras
-    value: 17
-  - id: link-Courfeyrac-Combeferre
-    label: Courfeyrac Combeferre
-    source: node-Courfeyrac
-    target: node-Combeferre
-    value: 13
-  - id: link-Courfeyrac-Gavroche
-    label: Courfeyrac Gavroche
-    source: node-Courfeyrac
-    target: node-Gavroche
-    value: 7
-  - id: link-Courfeyrac-Mabeuf
-    label: Courfeyrac Mabeuf
-    source: node-Courfeyrac
-    target: node-Mabeuf
-    value: 2
-  - id: link-Courfeyrac-Eponine
-    label: Courfeyrac Eponine
-    source: node-Courfeyrac
-    target: node-Eponine
-    value: 1
-  - id: link-Courfeyrac-Feuilly
-    label: Courfeyrac Feuilly
-    source: node-Courfeyrac
-    target: node-Feuilly
-    value: 6
-  - id: link-Courfeyrac-Prouvaire
-    label: Courfeyrac Prouvaire
-    source: node-Courfeyrac
-    target: node-Prouvaire
-    value: 3
-  - id: link-Bahorel-Combeferre
-    label: Bahorel Combeferre
-    source: node-Bahorel
-    target: node-Combeferre
-    value: 5
-  - id: link-Bahorel-Gavroche
-    label: Bahorel Gavroche
-    source: node-Bahorel
-    target: node-Gavroche
-    value: 5
-  - id: link-Bahorel-Courfeyrac
-    label: Bahorel Courfeyrac
-    source: node-Bahorel
-    target: node-Courfeyrac
-    value: 6
-  - id: link-Bahorel-Mabeuf
-    label: Bahorel Mabeuf
-    source: node-Bahorel
-    target: node-Mabeuf
-    value: 2
-  - id: link-Bahorel-Enjolras
-    label: Bahorel Enjolras
-    source: node-Bahorel
-    target: node-Enjolras
-    value: 4
-  - id: link-Bahorel-Feuilly
-    label: Bahorel Feuilly
-    source: node-Bahorel
-    target: node-Feuilly
-    value: 3
-  - id: link-Bahorel-Prouvaire
-    label: Bahorel Prouvaire
-    source: node-Bahorel
-    target: node-Prouvaire
-    value: 2
-  - id: link-Bahorel-Marius
-    label: Bahorel Marius
-    source: node-Bahorel
-    target: node-Marius
-    value: 1
-  - id: link-Bossuet-Marius
-    label: Bossuet Marius
-    source: node-Bossuet
-    target: node-Marius
-    value: 5
-  - id: link-Bossuet-Courfeyrac
-    label: Bossuet Courfeyrac
-    source: node-Bossuet
-    target: node-Courfeyrac
-    value: 12
-  - id: link-Bossuet-Gavroche
-    label: Bossuet Gavroche
-    source: node-Bossuet
-    target: node-Gavroche
-    value: 5
-  - id: link-Bossuet-Bahorel
-    label: Bossuet Bahorel
-    source: node-Bossuet
-    target: node-Bahorel
-    value: 4
-  - id: link-Bossuet-Enjolras
-    label: Bossuet Enjolras
-    source: node-Bossuet
-    target: node-Enjolras
-    value: 10
-  - id: link-Bossuet-Feuilly
-    label: Bossuet Feuilly
-    source: node-Bossuet
-    target: node-Feuilly
-    value: 6
-  - id: link-Bossuet-Prouvaire
-    label: Bossuet Prouvaire
-    source: node-Bossuet
-    target: node-Prouvaire
-    value: 2
-  - id: link-Bossuet-Combeferre
-    label: Bossuet Combeferre
-    source: node-Bossuet
-    target: node-Combeferre
-    value: 9
-  - id: link-Bossuet-Mabeuf
-    label: Bossuet Mabeuf
-    source: node-Bossuet
-    target: node-Mabeuf
-    value: 1
-  - id: link-Bossuet-Valjean
-    label: Bossuet Valjean
-    source: node-Bossuet
-    target: node-Valjean
-    value: 1
-  - id: link-Joly-Bahorel
-    label: Joly Bahorel
-    source: node-Joly
-    target: node-Bahorel
-    value: 5
-  - id: link-Joly-Bossuet
-    label: Joly Bossuet
-    source: node-Joly
-    target: node-Bossuet
-    value: 7
-  - id: link-Joly-Gavroche
-    label: Joly Gavroche
-    source: node-Joly
-    target: node-Gavroche
-    value: 3
-  - id: link-Joly-Courfeyrac
-    label: Joly Courfeyrac
-    source: node-Joly
-    target: node-Courfeyrac
-    value: 5
-  - id: link-Joly-Enjolras
-    label: Joly Enjolras
-    source: node-Joly
-    target: node-Enjolras
-    value: 5
-  - id: link-Joly-Feuilly
-    label: Joly Feuilly
-    source: node-Joly
-    target: node-Feuilly
-    value: 5
-  - id: link-Joly-Prouvaire
-    label: Joly Prouvaire
-    source: node-Joly
-    target: node-Prouvaire
-    value: 2
-  - id: link-Joly-Combeferre
-    label: Joly Combeferre
-    source: node-Joly
-    target: node-Combeferre
-    value: 5
-  - id: link-Joly-Mabeuf
-    label: Joly Mabeuf
-    source: node-Joly
-    target: node-Mabeuf
-    value: 1
-  - id: link-Joly-Marius
-    label: Joly Marius
-    source: node-Joly
-    target: node-Marius
-    value: 2
-  - id: link-Grantaire-Bossuet
-    label: Grantaire Bossuet
-    source: node-Grantaire
-    target: node-Bossuet
-    value: 3
-  - id: link-Grantaire-Enjolras
-    label: Grantaire Enjolras
-    source: node-Grantaire
-    target: node-Enjolras
-    value: 3
-  - id: link-Grantaire-Combeferre
-    label: Grantaire Combeferre
-    source: node-Grantaire
-    target: node-Combeferre
-    value: 1
-  - id: link-Grantaire-Courfeyrac
-    label: Grantaire Courfeyrac
-    source: node-Grantaire
-    target: node-Courfeyrac
-    value: 2
-  - id: link-Grantaire-Joly
-    label: Grantaire Joly
-    source: node-Grantaire
-    target: node-Joly
-    value: 2
-  - id: link-Grantaire-Gavroche
-    label: Grantaire Gavroche
-    source: node-Grantaire
-    target: node-Gavroche
-    value: 1
-  - id: link-Grantaire-Bahorel
-    label: Grantaire Bahorel
-    source: node-Grantaire
-    target: node-Bahorel
-    value: 1
-  - id: link-Grantaire-Feuilly
-    label: Grantaire Feuilly
-    source: node-Grantaire
-    target: node-Feuilly
-    value: 1
-  - id: link-Grantaire-Prouvaire
-    label: Grantaire Prouvaire
-    source: node-Grantaire
-    target: node-Prouvaire
-    value: 1
-  - id: link-MotherPlutarch-Mabeuf
-    label: MotherPlutarch Mabeuf
-    source: node-MotherPlutarch
-    target: node-Mabeuf
-    value: 3
-  - id: link-Gueulemer-Thenardier
-    label: Gueulemer Thenardier
-    source: node-Gueulemer
-    target: node-Thenardier
-    value: 5
-  - id: link-Gueulemer-Valjean
-    label: Gueulemer Valjean
-    source: node-Gueulemer
-    target: node-Valjean
-    value: 1
-  - id: link-Gueulemer-MmeThenardier
-    label: Gueulemer Mme.Thenardier
-    source: node-Gueulemer
-    target: node-MmeThenardier
-    value: 1
-  - id: link-Gueulemer-Javert
-    label: Gueulemer Javert
-    source: node-Gueulemer
-    target: node-Javert
-    value: 1
-  - id: link-Gueulemer-Gavroche
-    label: Gueulemer Gavroche
-    source: node-Gueulemer
-    target: node-Gavroche
-    value: 1
-  - id: link-Gueulemer-Eponine
-    label: Gueulemer Eponine
-    source: node-Gueulemer
-    target: node-Eponine
-    value: 1
-  - id: link-Babet-Thenardier
-    label: Babet Thenardier
-    source: node-Babet
-    target: node-Thenardier
-    value: 6
-  - id: link-Babet-Gueulemer
-    label: Babet Gueulemer
-    source: node-Babet
-    target: node-Gueulemer
-    value: 6
-  - id: link-Babet-Valjean
-    label: Babet Valjean
-    source: node-Babet
-    target: node-Valjean
-    value: 1
-  - id: link-Babet-MmeThenardier
-    label: Babet Mme.Thenardier
-    source: node-Babet
-    target: node-MmeThenardier
-    value: 1
-  - id: link-Babet-Javert
-    label: Babet Javert
-    source: node-Babet
-    target: node-Javert
-    value: 2
-  - id: link-Babet-Gavroche
-    label: Babet Gavroche
-    source: node-Babet
-    target: node-Gavroche
-    value: 1
-  - id: link-Babet-Eponine
-    label: Babet Eponine
-    source: node-Babet
-    target: node-Eponine
-    value: 1
-  - id: link-Claquesous-Thenardier
-    label: Claquesous Thenardier
-    source: node-Claquesous
-    target: node-Thenardier
-    value: 4
-  - id: link-Claquesous-Babet
-    label: Claquesous Babet
-    source: node-Claquesous
-    target: node-Babet
-    value: 4
-  - id: link-Claquesous-Gueulemer
-    label: Claquesous Gueulemer
-    source: node-Claquesous
-    target: node-Gueulemer
-    value: 4
-  - id: link-Claquesous-Valjean
-    label: Claquesous Valjean
-    source: node-Claquesous
-    target: node-Valjean
-    value: 1
-  - id: link-Claquesous-MmeThenardier
-    label: Claquesous Mme.Thenardier
-    source: node-Claquesous
-    target: node-MmeThenardier
-    value: 1
-  - id: link-Claquesous-Javert
-    label: Claquesous Javert
-    source: node-Claquesous
-    target: node-Javert
-    value: 1
-  - id: link-Claquesous-Eponine
-    label: Claquesous Eponine
-    source: node-Claquesous
-    target: node-Eponine
-    value: 1
-  - id: link-Claquesous-Enjolras
-    label: Claquesous Enjolras
-    source: node-Claquesous
-    target: node-Enjolras
-    value: 1
-  - id: link-Montparnasse-Javert
-    label: Montparnasse Javert
-    source: node-Montparnasse
-    target: node-Javert
-    value: 1
-  - id: link-Montparnasse-Babet
-    label: Montparnasse Babet
-    source: node-Montparnasse
-    target: node-Babet
-    value: 2
-  - id: link-Montparnasse-Gueulemer
-    label: Montparnasse Gueulemer
-    source: node-Montparnasse
-    target: node-Gueulemer
-    value: 2
-  - id: link-Montparnasse-Claquesous
-    label: Montparnasse Claquesous
-    source: node-Montparnasse
-    target: node-Claquesous
-    value: 2
-  - id: link-Montparnasse-Valjean
-    label: Montparnasse Valjean
-    source: node-Montparnasse
-    target: node-Valjean
-    value: 1
-  - id: link-Montparnasse-Gavroche
-    label: Montparnasse Gavroche
-    source: node-Montparnasse
-    target: node-Gavroche
-    value: 1
-  - id: link-Montparnasse-Eponine
-    label: Montparnasse Eponine
-    source: node-Montparnasse
-    target: node-Eponine
-    value: 1
-  - id: link-Montparnasse-Thenardier
-    label: Montparnasse Thenardier
-    source: node-Montparnasse
-    target: node-Thenardier
-    value: 1
-  - id: link-Toussaint-Cosette
-    label: Toussaint Cosette
-    source: node-Toussaint
-    target: node-Cosette
-    value: 2
-  - id: link-Toussaint-Javert
-    label: Toussaint Javert
-    source: node-Toussaint
-    target: node-Javert
-    value: 1
-  - id: link-Toussaint-Valjean
-    label: Toussaint Valjean
-    source: node-Toussaint
-    target: node-Valjean
-    value: 1
-  - id: link-Child1-Gavroche
-    label: Child1 Gavroche
-    source: node-Child1
-    target: node-Gavroche
-    value: 2
-  - id: link-Child2-Gavroche
-    label: Child2 Gavroche
-    source: node-Child2
-    target: node-Gavroche
-    value: 2
-  - id: link-Child2-Child1
-    label: Child2 Child1
-    source: node-Child2
-    target: node-Child1
-    value: 3
-  - id: link-Brujon-Babet
-    label: Brujon Babet
-    source: node-Brujon
-    target: node-Babet
-    value: 3
-  - id: link-Brujon-Gueulemer
-    label: Brujon Gueulemer
-    source: node-Brujon
-    target: node-Gueulemer
-    value: 3
-  - id: link-Brujon-Thenardier
-    label: Brujon Thenardier
-    source: node-Brujon
-    target: node-Thenardier
-    value: 3
-  - id: link-Brujon-Gavroche
-    label: Brujon Gavroche
-    source: node-Brujon
-    target: node-Gavroche
-    value: 1
-  - id: link-Brujon-Eponine
-    label: Brujon Eponine
-    source: node-Brujon
-    target: node-Eponine
-    value: 1
-  - id: link-Brujon-Claquesous
-    label: Brujon Claquesous
-    source: node-Brujon
-    target: node-Claquesous
-    value: 1
-  - id: link-Brujon-Montparnasse
-    label: Brujon Montparnasse
-    source: node-Brujon
-    target: node-Montparnasse
-    value: 1
-  - id: link-MmeHucheloup-Bossuet
-    label: Mme.Hucheloup Bossuet
-    source: node-MmeHucheloup
-    target: node-Bossuet
-    value: 1
-  - id: link-MmeHucheloup-Joly
-    label: Mme.Hucheloup Joly
-    source: node-MmeHucheloup
-    target: node-Joly
-    value: 1
-  - id: link-MmeHucheloup-Grantaire
-    label: Mme.Hucheloup Grantaire
-    source: node-MmeHucheloup
-    target: node-Grantaire
-    value: 1
-  - id: link-MmeHucheloup-Bahorel
-    label: Mme.Hucheloup Bahorel
-    source: node-MmeHucheloup
-    target: node-Bahorel
-    value: 1
-  - id: link-MmeHucheloup-Courfeyrac
-    label: Mme.Hucheloup Courfeyrac
-    source: node-MmeHucheloup
-    target: node-Courfeyrac
-    value: 1
-  - id: link-MmeHucheloup-Gavroche
-    label: Mme.Hucheloup Gavroche
-    source: node-MmeHucheloup
-    target: node-Gavroche
-    value: 1
-  - id: link-MmeHucheloup-Enjolras
-    label: Mme.Hucheloup Enjolras
-    source: node-MmeHucheloup
-    target: node-Enjolras
-    value: 1

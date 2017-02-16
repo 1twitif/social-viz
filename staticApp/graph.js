@@ -95,6 +95,7 @@ define([
 					)
 				;
 				computeNodesDegree(currentGraph);
+				for(let i in currentGraph.node) currentGraph.node[i].type = currentGraph.node[i].type || 0; //FIXME: virer ça.
 
 				let nodeRadiusScale = d3.scaleLinear()
 					.domain(d3.extent(currentGraph.node, function (n) {
