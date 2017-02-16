@@ -7,21 +7,16 @@ require.config({map: {"staticApp/htmlTools": {"staticApp/trad/tradRenderer": "mo
 define(['./htmlTools'], (app) => {
 	describe('htmlTools', () => {
 		describe('buildNode', () => {
-			it('build node of asked type', () => {
-				const node = app.buildNode('p');
-				expect(node.localName).toBe('p');
-			});
-			it('no content, no dumb empty translation', () => {
-				const node = app.buildNode('div');
-				expect(node.innerText).toBe('');
-			});
-			function tradTestTemplate(tag,expectedContent,inValue = false){
-				const node = app.buildNode(tag, 'Lorem ipsum');
-				expect(inValue?node.value:node.innerText).toBe(expectedContent);
+			function template(tag, expectedVal, checkWhere, setContent = false) {
+				const node = setContent ? app.buildNode(tag, 'Lorem ipsum') : app.buildNode(tag);
+				expect(node[checkWhere]).toBe(expectedVal);
 			}
-			it('build usual node with translated content', () => tradTestTemplate('p','Lorem ipsum-TRAD-OK') );
-			it("build input node and don't translate data", () => tradTestTemplate('input','Lorem ipsum',true) );
-			it("build textArea node and don't translate data", () => tradTestTemplate('textarea','Lorem ipsum') );
+
+			it('build node of asked type', () => template('p', 'p', 'localName'));
+			it('no content, no dumb empty translation', () => template('div', '', 'innerText'));
+			it('build usual node with translated content', () => template('p', 'Lorem ipsum-TRAD-OK', 'innerText', true));
+			it("build input node and don't translate data", () => template('input', 'Lorem ipsum', 'value', true));
+			it("build textArea node and don't translate data", () => template('textarea', 'Lorem ipsum', 'innerText', true));
 		});
 		describe('buildLangPicker', () => {
 			it('construit le sélecteur de langue', () => {
@@ -48,13 +43,14 @@ define(['./htmlTools'], (app) => {
 				me.id = id;
 			});
 			describe("add new node", () => {
-				function template(func){
+				function template(func) {
 					expect(here.querySelector("div#" + id)).toBeFalsy();
 					func(me, here);
 					expect(here.querySelector("div#" + id)).toBeTruthy();
 				}
-				it('with addOrReplace', () => template(app.addOrReplace) );
-				it('with addOnce', () => template(app.addOnce) );
+
+				it('with addOrReplace', () => template(app.addOrReplace));
+				it('with addOnce', () => template(app.addOnce));
 			});
 			describe("interact with allready taken id", () => {
 				beforeEach(() => {
@@ -62,13 +58,14 @@ define(['./htmlTools'], (app) => {
 					me = app.buildNode('span');
 					me.id = id;
 				});
-				function template(func, tagTrue, tagFalse){
+				function template(func, tagTrue, tagFalse) {
 					func(me, here);
-					expect(here.querySelector(tagTrue+"#" + id)).toBeTruthy();
-					expect(here.querySelector(tagFalse+"#" + id)).toBeFalsy();
+					expect(here.querySelector(tagTrue + "#" + id)).toBeTruthy();
+					expect(here.querySelector(tagFalse + "#" + id)).toBeFalsy();
 				}
-				it("don't replace existing node when use addOnce", () => template(app.addOnce, "div", "span") );
-				it("replace existing node when use addOrReplace", () => template(app.addOrReplace, "span", "div") );
+
+				it("don't replace existing node when use addOnce", () => template(app.addOnce, "div", "span"));
+				it("replace existing node when use addOrReplace", () => template(app.addOrReplace, "span", "div"));
 			});
 		});
 		describe("applySelectiveClassOnNodes", () => {
