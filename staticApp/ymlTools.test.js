@@ -2,7 +2,6 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 	describe('ymlTools', () => {
 		beforeEach(()=>{
 			ev.reset();
-			app.init();
 		});
 		afterEach(ev.reset);
 		it('convert ymlText to jsObject', () => {
@@ -45,6 +44,7 @@ define(['./ymlTools', './smartEvents'], (app, ev) => {
 			expect(comparator(testDataTrue)).toBe(true);
 		});
 		it("loadMerge with good overwriting",(done)=>{
+			app.init();
 			//mock à l'arrache
 			const backup = window.fetch;
 			window.fetch = ()=>{return{then:()=>{return{then:()=>'osef'}}}};
