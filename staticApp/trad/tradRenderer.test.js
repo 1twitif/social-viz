@@ -12,40 +12,35 @@ define(['./tradRenderer', '../smartEvents'], (app, ev) => {
 			ev.reset();
 			document.body.innerHTML = '';
 		});
-		it('traduction basique', () => {
-			ev.send("trad.loaded",{'key': 'value'});
-			expect(app.t('key')).toBe('value');
-		});
-		it("traduction à l'identique par défaut", () => {
-			ev.send("trad.loaded",{});
-			expect(app.t('key')).toBe('key');
-		});
-		it("en cas de traduction vide, retourne la clef", () => {
-			ev.send("trad.loaded",{'référenceTrad':''});
-			expect(app.t('référenceTrad')).toBe('référenceTrad');
-		});
+		function template(tradData,expected){
+			ev.send("trad.loaded",tradData);
+			expect(app.t('key')).toBe(expected);
+		}
+		it('traduction basique', () => template({'key': 'value'},'value') );
+		it("traduction à l'identique par défaut", () => template({},'key') );
+		it("en cas de traduction vide, retourne la clef", () => template({'key':''},'key') );
 		describe('refreshTrad', () => {
-			function baseRefreshTrad(contenuTest){
-				anchor.innerHTML = contenuTest;
+			function baseRefreshTrad(donnéesTest){
+				anchor.innerHTML = donnéesTest;
 				ev.send("trad.loaded",{'key': 'value'});
 			}
-			it("traduit les chaines statiques du html", () => {
-				baseRefreshTrad("key");
-				expect(anchor.innerHTML).toBe("value");
-			});
+			function refreshTemplate(donnéesTest,expectedMatch,expectNot = false){
+				baseRefreshTrad(donnéesTest);
+				if(expectNot) expect(anchor.innerHTML).not.toMatch(expectedMatch);
+				else expect(anchor.innerHTML).toMatch(expectedMatch);
+			}
+			it("traduit les chaines statiques du html", () => refreshTemplate("key","value") );
 			it("re-traduit les chaines statiques déjà traduites", () => {
 				baseRefreshTrad("key");
 				ev.send("trad.loaded",{'key': 'valeur'});
-				expect(anchor.innerHTML).toBe("valeur");
+				expect(anchor.innerHTML).toMatch("valeur");
 			});
-			it("traduit les attributs de données", () => {
-				baseRefreshTrad('<input placeholder="key" value="key" title="key"/>');
-				expect(anchor.querySelector('input').outerHTML).not.toMatch("key");
-			});
-			it("ne traduit pas les attributs systèmes (id, class, type)", () => {
-				baseRefreshTrad('<input id="key" class="key" type="key"/>');
-				expect(anchor.querySelector('input').outerHTML).not.toMatch("value");
-			});
+			it("traduit les attributs de données",
+				() => refreshTemplate('<input placeholder="key" value="key" title="key"/>',"key",true)
+			);
+			it("ne traduit pas les attributs systèmes (id, class, type)",
+				() => refreshTemplate('<input id="key" class="key" type="key"/>',"value",true)
+			);
 		});
 	});
 });
