@@ -46,10 +46,10 @@ define(['./form', './smartEvents'], (app, ev) => {
 			anchor = document.body; //.createElement('div');
 			form.displayInNode(anchor);
 		});
-		afterEach((done)=>{
+		afterEach((done) => {
 			ev.reset();
 			document.body.innerHTML = "";
-			setTimeout(done,0);
+			setTimeout(done, 0);
 		});
 		describe('affichage', () => {
 			it("Affiche un input date", () => {
@@ -187,50 +187,49 @@ define(['./form', './smartEvents'], (app, ev) => {
 				expect(anchor.querySelector('input[name="before"]').value).toEqual('someContent');
 			});
 
-			it("remplie automatiquement les champs en autoCalc", (done) => {
-				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "concat(one,' ',two)"}}]});
-				setTimeout(()=>{
-					changeInputValue(anchor.querySelector('input[name="one"]'), 'plip');
-					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
-					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plip plop');
-					done();
-				},0)
+			describe('autoCalc', () => {
+				function autoCalcTestTemplate(arrayFieldValue,expectInputName,expectedValue){
+					for(let item of arrayFieldValue) {
+						changeInputValue(anchor.querySelector('input[name="'+item[0]+'"]'), item[1]);
+					}
+					expect(anchor.querySelector('input[name="'+expectInputName+'"]').value).toEqual(expectedValue);
+				}
+				it("remplie automatiquement les champs en autoCalc", () => {
+					form.setTemplate({myForm: ["one", "two", {"myInput": {autoCalc: "concat(one,' ',two)"}}]});
+					autoCalcTestTemplate(
+						[['one','plip'],['two','plop']],
+						'myInput','plip plop'
+					);
+				});
+				it("remplie automatiquement les champs en autoCalc sans laisser d'espace superflu", () => {
+					form.setTemplate({myForm: ["one", "two", {"myInput": {autoCalc: "concat(one,' ',two)"}}]});
+					autoCalcTestTemplate(
+						[['two','plop']],
+						'myInput','plop'
+					);
+				});
+				it("retiens la valeur modifié par l'utilisateur des champs en autoCalc", () => {
+					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one"}}]});
+					autoCalcTestTemplate(
+						[['myInput','userInput'],['one','autoInput']],
+						'myInput','userInput'
+					);
+				});
+				it("si autoOverwriteCustom est défini, les autoCalc écrase la valeur précédent", () => {
+					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one", autoOverwriteCustom: true}}]});
+					autoCalcTestTemplate(
+						[['myInput','userInput'],['one','autoInput']],
+						'myInput','autoInput'
+					);
+				});
+				it("autoCalc avec calcul", () => {
+					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one * 2"}}]});
+					autoCalcTestTemplate(
+						[['one',3]],
+						'myInput','6'
+					);
+				});
 			});
-			it("remplie automatiquement les champs en autoCalc sans laisser d'espace superflu", (done) => {
-				form.setTemplate({myForm: ["one","two",{"myInput": {autoCalc: "concat(one,' ',two)"}}]});
-				setTimeout(()=>{
-					changeInputValue(anchor.querySelector('input[name="two"]'), 'plop');
-					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('plop');
-					done();
-				},0)
-			});
-			it("retiens la valeur modifié par l'utilisateur des champs en autoCalc", (done) => {
-				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one"}}]});
-				setTimeout(()=>{
-					changeInputValue(anchor.querySelector('input[name="myInput"]'), 'userInput');
-					changeInputValue(anchor.querySelector('input[name="one"]'), 'autoInput');
-					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('userInput');
-					done();
-				},0);
-			});
-			it("si autoOverwriteCustom est défini, les autoCalc écrase la valeur précédent", (done) => {
-				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one",autoOverwriteCustom:true}}]});
-				setTimeout(()=>{
-					changeInputValue(anchor.querySelector('input[name="myInput"]'), 'userInput');
-					changeInputValue(anchor.querySelector('input[name="one"]'), 'autoInput');
-					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('autoInput');
-					done();
-				},0)
-			});
-			it("autoCalc avec calcul", (done) => {
-				form.setTemplate({myForm: ["one",{"myInput": {autoCalc: "one * 2"}}]});
-				setTimeout(()=>{
-					changeInputValue(anchor.querySelector('input[name="one"]'), 3);
-					expect(anchor.querySelector('input[name="myInput"]').value).toEqual('6');
-					done();
-				},0)
-			});
-
 		});
 		describe('affichage / saisie -> données exportable et affichable', () => {
 			it("sauvegarde les données saisies dès qu'un id est défini", () => {
