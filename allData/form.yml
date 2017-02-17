@@ -13,7 +13,7 @@ node: # nom réservé, utiliser la trad pour le changer
             dataType: date
         - Mort:
             dataType: date
-        - Activité principale:
+        - ActivitéPrincipale:
             from: enum.lien.fonction
         - comments:
            dataType: markdown
@@ -53,11 +53,11 @@ node: # nom réservé, utiliser la trad pour le changer
             required: true
         - label:
             autoCalc: Titre
-        - Type de publication :
+        - TypePublication :
             from: enum.node.typeDePublication
-        - Date de publication:
+        - DatePublication:
             dataType: date
-        - Maison d'édition
+        - MaisonEdition
         - comments:
            dataType: markdown
         - sources:
@@ -70,9 +70,9 @@ node: # nom réservé, utiliser la trad pour le changer
             required: true
         - label:
             autoCalc: NomEvènement
-        - Date de l'évènement:
+        - DateEvènement:
             dataType: date
-        - Lieu de l'évènement:
+        - LieuEvènement:
         - comments:
            dataType: markdown
         - sources:
@@ -85,9 +85,9 @@ node: # nom réservé, utiliser la trad pour le changer
             required: true
         - label:
             autoCalc: NomLieu
-        - Type de lieu:
+        - TypeLieu:
             from: enum.node.lieu
-        - Siège social
+        - SiègeSocial
         - comments:
            dataType: markdown
         - sources:
@@ -100,9 +100,9 @@ node: # nom réservé, utiliser la trad pour le changer
             required: true
         - label:
             autoCalc: NomProjet
-        - Type de projet :
+        - TypeProjet :
             from: enum.node.projet
-        - Siège social
+        - SiègeSocial
         - comments:
            dataType: markdown
         - sources:
@@ -127,9 +127,9 @@ link: # nom réservé, utiliser la trad pour le changer
             from: enum.lien.typeDeLien
         - label:
             autoCalc: TypeDeLien
-  - Début du lien:
+  - DébutLien:
       dataType: date
-  - Fin du lien:
+  - FinLien:
       dataType: date
   - comments:
       dataType: markdown

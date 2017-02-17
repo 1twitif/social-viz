@@ -545,7 +545,7 @@ node:
     NomEvènement: Argentina Oil & Gas
     label: Argentina Oil & Gas
     type: 8
-    Date de l'évènement: Annuel
+    DateEvènement: Annuel
     index: 87
     x: 11.083634450004226
     'y': 92.612920520728
@@ -557,7 +557,7 @@ node:
     Titre: Energia
     label: Energia
     type: 8
-    Type de publication: Magazine
+    TypePublication: Magazine
     index: 88
     x: -71.13719950202413
     'y': -61.151441904579976
@@ -569,7 +569,7 @@ node:
     Titre: L'ABC des hydrocarbures contenus dans les gisements non conventiels
     label: L'ABC des hydrocarbures contenus dans les gisements non conventiels
     type: 8
-    Type de publication: Rapport
+    TypePublication: Rapport
     index: 89
     x: 94.2927937071088
     'y': -2.978095852826337
@@ -581,14 +581,14 @@ node:
     Titre: National Géographique
     label: National Géographique
     type: 8
-    Type de publication: Magazine
+    TypePublication: Magazine
     index: 90
     x: -67.89514554197386
     'y': 66.25895571041087
     vy: 0
     vx: 0
     degree: 0
-    Date de publication: '2013'
+    DatePublication: '2013'
 link:
   - id: link-Administrateur-Y3dPR
     label: Administrateur
@@ -597,9 +597,9 @@ link:
     value: 1
     Source: node-YPF-RTRPR
     Cible: node-AMERICAN-ENERGY-PARTNERS-QXpNR
-    Type de lien: Partenariat économique
-    Début du lien: '12'
-    Fin du lien: '12'
+    TypeLien: Partenariat économique
+    DébutLien: '12'
+    FinLien: '12'
     comments: dd
     sources: dkr
   - id: link-MlleBaptistine-Myriel
