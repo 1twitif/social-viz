@@ -57,7 +57,7 @@ define([
 			const formNode = buildNode('form');
 			formNode.appendChild(buildNode('h2', title));
 			formNode.appendChild(buildId(config.selected));
-			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i], config.selected));
+			for (let i in templateToBuild) formNode.appendChild(buildEntry(templateToBuild[i]));
 			return formNode;
 		}
 
@@ -81,11 +81,12 @@ define([
 			return label;
 		}
 
-		function buildEntry(rawEntry, dataId) {
-			const entry = parseEntry(rawEntry);
+		function buildEntry(rawEntry) {
+			const entry = __parseEntry(rawEntry);
 			if(entry.name === 'if') return buildIf(entry);
+			if(entry.name === 'category') return buildCategory(entry);
 			let node;
-			const entryData = findData(dataId)[entry.name] || '';
+			const entryData = findData(config.selected)[entry.name] || '';
 			if (entry.dataType === 'markdown') node = buildNode('textarea', entryData);
 			else node = buildNode('input', entryData);
 			node.setAttribute('name', entry.name);
@@ -114,6 +115,14 @@ define([
 
 			return activeForm;
 		}
+		function buildCategory(categoryEntry){
+			const groupNode = buildNode("fieldset");
+			groupNode.name = categoryEntry.title;
+			const title = buildNode("legend",categoryEntry.title);
+			groupNode.appendChild(title);
+			for (let entry of categoryEntry.content) groupNode.appendChild(buildEntry(entry));
+			return groupNode;
+		}
 		function buildIf(ifTemplate){
 			const ifAnchor = document.createElement('div');
 			ifAnchor.setAttribute('class','ifAnchor');
@@ -132,7 +141,7 @@ define([
 				const ifAnchor = document.getElementById(ifId);
 				if( json2dom.xpath(conditionXPath, activeForm, XPathResult.BOOLEAN_TYPE) ){
 					if(!ifAnchor.innerHTML){
-						for (let entry of ifTemplate.then) ifAnchor.appendChild(buildEntry(entry, config.selected));
+						for (let entry of ifTemplate.then) ifAnchor.appendChild(buildEntry(entry));
 						send('form.if.displayed', ifId);
 					}
 				} else {
@@ -291,12 +300,32 @@ define([
 		return getAncestor(node.parentNode, ancestorQuery);
 	}
 
-	function parseEntry(entry) {
+	function __parseEntry(entry) {
 		if (typeof entry === 'string') return {'name': entry};
+		if(entry.name) return entry;
 		for (let unicKey in entry) {
+			if(Array.isArray(entry[unicKey])) return {name:"category",title:unicKey,content:appendPrefix(unicKey,entry[unicKey])};
+			if(unicKey === "category") entry[unicKey].content = appendPrefix(entry[unicKey].title,entry[unicKey].content);
 			entry[unicKey].name = unicKey;
 			return entry[unicKey];
 		}
+	}
+	function appendPrefix(prefix,entryArray){
+		const res = [];
+		for(let entry of entryArray){
+			entry = __parseEntry(entry);
+			switch (entry.name){
+				case "if":
+					entry.then = appendPrefix(prefix,entry.then); break;
+				case "category":
+					entry.title = prefix+'.'+entry.title;
+					entry.content = appendPrefix(prefix,entry.content); break;
+				default:
+					entry.name = prefix+'.'+entry.name;
+			}
+			res.push(entry);
+		}
+		return res;
 	}
 
 	function isStaticEnumRef(from) {
@@ -324,5 +353,5 @@ define([
 		return strTools.clean('dataList-' + rawStringId);
 	}
 
-	return {Form};
+	return {Form,__parseEntry};
 });

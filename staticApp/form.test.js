@@ -88,82 +88,126 @@ define(['./form', './smartEvents'], (app, ev) => {
 				});
 				expect(document.getElementById('dataList-myForm').innerHTML).toMatch('Plop');
 			});
-			it("n'affiche pas les if comme des input", () => {
-				form.setTemplate({
-					"myForm": [
-						'name',
-						{'if': {condition: 'name = bob', then: ['message']}}
-					]
+			describe("titre/catégories", () => {
+				it("convertie la syntaxe simplifié en syntaxe explicite", () => {
+					const simple = {"monTitre":["entréeEnfant1","entréeEnfant2"]};
+					const explicite = {name:"category",title:"monTitre",content:[{name:"monTitre.entréeEnfant1"},{name:"monTitre.entréeEnfant2"}]};
+					const attendu = app.__parseEntry(simple);
+					expect(attendu).toEqual(explicite);
 				});
-				expect(anchor.querySelector('input[name="if"]')).toBeFalsy();
-			});
-			it("affiche les if quand les conditions sont remplies", () => {
-				form.setTemplate({"myForm": ['name', {'if': {condition: 'name = "bob"', then: ['message']}}]});
-				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}]});
-				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
-				form.edit('myForm-bob');
-				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
-			});
-			it("masque les if dont les conditions ne sont plus remplies", () => {
-				form.setTemplate({"myForm": ['count', {'if': {condition: 'count <= 9', then: ['message']}}]});
-				changeInputValue(anchor.querySelector('input[name="count"]'), '5');
-				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
-				changeInputValue(anchor.querySelector('input[name="count"]'), '11');
-				expect(anchor.querySelector('input[name="message"]')).toBeFalsy(); // safer with input spy
-			});
-			it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
-				form.setTemplate({
-					"myForm": [
-						'name',
-						'city',
-						{
-							'if': {
-								condition: 'name = "bob"', then: [
-									{
-										'if': {
-											condition: 'city = "bordeaux"', then: [
-												'message'
-											]
-										}
-									}
-								]
-							}
-						}
-					]
+				it("n'affiche pas les categories comme des input", () => {
+					form.setTemplate({
+						"myForm": [
+							{'titre': ['enfant']}
+						]
+					});
+					expect(anchor.querySelector('input[name="titre"]')).toBeFalsy();
+					expect(anchor.querySelector('input[name="category"]')).toBeFalsy();
 				});
-				form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob', 'city': 'bordeaux'}]});
-				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
-				form.edit('myForm-bob');
-				expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+				it("affiche le titre sous forme de fieldset", () => {
+					form.setTemplate({
+						"myForm": [
+							{'titre': ['enfant']}
+						]
+					});
+					expect(anchor.querySelector('fieldset[name="titre"]>legend')).toBeTruthy();
+				});
+				it("préfixe les nom des enfants sans préfixé les noms réservé", () => {
+					form.setTemplate({
+						"myForm": [
+							{'titre': [
+								'enfant1',
+								{"if":{condition:"1 = 1",then:["jouet"]}},
+								{"sous-titre":["enfant2"]},
+								{"category":{title:"autre-sous-titre",content:["enfant3"]}}
+							]}
+						]
+					});
+					expect(anchor.querySelector('input[name="titre.enfant1"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre.jouet"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre.sous-titre.enfant2"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre.autre-sous-titre.enfant3"]')).toBeTruthy();
+				});
 			});
-			it("affiche les if après un changement remplissant ses conditions", () => {
-				form.setTemplate({"myForm": ['count', {'if': {condition: 'count >= 5', then: ['message']}}]});
-				expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
-				changeInputValue(anchor.querySelector('input[name="count"]'), '5');
-				expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
-			});
-			it("gèrer les conditions faisant référence à d'autres entitées", () => {
-				form.setTemplate({
-					"link": [
-						{'source': {'from': 'node'}},
-						//{'if': {condition: 'source.type = lambda', then: ['lambdaQualification']}} TODO: re rendre cette syntaxe utilisable.
-						{'if': {condition: "/node/*[id=/activeForm/source and type = 'lambda']", then: ['lambdaQualification']}}
 
-					],
-					"node": ['type']
+			describe("if: fragment de formulaire conditionnels", () => {
+				it("n'affiche pas les if comme des input", () => {
+					form.setTemplate({
+						"myForm": [
+							'name',
+							{'if': {condition: 'name = bob', then: ['message']}}
+						]
+					});
+					expect(anchor.querySelector('input[name="if"]')).toBeFalsy();
 				});
-				form.setData({
-					'node': [
-						{'id': 'node-1', 'type': 'lambda'},
-						{'id': 'node-2', 'type': 'not-lambda'}
-					]
+				it("affiche les if quand les conditions sont remplies", () => {
+					form.setTemplate({"myForm": ['name', {'if': {condition: 'name = "bob"', then: ['message']}}]});
+					form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob'}]});
+					expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+					form.edit('myForm-bob');
+					expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
 				});
-				form.edit('link-new');
-				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
-				changeInputValue(anchor.querySelector('input[name="source"]'), 'node-1');
-				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeTruthy(); // safer with input spy
-				changeInputValue(anchor.querySelector('input[name="source"]'), 'node-2');
-				expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
+				it("masque les if dont les conditions ne sont plus remplies", () => {
+					form.setTemplate({"myForm": ['count', {'if': {condition: 'count <= 9', then: ['message']}}]});
+					changeInputValue(anchor.querySelector('input[name="count"]'), '5');
+					expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
+					changeInputValue(anchor.querySelector('input[name="count"]'), '11');
+					expect(anchor.querySelector('input[name="message"]')).toBeFalsy(); // safer with input spy
+				});
+				it("affiche les if quand les conditions sont remplies, y compris if imbriqués.", () => {
+					form.setTemplate({
+						"myForm": [
+							'name',
+							'city',
+							{
+								'if': {
+									condition: 'name = "bob"', then: [
+										{
+											'if': {
+												condition: 'city = "bordeaux"', then: [
+													'message'
+												]
+											}
+										}
+									]
+								}
+							}
+						]
+					});
+					form.setData({'myForm': [{'id': 'myForm-bob', 'name': 'bob', 'city': 'bordeaux'}]});
+					expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+					form.edit('myForm-bob');
+					expect(anchor.querySelector('input[name="message"]')).toBeTruthy();
+				});
+				it("affiche les if après un changement remplissant ses conditions", () => {
+					form.setTemplate({"myForm": ['count', {'if': {condition: 'count >= 5', then: ['message']}}]});
+					expect(anchor.querySelector('input[name="message"]')).toBeFalsy();
+					changeInputValue(anchor.querySelector('input[name="count"]'), '5');
+					expect(anchor.querySelector('input[name="message"]')).toBeTruthy(); // safer with input spy
+				});
+				it("gèrer les conditions faisant référence à d'autres entitées", () => {
+					form.setTemplate({
+						"link": [
+							{'source': {'from': 'node'}},
+							//{'if': {condition: 'source.type = lambda', then: ['lambdaQualification']}} TODO: re rendre cette syntaxe utilisable.
+							{'if': {condition: "/node/*[id=/activeForm/source and type = 'lambda']", then: ['lambdaQualification']}}
+
+						],
+						"node": ['type']
+					});
+					form.setData({
+						'node': [
+							{'id': 'node-1', 'type': 'lambda'},
+							{'id': 'node-2', 'type': 'not-lambda'}
+						]
+					});
+					form.edit('link-new');
+					expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
+					changeInputValue(anchor.querySelector('input[name="source"]'), 'node-1');
+					expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeTruthy(); // safer with input spy
+					changeInputValue(anchor.querySelector('input[name="source"]'), 'node-2');
+					expect(anchor.querySelector('input[name="lambdaQualification"]')).toBeFalsy(); // safer with input spy
+				});
 			});
 
 			it("genère un id dès qu'un champ après le label est modifié", () => {
@@ -194,45 +238,46 @@ define(['./form', './smartEvents'], (app, ev) => {
 			});
 
 			describe('autoCalc', () => {
-				function autoCalcTestTemplate(arrayFieldValue,expectInputName,expectedValue){
-					for(let item of arrayFieldValue) {
-						changeInputValue(anchor.querySelector('input[name="'+item[0]+'"]'), item[1]);
+				function autoCalcTestTemplate(arrayFieldValue, expectInputName, expectedValue) {
+					for (let item of arrayFieldValue) {
+						changeInputValue(anchor.querySelector('input[name="' + item[0] + '"]'), item[1]);
 					}
-					expect(anchor.querySelector('input[name="'+expectInputName+'"]').value).toEqual(expectedValue);
+					expect(anchor.querySelector('input[name="' + expectInputName + '"]').value).toEqual(expectedValue);
 				}
+
 				it("remplie automatiquement les champs en autoCalc", () => {
 					form.setTemplate({myForm: ["one", "two", {"myInput": {autoCalc: "concat(one,' ',two)"}}]});
 					autoCalcTestTemplate(
-						[['one','plip'],['two','plop']],
-						'myInput','plip plop'
+						[['one', 'plip'], ['two', 'plop']],
+						'myInput', 'plip plop'
 					);
 				});
 				it("remplie automatiquement les champs en autoCalc sans laisser d'espace superflu", () => {
 					form.setTemplate({myForm: ["one", "two", {"myInput": {autoCalc: "concat(one,' ',two)"}}]});
 					autoCalcTestTemplate(
-						[['two','plop']],
-						'myInput','plop'
+						[['two', 'plop']],
+						'myInput', 'plop'
 					);
 				});
 				it("retiens la valeur modifié par l'utilisateur des champs en autoCalc", () => {
 					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one"}}]});
 					autoCalcTestTemplate(
-						[['myInput','userInput'],['one','autoInput']],
-						'myInput','userInput'
+						[['myInput', 'userInput'], ['one', 'autoInput']],
+						'myInput', 'userInput'
 					);
 				});
 				it("si autoOverwriteCustom est défini, les autoCalc écrase la valeur précédent", () => {
 					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one", autoOverwriteCustom: true}}]});
 					autoCalcTestTemplate(
-						[['myInput','userInput'],['one','autoInput']],
-						'myInput','autoInput'
+						[['myInput', 'userInput'], ['one', 'autoInput']],
+						'myInput', 'autoInput'
 					);
 				});
 				it("autoCalc avec calcul", () => {
 					form.setTemplate({myForm: ["one", {"myInput": {autoCalc: "one * 2"}}]});
 					autoCalcTestTemplate(
-						[['one',3]],
-						'myInput','6'
+						[['one', 3]],
+						'myInput', '6'
 					);
 				});
 			});
