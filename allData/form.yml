@@ -1,212 +1,199 @@
-node: # nom réservé, utiliser la trad pour le changer
-  - mainType:
-      from: enum.node.mainType
+node:
+  - Type: {from: enum.node.type}
+  - Statut: {from: enum.node.statut}
+  - RaisonSociale
+  - label: {autoCalc: RaisonSociale}
   - if:
-      condition: mainType = "Personne physique"
+      condition: Type = "Ressourcerie"
       then:
-        - surname:
-            required: true
-        - firstname
-        - label:
-            autoCalc: concat(firstname,' ',surname)
-        - Naissance:
-            dataType: date
-        - Mort:
-            dataType: date
-        - ActivitéPrincipale:
-            from: enum.lien.fonction
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
-  - if:
-      condition: mainType = "Personne morale"
-      then:
-        - RaisonSociale:
-            required: true
-        - label:
-            autoCalc: RaisonSociale
-        - Statut:
-            from: enum.node.statut
-        - SecteurActivité:
-            from: enum.node.secteur
+        - StructureSociale: {from: enum.node.structure}
         - if:
-            condition: SecteurActivité = "Hydrocarbures"
+            condition: StructureSociale = "Autre"
             then:
-              - ActivitéHydrocarbure:
-                  from: enum.node.activitéHydrocarbure
-        - if:
-            condition: SecteurActivité = "Autre"
-            then:
-              - Indiquez le secteur d'activité
-        - SiègeSocial
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
+              - SiAutrePrécisez
+        - NombreTotalCommune: {dataType: number}
+        - NombreTotalHabitants: {dataType: number}
+        - ETPbénévoles: {dataType: number}
+        - NombreCDIhorsInsertion: {dataType: number}
+        - NombreContratInsertion: {dataType: number}
+        - NombreSalariés: {dataType: number}
+        - CollecteDéchetterie: {from: enum.node.choix}
+        - CollecteRDV: {from: enum.node.choix}
+        - ApportVolontaire: {from: enum.node.choix}
+        - CollectePaP: {from: enum.node.choix}
+        - ObjetConvention: {dataType: markdown}
+        - TexteConvention
+        - FréquenceFlux: {from: enum.node.relevé}
+        - DateRelevé: {dataType: date}
+        - Collecte:
+            - CollectéDEAménager: {dataType: number}
+            - CollectéDEAPro: {dataType: number}
+            - CollectéTLC: {dataType: number}
+            - CollectéDEEEménager: {dataType: number}
+            - CollectéDEEEpro: {dataType: number}
+            - AutresEncombrants: {dataType: number}
+            - CollectéDAE: {dataType: number}
+            - CollectéAutre: {dataType: number}
+            - TotalCollecté: {dataType: number}
+        - ValorisationRéemploi:
+            - ValDEAménager: {dataType: number}
+            - ValDEAprofessionnel: {dataType: number}
+            - ValTLC: {dataType: number}
+            - ValDEEEménager: {dataType: number}
+            - ValDEEEprofessionnel: {dataType: number}
+            - AutresEncombrants: {dataType: number}
+            - ValDAE: {dataType: number}
+            - ValAutresdéchets: {dataType: number}
+            - ValTotal: {dataType: number}
+        - Recyclage:
+            - DEAménagerRecyclé: {dataType: number}
+            - DEAproRecyclé: {dataType: number}
+            - TLCrecyclé: {dataType: number}
+            - DEEEménagerRecyclé: {dataType: number}
+            - DEEEproRecyclé: {dataType: number}
+            - AutreEncombrantsRecyclés: {dataType: number}
+            - DAErecyclé: {dataType: number}
+            - AutresDéchetsRecyclés: {dataType: number}
+            - Totalrecyclé: {dataType: number}
+        - NonValorisé:
+            - DEAménagerNV: {dataType: number}
+            - DEAproNV: {dataType: number}
+            - TLCnV: {dataType: number}
+            - DEEménagerNV: {dataType: number}
+            - DEEproNV: {dataType: number}
+            - AutresEcombrantsNV: {dataType: number}
+            - DAEnV: {dataType: number}
+            - AutreDéchetsNV: {dataType: number}
+            - TotalNV: {dataType: number}
+        - Vente:
+            - NombreMagasins: {dataType: number}
+            - NombreHeuresAn: {dataType: number}
+            - NombreClientAn: {dataType: number}
+            - SurfaceMagasin: {dataType: number}
+        - ChiffreAffaireMagasin:
+            - CADEA: {dataType: number}
+            - CATLC: {dataType: number}
+            - CADEEE: {dataType: number}
+            - CAVaisselleBibelotsCadres: {dataType: number}
+            - CAOutillageCyclesBâtiJardinMatériaux: {dataType: number}
+            - CAJouetsCulture: {dataType: number}
+            - CAAutres: {dataType: number}
+            - CATotal: {dataType: number}
+            - CAPanier moyen:
+                autCalc: Total/NombreClientAn # Total ou CATotal ?
+        - ChiffreAffaireFillière:
+            - CAFilDEA: {dataType: number}
+            - CAFilTLC: {dataType: number}
+            - CAFilDEEE: {dataType: number}
+            - CAFilDAE: {dataType: number}
+            - CAFilAutres: {dataType: number}
+        - TotalChiffreAffaire:
+            - TCADEA: {dataType: number}
+            - TCATLC: {dataType: number}
+            - TCADEEE: {dataType: number}
+            - TCADAE: {dataType: number}
+            - TCAAutres: {dataType: number}
+        - Sensibilisation:
+            - NombreVisites: {dataType: number}
+            - NombreAnimations: {dataType: number}
+            - NombreConférences: {dataType: number}
+            - NombreStandFoireExposition: {dataType: number}
+            - NombreAtelier: {dataType: number}
+            - NombreAutresEvènements: {dataType: number}
+            - NombreTotalActions: {dataType: number}
+            - NombreTotalParticipants: {dataType: number}
+        - Finance:
+            - TotalVenteMag: {dataType: number}
+            - TotalVenteMatière: {dataType: number}
+            - Prestatios: {dataType: number}
+            - AutresRessources: {dataType: number}
+            - Subventions: {dataType: number}
+            - AutreRessources: {dataType: number}
+            - TotalCharges: {dataType: number}
+            - PartAutofinancementEnPourcent: {dataType: number}
+  - Adresse
+  - CodePostal # il faudra un format à part, car en version nombre, 02200 = 2200 hors seul le premier est un code postal.
+  - Commune
+  - JoursOuvertures
+  - Horaires
+  - Courriel
+  - Téléphone1
+  - Téléphone2
+  - ChiffreAffaire: {dataType: number}
+  - NombreETP: {dataType: number}
+link:
+  - source: {from: node}
+  - target: {from: node}
+  - GenreLien: {from: enum.link.genreLien}
   - if:
-      condition: mainType = "Publication"
+      condition: GenreLien = "relationnel"
       then:
-        - Titre:
-            required: true
-        - label:
-            autoCalc: Titre
-        - TypePublication :
-            from: enum.node.typeDePublication
-        - DatePublication:
-            dataType: date
-        - MaisonEdition
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
+        - TypeRelation: {from: enum.link.typeRelation}
+        - label: {autoCalc: TypeRelation}
+        - DébutLien: {dataType: date}
+        - FinLien: {dataType: date}
   - if:
-      condition: mainType = "Evènement"
+      condition: GenreLien = "flux"
       then:
-        - NomEvènement:
-            required: true
-        - label:
-            autoCalc: NomEvènement
-        - DateEvènement:
-            dataType: date
-        - LieuEvènement:
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
-  - if:
-      condition: mainType = "Lieu"
-      then:
-        - NomLieu:
-            required: true
-        - label:
-            autoCalc: NomLieu
-        - TypeLieu:
-            from: enum.node.lieu
-        - SiègeSocial
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
-  - if:
-      condition: mainType = "Projet"
-      then:
-        - NomProjet:
-            required: true
-        - label:
-            autoCalc: NomProjet
-        - TypeProjet :
-            from: enum.node.projet
-        - SiègeSocial
-        - comments:
-           dataType: markdown
-        - sources:
-           dataType: markdown
-           access: private
-link: # nom réservé, utiliser la trad pour le changer
-  - source: # nom réservé, utiliser la trad pour le changer (même pour y rajouter une majuscule)
-      from: node
-  - target: # nom réservé, utiliser la trad pour le changer
-      from: node
-  - if:
-      condition: /node/*[id=/activeForm/source and mainType = 'Personne physique'] and /node/*[id=/activeForm/target and mainType = 'Personne morale']
-      then:
-        - Fonction:
-            from: enum.lien.fonction
-        - label :
-            autoCalc: Fonction
-  - if:
-      condition: not(/node/*[id=/activeForm/source and mainType = 'Personne physique'] and /node/*[id=/activeForm/target and mainType = 'Personne morale'])
-      then:
-        - TypeDeLien:
-            from: enum.lien.typeDeLien
-        - label:
-            autoCalc: TypeDeLien
-  - DébutLien:
-      dataType: date
-  - FinLien:
-      dataType: date
-  - comments:
-      dataType: markdown
-  - sources:
-      dataType: markdown
-      access: private
-
+        - TypeFlux: {from: enum.link.typeFlux}
+        - label: {autoCalc: TypeFlux}
+        - Date: {dataType: date}
+  - comments: {dataType: markdown}
+  - sources: {dataType: markdown, access: private}
 enum:
   node:
-    mainType:
-      - Personne physique
-      - Personne morale
-      - Publication
+    type:
+      - Atelier Valorisation
+      - Déchetterie
+      - Distribution
+      - Entreprise recyclage
       - Evènement
-      - Lieu
-      - Projet
+      - Gisement spécifique
+      - Publication
+      - Recyclerie
+      - Ressourcerie
     statut:
-      - Administration d'Etat
-      - Administration provinciale
-      - Entreprise locale publique
-      - Agence et établissement public
+      - Artisan
+      - Artiste
       - Association
-      - Consortium
-      - Entreprise d’Etat
-      - Entreprise locale privée
-      - Entreprise locale publique
-      - Entreprise nationale privée
+      - Auto-entrepreneur
+      - Communauté de communes
+      - Département
+      - Entreprise PME-PMI
+      - Entreprise d'insertion
+      - Entreprise nationale
       - Entreprise transnationale
+      - Etablissement public
       - Fondation
-      - Institut
       - Mairie
       - Media
-      - Parlement provincial
-      - Parti politique
-      - Sénat
-      - Syndicat
-      - Tribunal national
-      - Tribunal provincial
-      - Université
-    secteur:
-      - Administration
-      - Assurance
-      - Banque
-      - Chimie
-      - Communication
-      - Construction
-      - Electricité
-      - Enseignement & RD
-      - Hydrocarbures
-      - Lobbying
-      - Transport
-      - Agroalimentaire
+      - Région
+      - SCIC
+      - SCOP
+      - Syndicat mixte
+      - Université - Ecole
+    structure:
+      - AAVA
+      - ACI
+      - CHRS
+      - EI
+      - ESAT
+      - Structure d'emplois pérennes
       - Autre
-    activitéHydrocarbure:
-      - Extraction
-      - Ingénierie – Service - Maintenance
-      - Fournisseur d’eau
-      - Fournisseur de produits chimiques
-      - Fournisseur de sable ou de proppant
-      - Ingénierie – Maintenance
-      - Lobbying
-      - Sécurité
-      - Traitement des déchets
-      - Tubage
-      - Autre
-    lieu:
-      - Ville
-      - Batiment
-    typeDePublication:
-      - Magazine
-      - Rapport
-      - Livre
-    projet:
-      - Exploration
-      - Exploitation
-  lien:
-    typeDeLien:
+    relevé:
+      - Quotidien
+      - Hebdomadaire
+      - Mensuel
+      - Trimestriel
+      - Annuel
+    choix:
+      - Oui
+      - Non
+  link:
+    genreLien:
+      - Relationnel
+      - Flux
+    typeRelation:
       - Editeur
       - Emploi
       - Entrepôt
@@ -225,22 +212,13 @@ enum:
       - Siège
       - Sous-tutelle
       - Autre
-    fonction:
-      - Administrateur
-      - Avocat
-      - Cadre supérieur
-      - Député provincial
-      - Enseignant -  Chercheur
-      - Gouverneur
-      - Haut fonctionnaire
-      - Journaliste
-      - Magistrat
-      - Maire
-      - Membre
-      - Ministre ou Secrétaire
-      - Président
-      - Sénateur
-      - Syndicaliste
-      - Vice-gouverneur
-      - Autre
-
+    typeFlux:
+      - financier
+      - DEA ménager
+      - DEA professionnel
+      - TLC
+      - DEE ménager
+      - DEE professionnel
+      - Autres ecombrants
+      - DAE
+      - Autre déchets
