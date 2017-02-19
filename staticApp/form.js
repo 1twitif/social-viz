@@ -45,7 +45,7 @@ define([
 
 			if (config.selected) {
 				const form = extractType(config.selected);
-				const formNode = buildForm(formObject.template[form], "form.title."+form);
+				const formNode = buildForm(formObject.template[form], "form_title_"+form);
 				formObject.displayAnchor.appendChild(formNode);
 				runIfTriggers();
 				send('form.updated', formObject);
@@ -62,7 +62,7 @@ define([
 		}
 
 		function buildFormSelectorButton(form) {
-			const btn = buildNode('button', 'new.'+form);
+			const btn = buildNode('button', 'new_'+form);
 			btn.addEventListener('click', () => {
 				config.selected = form + '-new';
 				formObject.render();
@@ -91,7 +91,7 @@ define([
 			else node = buildNode('input', entryData);
 			node.setAttribute('name', entry.name);
 			node.addEventListener('change', formChange);
-			node.addEventListener('input', runIfTriggers);
+			node.addEventListener('input', formTyping);
 
 
 			for (let specificity in entry) applyEntrySpecificity(specificity, node, entry);
@@ -158,6 +158,10 @@ define([
 				if(document.getElementById(ifId)) ifTriggerList[ifId]();
 				else delete ifTriggerList[ifId];
 			}
+		}
+		function formTyping(){
+			runAutoCalcFuncs();
+			runIfTriggers();
 		}
 		const autoCalcFuncList = {};
 		function registerAutoCalcFunc(autoCalcFunc,id){
@@ -318,10 +322,10 @@ define([
 				case "if":
 					entry.then = appendPrefix(prefix,entry.then); break;
 				case "category":
-					entry.title = prefix+'.'+entry.title;
+					entry.title = prefix+'_'+entry.title;
 					entry.content = appendPrefix(prefix,entry.content); break;
 				default:
-					entry.name = prefix+'.'+entry.name;
+					entry.name = prefix+'_'+entry.name;
 			}
 			res.push(entry);
 		}

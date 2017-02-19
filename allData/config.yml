@@ -1,31 +1,28 @@
 layers:
-  - name: layerName
+  - G1:
+    - sub1:
+      - deep1:
+        - final1: /node/*[string-length(@id) < 10]
+        - final2: /node/*[string-length(@id) >= 10] and /node/*[string-length(@id) < 15]
+      - deep2:
+        - final1: /node/*[string-length(@id) >= 15] and /node/*[string-length(@id) < 20]
+    - final1: /node/*[string-length(@id) >= 20]
+  - G2:
+    - voisin0: /node/*[not(@id = /link/*/source | /link/*/target)]
+    - voisin1: /node/*[@id = /link/*[not(target = following::source | following::target | preceding::source | preceding::target)]/target] | /node/*[@id = /link/*[not(source = following::source | following::target | preceding::source | preceding::target)]/source]
+    - voisins: /node/*[@id = /link/*[target = following::source | following::target | preceding::source | preceding::target]/target] | /node/*[@id = /link/*[source = following::source | following::target | preceding::source | preceding::target]/source]
+  - Links:
+    - sourceShorterThanTarget: /link/*[string-length(source) < string-length(target)]
+    - sourceLongerThanTarget: /link/*[string-length(source) > string-length(target)]
+    - sameLengthSourceAndTarget: /link/*[string-length(source) = string-length(target) and source != target]
+    - selfLink: /link/*[source = target]
+
+  - name: layerNameNode
     filter: xpath
-  - layerName: xpath
-  - layerName: xpath
-  - layerName: xpath
-  - layerName: xpath
-  - name: layerName
-    filter: xpath
+  - name: layerNameParent
     sublayers:
-      - layerName: xpath
-      - layerName: xpath
-      - layerName: xpath
-      - layerName: xpath
-      - name: layerName
-        filter: xpath
-        sublayers:
-          - layerName: xpath
-          - layerName: xpath
-          - layerName: xpath
-          - layerName: xpath
-      - layerName: xpath
-      - layerName: xpath
-  - layerName: xpath
-  - layerName: xpath
-  - layerName: xpath
-  - layerName: xpath
+      - layerNameChild: xpath
 
 # calques masqué par défaut :
 hideLayers:
-  nl4: true
+  Links_selfLink: true

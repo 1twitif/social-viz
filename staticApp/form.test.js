@@ -91,7 +91,7 @@ define(['./form', './smartEvents'], (app, ev) => {
 			describe("titre/catégories", () => {
 				it("convertie la syntaxe simplifié en syntaxe explicite", () => {
 					const simple = {"monTitre":["entréeEnfant1","entréeEnfant2"]};
-					const explicite = {name:"category",title:"monTitre",content:[{name:"monTitre.entréeEnfant1"},{name:"monTitre.entréeEnfant2"}]};
+					const explicite = {name:"category",title:"monTitre",content:[{name:"monTitre_entréeEnfant1"},{name:"monTitre_entréeEnfant2"}]};
 					const attendu = app.__parseEntry(simple);
 					expect(attendu).toEqual(explicite);
 				});
@@ -123,10 +123,10 @@ define(['./form', './smartEvents'], (app, ev) => {
 							]}
 						]
 					});
-					expect(anchor.querySelector('input[name="titre.enfant1"]')).toBeTruthy();
-					expect(anchor.querySelector('input[name="titre.jouet"]')).toBeTruthy();
-					expect(anchor.querySelector('input[name="titre.sous-titre.enfant2"]')).toBeTruthy();
-					expect(anchor.querySelector('input[name="titre.autre-sous-titre.enfant3"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre_enfant1"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre_jouet"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre_sous-titre_enfant2"]')).toBeTruthy();
+					expect(anchor.querySelector('input[name="titre_autre-sous-titre_enfant3"]')).toBeTruthy();
 				});
 			});
 

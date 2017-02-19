@@ -19,6 +19,7 @@ hide()
 *
 	font-family Calibri
 	font-size 11pt
+	box-sizing border-box
 	margin 0
 	padding 0
 
@@ -151,6 +152,9 @@ a
 	position fixed
 	right 0
 	bottom 0
+	padding 10px
+	padding-top 80px
+	padding-bottom 0
 	width detailsSmallWidth
 	&.hidden
 		right - detailsSmallWidth
@@ -162,8 +166,6 @@ a
 			hide()
 	section
 		background-color #d7e1e2
-		margin 10px
-		margin-top 80px
 		padding 10px
 		padding-bottom footerHeight + 10px
 
@@ -209,7 +211,7 @@ footer
 #langPicker
 	position absolute
 	right detailsSmallWidth
-	bottom 0px
+	bottom 0
 	width (detailsSmallWidth / 2)
 	height mainToolsHeight
 

@@ -80,7 +80,7 @@ node:
             - CAAutres: {dataType: number}
             - CATotal: {dataType: number}
             - CAPanierMoyen:
-                autoCalc: ChiffreAffaireMagasin.CATotal div Vente.NombreClientAn
+                autoCalc: ChiffreAffaireMagasin_CATotal div Vente_NombreClientAn
         - ChiffreAffaireFillière:
             - CAFilDEA: {dataType: number}
             - CAFilTLC: {dataType: number}
@@ -126,14 +126,14 @@ link:
   - target: {from: node}
   - GenreLien: {from: enum.link.genreLien}
   - if:
-      condition: GenreLien = "relationnel"
+      condition: GenreLien = "Relationnel"
       then:
         - TypeRelation: {from: enum.link.typeRelation}
         - label: {autoCalc: TypeRelation}
         - DébutLien: {dataType: date}
         - FinLien: {dataType: date}
   - if:
-      condition: GenreLien = "flux"
+      condition: GenreLien = "Flux"
       then:
         - TypeFlux: {from: enum.link.typeFlux}
         - label: {autoCalc: TypeFlux}

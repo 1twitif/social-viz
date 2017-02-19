@@ -18,13 +18,19 @@ define([
 
 			const fullGraph = graphDataLoader.getData();
 			let currentGraph = struct.clone(fullGraph);
+			window.top.fullGraph = fullGraph;
+			window.top.currentGraph = currentGraph;
 			if(!currentGraph.node) currentGraph.node = {};
 			if(!currentGraph.link) currentGraph.link = {};
 
 			on('data change',(data)=>{
-				currentGraph = struct.merge(currentGraph, data);
+				currentGraph = struct.merge(currentGraph, struct.clone(data));
+				window.top.currentGraph = currentGraph;
 				console.log('update graph');
+				console.log('data',data);
+				console.log('currentGraph',currentGraph);
 				updateGraph(currentGraph);
+				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			});
 
 			var zoom = d3.zoom()
@@ -108,11 +114,13 @@ define([
 					.data(currentGraph.link);
 
 				let linkEnter = link.enter().append("line")
+					.attr("id", (n) => n.id)
 					.attr("class", (n) => "link ll" + n.type)
 					.attr("stroke-width", function (d) {
-						return Math.sqrt(d.value || 1);
+						return 4*Math.sqrt(d.value || 1);
 					})
-					.attr("stroke", 'grey');
+					.attr("stroke", (l)=>l.id===options.selected?'red':'grey')
+					.on("click", selectLink);
 
 				link.exit().remove();
 				link = linkEnter.merge(link).attr("class","merged");
@@ -258,7 +266,7 @@ define([
 				d.wasSelected = false;
 				if (options.selected !== d.id) options.selected = d.id;
 				else d.wasSelected = true;
-				updateSelection();
+				//updateSelection();
 				updateCenterForce();
 			}
 
@@ -285,7 +293,7 @@ define([
 				} else if (d.wasSelected) {
 					options.selected = undefined;
 				}
-				updateSelection();
+				//updateSelection();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			}
 
@@ -298,6 +306,10 @@ define([
 				updateCenterForce();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			}
+			function selectLink(l){
+				options.selected = l.id;
+			}
+
 
 			function applyFixedNode() {
 				var centricToD3X = d3.scaleLinear().domain([-1, 1]).range([0, width]);
@@ -319,6 +331,7 @@ define([
 				}, Math.round(duration * 1000));
 			}
 
+			on("config.selected change",updateSelection);
 			function updateSelection() {
 				d3.selectAll('.node.selected').classed("selected", function (n) {
 					return n.selected = false;
@@ -328,7 +341,8 @@ define([
 						return n.selected = true;
 					});
 				}
-				updateDetails();
+				allLinksG.selectAll("line").attr("stroke", (l)=>l.id===options.selected?'red':'grey');
+				//updateDetails();
 			}
 
 			on('lang.update', updateDetails);
