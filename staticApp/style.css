@@ -323,3 +323,13 @@ form textarea {
   display: block;
   width: 100%;
 }
+fieldset {
+  margin-top: 20px;
+  padding: 5px;
+}
+fieldset legend {
+  font-weight: bold;
+  font-size: 120%;
+  padding-left: 10px;
+  padding-right: 10px;
+}

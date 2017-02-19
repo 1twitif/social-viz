@@ -1,10 +1,31 @@
-nodeLayers:
-  - {id: 0, label: Publication, picto: staticApp/appImg/document.svg}
-  - {id: 1, label: Evenement, picto: staticApp/appImg/event.svg}
-  - {id: 2, label: Entreprise, picto: staticApp/appImg/factory.svg}
-  - {id: 3, label: Lieu, picto: staticApp/appImg/geoNode.svg}
-  - {id: 4, label: Elus, picto: staticApp/appImg/gov.svg}
-  - {id: 5, label: Personne physique, picto: staticApp/appImg/people.svg}
+layers:
+  - name: layerName
+    filter: xpath
+  - layerName: xpath
+  - layerName: xpath
+  - layerName: xpath
+  - layerName: xpath
+  - name: layerName
+    filter: xpath
+    sublayers:
+      - layerName: xpath
+      - layerName: xpath
+      - layerName: xpath
+      - layerName: xpath
+      - name: layerName
+        filter: xpath
+        sublayers:
+          - layerName: xpath
+          - layerName: xpath
+          - layerName: xpath
+          - layerName: xpath
+      - layerName: xpath
+      - layerName: xpath
+  - layerName: xpath
+  - layerName: xpath
+  - layerName: xpath
+  - layerName: xpath
+
 # calques masqué par défaut :
 hideLayers:
   nl4: true

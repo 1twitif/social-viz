@@ -79,8 +79,8 @@ node:
             - CAJouetsCulture: {dataType: number}
             - CAAutres: {dataType: number}
             - CATotal: {dataType: number}
-            - CAPanier moyen:
-                autCalc: Total/NombreClientAn # Total ou CATotal ?
+            - CAPanierMoyen:
+                autoCalc: ChiffreAffaireMagasin.CATotal div Vente.NombreClientAn
         - ChiffreAffaireFillière:
             - CAFilDEA: {dataType: number}
             - CAFilTLC: {dataType: number}
