@@ -1,8 +1,50 @@
 node:
   - id: node-R1
-    label: R1
+    label: Le Relais
+    Type: Entreprise recyclage
+    Statut: SCOP
+    RaisonSociale: Le Relais
   - id: node-R2
     label: R2
+  - id: node-Bon-Debarras-Y3dPV
+    RaisonSociale: Bon Débarras
+    label: Bon Débarras
+    Commune: Bédarieux
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Type: Ressourcerie
+    Statut: Association
+    StructureSociale: Structure d'emplois pérennes
+  - id: node-Grand-Orb-TTVNV
+    Type: Déchetterie
+    Statut: Communauté de communes
+    RaisonSociale: Grand Orb
+    label: Grand Orb
+    Commune: Bédarieux
+  - id: node-R-YzNNe
+    Type: Ressourcerie
+    Statut: Association
+    RaisonSociale: Rd'Evolution
+    label: Rd'Evolution
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    StructureSociale: Structure d'emplois pérennes
+    Commune: Le Vigan
+    Vente_NombreMagasins: '1'
+    Vente_NombreClientAn: '10970'
+    ChiffreAffaireMagasin_CATLC: '151158'
+    ChiffreAffaireMagasin_CADEEE: '9387'
+    ChiffreAffaireMagasin_CADEA: '20981'
+    ChiffreAffaireMagasin_CAAutres: '22215'
+    ChiffreAffaireMagasin_CAJouetsCulture: '6686'
+    ChiffreAffaireMagasin_CAVaisselleBibelotsCadres: '7973'
+    ChiffreAffaireMagasin_CATotal: '82430'
+    Vente_NombreHeuresAn: '1204'
+    ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux: '0'
+  - id: node-SYNTOMA-a3dNV
+    Type: Déchetterie
+    Statut: Etablissement public
+    RaisonSociale: SYNTOMA
+    label: SYNTOMA
+    Commune: Le Vigan
 link:
   - id: link-R1-R2
     label: R1-R2

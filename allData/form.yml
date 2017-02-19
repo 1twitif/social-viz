@@ -78,9 +78,12 @@ node:
             - CAOutillageCyclesBâtiJardinMatériaux: {dataType: number}
             - CAJouetsCulture: {dataType: number}
             - CAAutres: {dataType: number}
-            - CATotal: {dataType: number}
+            - CATotal:
+                autoCalc: ChiffreAffaireMagasin_CADEA + ChiffreAffaireMagasin_CATLC + ChiffreAffaireMagasin_CADEEE + ChiffreAffaireMagasin_CAVaisselleBibelotsCadres + ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux + ChiffreAffaireMagasin_CAJouetsCulture + ChiffreAffaireMagasin_CAAutres
+                autoOverwriteCustom: true
             - CAPanierMoyen:
                 autoCalc: ChiffreAffaireMagasin_CATotal div Vente_NombreClientAn
+                autoOverwriteCustom: true
         - ChiffreAffaireFillière:
             - CAFilDEA: {dataType: number}
             - CAFilTLC: {dataType: number}
