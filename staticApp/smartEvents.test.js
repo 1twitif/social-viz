@@ -1,8 +1,7 @@
 define(['./smartEvents'], (app) => {
 	describe('smartEvents', () => {
-		beforeEach(()=>{
-			app.reset();
-		});
+		beforeEach(app.reset);
+		afterEach(app.reset);
 		it('send & receive basic event', (done) => {
 			const eventName = 'anEvent';
 			app.on(eventName, done);
@@ -67,7 +66,7 @@ define(['./smartEvents'], (app) => {
 			app.send(eventName, eventData);
 			expect(subCallback).toHaveBeenCalledWith(eventData);
 		});
-		it('unordered part of structured event send & receive', (done) => {
+		it('unordered part of structured event send & receive', (done) => { // un bug ici
 			app.on('global.sub any', done);
 			app.send('any.global.sub.moreSpecific');
 		});
@@ -110,6 +109,17 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback2.calls.count()).toBe(1);
 			expect(dummyCallback3.calls.count()).toBe(1);
 		});
+
+		it('listen events in custom specified order', () => {
+
+			app.on('order', (e)=>e.nombre = e.nombre*2 , 1);
+			app.on('order', (e)=>e.nombre = e.nombre+2);
+			const data = {nombre:0};
+			app.send('order',data);
+			expect(data.nombre).toBe(4);
+		});
+
+
 
 		it('need available thing', (done) => {
 			app.on('need.config', ()=>app.send('config.asked'));

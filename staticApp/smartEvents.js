@@ -11,25 +11,26 @@ define([], () => {
 		sendFragmentedEvents(structuredEventName, customEventDetail);
 	}
 
-	function on(eventName, callback) {
+	function on(eventName, callback, order=0.5) {
 		const viewedId = {};
 		const listenerCallback = (e) => {
 			if (!e.detail) {
 				if (e.type === eventName) callbackOrEventSender(callback, e);
 			} else if (!viewedId[e.detail.id]) {
-				const eventNameFraments = occurrenceMap(eventName);
-				for(let fragment in eventNameFraments) {
-					if(e.detail.eventFullName.indexOf(fragment) !== -1) eventNameFraments[fragment]--;
+				const eventNameFragments = occurrenceMap(eventName);
+				for(let fragment in eventNameFragments) {
+					if(e.detail.eventFullName.indexOf(fragment) !== -1) eventNameFragments[fragment]--;
 				}
-				if (!sumValuesOf(eventNameFraments)){
+				if (!sumValuesOf(eventNameFragments)){
 					viewedId[e.detail.id] = true;
 					callbackOrEventSender(callback, e.detail.data);
 				}
 			}
 		};
-		const listen = build_fragmentListener(eventName, listenerCallback);
-		listen();
-		const destroyer = {destroy: build_fragmentDestroyer(eventName, listenerCallback)};
+
+		const fragments = eventSplitter(eventName);
+		const destroyers = fragments.map((f)=>addListener(f,listenerCallback,order));
+		const destroyer = {destroy:()=>destroyers.forEach((d)=>d.destroy())};
 		allListeners.push(destroyer);
 		return destroyer;
 	}
@@ -109,18 +110,30 @@ define([], () => {
 			inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
 		}
 	}
-	function build_fragmentListener(eventName, listenerCallback) {
-		return build_fragmentActionFunc(addEventListener, eventName, listenerCallback);
-	}
+	const registredListener = {};
+	const eventListenerDestroyer = {};
+	function addListener(eventName,callback,order){
+		let listenerObj = {"id":eventId(),"order":order,"callback":callback};
+		if(registredListener[eventName] && registredListener[eventName].length>0) registredListener[eventName].push(listenerObj);
+		else {
+			registredListener[eventName] = [];
+			registredListener[eventName].push(listenerObj);
+			const internalListener = (event)=>{
+				for(let i =0; i<registredListener[eventName].length; i++) registredListener[eventName][i].callback(event);
+			};
+			addEventListener(eventName,internalListener);
+			eventListenerDestroyer[eventName] = ()=>removeEventListener(eventName,internalListener);
+		}
+		registredListener[eventName].sort((a,b)=>a.order - b.order);
 
-	function build_fragmentDestroyer(eventName, listenerCallback) {
-		return build_fragmentActionFunc(removeEventListener, eventName, listenerCallback);
+		const destroyer = {destroy:()=>{
+			registredListener[eventName] = registredListener[eventName].filter( (o)=>o.id !== listenerObj.id );
+			if(registredListener[eventName].length === 0) {
+				eventListenerDestroyer[eventName]();
+			}
+		}};
+		return destroyer;
 	}
-
-	function build_fragmentActionFunc(action, structuredEventName, listenerCallback) {
-		return () => fragmentAndApply(structuredEventName, (eventPart) => action(eventPart, listenerCallback));
-	}
-
 	function sendFragmentedEvents(structuredEventName, customEventDetail) {
 		fragmentAndApply(structuredEventName,
 			(eventPart) => dispatchEvent(new CustomEvent(eventPart, {'detail': customEventDetail}))
@@ -128,7 +141,10 @@ define([], () => {
 	}
 
 	function fragmentAndApply(dotMarkedString, action) {
-		dotMarkedString.split(/ |\./g).forEach(action);
+		eventSplitter(dotMarkedString).forEach(action);
+	}
+	function eventSplitter(eventName){
+		return eventName.split(/ |\./g);
 	}
 
 	return {
