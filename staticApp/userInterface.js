@@ -16,39 +16,41 @@ define([
 		on('config.ready', render);
 		on('hashchange', render);
 		on('render', updatePanels);
-		on('error', displayError);
+		on('err', displayErr);
 	}
-	function displayError(error){
-		let errorBox = getOrCreate('errorBox');
-		let errorLine = document.createElement('a');
-		errorLine.innerHTML = buildErrorMessage(error);
-		errorLine.setAttribute('class','error');
-		errorLine.setAttribute('data-timestamp',Date.now());
-		errorLine.setAttribute('href','#{"tutorial":"error.'+error.type+'"}');
-		errorBox.appendChild(errorLine);
-		setTimeout(fadeError,10000);
-		setTimeout(fadeError,15000);
+	function displayErr(err){
+		if(!err.type) return console.error("err:",err);
+		let errBox = getOrCreate('errBox');
+		let errLine = document.createElement('a');
+		errLine.innerHTML = buildErrMessage(err);
+		errLine.setAttribute('class','err');
+		errLine.setAttribute('data-timestamp',Date.now());
+		errLine.setAttribute('href','#{"tutorial":"err.'+err.type+'"}');
+		errBox.appendChild(errLine);
+		setTimeout(fadeErr,10000);
+		setTimeout(fadeErr,15000);
 	}
-	function fadeError(){
-		const errors = document.querySelectorAll('#errorBox .error');
-		for(let error of errors){
-			if(error.getAttribute('data-timestamp')<Date.now()-10000 && !error.classList.contains('fade'))
-				error.classList.add('fade');
-			if(error.getAttribute('data-timestamp')<Date.now()-15000)
-				error.parentNode.removeChild(error);
+	function fadeErr(){
+		const errList = document.querySelectorAll('#errBox .err');
+		for(let err of errList){
+			if(err.getAttribute('data-timestamp')<Date.now()-10000 && !err.classList.contains('fade'))
+				err.classList.add('fade');
+			if(err.getAttribute('data-timestamp')<Date.now()-15000)
+				err.parentNode.removeChild(err);
 		}
 	}
-	const errorMessageBuilderCatalog = {};
-	errorMessageBuilderCatalog["file.load.error.404"] = (error)=>{
-		if(error.value.indexOf('allData') !== -1){
-			return t('error 404, file not found : ')+'allData'+error.value.split('allData')[1];
+	const errMessageBuilderCatalog = {};
+	errMessageBuilderCatalog["file.load.err.404"] = (err)=>{
+		if(err.value.indexOf('allData') !== -1){
+			return t('err 404, file not found : ')+'allData'+err.value.split('allData')[1];
 		}
-		return t('error 404, file not found : ')+error.value;
+		return t('err 404, file not found : ')+err.value;
 	};
-	errorMessageBuilderCatalog["default"] = (error) => 'error : '+JSON.stringify(error);
-	function buildErrorMessage(error){
-		if(errorMessageBuilderCatalog[error.type]) return errorMessageBuilderCatalog[error.type](error);
-		else return errorMessageBuilderCatalog['default'](error);
+	errMessageBuilderCatalog["default"] = (err) => 'err : '+JSON.stringify(err);
+	function buildErrMessage(err){
+		console.log(err.type);
+		if(errMessageBuilderCatalog[err.type]) return errMessageBuilderCatalog[err.type](err);
+		else return errMessageBuilderCatalog['default'](err);
 	}
 	function getOrCreate(id){
 		let node = document.getElementById(id);

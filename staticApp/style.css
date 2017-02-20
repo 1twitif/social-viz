@@ -232,7 +232,7 @@ footer .reduce {
   position: fixed;
   z-index: -2;
 }
-#errorBox {
+#errBox {
   background-color: rgba(0,0,0,0.2);
   position: fixed;
   left: 180px;
@@ -240,13 +240,13 @@ footer .reduce {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-#errorBox .error {
+#errBox .err {
   color: #900;
   padding: 0 20px;
   display: block;
   transition: opacity 5s;
 }
-#errorBox .error.fade {
+#errBox .err.fade {
   opacity: 0;
 }
 .expand,

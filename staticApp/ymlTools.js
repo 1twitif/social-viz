@@ -30,8 +30,8 @@ define([
 			.then((response) => {
 				if (response.ok)  return response.text();
 				else {
-					send('file.load.error.' + response.status, {
-						'type': 'file.load.error.' + response.status,
+					send('file.load.err.' + response.status, {
+						'type': 'file.load.err.' + response.status,
 						'value': response.url
 					});
 					return '';
