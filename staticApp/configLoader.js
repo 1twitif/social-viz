@@ -21,18 +21,19 @@ define([
 
 	function listenerInit() {
 		on('config.default', initUrlHashStore);
-		on('urlHashStore.ready', completeConfigWithUrlHashStore);
+		on('config.pre-ready', proxyfyConfigForGlobalDiffusion,1);
 		on('config delete', 'config.change');
 		on('config change', storeConfig);
 	}
 
 	function initUrlHashStore(defaultConfig) {
 		urlHashStore = new Store.UrlHashStore(defaultConfig);	// init url with default values
-		send('urlHashStore.ready', urlHashStore);
+		const preConfig = urlHashStore.load();
+		send('config.pre-ready', preConfig); // init config from url hash
 	}
 
-	function completeConfigWithUrlHashStore(url) {
-		const fullConfig = new mStruct.MonitoredStruct(url.load(), 'config');	// init options from url hash
+	function proxyfyConfigForGlobalDiffusion(config) {
+		const fullConfig = new mStruct.MonitoredStruct(config, 'config');
 		setConfig(fullConfig);
 		ev.give("config",getConfig);
 	}
