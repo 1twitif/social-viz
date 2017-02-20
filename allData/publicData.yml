@@ -4,16 +4,26 @@ node:
     Type: Entreprise recyclage
     Statut: SCOP
     RaisonSociale: Le Relais
-  - id: node-R2
-    label: R2
   - id: node-Bon-Debarras-Y3dPV
     RaisonSociale: Bon Débarras
     label: Bon Débarras
     Commune: Bédarieux
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: '7.512306289881495'
     Type: Ressourcerie
     Statut: Association
     StructureSociale: Structure d'emplois pérennes
+    ChiffreAffaireMagasin_CATotal: '82410'
+    Vente_NombreMagasins: '1'
+    Vente_NombreClientAn: '10970'
+    Vente_NombreHeuresAn: '1204'
+    ChiffreAffaireMagasin_CATLC: '15158'
+    ChiffreAffaireMagasin_CADEEE: '9387'
+    ChiffreAffaireMagasin_CAVaisselleBibelotsCadres: '7973'
+    ChiffreAffaireMagasin_CAJouetsCulture: '6686'
+    ChiffreAffaireMagasin_CAAutres: '22215'
+    ChiffreAffaireMagasin_CADEA: '20991'
+    ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux: '0'
+    DateRelevé: 31/12/2016
   - id: node-Grand-Orb-TTVNV
     Type: Déchetterie
     Statut: Communauté de communes
@@ -28,25 +38,66 @@ node:
     ChiffreAffaireMagasin_CAPanierMoyen: NaN
     StructureSociale: Structure d'emplois pérennes
     Commune: Le Vigan
-    Vente_NombreMagasins: '1'
-    Vente_NombreClientAn: '10970'
-    ChiffreAffaireMagasin_CATLC: '151158'
-    ChiffreAffaireMagasin_CADEEE: '9387'
-    ChiffreAffaireMagasin_CADEA: '20981'
+    Vente_NombreMagasins: ''
+    Vente_NombreClientAn: ''
+    ChiffreAffaireMagasin_CATLC: ''
+    ChiffreAffaireMagasin_CADEEE: ''
+    ChiffreAffaireMagasin_CADEA: ''
     ChiffreAffaireMagasin_CAAutres: '22215'
-    ChiffreAffaireMagasin_CAJouetsCulture: '6686'
-    ChiffreAffaireMagasin_CAVaisselleBibelotsCadres: '7973'
-    ChiffreAffaireMagasin_CATotal: '82430'
-    Vente_NombreHeuresAn: '1204'
-    ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux: '0'
+    ChiffreAffaireMagasin_CAJouetsCulture: ''
+    ChiffreAffaireMagasin_CAVaisselleBibelotsCadres: ''
+    ChiffreAffaireMagasin_CATotal: NaN
+    Vente_NombreHeuresAn: ''
+    ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux: ''
   - id: node-SYNTOMA-a3dNV
     Type: Déchetterie
     Statut: Etablissement public
     RaisonSociale: SYNTOMA
     label: SYNTOMA
     Commune: Le Vigan
+  - id: node-D-QTVNV
+    Type: Ressourcerie
+    Statut: Association
+    RaisonSociale: Dynamique Occitanie
+    label: Dynamique Occitanie
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    StructureSociale: Autre
+    SiAutrePrécisez: Réseau
 link:
-  - id: link-R1-R2
-    label: R1-R2
-    source: node-R1
-    target: node-R2
+  - id: link-TLC-a3lPV
+    source: node-Bon-Debarras-Y3dPV
+    target: node-R1
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: hgf
+  - id: link-Autres-encombrants-ZzNNV
+    source: node-Grand-Orb-TTVNV
+    target: node-Bon-Debarras-Y3dPV
+    GenreLien: Flux
+    TypeFlux: Autres encombrants
+    label: Autres encombrants
+    Date: 24 février 2017
+    comments: x
+  - id: link-Autres-encombrants-azBOR
+    source: node-SYNTOMA-a3dNV
+    target: node-R-YzNNe
+    GenreLien: Flux
+    TypeFlux: Autres encombrants
+    label: Autres encombrants
+    comments: c
+  - id: link-Autre-Z3lPR
+    source: node-D-QTVNV
+    target: node-Bon-Debarras-Y3dPV
+    GenreLien: Relationnel
+    TypeRelation: Autre
+    label: Autre
+    comments: c
+  - id: link-Autre-YzNPV
+    source: node-D-QTVNV
+    target: node-R-YzNNe
+    GenreLien: Relationnel
+    TypeRelation: Autre
+    label: Autre
+    comments: c

@@ -30,11 +30,11 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 			});
 			it("convertie les calques et sizingModes de la config au chargement.", () => {
 				app.init();
-				ev.send("config.pre-ready", preConfig);
+				ev.send("config.default", preConfig);
 				expect(preConfig).toEqual(expected);
 			});
 			it("envoi une erreur s'il n'a pas reçu la config 10s après s'être chargé", () => {
-				ev.send("config.pre-ready", preConfig);
+				ev.send("config.default", preConfig);
 				jasmine.clock().tick(1);
 				app.init();
 				jasmine.clock().tick(1);
@@ -47,7 +47,7 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 			it("n'envoi pas d'erreur quand tout va bien.", () => {
 				ev.on("err",dummySpy);
 				app.init();
-				ev.send("config.pre-ready", preConfig);
+				ev.send("config.default", preConfig);
 				jasmine.clock().tick(10000);
 				expect(dummySpy).not.toHaveBeenCalled();
 			});

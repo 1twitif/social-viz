@@ -4,7 +4,7 @@ define([
 	function init(){
 		const toConvert = ["layers","nodeSizingModes","linkSizingModes"];
 		let used = false;
-		ev.on("config.pre-ready", (preConfig)=>{
+		ev.on("config.default", (preConfig)=>{
 			used = true;
 			for(let item of toConvert){
 				if(!preConfig.hasOwnProperty(item)) preConfig[item] = [];

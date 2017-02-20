@@ -20,7 +20,7 @@ define([
 	}
 
 	function listenerInit() {
-		on('config.default', initUrlHashStore);
+		on('config.default', initUrlHashStore,1);
 		on('config.pre-ready', proxyfyConfigForGlobalDiffusion,1);
 		on('config delete', 'config.change');
 		on('config change', storeConfig);
