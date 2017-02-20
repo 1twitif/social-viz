@@ -10,9 +10,8 @@ define(['./json2dom'], (app) => {
 			const identic = app.dom2json(app.json2dom(jsonObj));
 			expect(identic).toEqual(jsonObj);
 		});
-		it('converted dom have id and class', () => {
-			const domObj = app.json2dom({node:{id:"plop","class":"plic ploc"}});
-			expect(domObj.querySelector('#plop')).toBeTruthy();
+		it('converted dom have class', () => {
+			const domObj = app.json2dom({node:{"class":"plic ploc"}});
 			expect(domObj.querySelectorAll('.ploc')[0]).toBeTruthy();
 		});
 		it('converted dom are Xpath compatible', () => {
@@ -44,5 +43,31 @@ define(['./json2dom'], (app) => {
 			document.body.appendChild(document.createElement("unknown-namespace:plop"));
 			expect(app.xpath("//svg:svg",document.body)).toBeTruthy();
 		});
+		it('nested xpath evaluation', () => {
+			const domObj = app.json2dom({
+				node:[{id:"n1"},{id:"n2"},{id:"n3"},{id:"n4"}],
+				link:[
+					{source:"n1",target:"n3"},
+					{source:"n3",target:"n4"},
+					{source:"n2",target:"n2"}
+				]
+			});
+			const activeNode = app.xpath("//*[id = 'n3']",domObj);
+			expect(app.xpath("count(/link/*[target | source = '{id/text()}'])",activeNode)).toBe(2);
+		});
+		it('recursive xpath evaluation', () => {
+			const domObj = app.json2dom({
+				node:[{id:"n1"},{id:"n2"},{id:"n3"},{id:"n4"}],
+				link:[
+					{source:"n1",target:"n3"},
+					{source:"n3",target:"n4"},
+					{source:"n2",target:"n2"}
+				]
+			});
+			const activeNode = app.xpath("//*[source = 'n3']",domObj);
+			const multiLevelXpath = "count(/link/*[target | source = '{/node/*[id = '{source/text()}']/id/text()}']) + count(/link/*[target | source = '{/node/*[id = '{target/text()}']/id/text()}'])";
+			expect(app.xpath(multiLevelXpath,activeNode)).toBe(3);
+		});
+
 	});
 });

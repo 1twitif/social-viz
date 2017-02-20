@@ -39,17 +39,25 @@ define([], () => {
 		if(string==='false') return false;
 		return string;
 	}
+	function xpath(xPathQuery,element, resultType=XPathResult.ANY_TYPE){
+		let oldXPath;
+		do{
+			oldXPath = xPathQuery;
+			xPathQuery = xPathQuery.replace(/{[^{}]+}/g,(x)=>simpleXpath(x.substring(1,x.length-1),element,resultType));
+		} while (oldXPath !== xPathQuery);
+		return simpleXpath(xPathQuery,element,resultType);
+	}
+	function simpleXpath(xPathQuery,element, resultType=XPathResult.ANY_TYPE){
+		const doc = element.ownerDocument;
+		const rawXPathResult = doc.evaluate(xPathQuery,element,nameSpaceResolver,resultType,null);
+		return __parseXpathRes(rawXPathResult,resultType);
+	}
 	function nameSpaceResolver(nsPrefix){
 		const ns = {
 			'svg' : 'http://www.w3.org/2000/svg',
 			'xlink': 'https://www.w3.org/1999/xlink'
 		};
 		return ns[nsPrefix];
-	}
-	function xpath(xPathQuery,element, resultType=XPathResult.ANY_TYPE){
-		const doc = element.ownerDocument;
-		const rawXPathResult = doc.evaluate(xPathQuery,element,nameSpaceResolver,resultType,null);
-		return __parseXpathRes(rawXPathResult,resultType);
 	}
 	function __parseXpathRes(rawXPathResult,resType) {
 		switch (rawXPathResult.resultType){

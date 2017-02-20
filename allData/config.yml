@@ -2,15 +2,15 @@ layers:
   - G1:
     - sub1:
       - deep1:
-        - final1: /node/*[string-length(@id) < 10]
-        - final2: /node/*[string-length(@id) >= 10] and /node/*[string-length(@id) < 15]
+        - final1: /node/*[string-length(id) < 10]
+        - final2: /node/*[string-length(id) >= 10] and /node/*[string-length(id) < 15]
       - deep2:
-        - final1: /node/*[string-length(@id) >= 15] and /node/*[string-length(@id) < 20]
-    - final1: /node/*[string-length(@id) >= 20]
+        - final1: /node/*[string-length(id) >= 15] and /node/*[string-length(id) < 20]
+    - final1: /node/*[string-length(id) >= 20]
   - G2:
-    - voisin0: /node/*[not(@id = /link/*/source | /link/*/target)]
-    - voisin1: /node/*[@id = /link/*[not(target = following::source | following::target | preceding::source | preceding::target)]/target] | /node/*[@id = /link/*[not(source = following::source | following::target | preceding::source | preceding::target)]/source]
-    - voisins: /node/*[@id = /link/*[target = following::source | following::target | preceding::source | preceding::target]/target] | /node/*[@id = /link/*[source = following::source | following::target | preceding::source | preceding::target]/source]
+    - voisin0: /node/*[not(id = /link/*/source | /link/*/target)]
+    - voisin1: /node/*[id = /link/*[not(target = following::source | following::target | preceding::source | preceding::target)]/target] | /node/*[id = /link/*[not(source = following::source | following::target | preceding::source | preceding::target)]/source]
+    - voisins: /node/*[id = /link/*[target = following::source | following::target | preceding::source | preceding::target]/target] | /node/*[id = /link/*[source = following::source | following::target | preceding::source | preceding::target]/source]
   - Links:
     - sourceShorterThanTarget: /link/*[string-length(source) < string-length(target)]
     - sourceLongerThanTarget: /link/*[string-length(source) > string-length(target)]
@@ -26,3 +26,13 @@ layers:
 # calques masqué par défaut :
 hideLayers:
   Links_selfLink: true
+
+# prévoir de pouvoir explorer aussi bien le graph filtré que le graph complet pour que les xpath qui viennent puissent se faire le graph complet ou affiché selon les besoins.
+nodeSizingModes:
+  - nombreVoisins: count(/link/*[[target | source = '{id/text()}']])
+  - tailleId: string-length(id)
+linkSizingModes:
+  - tailleNoeudsAssociés: count(/link/*[target | source = '{/node/*[id = '{source/text()}']/id/text()}']) + count(/link/*[target | source = '{/node/*[id = '{target/text()}']/id/text()}'])
+  - tailleId: string-length(id)
+nodeSize: nombreVoisins
+linkSize: tailleNoeudsAssociés

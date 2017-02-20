@@ -149,9 +149,11 @@ enum:
       - Atelier Valorisation
       - Déchetterie
       - Distribution
+      - Eco-organisme
       - Entreprise recyclage
       - Evènement
       - Gisement spécifique
+      - Opérateur de Tri
       - Publication
       - Recyclerie
       - Ressourcerie
@@ -222,6 +224,6 @@ enum:
       - TLC
       - DEE ménager
       - DEE professionnel
-      - Autres ecombrants
+      - Autres encombrants
       - DAE
       - Autre déchets
