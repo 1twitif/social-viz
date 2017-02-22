@@ -17,6 +17,14 @@ define(['./htmlTools'], (app) => {
 			it('build usual node with translated content', () => template('p', 'Lorem ipsum-TRAD-OK', 'innerText', true));
 			it("build input node and don't translate data", () => template('input', 'Lorem ipsum', 'value', true));
 			it("build textArea node and don't translate data", () => template('textarea', 'Lorem ipsum', 'innerText', true));
+			it("build div by default", () => template(undefined, 'div', 'localName'));
+			it("add class", () => template('.toto', 'toto', 'className'));
+			it("add classes", () => template('a.toto.tata', 'toto tata', 'className'));
+			it("add id", () => template('#toto', 'toto', 'id'));
+			it("add id with classes (check id)", () => template('a.plop#toto.plip.plouf', 'toto', 'id'));
+			it("add id with classes (check classes)", () => template('a.plop#toto.plip.plouf', 'plop plip plouf', 'className'));
+			it("add id with classes (check tagName)", () => template('a.plop#toto.plip.plouf', 'a', 'localName'));
+			it("add id with classes tag not specified(check tagName)", () => template('.plop#toto.plip.plouf', 'div', 'localName'));
 		});
 		describe('buildLangPicker', () => {
 			it('construit le sélecteur de langue', () => {

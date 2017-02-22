@@ -4,10 +4,28 @@ define([
 	const t = tradR.t;
 
 	function buildNode(tag, textContent) {
-		const node = document.createElement(tag);
-		if (tag === 'input') node.value = textContent;
-		else if (tag === 'textarea') node.innerText = textContent;
+		let realTag = "div";
+		if(tag){
+			const tagFound = tag.match(/^[^.#]+/);
+			if(tagFound) realTag = tagFound[0];
+		}
+		const node = document.createElement(realTag);
+		if(tag) {
+
+			// add id
+			const idFound = tag.match(/#[^.#]+/);
+			if (idFound) node.id = idFound[0].substring(1);
+
+			//add classes
+			const classes = tag.match(/\.[^.#]+/g);
+			if (classes) classes.forEach((c) => node.classList.add(c.substring(1)));
+		}
+
+		//content builder
+		if (realTag === 'input') node.value = textContent;
+		else if (realTag === 'textarea') node.innerText = textContent;
 		else if (typeof textContent !== "undefined") node.innerText = t(textContent);
+
 		return node;
 	}
 	function buildLangPicker(langs, activeLang){
