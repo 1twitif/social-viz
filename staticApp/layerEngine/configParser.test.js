@@ -2,7 +2,7 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 	describe('configParser', () => {
 		it("convertie la syntaxe des calques de la version simplifié a celle explicite", () => {
 			const simple = [{"groupe1": [{"calque": "xpath"}]}];
-			const explicite = [{name: "groupe1", subCriteria: [{name: "groupe1_calque", criterion: "xpath"}]}];
+			const explicite = [{name: "groupe1", sub: [{name: "groupe1_calque", criterion: "xpath"}]}];
 			const attendu = app.parseCriteria(simple);
 			expect(attendu).toEqual(explicite);
 		});
@@ -19,7 +19,7 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 					nodeSizingModes: [{"mode1": "xpath"}, {"mode2": "xpath"}],
 				};
 				expected = {
-					layers: [{name: "groupe1", subCriteria: [{name: "groupe1_sousGroupe", subCriteria: [{name: "groupe1_sousGroupe_calque", criterion: "xpath"}]}]}],
+					layers: [{name: "groupe1", sub: [{name: "groupe1_sousGroupe", sub: [{name: "groupe1_sousGroupe_calque", criterion: "xpath"}]}]}],
 					nodeSizingModes: [{name: "mode1", criterion: "xpath"}, {name: "mode2", criterion: "xpath"}],
 					linkSizingModes: []
 				};

@@ -27,7 +27,7 @@ function parseCriterionTree(criterion) { //FIXME: duplication avec __parseEntry 
 	if(criterion.name) return criterion;
 
 	for (let unicKey in criterion) {
-		if(Array.isArray(criterion[unicKey])) return {name:unicKey,subCriteria:appendPrefix(unicKey,criterion[unicKey])};
+		if(Array.isArray(criterion[unicKey])) return {name:unicKey,sub:appendPrefix(unicKey,criterion[unicKey])};
 		return {name:unicKey,criterion:criterion[unicKey]};
 	}
 }
@@ -36,7 +36,7 @@ function appendPrefix(prefix,criteria){
 	for(let criterion of criteria){
 		criterion = parseCriterionTree(criterion);
 		criterion.name = prefix+'_'+criterion.name;
-		if(criterion.subCriteria) criterion.subCriteria = appendPrefix(prefix,criterion.subCriteria);
+		if(criterion.sub) criterion.sub = appendPrefix(prefix,criterion.sub);
 		res.push(criterion);
 	}
 	return res;
