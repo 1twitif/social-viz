@@ -12,7 +12,7 @@ define([
 	}
 
 	function listenerInit() {
-		on('config.ready', initUI);
+		//on('config.ready', initUI);
 		on('config.ready', render);
 		on('hashchange', render);
 		on('render', updatePanels);
@@ -95,7 +95,7 @@ define([
 		}
 		if (panelsMoved) send('resize');
 	}
-
+/*
 	function initUI(config) {
 		//TODO: gérer les layersGroups
 		if(! config.nodeLayers) config.nodeLayers = {};
@@ -128,6 +128,7 @@ define([
 			return t(l.label);
 		});
 	}
+*/
 
 	function partialHideNotConcerned(e) {
 		d3.selectAll('.node, .link').classed('nearlyHidden', true);

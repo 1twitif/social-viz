@@ -22,6 +22,7 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 					layers: [{name: "groupe1", sub: [{name: "groupe1_sousGroupe", sub: [{name: "groupe1_sousGroupe_calque", criterion: "xpath"}]}]}],
 					nodeSizingModes: [{name: "mode1", criterion: "xpath"}, {name: "mode2", criterion: "xpath"}],
 					linkSizingModes: []
+					//TODO: tester les toInit
 				};
 			});
 			afterEach( ()=>{
@@ -31,14 +32,15 @@ define(['./configParser', "../smartEvents"], (app, ev) => {
 			it("convertie les calques et sizingModes de la config au chargement.", () => {
 				app.init();
 				ev.send("config.default", preConfig);
-				expect(preConfig).toEqual(expected);
+				expect(preConfig.layers).toEqual(expected.layers);
+				expect(preConfig.nodeSizingModes).toEqual(expected.nodeSizingModes);
 			});
 			it("envoi une erreur s'il n'a pas reçu la config 10s après s'être chargé", () => {
 				ev.send("config.default", preConfig);
 				jasmine.clock().tick(1);
 				app.init();
 				jasmine.clock().tick(1);
-				expect(preConfig).not.toEqual(expected);
+				expect(preConfig.layers).not.toEqual(expected.layers);
 
 				ev.on("err",dummySpy);
 				jasmine.clock().tick(10000);

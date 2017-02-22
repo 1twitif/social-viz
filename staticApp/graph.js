@@ -3,35 +3,39 @@ define([
 		'./smartEvents',
 		'./fps',
 		'./trad/trad',
-		'./configLoader',
 		'./formLoader',
 		'./graphDataLoader',
 		'./structManipulation'
-	], (d3, ev, fps, trad,cfg, formLoader,graphDataLoader,struct) => {
+	], (d3, ev, fps, trad, formLoader,graphDataLoader,struct) => {
 		'use strict';
 		const on = ev.on, send = ev.send, t = trad.t, multiTimeout = fps.multiTimeout;
-		let options;
-		ev.after(['config.ready', 'data.ready', 'form.template.ready', 'trad loaded'],
+		let options,currentGraph;
+	ev.need("config",(conf)=>{
+		options=conf;
+		ev.send("graph.config.ok");
+	});
+	ev.need("fullGraph",(fG)=>{
+		currentGraph = struct.clone(fG);
+		if(!currentGraph.node) currentGraph.node = {};
+		if(!currentGraph.link) currentGraph.link = {};
+		send("displayedGraph.filterTime",currentGraph);
+		ev.send("graph.displayedGraph.ok");
+	});
+
+		ev.after(['graph.config.ok', 'graph.displayedGraph.ok', 'form.template.ready', 'trad loaded'],
 			()=>setTimeout(()=>send('graph.init'),10));
+
 		ev.after('graph.init', function () {
-			options = cfg.getConfig();
 
-			const fullGraph = graphDataLoader.getData();
-			let currentGraph = struct.clone(fullGraph);
-			window.top.fullGraph = fullGraph;
-			window.top.currentGraph = currentGraph;
-			if(!currentGraph.node) currentGraph.node = {};
-			if(!currentGraph.link) currentGraph.link = {};
-
-			on('data change',(data)=>{
+			on('fullGraph change',(data)=>{
 				currentGraph = struct.merge(currentGraph, struct.clone(data));
-				window.top.currentGraph = currentGraph;
-				console.log('update graph');
-				console.log('data',data);
-				console.log('currentGraph',currentGraph);
+				send("displayedGraph.filterTime",currentGraph);
+			});
+			on("displayedGraph.filterTime",(displayedGraph)=>{
+				currentGraph = displayedGraph;
 				updateGraph(currentGraph);
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
-			});
+			},1);
 
 			var zoom = d3.zoom()
 				.scaleExtent([options.zoomMin, options.zoomMax])
@@ -160,7 +164,8 @@ define([
 					});
 				nodeEnter.append("image")
 					.attr("xlink:href", function (n) {
-						return options.nodeLayers[n.type] ? options.nodeLayers[n.type].picto : options.defaultPicto;
+						//FIXME: return options.nodeLayers[n.type] ? options.nodeLayers[n.type].picto : options.defaultPicto;
+						return options.defaultPicto;
 					})
 					.attr("x", function (n) {
 						return -n.r / 2;

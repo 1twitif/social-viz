@@ -13,6 +13,8 @@ fixedNode:
   tension: -2
   precisionXY: 2
 defaultPicto: staticApp/appImg/unknow.svg
+layersPictoFolder: allData/layers/
+legendAreaId: legend
 
 fps:
   refreshEvery: 1 # seconds

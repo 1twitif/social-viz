@@ -34,13 +34,13 @@ define([], () => {
 		allListeners.push(destroyer);
 		return destroyer;
 	}
-	function need(name,callback){
+	function need(name,callbackOrEvent){
 		const oneShotReady = on(name+'.ready',internalCallBack);
 		const oneShotAsked = on(name+'.asked',internalCallBack);
 		function internalCallBack(res) {
 			oneShotAsked.destroy();
-			oneShotReady.destroy();
-			callback(res);
+			oneShotReady.destroy(); //FIXME: sur-suppression problématique
+			callbackOrEventSender(callbackOrEvent, res);
 		}
 		send('need.'+name);
 	}

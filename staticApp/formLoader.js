@@ -8,11 +8,19 @@ define([
 
 	let readyToUseForm, config;
 	function init(){
-		ev.after(["config.ready",'data.ready','form.template.ready'],()=>{
-			chooseToDisplayForm();
-		});
-		ev.need("config", (cfg)=> config=cfg );
 		readyToUseForm = new formLib.Form();
+		ev.need("config",readyToUseForm.setConfig);
+		ev.need("fullGraph",readyToUseForm.setData);
+
+		ev.after(["formLoader.config.ok",'formLoader.fullGraph.ok','form.template.ready'],()=>{
+			chooseToDisplayForm();
+			console.log("formReady");
+		});
+		ev.need("fullGraph", "formLoader.fullGraph.ok");
+		ev.need("config", "formLoader.config.ok");
+		ev.need("config", (cfg)=> config=cfg );
+
+
 		listenerInit();
 		on('yml.ready',(e)=>(e.filename==='allData/form.yml')?send('form.template.ready',e.yml):0 );
 		ymlTools.load('allData/form.yml');
@@ -21,8 +29,6 @@ define([
 		if (node) node.addEventListener('click', activateEditorMode);
 	}
 	function listenerInit() {
-		on('config.ready', readyToUseForm.setConfig);
-		on('data.ready', readyToUseForm.setData);
 		on('form.template.ready', readyToUseForm.setTemplate);
 		ev.on("config.userMode change", chooseToDisplayForm);
 	}

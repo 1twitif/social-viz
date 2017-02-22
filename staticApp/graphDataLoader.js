@@ -15,17 +15,18 @@ define([
 		on('yml.ready', (e) => {
 			if (e.filename === 'allData/publicData.yml') {
 				let inertData = e.yml;
-				localStore = new Store.LocalStore(inertData, 'graph.data');
+				localStore = new Store.LocalStore(inertData, 'fullGraph');
 				inertData = struct.merge(inertData, localStore.load());
-				send('graph.data.ready', new mStruct.MonitoredStruct(inertData, 'graph.data'));
+				const fullGraph = new mStruct.MonitoredStruct(inertData, 'fullGraph');
+				ev.give('fullGraph', fullGraph);
 			}
 		});
 		ymlTools.load('allData/publicData.yml');
 	}
 
 	function listenerInit() {
-		on('graph.data ready', setData);
-		on('graph.data change', (data) => localStore.save(data));
+		on('fullGraph ready', setData);
+		on('fullGraph change', (data) => localStore.save(data));
 		document.getElementById('exportData').addEventListener('click', exportData);
 
 	}

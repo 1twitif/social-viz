@@ -13,6 +13,8 @@ panelSizeChangerSize = 30px
 transitionDuration = 0.5s
 sizeChangerBg = #888
 
+@require 'layerEngine/legendView.styl'
+
 hide()
 	display none
 
@@ -111,34 +113,6 @@ a
 		left 0
 		.expand
 			hide()
-	h2
-		text-align center
-		margin 10px
-	label
-		position relative
-		display block
-		vertical-align middle
-		clear both
-		height 40px
-		line-height 20px
-		border-top solid 1px #ddd
-		&::first-line
-			line-height 19px
-
-		&:hover
-			background-color #bbb
-	.picto
-		margin 4px
-		height 32px
-		width 32px
-		//background-color #666
-	input
-		position absolute
-		bottom 2px
-		right 2px
-		width 16px
-		height 16px
-
 
 #tools-panel.hidden ~ #details
 	top 0

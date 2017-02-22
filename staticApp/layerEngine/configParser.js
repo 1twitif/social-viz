@@ -3,12 +3,16 @@ define([
 ], (ev) => {
 	function init(){
 		const toConvert = ["layers","nodeSizingModes","linkSizingModes"];
+		const toInit = ["expandedLayers","hideLayers"];
 		let used = false;
 		ev.on("config.default", (preConfig)=>{
 			used = true;
 			for(let item of toConvert){
 				if(!preConfig.hasOwnProperty(item)) preConfig[item] = [];
 				preConfig[item] = parseCriteria(preConfig[item]);
+			}
+			for(let item of toInit){
+				if(!preConfig.hasOwnProperty(item)) preConfig[item] = {dummyPlaceHolder: true};
 			}
 		});
 		setTimeout(()=>{
