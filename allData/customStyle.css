@@ -29,7 +29,10 @@
   color: #dcf69d;
   font-size: 20px;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+}
+#main-tools .ghost {
+  opacity: 0.5;
 }
 #loginButton {
   background-image: url("../allData/img/mainTools/login.svg");
@@ -46,8 +49,11 @@
 #visuButton {
   background-image: url("../allData/img/mainTools/visu.svg");
 }
+#vizModeButton {
+  background-image: url("../allData/img/mainTools/vizMode.svg");
+}
 #editModeButton {
-  background-image: url("../allData/img/mainTools/edit.svg");
+  background-image: url("../allData/img/mainTools/editMode.svg");
 }
 #diagramGenButton {
   background-image: url("../allData/img/mainTools/diagramGen.svg");

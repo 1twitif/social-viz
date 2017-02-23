@@ -10,7 +10,7 @@ define([
 			config = cfg;
 			anchorMainTools = document.getElementById("main-tools");//config.legendAreaId);
 			renderMainTools();
-			bindButton('visuButton',switchToVizMode);//FIXME: ça devrait être dans la config ça !
+			bindButton('vizModeButton',switchToVizMode);//FIXME: ça devrait être dans la config ça !
 			ev.send('mainToolsView.ready');
 		});
 
@@ -32,6 +32,7 @@ function switchToVizMode() {
 
 		const right = buildNode(".right");
 		right.appendChild(buildNode("#visuButton.pictoButton.ghost"));
+		right.appendChild(buildNode("#vizModeButton.pictoButton"));
 		right.appendChild(buildNode("#editModeButton.pictoButton"));
 		right.appendChild(buildNode("#diagramGenButton.pictoButton.ghost"));
 		right.appendChild(buildNode("#printButton.pictoButton.ghost"));
