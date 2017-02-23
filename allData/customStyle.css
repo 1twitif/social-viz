@@ -5,7 +5,9 @@
   height: 45px;
   width: 45px;
   background-image: url("../staticApp/appImg/unknow.svg");
-  background-size: 45px 45px;
+  background-size: 38.25px 38.25px;
+  background-position: 3.375px 3.375px;
+  background-repeat: no-repeat;
 }
 #main-tools {
   display: flex;
@@ -68,10 +70,10 @@
   background-image: url("../allData/img/mainTools/exportData.svg");
 }
 #search .decoSearch {
-  height: 40.5px;
-  width: 40.5px;
+  height: 34.425000000000004px;
+  width: 34.425000000000004px;
   background-image: url("../allData/img/mainTools/search.svg");
-  background-size: 40.5px 40.5px;
+  background-size: 34.425000000000004px 34.425000000000004px;
   position: absolute;
   bottom: 0;
 }

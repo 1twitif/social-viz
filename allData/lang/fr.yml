@@ -1,0 +1,240 @@
+Légende accordéon: Légende
+Social-viz: Visualisation de graph relationnels
+lang-en: English - Anglais
+lang-fr: Français - Français
+lang-es: Español - Espagnol
+Rechercher...: Rechercher...
+RaisonSociale: Raison sociale
+JoursOuvertures: Jours d'ouverture
+Téléphone1: Téléphone 1
+Téléphone2: Téléphone 2
+ChiffreAffaire: Chiffre d'affaire
+NombreETP: Nombre d'ETP
+StructureSociale: Structures sociales
+NombreTotalCommune: Nombre total de communes
+NombreTotalHabitants: Nombre total d'habitants
+ETPbénévoles: ETP bénévoles
+NombreCDIhorsInsertion: Nombre de CDI hors insertion
+NombreContratInsertion: Nombre de contrat en insertion
+NombreSalariés: Nombre de salariés
+CollecteDéchetterie: Collecte déchetterie
+CollecteRDV: Collecte sur RDV
+ApportVolontaire: Apports volontaires
+CollectePaP: Collecte de particulier à particulier
+ObjetConvention: Objet de la convention
+TexteConvention: Texte de la convention
+FréquenceFlux: Fréquence du flux
+DateRelevé: Date de relevé
+Collecte_CollectéDEAménager: DEA - ménager
+Collecte_CollectéDEAPro: DEA - pro
+Collecte_CollectéTLC: 'TLC '
+Collecte_CollectéDEEEménager: DEEE - ménager
+Collecte_CollectéDEEEpro: DEEE - pro
+Collecte_AutresEncombrants: Autres encombrants
+Collecte_CollectéDAE: DAE
+Collecte_CollectéAutre: Autre
+Collecte_TotalCollecté: Total des déchets collectés
+ValorisationRéemploi: Valorisation - Réemploi
+ValorisationRéemploi_ValDEAménager: DEA - ménager
+ValorisationRéemploi_ValDEAprofessionnel: DEA - pro
+ValorisationRéemploi_ValTLC: TLC
+ValorisationRéemploi_ValDEEEménager: DEEE - ménager
+ValorisationRéemploi_ValDEEEprofessionnel: DEEE - pro
+ValorisationRéemploi_AutresEncombrants: Autres encombrants
+ValorisationRéemploi_ValDAE: DAE
+ValorisationRéemploi_ValAutresdéchets: Autres déchets
+ValorisationRéemploi_ValTotal: Total des déchets valorisés ou réemployés
+Recyclage_DEAménagerRecyclé: DEA - ménager
+Recyclage_DEAproRecyclé: DEA - pro
+Recyclage_TLCrecyclé: TLC
+Recyclage_DEEEménagerRecyclé: DEEE - ménager
+Recyclage_DEEEproRecyclé: DEEE - pro
+Recyclage_AutreEncombrantsRecyclés: Autres encombrants
+Recyclage_DAErecyclé: DAE
+Recyclage_AutresDéchetsRecyclés: Autres déchets
+Recyclage_Totalrecyclé: Total des déchets recyclés
+NonValorisé: Non valorisé
+NonValorisé_DEAménagerNV: DEA - ménager
+NonValorisé_DEAproNV: DEA - pro
+toJSON: ''
+formulaire de traduction: ''
+Sauvegarder le fichier de langue complet: ''
+Le Relais: ''
+Bon Débarras: ''
+Grand Orb: ''
+Rd'Evolution: ''
+SYNTOMA: ''
+Dynamique Occitanie: ''
+new_node: ''
+new_link: ''
+form_title_node: ''
+id: ''
+Atelier Valorisation: ''
+Déchetterie: ''
+Distribution: ''
+Eco-organisme: ''
+Entreprise recyclage: ''
+Evènement: ''
+Gisement spécifique: ''
+Opérateur de Tri: ''
+Publication: ''
+Recyclerie: ''
+Ressourcerie: ''
+Type: ''
+Artisan: ''
+Artiste: ''
+Association: ''
+Auto-entrepreneur: ''
+Communauté de communes: ''
+Département: ''
+Entreprise PME-PMI: ''
+Entreprise d'insertion: ''
+Entreprise nationale: ''
+Entreprise transnationale: ''
+Etablissement public: ''
+Fondation: ''
+Mairie: ''
+Media: ''
+Région: ''
+SCIC: ''
+SCOP: ''
+Syndicat mixte: ''
+Université - Ecole: ''
+Statut: ''
+label: ''
+Adresse: ''
+CodePostal: ''
+Commune: ''
+Horaires: ''
+Courriel: ''
+AAVA: ''
+ACI: ''
+CHRS: ''
+EI: ''
+ESAT: ''
+Structure d'emplois pérennes: ''
+Autre: ''
+Oui: ''
+Non: ''
+Quotidien: ''
+Hebdomadaire: ''
+Mensuel: ''
+Trimestriel: ''
+Annuel: ''
+Collecte: ''
+Recyclage: ''
+NonValorisé_TLCnV: TLC
+NonValorisé_DEEménagerNV: DEE - ménager
+NonValorisé_DEEproNV: DEE - pro
+NonValorisé_AutresEcombrantsNV: Autres encombrants
+NonValorisé_DAEnV: DAE
+NonValorisé_AutreDéchetsNV: Autres déchets
+NonValorisé_TotalNV: Total des déchets non valorisés
+Vente: ''
+Vente_NombreMagasins: Nombre de magasins
+Vente_NombreHeuresAn: Nombre annuel d'heures d'ouverture
+Vente_NombreClientAn: Nombre de clients par an
+Vente_SurfaceMagasin: Surface du magasin en m2
+ChiffreAffaireMagasin: Chiffre d'affaire du magasin
+ChiffreAffaireMagasin_CADEA: 'Pour les DEA:'
+ChiffreAffaireMagasin_CATLC: 'Pour les TLC:'
+ChiffreAffaireMagasin_CADEEE: 'Pour les DEEE:'
+ChiffreAffaireMagasin_CAVaisselleBibelotsCadres: 'Pour la vaisselle, les bibelots, les cadres...: '
+ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux: 'Pour les outillages, vélos, jardin, matériaux...:'
+ChiffreAffaireMagasin_CAJouetsCulture: 'Pour les jouets, la culture:'
+ChiffreAffaireMagasin_CAAutres: 'Autre chiffre d''affaire: '
+ChiffreAffaireMagasin_CADEA + ChiffreAffaireMagasin_CATLC + ChiffreAffaireMagasin_CADEEE + ChiffreAffaireMagasin_CAVaisselleBibelotsCadres + ChiffreAffaireMagasin_CAOutillageCyclesBâtiJardinMatériaux + ChiffreAffaireMagasin_CAJouetsCulture + ChiffreAffaireMagasin_CAAutres: ''
+ChiffreAffaireMagasin_CATotal: 'Chiffre d''affaire total:'
+ChiffreAffaireMagasin_CATotal div Vente_NombreClientAn: ''
+ChiffreAffaireMagasin_CAPanierMoyen: Panier moyen
+ChiffreAffaireFillière: Chiffre d'affaire par les filières
+ChiffreAffaireFillière_CAFilDEA: Filière DEA
+ChiffreAffaireFillière_CAFilTLC: Filière TLC
+ChiffreAffaireFillière_CAFilDEEE: Filière DEEE
+ChiffreAffaireFillière_CAFilDAE: Filière DAE
+ChiffreAffaireFillière_CAFilAutres: Autres filières
+TotalChiffreAffaire: Total du chiffre d'affaire
+TotalChiffreAffaire_TCADEA: DEA
+TotalChiffreAffaire_TCATLC: TLC
+TotalChiffreAffaire_TCADEEE: DEEE
+TotalChiffreAffaire_TCADAE: DAE
+TotalChiffreAffaire_TCAAutres: Autres
+Sensibilisation: ''
+Sensibilisation_NombreVisites: Nombre de visites par an
+Sensibilisation_NombreAnimations: Nombre d'animations par an
+Sensibilisation_NombreConférences: Nombre de conférences par an
+Sensibilisation_NombreStandFoireExposition: 'Nombre de participation à des évènements:'
+Sensibilisation_NombreAtelier: Nombre d'atelier organisés
+Sensibilisation_NombreAutresEvènements: Nombre des autres évènements
+Sensibilisation_NombreTotalActions: Nombre total d'action de sensibilisation
+Sensibilisation_NombreTotalParticipants: Nombre total de participants
+Finance: ''
+Finance_TotalVenteMag: ''
+Finance_TotalVenteMatière: ''
+Finance_Prestatios: ''
+Finance_AutresRessources: ''
+Finance_Subventions: ''
+Finance_AutreRessources: ''
+Finance_TotalCharges: ''
+Finance_PartAutofinancementEnPourcent: ''
+Suez: ''
+form_title_link: ''
+Véolia: ''
+source: ''
+target: ''
+Relationnel: ''
+Flux: ''
+GenreLien: ''
+comments: ''
+sources: ''
+Ecologic: ''
+financier: ''
+DEA ménager: ''
+DEA professionnel: ''
+TLC: ''
+DEE ménager: ''
+DEE professionnel: ''
+Autres encombrants: ''
+DAE: ''
+Autre déchets: ''
+TypeFlux: ''
+Date: ''
+legend_title: ''
+infoBox_layerEntityCount: ''
+G1: ''
++: ''
+'-': ''
+infoBox_subLayerCount: ''
+layerDetails_G1: ''
+G1_sub1: ''
+layerDetails_G1_sub1: ''
+G1_sub1_deep1: ''
+layerDetails_G1_sub1_deep1: ''
+G1_sub1_deep1_final1: ''
+layerDetails_G1_sub1_deep1_final1: ''
+G1_sub1_deep1_final2: ''
+layerDetails_G1_sub1_deep1_final2: ''
+G1_sub1_deep2: ''
+layerDetails_G1_sub1_deep2: ''
+G1_sub1_deep2_final1: ''
+layerDetails_G1_sub1_deep2_final1: ''
+G1_final1: ''
+layerDetails_G1_final1: ''
+G2: ''
+layerDetails_G2: ''
+G2_voisin0: ''
+layerDetails_G2_voisin0: ''
+G2_voisin1: ''
+layerDetails_G2_voisin1: ''
+G2_voisins: ''
+layerDetails_G2_voisins: ''
+Links: ''
+layerDetails_Links: ''
+Links_sourceShorterThanTarget: ''
+layerDetails_Links_sourceShorterThanTarget: ''
+Links_sourceLongerThanTarget: ''
+layerDetails_Links_sourceLongerThanTarget: ''
+Links_sameLengthSourceAndTarget: ''
+layerDetails_Links_sameLengthSourceAndTarget: ''
+Links_selfLink: ''
+layerDetails_Links_selfLink: ''

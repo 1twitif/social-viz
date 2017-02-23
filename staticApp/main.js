@@ -9,13 +9,14 @@ requirejs([
 		"mainToolsViewDemo",
 		"./layerEngine/configParser",
 		"./layerEngine/legendView",
+		"noticeView",
 		'configLoader',
 		'./trad/trad',
 		'formLoader',
 		'graphDataLoader',
 		'graph',
 		'userInterface'
-	], (ev, demo,layerConfParser,legendView, cfg,trad, formLoader, gData, graph, ui) => {
+	], (ev, demo,layerConfParser,legendView, noticeView, cfg,trad, formLoader, gData, graph, ui) => {
 	console.log('chargement des fichiers js terminé');
 	ev.need('config',(c)=>console.log("config diffusée : ",c));
 	ev.on("lang.change", (lang)=>console.log("langue active : ",lang));
@@ -24,6 +25,7 @@ requirejs([
 
 	demo.init();
 	layerConfParser.init();
+	noticeView.init();
 	cfg.init();
 	trad.init();
 	gData.init();

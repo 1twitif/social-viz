@@ -167,34 +167,37 @@ h4 {
 #legend >.wrapper>ul>.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers {
   border-color: #395151;
 }
-.layerLine {
+#legend .final .layerLine h3.title {
+  font-weight: normal;
+}
+#legend .layerLine {
   height: 60px;
   display: flex;
   position: relative;
   text-align: left;
 }
-.layerLine .title {
+#legend .layerLine .title {
   line-height: 60px;
   padding-left: 5px;
   overflow: hidden;
 }
-.layerLine >* {
+#legend .layerLine >* {
   position: relative;
   z-index: 2;
 }
-.layerLine:hover >* {
+#legend .layerLine:hover >* {
   background-color: #c0d2d3;
 }
-.layerLine:hover >.rightExtension {
+#legend .layerLine:hover >.rightExtension {
   right: -200px;
   width: 200px;
   background-color: #c0d2d3;
 }
-.layerLine:hover >.jauge {
+#legend .layerLine:hover >.jauge {
   width: 12px;
   margin-right: -8px;
 }
-.layerLine .rightExtension {
+#legend .layerLine .rightExtension {
   overflow-x: hidden;
   overflow-y: auto;
   padding: 5px;
@@ -206,11 +209,11 @@ h4 {
   width: 100%;
   right: 0;
 }
-.layerLine .left {
+#legend .layerLine .left {
   position: relative;
   width: 55px;
 }
-.layerLine .left .layerEntityCount {
+#legend .layerLine .left .layerEntityCount {
   position: absolute;
   bottom: 2px;
   right: 0;
@@ -218,11 +221,11 @@ h4 {
   border-radius: 4px;
   padding: 0 2px;
 }
-.layerLine .middle {
+#legend .layerLine .middle {
   flex: 9 70px;
   overflow: hidden;
 }
-.layerLine .right {
+#legend .layerLine .right {
   width: 20px;
   text-align: center;
   line-height: 30px;
@@ -232,57 +235,57 @@ h4 {
 				height 16px
 			*/
 }
-.layerLine .right .unfold,
-.layerLine .right .fold {
+#legend .layerLine .right .unfold,
+#legend .layerLine .right .fold {
   color: #000;
   text-decoration: none;
   font-weight: bold;
   font-size: 24px;
   display: block;
 }
-.layerLine .right .fold {
+#legend .layerLine .right .fold {
   display: none;
 }
-.layerLine .jauge {
+#legend .layerLine .jauge {
   position: relative;
   height: 60px;
   width: 4px;
   transition: all 0.5s;
 }
-.layerLine .jauge .fill {
+#legend .layerLine .jauge .fill {
   position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
 }
-.subLayers {
+#legend .subLayers {
   margin-left: 4px;
   border-width: 0;
   border-left-width: 2px;
   border-style: solid;
 }
-.subLayers >.layer>.layerLine {
+#legend .subLayers >.layer>.layerLine {
   transition: all 0.5s;
   height: 0;
   margin: 0;
 }
-.subLayers >.layer>.subLayers {
+#legend .subLayers >.layer>.subLayers {
   display: none;
 }
-.layer.expanded>.layerLine >.right>.fold {
+#legend .layer.expanded>.layerLine >.right>.fold {
   display: block;
 }
-.layer.expanded>.layerLine >.right>.unfold {
+#legend .layer.expanded>.layerLine >.right>.unfold {
   display: none;
 }
-.layer.expanded>.subLayers {
+#legend .layer.expanded>.subLayers {
   border-bottom-width: 2px;
   margin-bottom: 4px;
 }
-.layer.expanded>.subLayers >.layer>.layerLine {
+#legend .layer.expanded>.subLayers >.layer>.layerLine {
   height: 60px;
 }
-.layer.expanded>.subLayers >.layer>.subLayers {
+#legend .layer.expanded>.subLayers >.layer>.subLayers {
   display: block;
 }
 * {

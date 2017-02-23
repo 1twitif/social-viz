@@ -1,15 +1,17 @@
 mainToolsHeight=45px
-pictoButtonSize=mainToolsHeight
+pictoButtonSize=mainToolsHeight*0.85
 
 
 #langPicker
 	display none
 
 .pictoButton
-	height pictoButtonSize
-	width pictoButtonSize
+	height mainToolsHeight
+	width mainToolsHeight
 	background-image url(../staticApp/appImg/unknow.svg)
 	background-size pictoButtonSize pictoButtonSize
+	background-position ((mainToolsHeight - pictoButtonSize)/2) ((mainToolsHeight - pictoButtonSize)/2)
+	background-repeat no-repeat
 
 #main-tools
 	display flex

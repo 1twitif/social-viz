@@ -166,6 +166,9 @@ define([
 					.attr("fill", function (d) {
 						return color(d.type);
 					});
+
+				// image par calques.
+
 				nodeEnter.append("image")
 					.attr("xlink:href", function (n) {
 						//FIXME: return options.nodeLayers[n.type] ? options.nodeLayers[n.type].picto : options.defaultPicto;

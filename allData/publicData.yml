@@ -64,6 +64,52 @@ node:
     ChiffreAffaireMagasin_CAPanierMoyen: NaN
     StructureSociale: Autre
     SiAutrePrécisez: Réseau
+  - id: node-Suez-azJPV
+    Type: Entreprise recyclage
+    Statut: Entreprise transnationale
+    RaisonSociale: Véolia
+    label: Véolia
+    ChiffreAffaire: '3961'
+    Adresse: 23 rye de pjf
+    CodePostal: '33140'
+  - id: node-Ecologic-azFPV
+    Type: Opérateur de Tri
+    Statut: Entreprise nationale
+    RaisonSociale: Ecologic
+    label: Ecologic
+    ChiffreAffaire: '33334'
+  - id: node-ACTIFRIP-VTNOR
+    Fonction: Opérateur de Tri
+    RaisonSociale: ACTIFRIP
+    label: ACTIFRIP
+    Catégorie: Textile
+    Adresse: 60 Chemin Labry de Romefort
+    CodePostal: '33240'
+    Commune: SAINT ANDRE DE CUBZAC
+  - id: node-AGIR-TXpNa
+    Fonction: Opérateur de Tri
+    RaisonSociale: AGIR
+    label: AGIR
+    Catégorie: Textile
+    Adresse: 29/35 avenue François Mitterrand
+    CodePostal: '36000'
+    Commune: CHATEAUROUX
+  - id: node-ALPES-TLC-TTNPV
+    Fonction: Opérateur de Tri
+    RaisonSociale: ALPES TLC
+    label: ALPES TLC
+    Catégorie: Textile
+    Adresse: ZA Terre Neuve II
+    CodePostal: '73200'
+    Commune: GILLY SUR ISERE
+  - id: node-APIVET-Association-Y3pNa
+    Fonction: Opérateur de Tri
+    RaisonSociale: APIVET - Association Pour l'Insertion par le Vetement
+    label: APIVET - Association Pour l'Insertion par le Vetement
+    Catégorie: Textile
+    Adresse: 13 avenue Montaigne
+    CodePostal: '49100'
+    Commune: ANGERS
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -101,3 +147,17 @@ link:
     TypeRelation: Autre
     label: Autre
     comments: c
+  - id: link-DEE-menager-YzFOa
+    source: node-Suez-azJPV
+    target: node-Ecologic-azFPV
+    GenreLien: Flux
+    TypeFlux: DEE ménager
+    label: DEE ménager
+    Date: '2/09:1999'
+  - id: link-DEE-menager-RXlOa
+    source: node-Ecologic-azFPV
+    target: node-R-YzNNe
+    GenreLien: Flux
+    TypeFlux: DEE ménager
+    label: DEE ménager
+    Date: 01/09/2016
