@@ -3,9 +3,9 @@ layers:
     - sub1:
       - deep1:
         - final1: /node/*[string-length(id) < 10]
-        - final2: /node/*[string-length(id) >= 10] and /node/*[string-length(id) < 15]
+        - final2: /node/*[string-length(id) >= 10 and string-length(id) < 15]
       - deep2:
-        - final1: /node/*[string-length(id) >= 15] and /node/*[string-length(id) < 20]
+        - final1: /node/*[string-length(id) >= 15 and string-length(id) < 20]
     - final1: /node/*[string-length(id) >= 20]
   - G2:
     - voisin0: /node/*[not(id = /link/*/source | /link/*/target)]
@@ -17,11 +17,6 @@ layers:
     - sameLengthSourceAndTarget: /link/*[string-length(source) = string-length(target) and source != target]
     - selfLink: /link/*[source = target]
 
-  - name: layerNameNode
-    filter: xpath
-  - name: layerNameParent
-    sublayers:
-      - layerNameChild: xpath
 
 # calques masqué par défaut :
 hideLayers:

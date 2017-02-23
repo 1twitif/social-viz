@@ -38,7 +38,7 @@ define([
 	let scrollIncrement = 30;
 	function init() {
 		listenerInit();
-		ev.after(['legendView.conf.ok','legendView.fullGraph.ok','legendView.displayedGraph.ok'],()=>{
+		ev.after(['legendView.conf.ok','legendView.fullGraph.ok'],()=>{//,'legendView.displayedGraph.ok'],()=>{
 			console.log("ready?");
 			ev.send('legendView.ready');
 		});
@@ -61,7 +61,7 @@ define([
 				if(config.hideLayers[toHide]){
 					let domGraph = json2dom.json2dom(graph);
 					const hideCriterion = json2dom.xpath("//*[name='"+toHide+"']/criterion/text()",domLayerList);
-					const toRemove = json2dom.xpath(hideCriterion,domGraph);
+					const toRemove = json2dom.xpath(hideCriterion,domGraph,XPathResult.UNORDERED_NODE_ITERATOR_TYPE);
 					for(let item of toRemove){
 						let id = item.querySelector('id').innerText;
 						let type = id.split('-')[0];
@@ -81,8 +81,8 @@ define([
 		*/
 	}
 	function listenerInit() {
-		ev.on('legendView.conf.ok', renderLegend); //FIXME: supprimer ça et se brancher correctement sur le graph
-		//ev.on('legendView.ready', renderLegend);
+		//ev.on('legendView.conf.ok', renderLegend); //FIXME: supprimer ça et se brancher correctement sur le graph
+		ev.on('legendView.ready', renderLegend);
 	}
 	function reset(){
 
@@ -117,6 +117,7 @@ define([
 
 
 		const layerLines = scrollable.querySelectorAll('.group>.layerLine');
+		console.log("layerLines", layerLines);
 		layerLines.forEach((layerLine)=>{
 			layerLine.addEventListener("click", (e)=>{
 				if(e.target.localName != "input"){
@@ -222,8 +223,9 @@ define([
 				layer.state.displayedLayer = hiddenList[layer.name]?0:1;
 				layer.state.includedLayer = 1;
 			//TODO: query visibleGraphDom and fullGraphDom for proper result
-				layer.state.displayedEntities = 1;
-				layer.state.matchedEntities = 1;
+
+				layer.state.matchedEntities = json2dom.xpath(layer.criterion,fullGraphDom,XPathResult.UNORDERED_NODE_ITERATOR_TYPE).length;
+				layer.state.displayedEntities = hiddenList[layer.name]?0:layer.state.matchedEntities;
 			}
 		}
 		return statedLayers;
