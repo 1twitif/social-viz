@@ -1,9 +1,17 @@
 define([], () => {
 	'use strict';
 	//TODO: regarder la termionologie du pattern Acteurs et des publish subscribe
-	const allListeners = [];
+	const allListeners = []; // for reset
+
+	let registeredListener = {}; // for addListener
+	let eventListenerDestroyer = {}; // for addListener
+
 	function reset(){
 		while(allListeners.length) allListeners.pop().destroy();
+		registeredListener = {};
+		eventListenerDestroyer = {};
+		//for(let key in registeredListener) if(registeredListener.hasOwnProperty(key)) delete registeredListener[key];
+		//for(let key in eventListenerDestroyer) if(registeredListener.hasOwnProperty(key)) delete eventListenerDestroyer[key];
 	}
 
 	function send(structuredEventName, eventData) {
@@ -27,7 +35,7 @@ define([], () => {
 				}
 			}
 		};
-
+		//if(eventName.indexOf('any')!== -1) console.log(eventName);
 		const fragments = eventSplitter(eventName);
 		const destroyers = fragments.map((f)=>addListener(f,listenerCallback,order));
 		const destroyer = {destroy:()=>destroyers.forEach((d)=>d.destroy())};
@@ -39,7 +47,7 @@ define([], () => {
 		const oneShotAsked = on(name+'.asked',internalCallBack);
 		function internalCallBack(res) {
 			oneShotAsked.destroy();
-			oneShotReady.destroy(); //FIXME: sur-suppression problématique
+			oneShotReady.destroy();
 			callbackOrEventSender(callbackOrEvent, res);
 		}
 		send('need.'+name);
@@ -110,34 +118,57 @@ define([], () => {
 			inputNode.dispatchEvent(new Event('change', {target: inputNode, bubbles: true}));
 		}
 	}
-	const registredListener = {};
-	const eventListenerDestroyer = {};
 	function addListener(eventName,callback,order){
 		let listenerObj = {"id":eventId(),"order":order,"callback":callback};
-		if(registredListener[eventName] && registredListener[eventName].length>0) registredListener[eventName].push(listenerObj);
+		//if(eventName === "any") console.log(listenerObj);
+		if(registeredListener[eventName] && registeredListener[eventName].length>0) registeredListener[eventName].push(listenerObj);
 		else {
-			registredListener[eventName] = [];
-			registredListener[eventName].push(listenerObj);
+			registeredListener[eventName] = [];
+			registeredListener[eventName].push(listenerObj);
 			const internalListener = (event)=>{
-				for(let i =0; i<registredListener[eventName].length; i++) registredListener[eventName][i].callback(event);
+				for(let i =0; i<registeredListener[eventName].length; i++){
+					registeredListener[eventName][i].callback(event);
+					if(!registeredListener[eventName]) break;
+				}
 			};
-			addEventListener(eventName,internalListener);
-			eventListenerDestroyer[eventName] = ()=>removeEventListener(eventName,internalListener);
+			//addEventListener(eventName,internalListener);
+			//eventListenerDestroyer[eventName] = ()=>removeEventListener(eventName,internalListener);
 		}
-		registredListener[eventName].sort((a,b)=>a.order - b.order);
+		registeredListener[eventName].sort((a,b)=>a.order - b.order);
 
 		const destroyer = {destroy:()=>{
-			registredListener[eventName] = registredListener[eventName].filter( (o)=>o.id !== listenerObj.id );
-			if(registredListener[eventName].length === 0) {
+			if(!registeredListener[eventName]) return; // reset proof
+			//if(eventName === "any") console.log("allListener", allListeners);
+			registeredListener[eventName].forEach( (ordered,i)=>{
+				if(ordered.id === listenerObj.id) delete registeredListener[eventName][i];
+			} );
+			/*
+			if(registeredListener[eventName].length === 0) {
 				eventListenerDestroyer[eventName]();
+				delete registeredListener[eventName];
+				delete eventListenerDestroyer[eventName];
 			}
+			*/
 		}};
 		return destroyer;
 	}
 	function sendFragmentedEvents(structuredEventName, customEventDetail) {
+		const fragments = eventSplitter(structuredEventName);
+		fragments.forEach( (eventPart)=>{
+			if(Array.isArray(registeredListener[eventPart])){
+				registeredListener[eventPart] = registeredListener[eventPart].filter( (e)=>!!e );
+				for(let i =0; i<registeredListener[eventPart].length; ++i){
+					//console.log(registeredListener[eventPart][i].callback.toString());
+					if(registeredListener[eventPart][i]) registeredListener[eventPart][i].callback({'detail': customEventDetail});
+					if(!registeredListener[eventPart]) break;
+				}
+			}
+		});
+		/*
 		fragmentAndApply(structuredEventName,
 			(eventPart) => dispatchEvent(new CustomEvent(eventPart, {'detail': customEventDetail}))
 		);
+		*/
 	}
 
 	function fragmentAndApply(dotMarkedString, action) {

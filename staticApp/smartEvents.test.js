@@ -67,8 +67,8 @@ define(['./smartEvents'], (app) => {
 			expect(subCallback).toHaveBeenCalledWith(eventData);
 		});
 		it('unordered part of structured event send & receive', (done) => { // un bug ici
-			app.on('global.sub any', done);
-			app.send('any.global.sub.moreSpecific');
+			app.on('global.sub dummy', done);
+			app.send('dummy.global.sub.moreSpecific');
 		});
 		it('unordered part catch with standard change event', () => {
 			const dummyCallback = new Spy();
@@ -111,7 +111,6 @@ define(['./smartEvents'], (app) => {
 		});
 
 		it('listen events in custom specified order', () => {
-
 			app.on('order', (e)=>e.nombre = e.nombre*2 , 1);
 			app.on('order', (e)=>e.nombre = e.nombre+2);
 			const data = {nombre:0};
@@ -119,6 +118,18 @@ define(['./smartEvents'], (app) => {
 			expect(data.nombre).toBe(4);
 		});
 
+		it('no over destroy', () => {
+			const dummyCallback1 = new Spy();
+			const dummyCallback2 = new Spy();
+			app.need('any', dummyCallback1);
+			app.on('any', dummyCallback2);
+			app.send('any.ready');
+			app.send('any.ready');
+			app.send('any.ready');
+			app.send('any.ready');
+			expect(dummyCallback1.calls.count()).toBe(1);
+			expect(dummyCallback2.calls.count()).toBe(4);
+		});
 
 
 		it('need available thing', (done) => {
@@ -202,6 +213,7 @@ define(['./smartEvents'], (app) => {
 			expect(dummyCallback.calls.count()).toBe(1);
 		});
 	});
+
 	it('simulateClick', (done) => {
 		app.on('click', done);
 		app.clickOn(window);

@@ -231,7 +231,13 @@ define([
 	function build_imageLoadErrorPlaceOverFunc(id){
 		return (e)=>{
 			//FIXME: if svg fail -> png, if png fail -> identicon
+			//https://github.com/davidbau/seedrandom
 
+			//https://www.khanacademy.org/computer-programming/random-face-generator/6612995667394560
+			//http://svgavatars.com/
+			//http://bl.ocks.org/enjalot/1282943
+			//https://github.com/alexvandesande/blockies
+			//https://github.com/dmester/jdenticon
 			// default image
 			e.target.src = config.defaultPicto;
 		}
