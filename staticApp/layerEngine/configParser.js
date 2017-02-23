@@ -12,7 +12,7 @@ define([
 				preConfig[item] = parseCriteria(preConfig[item]);
 			}
 			for(let item of toInit){
-				if(!preConfig.hasOwnProperty(item)) preConfig[item] = {dummyPlaceHolder: true};
+				if(!preConfig.hasOwnProperty(item)) preConfig[item] = {dummyPlaceHolder: 0};
 			}
 		});
 		setTimeout(()=>{
