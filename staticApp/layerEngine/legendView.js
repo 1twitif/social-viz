@@ -137,6 +137,8 @@ define([
 		const entryNode = buildNode('li.layer#layer'+statedEntry.name);
 		if(!statedEntry.state.displayedLayer) entryNode.classList.add("hidden");
 		if(statedEntry.expanded) entryNode.classList.add("expanded");
+		if(!statedEntry.state.matchedEntities) entryNode.classList.add("empty");
+
 
 		const final = !statedEntry.hasOwnProperty('sub');
 		if(final) entryNode.classList.add("final");

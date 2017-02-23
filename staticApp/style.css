@@ -1,3 +1,12 @@
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
+}
+.empty {
+  display: none !important;
+}
 #legend {
   width: 180px;
   background-color: #a5bfc0;
@@ -46,6 +55,9 @@
 #legend .layer.final>.layerLine>.right {
   padding-right: 4px;
   width: 24px;
+}
+#legend .header {
+  background-color: #a5bfc0;
 }
 #legend >.wrapper>ul>.layer >.layerLine {
   background-color: #a5bfc0;
@@ -274,7 +286,7 @@
   display: block;
 }
 * {
-  font-family: Calibri;
+  font-family: Calibri, sans-serif;
   font-size: 11pt;
   box-sizing: border-box;
   margin: 0;
