@@ -2,11 +2,19 @@ iconSize=45px
 layerHeight=60px
 debordementAuSurvol=200px
 jaugeExpend=8px
-
+baseColor=#a5bfc0;
+level0=baseColor
+level1=darken(level0, 5%)
+level2=darken(level1, 5%)
+level3=darken(level2, 5%)
+level4=darken(level3, 5%)
+level5=darken(level4, 5%)
+decalageLevel=4px
+bordureLevel=2px
 
 #legend
 	width 180px
-	background-color #a5bfc0
+	background-color baseColor
 	position fixed
 	top 0
 	left 0
@@ -17,7 +25,6 @@ jaugeExpend=8px
 		display flex
 		position relative
 		z-index 5
-		background-color #a5bfc0
 		h2
 			flex 9
 			line-height layerHeight
@@ -47,12 +54,103 @@ jaugeExpend=8px
 		padding-right 4px
 		width 24px
 
-	.layerLine
+	>.wrapper>ul>.layer
+			>.layerLine
+				background-color level0
+				>*
+					background-color level0
+				&:hover
+					>*
+						background-color lighten(level0, 30%)
+				>.jauge
+					background-color darken(level0, 10%)
+					>.fill
+						background-color darken(level0, 30%)
+			>.subLayers
+				border-color darken(level0, 50%)
+
+				>.layer
+					>.layerLine
+						background-color level1
+						>*
+							background-color level1
+						&:hover
+							>*
+								background-color lighten(level1, 30%)
+						>.jauge
+							background-color darken(level1, 10%)
+							>.fill
+								background-color darken(level1, 30%)
+					>.subLayers
+						border-color darken(level1, 50%)
+
+						>.layer
+							>.layerLine
+								background-color level2
+								>*
+									background-color level2
+								&:hover
+									>*
+										background-color lighten(level2, 30%)
+								>.jauge
+									background-color darken(level2, 10%)
+									>.fill
+										background-color darken(level2, 30%)
+							>.subLayers
+								border-color darken(level2, 50%)
+
+								>.layer
+									>.layerLine
+										background-color level3
+										>*
+											background-color level3
+										&:hover
+											>*
+												background-color lighten(level3, 30%)
+										>.jauge
+											background-color darken(level3, 10%)
+											>.fill
+												background-color darken(level3, 30%)
+									>.subLayers
+										border-color darken(level3, 50%)
+
+										>.layer
+											>.layerLine
+												background-color level4
+												>*
+													background-color level4
+												&:hover
+													>*
+														background-color lighten(level4, 30%)
+												>.jauge
+													background-color darken(level4, 10%)
+													>.fill
+														background-color darken(level4, 30%)
+											>.subLayers
+												border-color darken(level4, 50%)
+
+												>.layer
+													>.layerLine
+														background-color level5
+														>*
+															background-color level5
+														&:hover
+															>*
+																background-color lighten(level5, 30%)
+														>.jauge
+															background-color darken(level5, 10%)
+															>.fill
+																background-color darken(level5, 30%)
+													>.subLayers
+														border-color darken(level5, 50%)
+
+
+
+.layerLine
 		height layerHeight
 		display flex
 		position relative
 		//margin-bottom 4px
-		background-color #a5bfc0
 		text-align left
 		.title
 			line-height layerHeight
@@ -60,7 +158,6 @@ jaugeExpend=8px
 			overflow hidden
 		>*
 			position relative
-			background-color #a5bfc0
 			z-index 2
 		&:hover
 			>*
@@ -78,7 +175,6 @@ jaugeExpend=8px
 			padding 5px
 			padding-left 5px + jaugeExpend
 			height layerHeight
-			background-color #a5bfc0
 			position absolute
 			z-index 1
 			transition all 0.5s
@@ -122,22 +218,19 @@ jaugeExpend=8px
 			position relative
 			height layerHeight
 			width 4px
-			background-color darken(#a5bfc0, 10%)
 			transition all 0.5s
 			.fill
 				position absolute
 				bottom 0
 				right 0
 				width 100%
-				background-color darken(#a5bfc0, 30%)
 				//height (2*layerHeight/5)
 
 	.subLayers
-		margin-left 1px
+		margin-left decalageLevel
 		border-width 0
-		border-left-width 2px
+		border-left-width bordureLevel
 		border-style solid
-		border-color darken(#a5bfc0, 50%)
 		>.layer>.layerLine
 			transition all 0.5s
 			height 0
@@ -151,8 +244,8 @@ jaugeExpend=8px
 			display none
 
 	.layer.expanded>.subLayers
-		border-bottom-width 1px
-		margin-bottom 1px
+		border-bottom-width bordureLevel
+		margin-bottom decalageLevel
 		>.layer>.layerLine
 			height layerHeight
 			//margin-bottom 4px

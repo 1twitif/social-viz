@@ -1,10 +1,27 @@
 node:
-  - Type: {from: enum.node.type}
+  - Fonction: {from: enum.node.fonction}
   - Statut: {from: enum.node.statut}
   - RaisonSociale
   - label: {autoCalc: RaisonSociale}
+  - Catégorie: 
+      from: enum.node.categorie    
+  - if: 
+      condition: Catégorie = "Culture"
+      then:
+        - Culture:
+            from: enum.node.culture
+  - if: 
+      condition: Catégorie = "DEE"
+      then:
+        - DEE:
+            from: enum.node.DEE
+  - if: 
+      condition: Catégorie = "Autre"
+      then:
+        - autre:
+            from: enum.node.autre   
   - if:
-      condition: Type = "Ressourcerie"
+      condition: Fonction = "Ressourcerie"
       then:
         - StructureSociale: {from: enum.node.structure}
         - if:
@@ -145,7 +162,7 @@ link:
   - sources: {dataType: markdown, access: private}
 enum:
   node:
-    type:
+    fonction:
       - Atelier Valorisation
       - Déchetterie
       - Distribution
@@ -177,6 +194,35 @@ enum:
       - SCOP
       - Syndicat mixte
       - Université - Ecole
+    categorie:
+      - Mobilier
+      - Métal
+      - Papier/Carton
+      - Textile
+      - DEE 
+      - Gisement spécifique
+      - Verre
+      - Culture
+      - Autre
+    culture: 
+      - Livre
+      - Magazine
+      - CD
+      - DVD
+      - Jeux-Video
+      - VHS
+    DEE: 
+      - Electronique
+      - Electro-ménager-gros-blanc
+      - Petit électro-ménager
+      - HI-Fi
+      - Machine-outil
+      - Matériel électroportatif
+      - Matériel d'éclairage
+    autre: 
+      - Bibelot
+      - Jouet
+      - Cadre
     structure:
       - AAVA
       - ACI
