@@ -35,7 +35,6 @@ define([], () => {
 				}
 			}
 		};
-		//if(eventName.indexOf('any')!== -1) console.log(eventName);
 		const fragments = eventSplitter(eventName);
 		const destroyers = fragments.map((f)=>addListener(f,listenerCallback,order));
 		const destroyer = {destroy:()=>destroyers.forEach((d)=>d.destroy())};
@@ -120,19 +119,21 @@ define([], () => {
 	}
 	function addListener(eventName,callback,order){
 		let listenerObj = {"id":eventId(),"order":order,"callback":callback};
-		//if(eventName === "any") console.log(listenerObj);
 		if(registeredListener[eventName] && registeredListener[eventName].length>0) registeredListener[eventName].push(listenerObj);
 		else {
 			registeredListener[eventName] = [];
 			registeredListener[eventName].push(listenerObj);
 			const internalListener = (event)=>{
-				for(let i =0; i<registeredListener[eventName].length; i++){
-					registeredListener[eventName][i].callback(event);
-					if(!registeredListener[eventName]) break;
+				if(Array.isArray(registeredListener[eventName])) {
+					registeredListener[eventName] = registeredListener[eventName].filter((e) => !!e);
+					for (let i = 0; i < registeredListener[eventName].length; i++) {
+						if(registeredListener[eventName][i]) registeredListener[eventName][i].callback(event);
+						if (!registeredListener[eventName]) break;
+					}
 				}
 			};
-			//addEventListener(eventName,internalListener);
-			//eventListenerDestroyer[eventName] = ()=>removeEventListener(eventName,internalListener);
+			addEventListener(eventName,internalListener);
+			eventListenerDestroyer[eventName] = ()=>removeEventListener(eventName,internalListener);
 		}
 		registeredListener[eventName].sort((a,b)=>a.order - b.order);
 
@@ -153,6 +154,7 @@ define([], () => {
 		return destroyer;
 	}
 	function sendFragmentedEvents(structuredEventName, customEventDetail) {
+		/*
 		const fragments = eventSplitter(structuredEventName);
 		fragments.forEach( (eventPart)=>{
 			if(Array.isArray(registeredListener[eventPart])){
@@ -164,11 +166,10 @@ define([], () => {
 				}
 			}
 		});
-		/*
+		*/
 		fragmentAndApply(structuredEventName,
 			(eventPart) => dispatchEvent(new CustomEvent(eventPart, {'detail': customEventDetail}))
 		);
-		*/
 	}
 
 	function fragmentAndApply(dotMarkedString, action) {
