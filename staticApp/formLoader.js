@@ -25,8 +25,12 @@ define([
 		on('yml.ready',(e)=>(e.filename==='allData/form.yml')?send('form.template.ready',e.yml):0 );
 		ymlTools.load('allData/form.yml');
 
-		const node = document.getElementById('editionMode');
-		if (node) node.addEventListener('click', activateEditorMode);
+		ev.on("mainToolsView.ready",()=>bindButton('editModeButton',activateEditorMode));
+		bindButton('editModeButton',activateEditorMode);//FIXME: ça devrait être dans la config ça !
+	}
+	function bindButton(id,action){
+		const node = document.getElementById(id);
+		if (node) node.addEventListener('click', action);
 	}
 	function listenerInit() {
 		on('form.template.ready', readyToUseForm.setTemplate);

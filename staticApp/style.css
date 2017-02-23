@@ -237,19 +237,23 @@ a:hover {
   width: 180px;
   z-index: 2;
 }
+#logoArea * {
+  display: block;
+  width: 100%;
+}
 #tools-panel {
   background-color: #7c9899;
   position: fixed;
   top: 0;
   left: 180px;
   right: 0;
-  height: 150px;
-}
-#tools-panel.hidden {
-  top: -150px;
+  height: 135px;
 }
 #tools-panel.small {
   top: -90px;
+}
+#tools-panel.small .reduce {
+  display: none;
 }
 #tools-panel.big {
   top: 0;
@@ -262,7 +266,7 @@ a:hover {
   background-color: #788888;
 }
 #tools-panel #main-tools {
-  height: 60px;
+  height: 45px;
 }
 #legend {
   background-color: #a5bfc0;
@@ -286,10 +290,10 @@ a:hover {
   top: 0;
 }
 #tools-panel.small ~ #details {
-  top: 60px;
+  top: 45px;
 }
 #tools-panel.big ~ #details {
-  top: 150px;
+  top: 135px;
 }
 #details {
   background-color: #788888;
@@ -352,20 +356,20 @@ footer .reduce {
   height: 100%;
   overflow: auto;
 }
-#search {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 30px;
-  width: 300px;
-}
-#langPicker {
-  position: absolute;
-  right: 300px;
-  bottom: 0;
-  width: 150px;
-  height: 60px;
-}
+/*
+#search
+	position absolute
+	right 0
+	bottom 0
+	height 30px
+	width detailsSmallWidth
+#langPicker
+	position absolute
+	right detailsSmallWidth
+	bottom 0
+	width (detailsSmallWidth / 2)
+	height mainToolsHeight
+*/
 .hidden,
 .small,
 .big {

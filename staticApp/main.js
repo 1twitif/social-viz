@@ -6,6 +6,7 @@ requirejs.config({
 });
 requirejs([
 		"smartEvents",
+		"mainToolsViewDemo",
 		"./layerEngine/configParser",
 		"./layerEngine/legendView",
 		'configLoader',
@@ -14,13 +15,14 @@ requirejs([
 		'graphDataLoader',
 		'graph',
 		'userInterface'
-	], (ev, layerConfParser,legendView, cfg,trad, formLoader, gData, graph, ui) => {
+	], (ev, demo,layerConfParser,legendView, cfg,trad, formLoader, gData, graph, ui) => {
 	console.log('chargement des fichiers js terminé');
 	ev.need('config',(c)=>console.log("config diffusée : ",c));
 	ev.on("lang.change", (lang)=>console.log("langue active : ",lang));
 	ev.on("trad.applied", ()=>console.log("traduction appliquée"));
 	ev.need('graph.data',(d)=>console.log("données du graph disponnible : ",d));
 
+	demo.init();
 	layerConfParser.init();
 	cfg.init();
 	trad.init();

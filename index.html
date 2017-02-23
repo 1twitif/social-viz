@@ -9,9 +9,11 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="staticApp/appImg/favicon16.png" />
 </head>
 <body>
-<nav id="logoArea"><h1><a>Logo<br/>Accueil</a></h1>
+<nav id="logoArea"><h1><a href="http://www.ressourcerie.fr/"><img src="allData/img/logo-reseau-national-ressourceries.png"/></a></h1>
+<!--
 	<a>Versions imprimables</a>
 	<a>Contact</a>
+-->
 </nav>
 <nav id="tools-panel" class="small">
 	<section id="advanced-tools">
@@ -58,9 +60,11 @@
         Ctrl+Glisser déplacer sur un lien -> créer un mini noeud intermédiaire invisible figé à la position de laché + fusionner les liens croisé durant le glissé déplacé s'ils ont un noeud en commun (dans ce cas, le mini noeud créé n'est pas invisible)
         double-clic ou Ctrl+clic sur noeud figé -> libère le noeud.
             -->
-		<button id="editionMode" title="Passer en mode édition">Editer</button>
+		<!--<button id="editionMode" title="Passer en mode édition">Editer</button>-->
 		<button id="editTrad" title="Formulaire de traduction">Traduction</button>
 		<label>FPS : <span id="fpsValue"></span></label>
+		<div id="langPicker"></div>
+
 	</section>
 	<section id="main-tools">
 		<!--
@@ -123,8 +127,8 @@
             </select>
         </label>
         -->
-		<div id="langPicker"></div>
-		<input id="search" type="search" placeholder="Rechercher..."/>
+		<!--<div id="langPicker"></div>-->
+		<!--<input id="search" type="search" placeholder="Rechercher..."/>-->
 	</section>
 	<button class="reduce bottom">-</button>
 	<button class="expand bottom">+</button>

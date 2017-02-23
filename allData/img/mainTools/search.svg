@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="45"
+   height="45"
+   viewBox="0 0 45 45.000001"
+   id="svg4958"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="loupe.svg"
+   inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\picto-loupe.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs4960" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="2.9568449"
+     inkscape:cy="19.664422"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid6185" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4963">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1007.3622)">
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5524"
+       width="45"
+       height="45"
+       x="5.823898e-010"
+       y="1007.3622"
+       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\Picto-fonctions-png\loupe.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       id="layer1-6"
+       inkscape:label="Calque 1"
+       transform="translate(-0.01395322,0.1605272)"
+       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\Picto-fonctions-png\loupe.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <g
+         transform="translate(-0.29204759,0.67378447)"
+         id="g6197">
+        <rect
+           style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect5524-1"
+           width="45"
+           height="45"
+           x="0.29204759"
+           y="1006.6884" />
+        <g
+           id="g6191"
+           transform="matrix(0.6528,0,0,0.6528,-273.7784,419.51895)">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6178"
+             d="m 445.02296,920.59821 c 37.37564,41.92133 37.37564,41.92133 37.37564,41.92133"
+             style="fill:none;fill-rule:evenodd;stroke:#be4801;stroke-width:8;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <circle
+             r="26.574802"
+             cy="927.8725"
+             cx="448.7486"
+             id="path6161"
+             style="opacity:1;fill:#be4801;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+          <circle
+             r="19.48819"
+             cy="927.8725"
+             cx="448.7486"
+             id="path6161-7"
+             style="opacity:1;fill:#d9f4fe;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+          <path
+             sodipodi:nodetypes="sszss"
+             inkscape:connector-curvature="0"
+             id="path6189"
+             d="m 433.27053,929.83321 c 0,6.69962 7.51242,14.21207 14.21206,14.21207 1.33992,0 5.68482,-1.4212 2.8424,-2.84239 -2.8424,-1.42125 -9.94843,-7.10607 -14.21206,-14.21207 -1.03407,-1.72346 -2.8424,1.50248 -2.8424,2.84239 z"
+             style="fill:#91e4ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

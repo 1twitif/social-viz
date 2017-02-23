@@ -1,0 +1,66 @@
+mainToolsHeight=45px
+pictoButtonSize=mainToolsHeight
+
+.pictoButton
+	height pictoButtonSize
+	width pictoButtonSize
+	background-image url(../staticApp/appImg/unknow.svg)
+	background-size pictoButtonSize pictoButtonSize
+
+#main-tools
+	display flex
+	.left
+		flex 1
+		display flex
+		text-align left;
+		>*
+			display block
+	.right
+		flex 1
+		display flex
+		justify-content: flex-end;
+		>*
+			display block
+	h1
+		line-height mainToolsHeight
+		padding 0 20px
+		color #dcf69d
+		font-size 20px
+		font-weight bold
+		letter-spacing 2px
+
+#loginButton
+	background-image url(../allData/img/mainTools/login.svg)
+#emailButton
+	background-image url(../allData/img/mainTools/email.svg)
+#faqButton
+	background-image url(../allData/img/mainTools/faq.svg)
+#alertsButton
+	background-image url(../allData/img/mainTools/alerts.svg)
+#visuButton
+	background-image url(../allData/img/mainTools/visu.svg)
+#editModeButton
+	background-image url(../allData/img/mainTools/edit.svg)
+#diagramGenButton
+	background-image url(../allData/img/mainTools/diagramGen.svg)
+#printButton
+	background-image url(../allData/img/mainTools/print.svg)
+#exportData
+	background-image url(../allData/img/mainTools/exportData.svg)
+#search
+	.decoSearch
+		searchDeco=pictoButtonSize*0.9
+		height searchDeco
+		width searchDeco
+		background-image url(../allData/img/mainTools/search.svg)
+		background-size searchDeco searchDeco
+		position absolute
+		bottom 0
+	input
+		height 25px
+		width 200px
+		margin-left 20px
+		margin-top 10px
+		padding-left 20px
+
+

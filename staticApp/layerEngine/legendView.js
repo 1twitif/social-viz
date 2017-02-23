@@ -39,11 +39,9 @@ define([
 	function init() {
 		listenerInit();
 		ev.after(['legendView.conf.ok','legendView.fullGraph.ok'],()=>{//,'legendView.displayedGraph.ok'],()=>{
-			console.log("ready?");
 			ev.send('legendView.ready');
 		});
 		ev.need('config',(cfg)=>{
-			console.log("conf?");
 			config = cfg;
 			if(!config.hideLayers) config.hideLayers = {};
 			if(!config.expandedLayers) config.expandedLayers = {};
@@ -117,7 +115,6 @@ define([
 
 
 		const layerLines = scrollable.querySelectorAll('.group>.layerLine');
-		console.log("layerLines", layerLines);
 		layerLines.forEach((layerLine)=>{
 			layerLine.addEventListener("click", (e)=>{
 				if(e.target.localName != "input"){

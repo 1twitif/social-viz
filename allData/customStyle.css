@@ -1,0 +1,75 @@
+.pictoButton {
+  height: 45px;
+  width: 45px;
+  background-image: url("../staticApp/appImg/unknow.svg");
+  background-size: 45px 45px;
+}
+#main-tools {
+  display: flex;
+}
+#main-tools .left {
+  flex: 1;
+  display: flex;
+  text-align: left;
+}
+#main-tools .left >* {
+  display: block;
+}
+#main-tools .right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+#main-tools .right >* {
+  display: block;
+}
+#main-tools h1 {
+  line-height: 45px;
+  padding: 0 20px;
+  color: #dcf69d;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+#loginButton {
+  background-image: url("../allData/img/mainTools/login.svg");
+}
+#emailButton {
+  background-image: url("../allData/img/mainTools/email.svg");
+}
+#faqButton {
+  background-image: url("../allData/img/mainTools/faq.svg");
+}
+#alertsButton {
+  background-image: url("../allData/img/mainTools/alerts.svg");
+}
+#visuButton {
+  background-image: url("../allData/img/mainTools/visu.svg");
+}
+#editModeButton {
+  background-image: url("../allData/img/mainTools/edit.svg");
+}
+#diagramGenButton {
+  background-image: url("../allData/img/mainTools/diagramGen.svg");
+}
+#printButton {
+  background-image: url("../allData/img/mainTools/print.svg");
+}
+#exportData {
+  background-image: url("../allData/img/mainTools/exportData.svg");
+}
+#search .decoSearch {
+  height: 40.5px;
+  width: 40.5px;
+  background-image: url("../allData/img/mainTools/search.svg");
+  background-size: 40.5px 40.5px;
+  position: absolute;
+  bottom: 0;
+}
+#search input {
+  height: 25px;
+  width: 200px;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-left: 20px;
+}

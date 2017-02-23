@@ -1,3 +1,6 @@
+logoViz: allData/img/logo-reseau-national-ressourceries.png #FIXME: devrais être dans allData. En pratique, c'est en dur dans le html
+
+userMode: viz
 centerLogoUrl: staticApp/appImg/center.svg
 centerLogoWidth: 200
 centerLogoHeight: 200

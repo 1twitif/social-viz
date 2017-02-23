@@ -27,8 +27,13 @@ define([
 	function listenerInit() {
 		on('fullGraph ready', setData);
 		on('fullGraph change', (data) => localStore.save(data));
-		document.getElementById('exportData').addEventListener('click', exportData);
 
+		ev.on("mainToolsView.ready",()=>bindButton('exportData',exportData));
+		bindButton('exportData',exportData);//FIXME: ça devrait être dans la config ça !
+	}
+	function bindButton(id,action){
+		const node = document.getElementById(id);
+		if (node) node.addEventListener('click', action);
 	}
 
 	function setData(data) {

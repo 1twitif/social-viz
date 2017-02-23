@@ -28,11 +28,15 @@ define([
 		ev.after('graph.init', function () {
 
 			on('fullGraph change',(data)=>{
+				console.log("fullGraph before merge : ", data);
+				console.log("currentGraph before merge : ", currentGraph);
 				currentGraph = struct.merge(currentGraph, struct.clone(data));
+				console.log("currentGraph after merge : ", currentGraph);
 				send("displayedGraph.filterTime",currentGraph);
 			});
 			on("displayedGraph.filterTime",(displayedGraph)=>{
 				currentGraph = displayedGraph;
+				console.log("currentGraph after filter : ", currentGraph);
 				updateGraph(currentGraph);
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			},1);

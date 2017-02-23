@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="45"
+   height="45"
+   viewBox="0 0 45 45.000001"
+   id="svg4958"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="exporter.svg"
+   inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\picto-loupe.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs4960" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="2.9568449"
+     inkscape:cy="19.664422"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid6185" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4963">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1007.3622)">
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5524"
+       width="45"
+       height="45"
+       x="5.823898e-010"
+       y="1007.3622"
+       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\Picto-fonctions-png\exporter.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       id="g6222"
+       transform="matrix(0.0882,0,0,0.0882,52.504437,942.51698)"
+       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\Picto-fonctions-png\exporter.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6220"
+         d="m -230.31496,786.61417 -265.74803,0 -53.14961,70.86614 0,336.61419 318.89764,0 0,-407.48033"
+         style="fill:#f0f0f0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccczccccsccscccccccscccc"
+         inkscape:connector-curvature="0"
+         id="path6216"
+         d="m -265.74803,946.06299 53.1496,0 0,-141.73229 c 0,0 0,-17.71653 -18.70279,-36.58967 -18.70279,-18.87314 -34.44681,-16.55993 -34.44681,-16.55993 l -230.31496,0 -88.58268,88.58267 0,336.61423 c 0,0 6.60486,28.3231 15.46313,37.1814 8.85827,8.8583 37.68648,15.9682 37.68648,15.9682 l 265.74803,0 c 0,0 27.31298,-6.0998 36.17125,-14.958 8.85827,-8.8583 16.97835,-38.1916 16.97835,-38.1916 l 0,-88.5827 -53.1496,0 0,88.5827 -265.74803,0 0,-301.18115 53.1496,0 c 0,0 8.76266,-3.76266 11.71541,-6.71541 2.95276,-2.95276 6.00113,-11.00113 6.00113,-11.00113 l 0,-53.14961 194.88189,0 z"
+         style="fill:#0f0f0f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path6218"
+         d="m -320.81564,985.43538 143.2382,0 0,-36.9252 81.850385,61.38782 -81.850385,61.3878 0,-36.9252 -143.2382,0 z"
+         style="fill:#0f0f0f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.15499997px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
