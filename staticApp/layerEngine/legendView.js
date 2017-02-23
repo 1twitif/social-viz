@@ -129,8 +129,8 @@ define([
 		//.on('mouseover', partialHideNotConcerned)
 		//.on('mouseout', unhideAll);
 
-		for(let child of legendAnchor.children) legendAnchor.removeChild(child);
-		//legendAnchor.innerHTML="";
+		//for(let child of legendAnchor.children) legendAnchor.removeChild(child);
+		legendAnchor.innerHTML="";
 		legendAnchor.appendChild(header);
 		legendAnchor.appendChild(wrapper);
 
