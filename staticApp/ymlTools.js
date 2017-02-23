@@ -76,7 +76,8 @@ define([
 	function exportAsFile(fileName, data) {
 		const a = document.createElement('a');
 		a.setAttribute('download', fileName + '.yml');
-		a.setAttribute('href', 'data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(data)));
+		const inertData = struct.clone(data);
+		a.setAttribute('href', 'data:text/yaml;charset=utf-8,' + encodeURIComponent(jsyaml.safeDump(inertData)));
 		ev.clickOn(a);
 	}
 
