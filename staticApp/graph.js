@@ -46,9 +46,12 @@ define([
 				.scaleExtent([options.zoomMin, options.zoomMax])
 				.on("zoom", zoomed);
 
+			document.querySelector("#viz").innerHTML = ""; // on vire l'anim de chargement
 			var svg = d3.select("#viz").call(zoom).on("dblclick.zoom", null),
 				width = window.innerWidth,
 				height = window.innerHeight;
+			svg.classed("loading",false);
+
 			var zoomableContainer = svg.append("g")
 				.attr("class", "zoomableContainer");
 			updateZoom();

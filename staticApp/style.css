@@ -343,8 +343,14 @@ body {
 .node.selected:hover * {
   opacity: 1;
 }
-.nearlyHidden {
+#viz .nearlyHidden {
   opacity: 0.2;
+}
+#viz.loading {
+  top: 45px;
+  left: 180px;
+  width: calc(100% - 480px);
+  height: calc(100% - 45px);
 }
 .picto {
   width: 24px;

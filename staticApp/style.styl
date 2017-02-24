@@ -57,8 +57,14 @@ body
 	&.selected:hover *
 		opacity 1
 
-.nearlyHidden
+#viz .nearlyHidden
 	opacity 0.2
+#viz.loading
+	top mainToolsHeight
+	left legendWidth
+	width unquote("calc(100% - "+(legendWidth+detailsSmallWidth)+")")
+	height unquote("calc(100% - "+mainToolsHeight+")")
+
 
 .picto
 	width 24px
