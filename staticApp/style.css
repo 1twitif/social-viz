@@ -51,6 +51,7 @@ h4 {
 }
 #legend .layer {
   display: block;
+  position: relative;
 }
 #legend .layer.final>.layerLine>.right {
   padding-right: 4px;
@@ -167,13 +168,14 @@ h4 {
 #legend >.wrapper>ul>.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers >.layer >.subLayers {
   border-color: #395151;
 }
-#legend .final .layerLine h3.title {
+#legend .final .layerLine .middle h3.title {
   font-weight: normal;
 }
 #legend .layerLine {
   height: 60px;
   display: flex;
   position: relative;
+  z-index: 2;
   text-align: left;
 }
 #legend .layerLine .title {
@@ -259,15 +261,21 @@ h4 {
   width: 100%;
 }
 #legend .subLayers {
-  margin-left: 4px;
   border-width: 0;
+  margin-left: 4px;
   border-left-width: 2px;
   border-style: solid;
+  position: relative;
+  transition: all 0.5s;
+  z-index: 1;
 }
 #legend .subLayers >.layer>.layerLine {
   transition: all 0.5s;
   height: 0;
-  margin: 0;
+}
+#legend .subLayers >.layer>.layerLine >* {
+  transition: top 0.5s;
+  top: -60px;
 }
 #legend .subLayers >.layer>.subLayers {
   display: none;
@@ -284,6 +292,9 @@ h4 {
 }
 #legend .layer.expanded>.subLayers >.layer>.layerLine {
   height: 60px;
+}
+#legend .layer.expanded>.subLayers >.layer>.layerLine >* {
+  top: 0;
 }
 #legend .layer.expanded>.subLayers >.layer>.subLayers {
   display: block;

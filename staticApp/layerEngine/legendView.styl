@@ -55,6 +55,7 @@ h1, h2, h3, h4
 		//direction rtl
 	.layer
 		display block
+		position relative
 		//direction ltr
 	.layer.final>.layerLine>.right
 		padding-right 4px
@@ -159,6 +160,7 @@ h1, h2, h3, h4
 		height layerHeight
 		display flex
 		position relative
+		z-index 2
 		//margin-bottom 4px
 		text-align left
 		.title
@@ -236,14 +238,25 @@ h1, h2, h3, h4
 				//height (2*layerHeight/5)
 
 	.subLayers
-		margin-left decalageLevel
 		border-width 0
+		margin-left decalageLevel
 		border-left-width bordureLevel
 		border-style solid
+		position relative
+		//top - layerHeight
+		transition all 0.5s
+		//transition top 0.5s
+		z-index 1
 		>.layer>.layerLine
 			transition all 0.5s
 			height 0
-			margin 0
+			>*
+				transition top 0.5s
+				top - layerHeight
+			//>.layerLine
+			//	margin 0
+			//position relative
+			//top - layerHeight
 		>.layer>.subLayers
 			display none
 	.layer.expanded>.layerLine
@@ -255,8 +268,11 @@ h1, h2, h3, h4
 	.layer.expanded>.subLayers
 		border-bottom-width bordureLevel
 		margin-bottom decalageLevel
+		//top 0
 		>.layer>.layerLine
 			height layerHeight
+			>*
+				top 0
 			//margin-bottom 4px
 		>.layer>.subLayers
 			display block
