@@ -352,6 +352,15 @@ body {
   width: calc(100% - 480px);
   height: calc(100% - 45px);
 }
+noscript {
+  position: fixed;
+  top: 95px;
+  left: 180px;
+  width: calc(100% - 480px);
+  text-align: center;
+  z-index: 100;
+  color: #a22;
+}
 .picto {
   width: 24px;
   float: left;

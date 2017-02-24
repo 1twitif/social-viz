@@ -65,6 +65,14 @@ body
 	width unquote("calc(100% - "+(legendWidth+detailsSmallWidth)+")")
 	height unquote("calc(100% - "+mainToolsHeight+")")
 
+noscript
+	position fixed
+	top mainToolsHeight+50px
+	left legendWidth
+	width unquote("calc(100% - "+(legendWidth+detailsSmallWidth)+")")
+	text-align center
+	z-index 100
+	color #A22
 
 .picto
 	width 24px
