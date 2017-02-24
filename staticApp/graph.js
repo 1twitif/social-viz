@@ -343,7 +343,8 @@ define([
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			}
 			function selectLink(l){
-				options.selected = l.id;
+				if(options.selected !== l.id) options.selected = l.id;
+				else options.selected = "";
 			}
 
 
@@ -369,7 +370,7 @@ define([
 
 			on("config.selected change",updateSelection);
 			function updateSelection() {
-				d3.selectAll('.node.selected').classed("selected", function (n) {
+				d3.selectAll('.selected').classed("selected", function (n) {
 					return n.selected = false;
 				});
 				if (options.selected) {
@@ -377,7 +378,7 @@ define([
 						return n.selected = true;
 					});
 				}
-				allLinksG.selectAll("line").attr("stroke", (l)=>l.id===options.selected?'red':'grey');
+				//allLinksG.selectAll("line").attr("stroke", (l)=>l.id===options.selected?'red':'grey');
 				//updateDetails();
 			}
 

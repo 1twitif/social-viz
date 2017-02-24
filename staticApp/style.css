@@ -309,12 +309,18 @@ h4 {
 body {
   background-color: #eee;
 }
+.link:hover {
+  cursor: pointer;
+}
 .node circle {
   opacity: 0.2;
 }
 .node path {
   opacity: 0.7;
   display: none;
+}
+.node:hover {
+  cursor: pointer;
 }
 .node:hover circle {
   opacity: 0.7;

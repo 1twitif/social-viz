@@ -127,3 +127,18 @@
   margin-right: 10px;
   padding-left: 8px;
 }
+.link[class*="Links_Flux"] {
+  stroke: #9acd32;
+}
+.link[class*="Links_Relationnels"] {
+  stroke: #483d8b;
+}
+.link.selected {
+  stroke: #f00;
+}
+.link {
+  opacity: 0.7;
+}
+.link:hover {
+  opacity: 1;
+}
