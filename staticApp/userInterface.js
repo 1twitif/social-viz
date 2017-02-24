@@ -138,14 +138,5 @@ define([
 	}
 */
 
-	function partialHideNotConcerned(e) {
-		d3.selectAll('.node, .link').classed('nearlyHidden', true);
-		d3.selectAll('.node.nl' + e.id).classed('nearlyHidden', false);
-	}
-
-	function unhideAll(e) {
-		d3.selectAll('.node, .link').classed('nearlyHidden', false);
-	}
-
 	return {init};
 });

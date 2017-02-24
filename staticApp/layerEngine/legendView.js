@@ -114,8 +114,8 @@ define([
 		}
 
 
-		const layerLines = scrollable.querySelectorAll('.group>.layerLine');
-		layerLines.forEach((layerLine)=>{
+		const groupLayerLines = scrollable.querySelectorAll('.group>.layerLine');
+		groupLayerLines.forEach((layerLine)=>{
 			layerLine.addEventListener("click", (e)=>{
 				if(e.target.localName != "input"){
 					layerLine.parentNode.classList.toggle("expanded");
@@ -124,8 +124,11 @@ define([
 				}
 			});
 		});
-		//.on('mouseover', partialHideNotConcerned)
-		//.on('mouseout', unhideAll);
+		const layerLines = scrollable.querySelectorAll('.layerLine');
+		layerLines.forEach((layerLine)=>{
+			layerLine.addEventListener("mouseover", partialHideNotConcerned);
+			layerLine.addEventListener("mouseout", unhideAll);
+		});
 
 		//for(let child of legendAnchor.children) legendAnchor.removeChild(child);
 		legendAnchor.innerHTML="";
@@ -245,8 +248,7 @@ define([
 		}
 	}
 	function layerToggle(e){
-		const ancestors = json2dom.xpath('ancestor::li[contains(@class,"layer")]',e.target,XPathResult.ORDERED_NODE_ITERATOR_TYPE);
-		const layerNode = ancestors[ancestors.length-1];
+		const layerNode = getLayerParentNodeFromEvent(e);
 		const layerName = layerNode.id.substring(5);
 		if(layerNode.classList.contains("final")){
 			config.hideLayers[layerName] = config.hideLayers[layerName] ? undefined : true;
@@ -260,6 +262,24 @@ define([
 		}
 		renderLegend();
 		ev.send("fullGraph.change",fullGraph);
+	}
+
+	function getLayerParentNodeFromEvent(e){
+		const ancestors = json2dom.xpath('ancestor::li[contains(@class,"layer")]',e.target,XPathResult.ORDERED_NODE_ITERATOR_TYPE);
+		const layerNode = ancestors[ancestors.length-1];
+		return layerNode;
+	}
+	function partialHideNotConcerned(e) {
+		const layerNode = getLayerParentNodeFromEvent(e);
+		const layerName = layerNode.id.substring(5);
+		document.querySelectorAll('.node,.link').forEach((n)=>n.classList.add("nearlyHidden"));
+		document.querySelectorAll('.node[class*="'+layerName+'"],.link[class*="'+layerName+'"]').forEach(
+			(n)=>n.classList.remove("nearlyHidden")
+		);
+	}
+
+	function unhideAll(e) {
+		document.querySelectorAll('.node,.link').forEach((n)=>n.classList.remove("nearlyHidden"));
 	}
 
 	return {

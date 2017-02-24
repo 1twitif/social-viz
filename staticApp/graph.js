@@ -132,7 +132,7 @@ define([
 					.on("click", selectLink);
 
 				link.exit().remove();
-				link = linkEnter.merge(link).attr("class","merged");
+				link = linkEnter.merge(link);//.attr("class","merged");
 
 				let node = allNodesG
 					.selectAll("g.node")
