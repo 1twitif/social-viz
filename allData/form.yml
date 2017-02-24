@@ -11,10 +11,10 @@ node:
         - Culture:
             from: enum.node.culture
   - if: 
-      condition: Catégorie = "DEE"
+      condition: Catégorie = "DEEE"
       then:
-        - DEE:
-            from: enum.node.DEE
+        - DEEE:
+            from: enum.node.DEEE
   - if: 
       condition: Catégorie = "Autre"
       then:
@@ -76,8 +76,8 @@ node:
             - DEAménagerNV: {dataType: number}
             - DEAproNV: {dataType: number}
             - TLCnV: {dataType: number}
-            - DEEménagerNV: {dataType: number}
-            - DEEproNV: {dataType: number}
+            - DEEEménagerNV: {dataType: number}
+            - DEEEproNV: {dataType: number}
             - AutresEcombrantsNV: {dataType: number}
             - DAEnV: {dataType: number}
             - AutreDéchetsNV: {dataType: number}
@@ -131,6 +131,7 @@ node:
             - AutreRessources: {dataType: number}
             - TotalCharges: {dataType: number}
             - PartAutofinancementEnPourcent: {dataType: number}
+  - Site internet
   - Adresse
   - CodePostal # il faudra un format à part, car en version nombre, 02200 = 2200 hors seul le premier est un code postal.
   - Commune
@@ -195,11 +196,12 @@ enum:
       - Syndicat mixte
       - Université - Ecole
     categorie:
+      - Multiple
       - Mobilier
       - Métal
-      - Papier/Carton
+      - PapierCarton
       - Textile
-      - DEE 
+      - DEEE 
       - Gisement spécifique
       - Verre
       - Culture
@@ -211,7 +213,7 @@ enum:
       - DVD
       - Jeux-Video
       - VHS
-    DEE: 
+    DEEE: 
       - Electronique
       - Electro-ménager-gros-blanc
       - Petit électro-ménager
@@ -245,11 +247,13 @@ enum:
       - Relationnel
       - Flux
     typeRelation:
+      - Adhérent
       - Editeur
       - Emploi
       - Entrepôt
       - Familial
       - Financement
+      - Fournisseur
       - Gouvernance
       - Lobbying
       - Organisation
@@ -268,8 +272,8 @@ enum:
       - DEA ménager
       - DEA professionnel
       - TLC
-      - DEE ménager
-      - DEE professionnel
+      - DEEE ménager
+      - DEEE professionnel
       - Autres encombrants
       - DAE
       - Autre déchets

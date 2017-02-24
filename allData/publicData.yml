@@ -65,7 +65,7 @@ node:
     StructureSociale: Autre
     SiAutrePrécisez: Réseau
   - id: node-Suez-azJPV
-    Type: Entreprise recyclage
+    Fonction: Entreprise recyclage
     Statut: Entreprise transnationale
     RaisonSociale: Véolia
     label: Véolia
@@ -78,6 +78,7 @@ node:
     RaisonSociale: Ecologic
     label: Ecologic
     ChiffreAffaire: '33334'
+    Fonction: Eco-organisme
   - id: node-ACTIFRIP-VTNOR
     Fonction: Opérateur de Tri
     RaisonSociale: ACTIFRIP
@@ -110,6 +111,58 @@ node:
     Adresse: 13 avenue Montaigne
     CodePostal: '49100'
     Commune: ANGERS
+  - id: node-Gebetex-UXlOa
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Gebetex
+    label: Gebetex
+    Catégorie: Textile
+  - id: node-Valdelia-ZzVOV
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Valdelia
+    label: Valdelia
+    Catégorie: Mobilier
+  - id: node-Ecomobilier-ZzVNe
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Ecomobilier
+    label: Ecomobilier
+    Catégorie: Mobilier
+  - id: node-SITA-Suez-Environnem-Z3lOa
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: SITA Suez Environnement
+    label: SITA Suez Environnement
+    Catégorie: Textile
+  - id: node-SRCE-RTBNe
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: SRCE
+    label: SRCE
+    Catégorie: Textile
+  - id: node-La-Fibre-du-Tri-WXpOV
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: La Fibre du Tri
+    label: La Fibre du Tri
+    Catégorie: Textile
+  - id: node-EcoTLC-UTRPR
+    Fonction: Eco-organisme
+    Statut: Entreprise nationale
+    RaisonSociale: EcoTLC
+    label: EcoTLC
+    Catégorie: Textile
+  - id: node-Recyclivre-YzNOe
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Recyclivre
+    label: Recyclivre
+    Catégorie: Culture
+    Culture: Livre
+    Adresse: 7 rue de la Boule rouge
+    CodePostal: '75009'
+    Commune: Paris
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV

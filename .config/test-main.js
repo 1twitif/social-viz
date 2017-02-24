@@ -20,7 +20,11 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 require.config({
   // Karma serves files under /base, which is the basePath from your config file
   baseUrl: '/base',
-
+	waitSeconds: 100,
+	paths: {
+		'../node_modules/js-yaml/dist/js-yaml': ['//cdnjs.cloudflare.com/ajax/libs/js-yaml/3.8.1/js-yaml.min','../node_modules/js-yaml/dist/js-yaml'],
+		'../node_modules/d3/build/d3': ['//d3js.org/d3.v4.min','../node_modules/d3/build/d3']
+	},
   // dynamically load all test files
   deps: allTestFiles,
 

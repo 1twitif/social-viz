@@ -1,22 +1,23 @@
 requirejs.config({
-		paths: {
-			'../node_modules/js-yaml/dist/js-yaml': '//cdnjs.cloudflare.com/ajax/libs/js-yaml/3.8.1/js-yaml.min',
-			'../node_modules/d3/build/d3': '//d3js.org/d3.v4.min'
-		}
+	waitSeconds: 100,
+	paths: {
+		'../node_modules/js-yaml/dist/js-yaml': ['//cdnjs.cloudflare.com/ajax/libs/js-yaml/3.8.1/js-yaml.min','../node_modules/js-yaml/dist/js-yaml'],
+		'../node_modules/d3/build/d3': ['//d3js.org/d3.v4.min','../node_modules/d3/build/d3']
+	}
 });
 requirejs([
-		"smartEvents",
-		"mainToolsViewDemo",
-		"./layerEngine/configParser",
-		"./layerEngine/legendView",
-		"noticeView",
-		'configLoader',
-		'./trad/trad',
-		'formLoader',
-		'graphDataLoader',
-		'graph',
-		'userInterface'
-	], (ev, demo,layerConfParser,legendView, noticeView, cfg,trad, formLoader, gData, graph, ui) => {
+	"smartEvents",
+	"mainToolsViewDemo",
+	"./layerEngine/configParser",
+	"./layerEngine/legendView",
+	"noticeView",
+	'configLoader',
+	'./trad/trad',
+	'formLoader',
+	'graphDataLoader',
+	'graph',
+	'userInterface'
+], (ev, demo,layerConfParser,legendView, noticeView, cfg,trad, formLoader, gData, graph, ui) => {
 	console.log('chargement des fichiers js terminé');
 	ev.need('config',(c)=>console.log("config diffusée : ",c));
 	ev.on("lang.change", (lang)=>console.log("langue active : ",lang));

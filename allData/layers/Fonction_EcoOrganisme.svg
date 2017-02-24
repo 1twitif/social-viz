@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   viewBox="0 0 60.000001 60.000001"
+   id="svg5612"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-visu-recyclage\entreprise-recyclage.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   sodipodi:docname="eco-organisme.svg">
+  <defs
+     id="defs5614" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="-2.0892857"
+     inkscape:cy="32.193993"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata5617">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-992.36216)">
+    <g
+       id="g3683"
+       transform="translate(-0.28458637,0.28458532)">
+      <rect
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         y="992.07758"
+         x="0.28458637"
+         height="60"
+         width="60"
+         id="rect6160"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <g
+         transform="matrix(1.0546771,0,0,1.0546771,-1.3557266,-56.184393)"
+         id="g3676">
+        <circle
+           style="display:inline;opacity:1;fill:#f5f5f5;fill-opacity:1;stroke:#178e06;stroke-width:2.4000001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path5962-9-0-9-9-3-4-2"
+           cx="30"
+           cy="1022.3622"
+           r="26.355827" />
+        <g
+           transform="matrix(0.45000001,0,0,0.45000001,7.4999995,999.86196)"
+           id="g540"
+           style="display:inline;fill:#4e9f26;fill-opacity:1">
+          <path
+             inkscape:connector-curvature="0"
+             d="M 16.987,32.594 C 21.739,23.941 26.803,15.603 31.604,7 c 6.317,0.949 10.093,7.185 10.093,7.185 l 6.538,11.613 c 0,0 -7.995,13.546 -11.264,18.453 -6.86,-3.688 -13.696,-7.399 -19.984,-11.657 z m 27.718,-20.138 9.918,17.475 -4.998,3.33 22.705,3.041 7.604,-20.36 -5.328,2.333 L 66.611,3.95 c 0,0 -21.347,0 -32.644,0 6.806,1.926 10.543,8.172 10.738,8.506 z m 18.756,32.258 c 2.656,5.263 10.498,18.9 10.498,18.9 l 13.329,0.036 c 0,0 7.769,-0.603 11.229,-5.24 -5.118,-8.417 -9.88,-16.935 -15.061,-25.333 -6.806,3.37 -13.405,7.49 -19.995,11.637 z M 87.306,67.12 67.505,67.13 v -5.986 l -16.923,17.577 16.923,17.33 v -5.68 h 16.401 c 0,0 10.523,-18.569 16.094,-28.4 -5.028,4.976 -12.307,5.143 -12.694,5.149 z M 49.422,67.144 H 28.074 l -6.866,11.073 c 0,0 -3.558,6.426 -1.259,12.388 9.85,-0.076 29.474,0 29.474,0 V 67.144 Z M 18.22,76.455 28.51,59.199 33.872,61.896 26.567,40.936 3.843,44.104 8.502,47.587 0,61.613 c 0,0 10.545,18.556 16.129,28.378 -1.692,-6.866 1.897,-13.202 2.091,-13.536 z"
+             id="path538"
+             style="fill:#4e9f26;fill-opacity:1" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

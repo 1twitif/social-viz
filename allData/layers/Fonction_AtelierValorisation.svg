@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   viewBox="0 0 60.000001 60.000001"
+   id="svg5612"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-visu-recyclage\entreprise-recyclage.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   sodipodi:docname="atelier-valorisation-ameublement.svg">
+  <defs
+     id="defs5614" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6"
+     inkscape:cx="-7.8098201"
+     inkscape:cy="32.193993"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata5617">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-992.36216)">
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6160"
+       width="60"
+       height="60"
+       x="-4.5373536e-008"
+       y="992.36218"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       transform="matrix(1.0404,0,0,1.0404,-2037.795,170.35288)"
+       style="display:inline"
+       id="g6015"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <circle
+         r="26.355827"
+         cy="818.92474"
+         cx="1987.5"
+         id="path5962-9-0-9-9-3-4"
+         style="display:inline;opacity:1;fill:#f8c94c;fill-opacity:1;stroke:#178e06;stroke-width:2.4000001;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         style="fill:#a55709;fill-opacity:1;stroke-width:0.41343749"
+         id="path5156"
+         d="m 1988.0329,804.9038 c 0,3.8859 -3.15,7.03588 -7.0358,7.03588 -3.8856,0 -7.0355,-3.14998 -7.0355,-7.03588 0,-3.88548 3.15,-7.03547 7.0355,-7.03547 3.8858,0 7.0358,3.14999 7.0358,7.03547 z m 14.5295,10.88209 h -2.338 v -4.492 h -3.0091 v 4.492 h -13.3672 c -0.024,0 -0.049,0 -0.073,0.002 h -5.9068 c -2.9499,-1.1e-4 -5.3416,2.39162 -5.3416,5.33943 v 16.73017 h 16.9402 v -14.93626 h 7.7494 v 3.63577 c -0.5204,0.10046 -0.914,0.55318 -0.914,1.10264 0,0.31049 0.1241,0.58873 0.3307,0.79173 0.1562,0.15794 0.3589,0.26749 0.5833,0.30843 0.071,0.0123 0.1403,0.0181 0.2085,0.0181 h 2.5008 c 0.1025,0 0.2068,-0.0141 0.3002,-0.0414 0.4726,-0.13106 0.8186,-0.56393 0.8186,-1.07701 0,-0.51554 -0.3464,-0.94842 -0.8186,-1.07907 v -3.65933 h 2.3376 c 1.5747,0 2.851,-1.27463 2.851,-2.84942 v -1.43461 c -4e-4,-1.57438 -1.2771,-2.85107 -2.8515,-2.85107 z m 0.5382,-9.8121 c 0,0.13311 -0.025,0.26293 -0.072,0.382 -0.014,0.0471 -0.036,0.0902 -0.058,0.13355 -0.1835,0.33488 -0.5407,0.56558 -0.9517,0.56558 -0.198,0 -0.382,-0.0537 -0.5408,-0.14429 -0.2158,-0.1261 -0.382,-0.32083 -0.4689,-0.55525 -0.047,-0.11907 -0.073,-0.24888 -0.073,-0.38201 0,-0.40723 -0.3385,-0.56972 -0.9442,-0.56972 h -2.9665 c 0,0 -0.036,0 -0.1087,0.007 -0.4973,0.0289 -2.6018,0.31545 -4.5701,1.66533 -2.8908,1.98243 -2.8908,5.22668 -2.8908,5.22668 h 1.5029 c 0,0 0.4853,-3.44932 3.0528,-3.44932 0.5987,0 1.2474,0 1.2474,0 1.6577,0 1.5317,1.86006 1.5317,1.86006 h 3.4101 c 0.5408,0 0.5983,-0.52961 0.5983,-0.52961 0,-0.67059 0.5473,-1.21469 1.2178,-1.21469 0.6127,0 1.1218,0.45397 1.2041,1.0456 h 3.0023 v -4.04053 h -3.1236 z"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
