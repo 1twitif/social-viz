@@ -103,6 +103,25 @@ a
 		background-color #788888
 	#main-tools
 		height mainToolsHeight
+	.expand, .reduce
+		top auto
+		left 0
+		right auto
+		bottom 0
+		border-radius 0
+		border-bottom-right-radius panelSizeChangerSize
+		height panelSizeChangerSize
+		width panelSizeChangerSize
+		line-height panelSizeChangerSize*0.8
+		padding-right panelSizeChangerSize*0.2
+		padding-bottom panelSizeChangerSize*0.2
+		margin-top 0
+		margin-left 0
+		margin-bottom - panelSizeChangerSize
+		background-color #7c9899
+		&:hover
+			background-color lighten(#7c9899, 30%)
+
 
 #legend
 	background-color #a5bfc0
@@ -148,6 +167,23 @@ a
 		background-color #d7e1e2
 		padding 10px
 		padding-bottom footerHeight + 10px
+	.expand, .reduce
+		top 0
+		left 0
+		right auto
+		bottom auto
+		border-radius 0
+		border-bottom-left-radius panelSizeChangerSize
+		height panelSizeChangerSize
+		width panelSizeChangerSize
+		line-height panelSizeChangerSize*0.8
+		padding-left panelSizeChangerSize*0.2
+		padding-bottom panelSizeChangerSize*0.2
+		margin-top 0
+		margin-left - footerHeight
+		background-color #788888
+		&:hover
+			background-color lighten(#788888, 30%)
 
 footer
 	background-color #7c9899
@@ -174,6 +210,8 @@ footer
 		margin-top 0
 		margin-left - footerHeight
 		background-color #7c9899
+		&:hover
+			background-color lighten(#7c9899, 30%)
 
 
 
@@ -239,6 +277,7 @@ footer
 	&.right
 		left 100%
 	&:hover
+		cursor pointer
 		background sizeChangerBg
 
 .expand.bottom

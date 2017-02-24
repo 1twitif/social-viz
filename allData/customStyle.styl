@@ -5,6 +5,33 @@ pictoButtonSize=mainToolsHeight*0.85
 #langPicker
 	display none
 
+#details
+	padding 10px
+	>.header>h2
+		display block
+		height 60px
+		line-height 60px
+		background-image url(../allData/img/bouton-ressourceries.svg)
+		background-size 60px 60px
+		background-position 0 0
+		background-repeat no-repeat
+		margin-bottom 10px
+		padding-left 70px
+		font-size 20px
+	.line
+		display flex
+		padding-bottom 5px
+		border-bottom 1px solid black
+		border-bottom-color darken(#d7e1e2, 10%)
+		margin-bottom 5px
+		>*
+			flex 1
+
+
+#legend>.header>h2
+	font-size 20px
+
+
 .pictoButton
 	height mainToolsHeight
 	width mainToolsHeight
@@ -12,6 +39,9 @@ pictoButtonSize=mainToolsHeight*0.85
 	background-size pictoButtonSize pictoButtonSize
 	background-position ((mainToolsHeight - pictoButtonSize)/2) ((mainToolsHeight - pictoButtonSize)/2)
 	background-repeat no-repeat
+	&:hover
+		background-color lighten(#7c9899, 30%)
+		cursor pointer
 
 #main-tools
 	display flex
@@ -36,6 +66,9 @@ pictoButtonSize=mainToolsHeight*0.85
 		letter-spacing 1px
 	.ghost
 		opacity 0.5
+		&:hover
+			cursor auto
+			background-color #7c9899
 
 #loginButton
 	background-image url(../allData/img/mainTools/login.svg)
@@ -59,7 +92,7 @@ pictoButtonSize=mainToolsHeight*0.85
 	background-image url(../allData/img/mainTools/exportData.svg)
 #search
 	.decoSearch
-		searchDeco=pictoButtonSize*0.9
+		searchDeco=mainToolsHeight*0.9
 		height searchDeco
 		width searchDeco
 		background-image url(../allData/img/mainTools/search.svg)

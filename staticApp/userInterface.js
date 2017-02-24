@@ -17,6 +17,14 @@ define([
 		on('hashchange', render);
 		on('render', updatePanels);
 		on('err', displayErr);
+		on('noticeView.rendered', ()=>{
+			document.querySelector('#details>.expand').addEventListener('click',expandPanel);
+			document.querySelector('#details>.reduce').addEventListener('click',reducePanel);
+		});
+		on('formView.rendered', ()=>{
+			document.querySelector('#details>.expand').addEventListener('click',expandPanel);
+			document.querySelector('#details>.reduce').addEventListener('click',reducePanel);
+		});
 	}
 	function displayErr(err){
 		if(!err.type) return console.error("err:",err);
@@ -68,17 +76,17 @@ define([
 	d3.selectAll('.expand').on('click', expandPanel);
 	d3.selectAll('.reduce').on('click', reducePanel);
 
-	function expandPanel() {
-		slidePanel({'hidden': 'small', 'small': 'big'});
+	function expandPanel(e) {
+		slidePanel(e,{'hidden': 'small', 'small': 'big'});
 	}
 
-	function reducePanel() {
-		slidePanel({'big': 'small', 'small': 'hidden'});
+	function reducePanel(e) {
+		slidePanel(e,{'big': 'small', 'small': 'hidden'});
 	}
 
-	function slidePanel(nextStatePicker) {
+	function slidePanel(e, nextStatePicker) {
 		// met à jour l'état de l'app en modifiant la config
-		let panelNode = d3.event.target.parentNode;
+		let panelNode = d3.event?d3.event.target.parentNode:e.target.parentNode;
 		cfg.getConfig().panels[panelNode.id] = nextStatePicker[panelNode.className];
 	}
 

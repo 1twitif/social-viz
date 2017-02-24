@@ -1,6 +1,34 @@
 #langPicker {
   display: none;
 }
+#details {
+  padding: 10px;
+}
+#details >.header>h2 {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  background-image: url("../allData/img/bouton-ressourceries.svg");
+  background-size: 60px 60px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  padding-left: 70px;
+  font-size: 20px;
+}
+#details .line {
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+  border-bottom-color: #bdcecf;
+  margin-bottom: 5px;
+}
+#details .line >* {
+  flex: 1;
+}
+#legend>.header>h2 {
+  font-size: 20px;
+}
 .pictoButton {
   height: 45px;
   width: 45px;
@@ -8,6 +36,10 @@
   background-size: 38.25px 38.25px;
   background-position: 3.375px 3.375px;
   background-repeat: no-repeat;
+}
+.pictoButton:hover {
+  background-color: #a3b7b8;
+  cursor: pointer;
 }
 #main-tools {
   display: flex;
@@ -38,6 +70,10 @@
 }
 #main-tools .ghost {
   opacity: 0.5;
+}
+#main-tools .ghost:hover {
+  cursor: auto;
+  background-color: #7c9899;
 }
 #loginButton {
   background-image: url("../allData/img/mainTools/login.svg");
@@ -70,10 +106,10 @@
   background-image: url("../allData/img/mainTools/exportData.svg");
 }
 #search .decoSearch {
-  height: 34.425000000000004px;
-  width: 34.425000000000004px;
+  height: 40.5px;
+  width: 40.5px;
   background-image: url("../allData/img/mainTools/search.svg");
-  background-size: 34.425000000000004px 34.425000000000004px;
+  background-size: 40.5px 40.5px;
   position: absolute;
   bottom: 0;
 }

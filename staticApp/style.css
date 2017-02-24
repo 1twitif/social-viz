@@ -395,6 +395,28 @@ a:hover {
 #tools-panel #main-tools {
   height: 45px;
 }
+#tools-panel .expand,
+#tools-panel .reduce {
+  top: auto;
+  left: 0;
+  right: auto;
+  bottom: 0;
+  border-radius: 0;
+  border-bottom-right-radius: 30px;
+  height: 30px;
+  width: 30px;
+  line-height: 24px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-left: 0;
+  margin-bottom: -30px;
+  background-color: #7c9899;
+}
+#tools-panel .expand:hover,
+#tools-panel .reduce:hover {
+  background-color: #a3b7b8;
+}
 #legend {
   background-color: #a5bfc0;
   position: fixed;
@@ -449,6 +471,27 @@ a:hover {
   padding: 10px;
   padding-bottom: 40px;
 }
+#details .expand,
+#details .reduce {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  border-radius: 0;
+  border-bottom-left-radius: 30px;
+  height: 30px;
+  width: 30px;
+  line-height: 24px;
+  padding-left: 6px;
+  padding-bottom: 6px;
+  margin-top: 0;
+  margin-left: -30px;
+  background-color: #788888;
+}
+#details .expand:hover,
+#details .reduce:hover {
+  background-color: #a1acac;
+}
 footer {
   background-color: #7c9899;
   position: fixed;
@@ -477,6 +520,10 @@ footer .reduce {
   margin-top: 0;
   margin-left: -30px;
   background-color: #7c9899;
+}
+footer .expand:hover,
+footer .reduce:hover {
+  background-color: #a3b7b8;
 }
 #legend > section,
 #details > section {
@@ -552,6 +599,7 @@ footer .reduce {
 }
 .expand:hover,
 .reduce:hover {
+  cursor: pointer;
   background: #888;
 }
 .expand.bottom {

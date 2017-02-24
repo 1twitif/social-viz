@@ -1,10 +1,11 @@
 define([
 	'./form',
 	'./smartEvents',
-	'./ymlTools'
-], (formLib, ev, ymlTools) => {
+	'./ymlTools',
+	'./htmlTools'
+], (formLib, ev, ymlTools, htmlTools) => {
 	'use strict';
-	const on = ev.on, send = ev.send;
+	const on = ev.on, send = ev.send, buildNode = htmlTools.buildNode;
 
 	let readyToUseForm, config;
 	function init(){
@@ -43,12 +44,22 @@ define([
 		if (config.userMode === "edit") displayForm();
 	}
 	function displayForm(){
-		const anchor = document.querySelector("#details section");
+		const anchor = document.querySelector("#details"); //FIXME go config !
+		const header = buildNode(".header");
+		header.appendChild(buildNode('h2','form_title'));
+
+		const formAnchor = buildNode("section.wrapper");
+
+		anchor.innerHTML = "";
+		anchor.appendChild(header);
+		anchor.appendChild(formAnchor);
+		anchor.appendChild(buildNode('button.reduce','-'));
+		anchor.appendChild(buildNode('button.expand','+'));
+
 		const form = getForm();
 		form.edit(config.selected);
-		form.displayInNode(anchor);
-		console.log(anchor);
-		console.log(config.selected);
+		form.displayInNode(formAnchor);
+		ev.send("formView.rendered");
 	}
 
 	function getForm(){
