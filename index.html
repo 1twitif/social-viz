@@ -168,6 +168,13 @@
 	}
 </script>
 <script data-main="staticApp/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
-<!-- <script data-main="staticApp/all" src="node_modules/requirejs/require.js"></script> -->
+<script>
+	if(typeof requirejs === "undefined") {
+		const failOver = document.createElement('script');
+		failOver.setAttribute("data-main","staticApp/main");
+		failOver.setAttribute("src","node_modules/requirejs/require.js");
+		document.body.appendChild(failOver);
+	}
+</script>
 </body>
 </html>
