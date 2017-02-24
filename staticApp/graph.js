@@ -124,7 +124,7 @@ define([
 
 				let linkEnter = link.enter().append("line")
 					.attr("id", (n) => n.id)
-					.attr("class", (n) => "link ll" + n.type)
+					.attr("class", "link")
 					.attr("stroke-width", function (d) {
 						return 4*Math.sqrt(d.value || 1);
 					})
@@ -140,7 +140,7 @@ define([
 				let nodeEnter = node
 						.enter()
 						.append("g")
-						.attr("class", (n) => "node nl" + n.type)
+						.attr("class", "node")
 						.attr("id", function (n) {
 							return n.id;
 						})
@@ -174,7 +174,6 @@ define([
 				for(let domLayer of flatFinalLayers){
 					const layer = json2dom.dom2json(domLayer);
 					if(options.hideLayers[layer.name]) continue;
-					if(layer.name.split('_')[0] !== "Fonction") continue; //FIXME: virrer cette restriction
 
 					let domGraph = json2dom.json2dom(currentGraph);
 					const selected = json2dom.xpath(layer.criterion,domGraph,XPathResult.UNORDERED_NODE_ITERATOR_TYPE);
@@ -182,9 +181,17 @@ define([
 					for(let domNode of selected){
 						let id = domNode.querySelector('id').innerText;
 						let type = id.split('-')[0];
-						if(type === "link") continue;
+						//if(type === "link") continue;
 						selectedSet[id] = true;
 					}
+					nodeEnter
+						.filter((n)=>selectedSet[n.id])
+						.classed(layer.name, true);
+					linkEnter
+						.filter((n)=>selectedSet[n.id])
+						.classed(layer.name, true);
+
+					if(layer.name.split('_')[0] !== "Fonction") continue; //FIXME: virrer cette restriction
 
 					nodeEnter
 						.filter((n)=>selectedSet[n.id])
