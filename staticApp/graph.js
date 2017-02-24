@@ -29,15 +29,11 @@ define([
 		ev.after('graph.init', function () {
 
 			on('fullGraph change',(data)=>{
-				console.log("fullGraph before merge : ", data);
-				console.log("currentGraph before merge : ", currentGraph);
 				currentGraph = struct.merge(currentGraph, struct.clone(data));
-				console.log("currentGraph after merge : ", currentGraph);
 				send("displayedGraph.filterTime",currentGraph);
 			});
 			on("displayedGraph.filterTime",(displayedGraph)=>{
 				currentGraph = displayedGraph;
-				console.log("currentGraph after filter : ", currentGraph);
 				updateGraph(currentGraph);
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
 			},1);
@@ -100,6 +96,10 @@ define([
 			let allNodesG = zoomableContainer.append("g")
 				.attr("class", "nodes");
 
+			let link = allLinksG
+				.selectAll("line")
+			let node = allNodesG
+				.selectAll("g.node")
 
 			function updateGraph(currentGraph){
 				simulation
@@ -113,7 +113,6 @@ define([
 					)
 				;
 				computeNodesDegree(currentGraph);
-				for(let i in currentGraph.node) currentGraph.node[i].type = currentGraph.node[i].type || 0; //FIXME: virer ça.
 
 				let nodeRadiusScale = d3.scaleLinear()
 					.domain(d3.extent(currentGraph.node, function (n) {
@@ -121,9 +120,14 @@ define([
 					}))
 					.range([options.nodeMinRatio, options.nodeMaxRatio]);
 
+				link = link.data(currentGraph.link);
+				node = node.data(currentGraph.node);
+
+/*
 				let link = allLinksG
 					.selectAll("line")
 					.data(currentGraph.link);
+*/
 
 				let linkEnter = link.enter().append("line")
 					.attr("id", (n) => n.id)
@@ -136,11 +140,10 @@ define([
 				link.exit().remove();
 				link = linkEnter.merge(link);//.attr("class","merged");
 
-				let node = allNodesG
+/*				let node = allNodesG
 					.selectAll("g.node")
-					.data(currentGraph.node);
-				let nodeEnter = node
-						.enter()
+					.data(currentGraph.node);*/
+				let nodeEnter = node.enter()
 						.append("g")
 						.attr("class", "node")
 						.attr("id", function (n) {
@@ -160,14 +163,14 @@ define([
 					})
 					.attr("opacity", .2) //FIXME: nombre magique
 					.attr("fill", function (d) {
-						return color(d.type);
+						return color(0);//FIXME: couleur magique
 					});
 				nodeEnter.append("path")
 					.attr("d", function (n) {
 						return points2Path(regularPolygon(0, 0, n.r, options.fixedNode.sides), options.fixedNode.tension);
 					})
 					.attr("fill", function (d) {
-						return color(d.type);
+						return color(0);//FIXME: couleur magique
 					});
 
 				// image par calques.
@@ -226,8 +229,8 @@ define([
 					.text(function (n) {
 						return t(n.label);
 					});
-				node = nodeEnter.merge(node);
 				node.exit().remove();
+				node = nodeEnter.merge(node);
 
 
 
@@ -262,6 +265,11 @@ define([
 							n.x = Math.max(limiteGauche, Math.min(limiteDroite, n.x));
 							n.y = Math.max(limiteHaut, Math.min(limiteBas, n.y));
 						}
+						if(isNaN(n.x)) n.x = 0;
+						if(isNaN(n.y)) n.y = 0;
+						if(isNaN(n.r)) n.r = 0;
+						if(isNaN(n.vx)) n.vx = 0;
+						if(isNaN(n.vy)) n.vy = 0;
 						return "translate(" + n.x + "," + n.y + ")";
 					});
 				allLinksG.selectAll("line")
@@ -302,7 +310,8 @@ define([
 				d.dragOriginX = d.x;
 				d.dragOriginY = d.y;
 				d.wasSelected = false;
-				if (options.selected !== d.id) options.selected = d.id;
+				var id = getNearestAncestorId(d3.event.sourceEvent.target);
+				if (options.selected !== id) options.selected = id;
 				else d.wasSelected = true;
 				//updateSelection();
 				updateCenterForce();
@@ -324,7 +333,8 @@ define([
 					var d3ToCentricX = d3.scaleLinear().domain([0, width]).range([-1, 1]);
 					var d3ToCentricY = d3.scaleLinear().domain([0, height]).range([-1, 1]);
 					if (!options.fixedNodes) options.fixedNodes = {};
-					options.fixedNodes[d.id] = {
+					var id = getNearestAncestorId(d3.event.sourceEvent.target);
+					options.fixedNodes[id] = {
 						"x": round(d3ToCentricX(d.x), 2),
 						"y": round(d3ToCentricY(d.y), 2)
 					};
@@ -339,7 +349,8 @@ define([
 				d3.select(this).classed("fixed", d.fixed = false);
 				d.fx = null;
 				d.fy = null;
-				options.fixedNodes[d.id] = undefined;
+				var id = getNearestAncestorId(d3.event.sourceEvent.target);
+				options.fixedNodes[id] = undefined;
 				updateZoom();
 				updateCenterForce();
 				agitationTemporaire(options.boostAgitation.temps, options.boostAgitation.force);
@@ -491,6 +502,10 @@ define([
 			d3.event.target["xlink:href"] = options.defaultPicto;
 		}
 	}
-
+	function getNearestAncestorId(node){
+		const ancestors = json2dom.xpath('ancestor::*[@id]',node,XPathResult.ORDERED_NODE_ITERATOR_TYPE);
+		const layerNode = ancestors[ancestors.length-1];
+		return layerNode.id;
+	}
 		return {};
 	});
