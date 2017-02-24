@@ -128,16 +128,47 @@ pictoButtonSize=mainToolsHeight*0.85
 		margin-right 10px
 		padding-left 8px
 
+.link
+	stroke grey
+	opacity 0.7
+.link:hover
+	opacity 1
 
 .link[class*="Links_Flux"]
 	stroke yellowgreen
 .link[class*="Links_Relationnels"]
 	stroke darkslateblue
 
-.link.selected
+
+//.Links_Relationnels
+//.Links_Relationnels_Adhérent
+.link.Links_Relationnels_Financement
+	stroke #037c7c
+.link.Links_Relationnels_Gouvernance
+	stroke #00ff9d
+.link.Links_Relationnels_Partenariat
+	stroke #004ebe
+.link.Links_Relationnels_Prestation
+	stroke #f000ff
+.link.Links_Relationnels_Membre
+	stroke #47ff00
+.link.Links_Relationnels_Siège
+	stroke #bb6d16
+.link.Links_Relationnels_Fournisseur // existant ?
+	stroke #a120ac
+
+//Links_Relationnels_Autre
+//Links_Flux
+//Links_Flux_Financier
+//Links_Flux_DEA ménager
+//Links_Flux_DEA professionnel
+//Links_Flux_TLC
+//Links_Flux_DEEE ménager
+//Links_Flux_DEEE professionnel
+//Links_Flux_Autres encombrants
+//Links_Flux_DAE
+//Links_Flux_Autre déchets
+
+#viz .link.selected
 	stroke red
 
-.link
-	opacity 0.7
-.link:hover
-	opacity 1

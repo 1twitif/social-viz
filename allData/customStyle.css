@@ -143,18 +143,40 @@
   margin-right: 10px;
   padding-left: 8px;
 }
+.link {
+  stroke: #808080;
+  opacity: 0.7;
+}
+.link:hover {
+  opacity: 1;
+}
 .link[class*="Links_Flux"] {
   stroke: #9acd32;
 }
 .link[class*="Links_Relationnels"] {
   stroke: #483d8b;
 }
-.link.selected {
+.link.Links_Relationnels_Financement {
+  stroke: #037c7c;
+}
+.link.Links_Relationnels_Gouvernance {
+  stroke: #00ff9d;
+}
+.link.Links_Relationnels_Partenariat {
+  stroke: #004ebe;
+}
+.link.Links_Relationnels_Prestation {
+  stroke: #f000ff;
+}
+.link.Links_Relationnels_Membre {
+  stroke: #47ff00;
+}
+.link.Links_Relationnels_Siège {
+  stroke: #bb6d16;
+}
+.link.Links_Relationnels_Fournisseur {
+  stroke: #a120ac;
+}
+#viz .link.selected {
   stroke: #f00;
-}
-.link {
-  opacity: 0.7;
-}
-.link:hover {
-  opacity: 1;
 }

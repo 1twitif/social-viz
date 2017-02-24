@@ -137,7 +137,7 @@ define([
 
 	}
 	function buildLegendEntry(statedEntry) {
-		if(!statedEntry.state.matchedEntities) return buildNode(".empty");
+		//if(!statedEntry.state.matchedEntities) return buildNode(".empty");
 		const entryNode = buildNode('li.layer#layer'+statedEntry.name);
 		if(!statedEntry.state.displayedLayer) entryNode.classList.add("hidden");
 		if(statedEntry.expanded) entryNode.classList.add("expanded");

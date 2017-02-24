@@ -131,7 +131,6 @@ define([
 					.attr("stroke-width", function (d) {
 						return 4*Math.sqrt(d.value || 1);
 					})
-					.attr("stroke", (l)=>l.id===options.selected?'red':'grey')
 					.on("click", selectLink);
 
 				link.exit().remove();

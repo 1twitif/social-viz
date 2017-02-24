@@ -200,17 +200,17 @@ link:
     TypeRelation: Autre
     label: Autre
     comments: c
-  - id: link-DEE-menager-YzFOa
+  - id: link-DEEE-menager-YzFOa
     source: node-Suez-azJPV
     target: node-Ecologic-azFPV
     GenreLien: Flux
-    TypeFlux: DEE ménager
-    label: DEE ménager
+    TypeFlux: DEEE ménager
+    label: DEEE ménager
     Date: '2/09:1999'
-  - id: link-DEE-menager-RXlOa
+  - id: link-DEEE-menager-RXlOa
     source: node-Ecologic-azFPV
     target: node-R-YzNNe
     GenreLien: Flux
-    TypeFlux: DEE ménager
-    label: DEE ménager
+    TypeFlux: DEEE ménager
+    label: DEEE ménager
     Date: 01/09/2016
