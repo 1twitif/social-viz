@@ -54,9 +54,27 @@ define(['../smartEvents', '../htmlTools', '../ymlTools'], (ev, htmlTools, ymlToo
 		formNode.appendChild(trad2file);
 		//return formNode;
 
+
+		const header = buildNode(".header");
+		header.appendChild(buildNode("h2","trad_title"));
+		header.addEventListener('click', ()=>{
+			ev.send('legendView.ready');
+			config.userMode = "viz";
+			//TODO: selectionner un a un chaque noeud et lien du graph
+			config.userMode = "edit";
+			//TODO: selectionner un a un chaque noeud et lien du graph
+			config.userMode = "trad";
+		});
+		const wrapper = buildNode("section.wrapper");
+		wrapper.appendChild(formNode);
+
 		let details = document.querySelector(config.trad.formAnchorSelector);
 		details.innerHTML = "";
-		details.appendChild(formNode);
+		details.appendChild(header);
+		details.appendChild(wrapper);
+		details.appendChild(buildNode('button.reduce','-'));
+		details.appendChild(buildNode('button.expand','+'));
+		ev.send('tradView.rendered');
 	}
 
 	function saveLocalTrad(event) {

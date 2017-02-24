@@ -491,6 +491,8 @@ a:hover {
   background-color: #d7e1e2;
   padding: 10px;
   padding-bottom: 40px;
+  height: calc(100% - 70px);
+  overflow: auto;
 }
 #details .expand,
 #details .reduce {
@@ -545,11 +547,6 @@ footer .reduce {
 footer .expand:hover,
 footer .reduce:hover {
   background-color: #a3b7b8;
-}
-#legend > section,
-#details > section {
-  height: 100%;
-  overflow: auto;
 }
 /*
 #search

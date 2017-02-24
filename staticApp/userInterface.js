@@ -25,6 +25,10 @@ define([
 			document.querySelector('#details>.expand').addEventListener('click',expandPanel);
 			document.querySelector('#details>.reduce').addEventListener('click',reducePanel);
 		});
+		on('tradView.rendered', ()=>{
+			document.querySelector('#details>.expand').addEventListener('click',expandPanel);
+			document.querySelector('#details>.reduce').addEventListener('click',reducePanel);
+		});
 	}
 	function displayErr(err){
 		if(!err.type) return console.error("err:",err);

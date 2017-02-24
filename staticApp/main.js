@@ -19,6 +19,7 @@ requirejs([
 	'userInterface'
 ], (ev, demo,layerConfParser,legendView, noticeView, cfg,trad, formLoader, gData, graph, ui) => {
 	console.log('chargement des fichiers js terminé');
+	window.top.ev = ev; // exposition du module smartEvents pour pouvoir débuger plus facilement.
 	ev.need('config',(c)=>console.log("config diffusée : ",c));
 	ev.on("lang.change", (lang)=>console.log("langue active : ",lang));
 	ev.on("trad.applied", ()=>console.log("traduction appliquée"));
