@@ -5,8 +5,9 @@ define([
 		'./trad/trad',
 		'./formLoader',
 		'./graphDataLoader',
-		'./structManipulation'
-	], (d3, ev, fps, trad, formLoader,graphDataLoader,struct) => {
+		'./structManipulation',
+		'./json2dom'
+	], (d3, ev, fps, trad, formLoader,graphDataLoader,struct,json2dom) => {
 		'use strict';
 		const on = ev.on, send = ev.send, t = trad.t, multiTimeout = fps.multiTimeout;
 		let options,currentGraph;
@@ -168,25 +169,41 @@ define([
 					});
 
 				// image par calques.
+				const domLayerList = json2dom.json2dom(options.layers);
+				const flatFinalLayers = json2dom.xpath("//*[criterion]",domLayerList);
+				for(let domLayer of flatFinalLayers){
+					const layer = json2dom.dom2json(domLayer);
+					if(options.hideLayers[layer.name]) continue;
+					if(layer.name.split('_')[0] !== "Fonction") continue; //FIXME: virrer cette restriction
 
-				nodeEnter.append("image")
-					.attr("xlink:href", function (n) {
-						//FIXME: return options.nodeLayers[n.type] ? options.nodeLayers[n.type].picto : options.defaultPicto;
-						return options.defaultPicto;
-					})
-					.attr("x", function (n) {
-						return -n.r / 2;
-					})
-					.attr("y", function (n) {
-						return -n.r / 2;
-					})
-					.attr("width", function (n) {
-						return n.r;
-					})
-					.attr("height", function (n) {
-						return n.r;
-					})
-				;
+					let domGraph = json2dom.json2dom(currentGraph);
+					const selected = json2dom.xpath(layer.criterion,domGraph,XPathResult.UNORDERED_NODE_ITERATOR_TYPE);
+					const selectedSet = {};
+					for(let domNode of selected){
+						let id = domNode.querySelector('id').innerText;
+						let type = id.split('-')[0];
+						if(type === "link") continue;
+						selectedSet[id] = true;
+					}
+
+					nodeEnter
+						.filter((n)=>selectedSet[n.id])
+						.append("image")
+						.attr("xlink:href", options.layersPictoFolder+layer.name+".svg")
+						.attr("x", function (n) {
+							return -n.r / 2;
+						})
+						.attr("y", function (n) {
+							return -n.r / 2;
+						})
+						.attr("width", function (n) {
+							return n.r;
+						})
+						.attr("height", function (n) {
+							return n.r;
+						}).on("error",build_imageLoadErrorPlaceOverFunc(layer.name));
+				}
+
 				nodeEnter.append("text")
 					.attr("text-anchor", "middle")
 					.attr("dx", 0)
@@ -450,6 +467,20 @@ define([
 				return drawer(points);
 			}
 		});
+	function build_imageLoadErrorPlaceOverFunc(id) { //FIXME: doublon legendView. La ranger mieux (et la coder)
+		return (e) => {
+			//FIXME: if svg fail -> png, if png fail -> identicon
+			//https://github.com/davidbau/seedrandom
+
+			//https://www.khanacademy.org/computer-programming/random-face-generator/6612995667394560
+			//http://svgavatars.com/
+			//http://bl.ocks.org/enjalot/1282943
+			//https://github.com/alexvandesande/blockies
+			//https://github.com/dmester/jdenticon
+			// default image
+			d3.event.target["xlink:href"] = options.defaultPicto;
+		}
+	}
 
 		return {};
 	});
