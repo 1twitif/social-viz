@@ -6,10 +6,13 @@ layers:
     - EcoOrganisme: /node/*[Fonction = "Eco-organisme"]
     - EntrepriseRecyclage: /node/*[Fonction = "Entreprise recyclage"]
     - Evènement: /node/*[Fonction = "Evènement"]
+    - Formation: /node/*[Fonction = "Formation"]
     - GisementSpécifique: /node/*[Fonction = "Gisement spécifique"]
+    - Institution: /node/*[Fonction = "Institution"]
     - OpérateurDeTri: /node/*[Fonction = "Opérateur de Tri"]
     - Publication: /node/*[Fonction = "Publication"]
     - Recyclerie: /node/*[Fonction = "Recyclerie"]
+    - Reseau: /node/*[Fonction = "Reseau"]
     - Ressourcerie: /node/*[Fonction = "Ressourcerie"]
   - Status:
     - Artisan: /node/*[Statut = "Artisan"]

@@ -56,7 +56,7 @@ node:
     label: SYNTOMA
     Commune: Le Vigan
   - id: node-D-QTVNV
-    Fonction: Ressourcerie
+    Fonction: Reseau
     Statut: Association
     RaisonSociale: Dynamique Occitanie
     label: Dynamique Occitanie
@@ -65,13 +65,14 @@ node:
     StructureSociale: Autre
     SiAutrePrécisez: Réseau
   - id: node-Suez-azJPV
-    Fonction: Entreprise recyclage
+    Type: Entreprise recyclage
     Statut: Entreprise transnationale
     RaisonSociale: Véolia
     label: Véolia
     ChiffreAffaire: '3961'
     Adresse: 23 rye de pjf
     CodePostal: '33140'
+    Fonction: Entreprise recyclage
   - id: node-Ecologic-azFPV
     Type: Opérateur de Tri
     Statut: Entreprise nationale
@@ -163,6 +164,115 @@ node:
     Adresse: 7 rue de la Boule rouge
     CodePostal: '75009'
     Commune: Paris
+  - id: node-Amazon-VTROe
+    Fonction: Distribution
+    Statut: Entreprise transnationale
+    RaisonSociale: Amazon
+    label: Amazon
+    Catégorie: Multiple
+  - id: node-A-YzJOe
+    Fonction: Ressourcerie
+    RaisonSociale: AEPI
+    label: AEPI
+    Catégorie: Multiple
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: '1245,  Avenue du Languedoc'
+    CodePostal: '66000'
+    Commune: Perpignan
+  - id: node-E-VXpOa
+    Fonction: Ressourcerie
+    RaisonSociale: ERCA
+    label: ERCA
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+    Adresse: '9, rue du Lantissargues'
+    CodePostal: '34000'
+    Commune: Montpellier
+  - id: node-Recyclerie-du-Valles-ZzBOe
+    Fonction: Ressourcerie
+    RaisonSociale: Recyclerie du Vallespir
+    label: Recyclerie du Vallespir
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+  - id: node-La-Clede-WTVOR
+    Fonction: Ressourcerie
+    RaisonSociale: La Clède
+    label: La Clède
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+  - id: node-Le-Parchemin-UXdOa
+    Fonction: Ressourcerie
+    RaisonSociale: Le Parchemin
+    label: Le Parchemin
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Etablissement public
+    Catégorie: Multiple
+    Adresse: rue Jean Mermoz ZA d’Occitanie
+    CodePostal: '11300'
+    Commune: LIMOUX
+  - id: node-MP2-Environnement-WXlPV
+    Fonction: Ressourcerie
+    RaisonSociale: MP2 Environnement
+    label: MP2 Environnement
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+    Adresse: '8, avenue du Général de Gaulle'
+    CodePostal: '11200'
+    Commune: Lézignan Corbières
+  - id: node-Reseau-National-des-TTRNa
+    Fonction: Reseau
+    RaisonSociale: Réseau National des Ressourceries
+    label: Réseau National des Ressourceries
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Association
+    Catégorie: Multiple
+  - id: node-ADEME-ZzBOR
+    Fonction: Institution
+    Statut: Etablissement public
+    RaisonSociale: ADEME
+    label: ADEME
+    Catégorie: Multiple
+  - id: node-Reseau-PACA-TXpNe
+    Fonction: Reseau
+    Statut: Association
+    RaisonSociale: Réseau PACA
+    label: Réseau PACA
+    Catégorie: Multiple
+  - id: node-REFER-STVOa
+    Fonction: Reseau
+    Statut: Association
+    RaisonSociale: REFER
+    label: REFER
+    Catégorie: Multiple
+  - id: node-L-VTBOR
+    Fonction: Ressourcerie
+    Statut: Association
+    RaisonSociale: La Petite roquette
+    label: La Petite roquette
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-Recyclerie-Creati-RTJNV
+    Fonction: Ressourcerie
+    RaisonSociale: La Recyclerie Créative
+    label: La Recyclerie Créative
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Association
+  - id: node-Ma-Ressourcerie-TXdOR
+    Fonction: Ressourcerie
+    RaisonSociale: Ma Ressourcerie
+    label: Ma Ressourcerie
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Association
+    Catégorie: Multiple
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -214,3 +324,129 @@ link:
     TypeFlux: DEEE ménager
     label: DEEE ménager
     Date: 01/09/2016
+  - id: link-Fournisseur-TXlNV
+    source: node-Recyclivre-YzNOe
+    target: node-Amazon-VTROe
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    DébutLien: '?'
+  - id: link-Adherent-RTFPR
+    source: node-A-YzJOe
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-UTFOV
+    source: node-E-VXpOa
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-QTJNV
+    source: node-Recyclerie-du-Valles-ZzBOe
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-Z3dNR
+    source: node-La-Clede-WTVOR
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-UTVOa
+    source: node-Le-Parchemin-UXdOa
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-UXlPR
+    source: node-MP2-Environnement-WXlPV
+    target: node-D-QTVNV
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-WTRPV
+    source: node-D-QTVNV
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Partenariat-economiq-YzROa
+    source: node-Reseau-National-des-TTRNa
+    target: node-Ecomobilier-ZzVNe
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '?'
+  - id: link-Partenariat-economiq-azFNR
+    source: node-Reseau-National-des-TTRNa
+    target: node-Ecologic-azFPV
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '?'
+  - id: link-Partenariat-economiq-WXlNR
+    source: node-Reseau-National-des-TTRNa
+    target: node-Valdelia-ZzVOV
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '?'
+  - id: link-Financement-WTNOe
+    source: node-Reseau-National-des-TTRNa
+    target: node-ADEME-ZzBOR
+    GenreLien: Relationnel
+    TypeRelation: Financement
+    label: Financement
+    DébutLien: '?'
+  - id: link-Adherent-TXdNa
+    source: node-REFER-STVOa
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-Y3pPR
+    source: node-Reseau-PACA-TXpNe
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-WXlOa
+    source: node-L-VTBOR
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-Z3dNa
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+  - id: link-Adherent-UXdOR
+    source: node-Ma-Ressourcerie-TXdOR
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'
+    FinLien: '?'
+  - id: link-Adherent-UXhOV
+    source: node-Ma-Ressourcerie-TXdOR
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    DébutLien: '?'

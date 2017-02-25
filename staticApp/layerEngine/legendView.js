@@ -58,7 +58,7 @@ define([
 			for(let toHide in config.hideLayers){
 				if(config.hideLayers[toHide]){
 					let domGraph = json2dom.json2dom(graph);
-					const hideCriterion = json2dom.xpath("//*[name='"+toHide+"']/criterion/text()",domLayerList);
+					const hideCriterion = json2dom.xpath('//*[name="'+toHide+'"]/criterion/text()',domLayerList);
 					const toRemove = json2dom.xpath(hideCriterion,domGraph,XPathResult.UNORDERED_NODE_ITERATOR_TYPE);
 					for(let item of toRemove){
 						let id = item.querySelector('id').innerText;

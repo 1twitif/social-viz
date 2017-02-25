@@ -170,10 +170,13 @@ enum:
       - Eco-organisme
       - Entreprise recyclage
       - Evènement
+      - Formation
       - Gisement spécifique
+      - Institution
       - Opérateur de Tri
       - Publication
       - Recyclerie
+      - Reseau
       - Ressourcerie
     statut:
       - Artisan
