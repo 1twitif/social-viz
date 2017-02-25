@@ -219,8 +219,6 @@ node:
     Fonction: Ressourcerie
     RaisonSociale: MP2 Environnement
     label: MP2 Environnement
-    ChiffreAffaireMagasin_CATotal: NaN
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
     Catégorie: Multiple
     Adresse: '8, avenue du Général de Gaulle'
     CodePostal: '11200'
@@ -229,8 +227,6 @@ node:
     Fonction: Reseau
     RaisonSociale: Réseau National des Ressourceries
     label: Réseau National des Ressourceries
-    ChiffreAffaireMagasin_CATotal: NaN
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
     Statut: Association
     Catégorie: Multiple
   - id: node-ADEME-ZzBOR
@@ -256,21 +252,15 @@ node:
     Statut: Association
     RaisonSociale: La Petite roquette
     label: La Petite roquette
-    ChiffreAffaireMagasin_CATotal: NaN
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
   - id: node-La-Recyclerie-Creati-RTJNV
     Fonction: Ressourcerie
     RaisonSociale: La Recyclerie Créative
     label: La Recyclerie Créative
-    ChiffreAffaireMagasin_CATotal: NaN
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
     Statut: Association
   - id: node-Ma-Ressourcerie-TXdOR
     Fonction: Ressourcerie
     RaisonSociale: Ma Ressourcerie
     label: Ma Ressourcerie
-    ChiffreAffaireMagasin_CATotal: NaN
-    ChiffreAffaireMagasin_CAPanierMoyen: NaN
     Statut: Association
     Catégorie: Multiple
 link:
@@ -280,7 +270,6 @@ link:
     GenreLien: Flux
     TypeFlux: TLC
     label: TLC
-    comments: hgf
   - id: link-Autres-encombrants-ZzNNV
     source: node-Grand-Orb-TTVNV
     target: node-Bon-Debarras-Y3dPV
@@ -288,35 +277,31 @@ link:
     TypeFlux: Autres encombrants
     label: Autres encombrants
     Date: 24 février 2017
-    comments: x
   - id: link-Autres-encombrants-azBOR
     source: node-SYNTOMA-a3dNV
     target: node-R-YzNNe
     GenreLien: Flux
     TypeFlux: Autres encombrants
     label: Autres encombrants
-    comments: c
   - id: link-Autre-Z3lPR
     source: node-D-QTVNV
     target: node-Bon-Debarras-Y3dPV
     GenreLien: Relationnel
     TypeRelation: Autre
     label: Autre
-    comments: c
   - id: link-Autre-YzNPV
     source: node-D-QTVNV
     target: node-R-YzNNe
     GenreLien: Relationnel
     TypeRelation: Autre
     label: Autre
-    comments: c
   - id: link-DEEE-menager-YzFOa
     source: node-Suez-azJPV
     target: node-Ecologic-azFPV
     GenreLien: Flux
     TypeFlux: DEEE ménager
     label: DEEE ménager
-    Date: '2/09:1999'
+    Date: 2/09/1999
   - id: link-DEEE-menager-RXlOa
     source: node-Ecologic-azFPV
     target: node-R-YzNNe
@@ -330,123 +315,99 @@ link:
     GenreLien: Relationnel
     TypeRelation: Fournisseur
     label: Fournisseur
-    DébutLien: '?'
   - id: link-Adherent-RTFPR
     source: node-A-YzJOe
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-UTFOV
     source: node-E-VXpOa
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-QTJNV
     source: node-Recyclerie-du-Valles-ZzBOe
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-Z3dNR
     source: node-La-Clede-WTVOR
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-UTVOa
     source: node-Le-Parchemin-UXdOa
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-UXlPR
     source: node-MP2-Environnement-WXlPV
     target: node-D-QTVNV
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-WTRPV
     source: node-D-QTVNV
     target: node-Reseau-National-des-TTRNa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Partenariat-economiq-YzROa
     source: node-Reseau-National-des-TTRNa
     target: node-Ecomobilier-ZzVNe
     GenreLien: Relationnel
     TypeRelation: Partenariat économique
     label: Partenariat économique
-    DébutLien: '?'
   - id: link-Partenariat-economiq-azFNR
     source: node-Reseau-National-des-TTRNa
     target: node-Ecologic-azFPV
     GenreLien: Relationnel
     TypeRelation: Partenariat économique
     label: Partenariat économique
-    DébutLien: '?'
   - id: link-Partenariat-economiq-WXlNR
     source: node-Reseau-National-des-TTRNa
     target: node-Valdelia-ZzVOV
     GenreLien: Relationnel
     TypeRelation: Partenariat économique
     label: Partenariat économique
-    DébutLien: '?'
   - id: link-Financement-WTNOe
     source: node-Reseau-National-des-TTRNa
     target: node-ADEME-ZzBOR
     GenreLien: Relationnel
     TypeRelation: Financement
     label: Financement
-    DébutLien: '?'
   - id: link-Adherent-TXdNa
     source: node-REFER-STVOa
     target: node-Reseau-National-des-TTRNa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-Y3pPR
     source: node-Reseau-PACA-TXpNe
     target: node-Reseau-National-des-TTRNa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-WXlOa
     source: node-L-VTBOR
     target: node-REFER-STVOa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
-  - id: link-Adherent-Z3dNa
-    target: node-REFER-STVOa
-    GenreLien: Relationnel
-    TypeRelation: Adhérent
-    label: Adhérent
-    DébutLien: '?'
   - id: link-Adherent-UXdOR
     source: node-Ma-Ressourcerie-TXdOR
     target: node-REFER-STVOa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
-    FinLien: '?'
   - id: link-Adherent-UXhOV
     source: node-Ma-Ressourcerie-TXdOR
     target: node-REFER-STVOa
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
-    DébutLien: '?'
