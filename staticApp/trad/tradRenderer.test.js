@@ -39,7 +39,7 @@ define(['./tradRenderer', '../smartEvents'], (app, ev) => {
 				() => refreshTemplate('<input placeholder="key" value="key" title="key"/>',"key",true)
 			);
 			it("ne traduit pas les attributs systèmes (id, class, type)",
-				() => refreshTemplate('<input id="key" class="key" type="key"/>',"value",true)
+				() => refreshTemplate('<input id="key" class="key" type="key" src="key" href="key"/>',"value",true)
 			);
 		});
 	});
