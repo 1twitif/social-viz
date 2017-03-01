@@ -1,3 +1,4 @@
+defaultPicto: allData/img/empty.svg
 layers:
   - Fonction:
     - AtelierValorisation: /node/*[Fonction = "Atelier Valorisation"]

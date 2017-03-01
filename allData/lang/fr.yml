@@ -65,9 +65,9 @@ Grand Orb: ''
 Rd'Evolution: ''
 SYNTOMA: ''
 Dynamique Occitanie: ''
-new_node: ''
-new_link: ''
-form_title_node: ''
+new_node: Nouvel acteur
+new_link: Nouveau lien
+form_title_node: Formulaire de nouvel acteur
 id: ''
 Atelier Valorisation: ''
 Déchetterie: ''
@@ -178,7 +178,7 @@ Finance_AutreRessources: ''
 Finance_TotalCharges: ''
 Finance_PartAutofinancementEnPourcent: ''
 Suez: ''
-form_title_link: ''
+form_title_link: Formulaire de nouveau lien
 Véolia: ''
 source: ''
 target: ''
@@ -228,7 +228,7 @@ G2_voisin1: ''
 layerDetails_G2_voisin1: ''
 G2_voisins: ''
 layerDetails_G2_voisins: ''
-Links: ''
+Links: Liens
 layerDetails_Links: ''
 Links_sourceShorterThanTarget: ''
 layerDetails_Links_sourceShorterThanTarget: ''
@@ -238,3 +238,255 @@ Links_sameLengthSourceAndTarget: ''
 layerDetails_Links_sameLengthSourceAndTarget: ''
 Links_selfLink: ''
 layerDetails_Links_selfLink: ''
+trad_title: Traduction
+ACTIFRIP: ''
+AGIR: ''
+ALPES TLC: ''
+APIVET - Association Pour l'Insertion par le Vetement: ''
+Gebetex: ''
+Valdelia: ''
+Ecomobilier: ''
+SITA Suez Environnement: ''
+SRCE: ''
+La Fibre du Tri: ''
+EcoTLC: ''
+Recyclivre: ''
+Amazon: ''
+AEPI: ''
+ERCA: ''
+Recyclerie du Vallespir: ''
+La Clède: ''
+Le Parchemin: ''
+MP2 Environnement: ''
+Réseau National des Ressourceries: ''
+ADEME: ''
+Réseau PACA: ''
+REFER: ''
+La Petite roquette: ''
+La Recyclerie Créative: ''
+Ma Ressourcerie: ''
+Fonction: ''
+layerDetails_Fonction: ''
+Fonction_AtelierValorisation: 'Atelier '
+layerDetails_Fonction_AtelierValorisation: ''
+Fonction_Déchetterie: Déchetterie
+layerDetails_Fonction_Déchetterie: ''
+Fonction_Distribution: Distribution
+layerDetails_Fonction_Distribution: ''
+Fonction_EcoOrganisme: Eco-organisme
+layerDetails_Fonction_EcoOrganisme: ''
+Fonction_EntrepriseRecyclage: Entreprise Recyclage
+layerDetails_Fonction_EntrepriseRecyclage: ''
+Fonction_Evènement: Evénement
+layerDetails_Fonction_Evènement: ''
+Fonction_Formation: Formation
+layerDetails_Fonction_Formation: ''
+Fonction_GisementSpécifique: Gisement spécifique
+layerDetails_Fonction_GisementSpécifique: ''
+Fonction_Institution: Institution
+layerDetails_Fonction_Institution: ''
+Fonction_OpérateurDeTri: Opérateur de tri
+layerDetails_Fonction_OpérateurDeTri: ''
+Fonction_Publication: Publication
+layerDetails_Fonction_Publication: ''
+Fonction_Recyclerie: Recyclerie
+layerDetails_Fonction_Recyclerie: ''
+Fonction_Reseau: Réseau
+layerDetails_Fonction_Reseau: ''
+Fonction_Ressourcerie: Ressourcerie
+layerDetails_Fonction_Ressourcerie: ''
+Status: ''
+layerDetails_Status: ''
+Status_Artisan: Artisan
+layerDetails_Status_Artisan: ''
+Status_Artiste: Artiste
+layerDetails_Status_Artiste: ''
+Status_Association: Association
+layerDetails_Status_Association: ''
+Status_Auto-entrepreneur: Auto-entrepreneur
+layerDetails_Status_Auto-entrepreneur: ''
+Status_CommunautéDeCommunes: Com-Com
+layerDetails_Status_CommunautéDeCommunes: ''
+Status_Département: Département
+layerDetails_Status_Département: ''
+Status_EntreprisePmePmi: PME-PMI
+layerDetails_Status_EntreprisePmePmi: ''
+Status_EntrepriseInsertion: Entreprise d'insertion
+layerDetails_Status_EntrepriseInsertion: ''
+Status_EntrepriseNationale: Entreprise nationale
+layerDetails_Status_EntrepriseNationale: ''
+Status_EntrepriseTransnationale: Transnationale
+layerDetails_Status_EntrepriseTransnationale: ''
+Status_EtablissementPublic: Etablissement Public
+layerDetails_Status_EtablissementPublic: ''
+Status_Fondation: Fondation
+layerDetails_Status_Fondation: ''
+Status_Mairie: Commune
+layerDetails_Status_Mairie: ''
+Status_Media: Media
+layerDetails_Status_Media: ''
+Status_Région: Région
+layerDetails_Status_Région: ''
+Status_SCIC: SCIC
+layerDetails_Status_SCIC: ''
+Status_SCOP: SCOP
+layerDetails_Status_SCOP: ''
+Status_SyndicatMixte: Syndicat Mixte
+layerDetails_Status_SyndicatMixte: ''
+Status_UniversitéEcole: Université - Ecole
+layerDetails_Status_UniversitéEcole: ''
+Matières: ''
+layerDetails_Matières: ''
+Matières_Mobilier: Mobilier
+layerDetails_Matières_Mobilier: ''
+Matières_Métal: Métal
+layerDetails_Matières_Métal: ''
+Matières_PapierCarton: Papier - Carton
+layerDetails_Matières_PapierCarton: ''
+Matières_Textile: Textile
+layerDetails_Matières_Textile: ''
+Matières_DEEE: DEEE
+layerDetails_Matières_DEEE: ''
+Matières_DEEE_Electronique: DEEE - électronique
+layerDetails_Matières_DEEE_Electronique: ''
+Matières_DEEE_Electro-ménager-gros-blanc: DEEE - électro-ménager
+layerDetails_Matières_DEEE_Electro-ménager-gros-blanc: ''
+Matières_DEEE_Petit électro-ménager: DEEE - petit électro-ménager
+layerDetails_Matières_DEEE_Petit électro-ménager: ''
+Matières_DEEE_HI-Fi: DEEE - HI-Fi
+layerDetails_Matières_DEEE_HI-Fi: ''
+Matières_DEEE_Machine-outil: DEEE - machine outil
+layerDetails_Matières_DEEE_Machine-outil: ''
+Matières_DEEE_Matériel électroportatif: DEEE - matériel électroportatif
+layerDetails_Matières_DEEE_Matériel électroportatif: ''
+Matières_DEEE_Matériel d'éclairage: DEEE - éclairage
+layerDetails_Matières_DEEE_Matériel d'éclairage: ''
+Matières_Gisement spécifique: Gisement spécifique
+layerDetails_Matières_Gisement spécifique: ''
+Matières_Verre: Verre
+layerDetails_Matières_Verre: ''
+Matières_Culture: Culture
+layerDetails_Matières_Culture: ''
+Matières_Culture_Livre: Livre
+layerDetails_Matières_Culture_Livre: ''
+Matières_Culture_Magazine: Magazine
+layerDetails_Matières_Culture_Magazine: ''
+Matières_Culture_CD: CD
+layerDetails_Matières_Culture_CD: ''
+Matières_Culture_DVD: DVD
+layerDetails_Matières_Culture_DVD: ''
+Matières_Culture_Jeux-Video: Jeux-vidéos
+layerDetails_Matières_Culture_Jeux-Video: ''
+Matières_Culture_VHS: VHS
+layerDetails_Matières_Culture_VHS: ''
+Matières_Autre: Autres matières
+layerDetails_Matières_Autre: ''
+Matières_Autre_Bibelot: Bibelots
+layerDetails_Matières_Autre_Bibelot: ''
+Matières_Autre_Jouet: Jouets
+layerDetails_Matières_Autre_Jouet: ''
+Matières_Autre_Cadre: Cadres
+layerDetails_Matières_Autre_Cadre: ''
+Régions: ''
+layerDetails_Régions: ''
+Régions_AlsaceChampagneArdenneLorraine: Alsace CAL
+layerDetails_Régions_AlsaceChampagneArdenneLorraine: ''
+Régions_NouvelleAquitaine: Nouvelle Aquitaine
+layerDetails_Régions_NouvelleAquitaine: ''
+Régions_AuvergeRhoneAlpes: Auvergne Rhone Alpes
+layerDetails_Régions_AuvergeRhoneAlpes: ''
+Régions_BourgogneFranceComté: Bourgogne Franche Comté
+layerDetails_Régions_BourgogneFranceComté: ''
+Régions_Bretagne: Bretagne
+layerDetails_Régions_Bretagne: ''
+Régions_CentreValDeLoire: Centre Val de Loire
+layerDetails_Régions_CentreValDeLoire: ''
+Régions_Corse: Corse
+layerDetails_Régions_Corse: ''
+Régions_Gouadeloupe: Gouadeloupe
+layerDetails_Régions_Gouadeloupe: ''
+Régions_Guyane: Guyanne
+layerDetails_Régions_Guyane: ''
+Régions_IleDeFrance: Ile de France
+layerDetails_Régions_IleDeFrance: ''
+Régions_LanguedocRoussillonMidiPy: Occitanie
+layerDetails_Régions_LanguedocRoussillonMidiPy: ''
+Régions_LaRéunion: La Réunion
+layerDetails_Régions_LaRéunion: ''
+Régions_Martinique: Martinique
+layerDetails_Régions_Martinique: ''
+Régions_Mayotte: Mayotte
+layerDetails_Régions_Mayotte: ''
+Régions_HautDeFrance: Haut de France
+layerDetails_Régions_HautDeFrance: ''
+Régions_Normandie: Normandie
+layerDetails_Régions_Normandie: ''
+Régions_PolynésieFrançaise: Polynésie Fr
+layerDetails_Régions_PolynésieFrançaise: ''
+Régions_NouvelleCalédonie: Nouvelle Calédonie
+layerDetails_Régions_NouvelleCalédonie: ''
+Régions_PaysLoire: Pays de Loire
+layerDetails_Régions_PaysLoire: ''
+Régions_ProvenceAlpesCotedAzur: PACA
+layerDetails_Régions_ProvenceAlpesCotedAzur: ''
+Links_Relationnels: Liens relationnels
+layerDetails_Links_Relationnels: ''
+Links_Relationnels_Adhérent: Adhérent
+layerDetails_Links_Relationnels_Adhérent: ''
+Links_Relationnels_Editeur: Editeur
+layerDetails_Links_Relationnels_Editeur: ''
+Links_Relationnels_Emploi: Emploi
+layerDetails_Links_Relationnels_Emploi: ''
+Links_Relationnels_Entrepôt: Entrepôt
+layerDetails_Links_Relationnels_Entrepôt: ''
+Links_Relationnels_Familial: Familial
+layerDetails_Links_Relationnels_Familial: ''
+Links_Relationnels_Financement: Financement
+layerDetails_Links_Relationnels_Financement: ''
+Links_Relationnels_Fournisseur: Fournisseur
+layerDetails_Links_Relationnels_Fournisseur: ''
+Links_Relationnels_Gouvernance: Gouvernance
+layerDetails_Links_Relationnels_Gouvernance: ''
+Links_Relationnels_Lobbying: Lobbying
+layerDetails_Links_Relationnels_Lobbying: ''
+Links_Relationnels_Organisation: Organisation
+layerDetails_Links_Relationnels_Organisation: ''
+Links_Relationnels_Partenariat académique: Partenariat académique
+layerDetails_Links_Relationnels_Partenariat académique: ''
+Links_Relationnels_Partenariat économique: Partenariat économique
+layerDetails_Links_Relationnels_Partenariat économique: ''
+Links_Relationnels_Partenariat technique: Partenariat technique
+layerDetails_Links_Relationnels_Partenariat technique: ''
+Links_Relationnels_Prestation: Prestation
+layerDetails_Links_Relationnels_Prestation: ''
+Links_Relationnels_Proche: Proche
+layerDetails_Links_Relationnels_Proche: ''
+Links_Relationnels_Saisine: Saisine
+layerDetails_Links_Relationnels_Saisine: ''
+Links_Relationnels_Siège: Siège
+layerDetails_Links_Relationnels_Siège: ''
+Links_Relationnels_Sous-tutelle: Sous-tutelle
+layerDetails_Links_Relationnels_Sous-tutelle: ''
+Links_Relationnels_Autre: Autre
+layerDetails_Links_Relationnels_Autre: ''
+Links_Flux: Flux
+layerDetails_Links_Flux: ''
+Links_Flux_Financier: Financier
+layerDetails_Links_Flux_Financier: ''
+Links_Flux_DEA ménager: DEA ménager
+layerDetails_Links_Flux_DEA ménager: ''
+Links_Flux_DEA professionnel: DEA pro
+layerDetails_Links_Flux_DEA professionnel: ''
+Links_Flux_TLC: TLC
+layerDetails_Links_Flux_TLC: ''
+Links_Flux_DEEE ménager: DEEE ménager
+layerDetails_Links_Flux_DEEE ménager: ''
+Links_Flux_DEEE professionnel: DEEE pro
+layerDetails_Links_Flux_DEEE professionnel: ''
+Links_Flux_Autres encombrants: Autres encombrants
+layerDetails_Links_Flux_Autres encombrants: ''
+Links_Flux_DAE: DAE
+layerDetails_Links_Flux_DAE: ''
+Links_Flux_Autre déchets: Autres déchets
+layerDetails_Links_Flux_Autre déchets: ''
+form_title: Edition
