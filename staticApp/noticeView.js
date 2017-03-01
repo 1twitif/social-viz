@@ -3,10 +3,10 @@
 
 
 define([
-	'smartEvents',
-	'htmlTools',
-	'trad/trad',
-	'json2dom'
+	'./smartEvents',
+	'./htmlTools',
+	'./trad/trad',
+	'./json2dom'
 ], (ev, htmlTools, trad, json2dom) => {
 	const buildNode = htmlTools.buildNode, t = trad.t;
 
