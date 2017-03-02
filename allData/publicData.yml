@@ -499,6 +499,11 @@ node:
     RaisonSociale: Lodève
     label: Lodève
     Catégorie: Autre
+  - id: node-ecobazar-WTBOe
+    Fonction: Evènement
+    Statut: Association
+    RaisonSociale: ecobazar
+    label: ecobazar
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -930,3 +935,9 @@ link:
     TypeRelation: Prestation
     label: Prestation
     DébutLien: '2016'
+  - id: link-Fournisseur-QXlOR
+    source: node-ecobazar-WTBOe
+    target: node-Bon-Debarras-Y3dPV
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur

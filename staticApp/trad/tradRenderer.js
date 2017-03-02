@@ -39,7 +39,7 @@ define(['../smartEvents', '../structManipulation'], (ev, struct) => {
 	function refreshAttributesTrad(node, allKeys) {
 		if (node.attributes) {
 			for (let attr of node.attributes) {
-				if (attr.name === "class" || attr.name === "id" || attr.name === "type") continue;
+				if (attr.name === "class" || attr.name === "id" || attr.name === "type" || attr.name === "src" || attr.name === "href") continue;
 				let text = multiTranslate(attr.value,allKeys);
 				if (attr.value !== text) attr.value = text;
 			}
