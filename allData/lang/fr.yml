@@ -295,98 +295,98 @@ Fonction_Reseau: Réseau
 layerDetails_Fonction_Reseau: ''
 Fonction_Ressourcerie: Ressourcerie
 layerDetails_Fonction_Ressourcerie: ''
-Status: ''
+Statuts: ''
 layerDetails_Status: ''
-Status_Artisan: Artisan
-layerDetails_Status_Artisan: ''
-Status_Artiste: Artiste
-layerDetails_Status_Artiste: ''
-Status_Association: Association
-layerDetails_Status_Association: ''
-Status_Auto-entrepreneur: Auto-entrepreneur
-layerDetails_Status_Auto-entrepreneur: ''
-Status_CommunautéDeCommunes: Com-Com
-layerDetails_Status_CommunautéDeCommunes: ''
-Status_Département: Département
-layerDetails_Status_Département: ''
-Status_EntreprisePmePmi: PME-PMI
-layerDetails_Status_EntreprisePmePmi: ''
-Status_EntrepriseInsertion: Entreprise d'insertion
-layerDetails_Status_EntrepriseInsertion: ''
-Status_EntrepriseNationale: Entreprise nationale
-layerDetails_Status_EntrepriseNationale: ''
-Status_EntrepriseTransnationale: Transnationale
-layerDetails_Status_EntrepriseTransnationale: ''
-Status_EtablissementPublic: Etablissement Public
-layerDetails_Status_EtablissementPublic: ''
-Status_Fondation: Fondation
-layerDetails_Status_Fondation: ''
-Status_Mairie: Commune
-layerDetails_Status_Mairie: ''
-Status_Media: Media
-layerDetails_Status_Media: ''
-Status_Région: Région
-layerDetails_Status_Région: ''
-Status_SCIC: SCIC
-layerDetails_Status_SCIC: ''
-Status_SCOP: SCOP
-layerDetails_Status_SCOP: ''
-Status_SyndicatMixte: Syndicat Mixte
-layerDetails_Status_SyndicatMixte: ''
-Status_UniversitéEcole: Université - Ecole
-layerDetails_Status_UniversitéEcole: ''
-Matières: ''
-layerDetails_Matières: ''
-Matières_Mobilier: Mobilier
-layerDetails_Matières_Mobilier: ''
-Matières_Métal: Métal
-layerDetails_Matières_Métal: ''
-Matières_PapierCarton: Papier - Carton
-layerDetails_Matières_PapierCarton: ''
-Matières_Textile: Textile
-layerDetails_Matières_Textile: ''
-Matières_DEEE: DEEE
-layerDetails_Matières_DEEE: ''
-Matières_DEEE_Electronique: DEEE - électronique
-layerDetails_Matières_DEEE_Electronique: ''
-Matières_DEEE_Electro-ménager-gros-blanc: DEEE - électro-ménager
-layerDetails_Matières_DEEE_Electro-ménager-gros-blanc: ''
-Matières_DEEE_Petit électro-ménager: DEEE - petit électro-ménager
-layerDetails_Matières_DEEE_Petit électro-ménager: ''
-Matières_DEEE_HI-Fi: DEEE - HI-Fi
-layerDetails_Matières_DEEE_HI-Fi: ''
-Matières_DEEE_Machine-outil: DEEE - machine outil
-layerDetails_Matières_DEEE_Machine-outil: ''
-Matières_DEEE_Matériel électroportatif: DEEE - matériel électroportatif
-layerDetails_Matières_DEEE_Matériel électroportatif: ''
-Matières_DEEE_Matériel d'éclairage: DEEE - éclairage
-layerDetails_Matières_DEEE_Matériel d'éclairage: ''
-Matières_Gisement spécifique: Gisement spécifique
-layerDetails_Matières_Gisement spécifique: ''
-Matières_Verre: Verre
-layerDetails_Matières_Verre: ''
-Matières_Culture: Culture
-layerDetails_Matières_Culture: ''
-Matières_Culture_Livre: Livre
-layerDetails_Matières_Culture_Livre: ''
-Matières_Culture_Magazine: Magazine
-layerDetails_Matières_Culture_Magazine: ''
-Matières_Culture_CD: CD
-layerDetails_Matières_Culture_CD: ''
-Matières_Culture_DVD: DVD
-layerDetails_Matières_Culture_DVD: ''
-Matières_Culture_Jeux-Video: Jeux-vidéos
-layerDetails_Matières_Culture_Jeux-Video: ''
-Matières_Culture_VHS: VHS
-layerDetails_Matières_Culture_VHS: ''
-Matières_Autre: Autres matières
-layerDetails_Matières_Autre: ''
-Matières_Autre_Bibelot: Bibelots
-layerDetails_Matières_Autre_Bibelot: ''
-Matières_Autre_Jouet: Jouets
-layerDetails_Matières_Autre_Jouet: ''
-Matières_Autre_Cadre: Cadres
-layerDetails_Matières_Autre_Cadre: ''
+Statuts_Artisan: Artisan
+layerDetails_Statuts_Artisan: ''
+Statuts_Artiste: Artiste
+layerDetails_Statuts_Artiste: ''
+Statuts_Association: Association
+layerDetails_Statuts_Association: ''
+Statuts_Auto-entrepreneur: Auto-entrepreneur
+layerDetails_Statuts_Auto-entrepreneur: ''
+Statuts_CommunautéDeCommunes: Com-Com
+layerDetails_Statuts_CommunautéDeCommunes: ''
+Statuts_Département: Département
+layerDetails_Statuts_Département: ''
+Statuts_EntreprisePmePmi: PME-PMI
+layerDetails_Statuts_EntreprisePmePmi: ''
+Statuts_EntrepriseInsertion: Entreprise d'insertion
+layerDetails_Statuts_EntrepriseInsertion: ''
+Statuts_EntrepriseNationale: Entreprise nationale
+layerDetails_Statuts_EntrepriseNationale: ''
+Statuts_EntrepriseTransnationale: Transnationale
+layerDetails_Statuts_EntrepriseTransnationale: ''
+Statuts_EtablissementPublic: Etablissement Public
+layerDetails_Statuts_EtablissementPublic: ''
+Statuts_Fondation: Fondation
+layerDetails_Statuts_Fondation: ''
+Statuts_Mairie: Commune
+layerDetails_Statuts_Mairie: ''
+Statuts_Media: Media
+layerDetails_Statuts_Media: ''
+Statuts_Région: Région
+layerDetails_Statuts_Région: ''
+Statuts_SCIC: SCIC
+layerDetails_Statuts_SCIC: ''
+Statuts_SCOP: SCOP
+layerDetails_Statuts_SCOP: ''
+Statuts_SyndicatMixte: Syndicat Mixte
+layerDetails_Statuts_SyndicatMixte: ''
+Statuts_UniversitéEcole: Université - Ecole
+layerDetails_Statuts_UniversitéEcole: ''
+Matieres: Matières
+layerDetails_Matieres: "Chacun sa spécialité, filtrer les acteurs du recyclage en fonction des matériaux dont ils s'occupent."
+Matieres_Mobilier: Mobilier
+layerDetails_Matieres_Mobilier: ''
+Matieres_Metal: Métal
+layerDetails_Matieres_Metal: ''
+Matieres_PapierCarton: Papier - Carton
+layerDetails_Matieres_PapierCarton: ''
+Matieres_Textile: Textile
+layerDetails_Matieres_Textile: ''
+Matieres_DEEE: DEEE
+layerDetails_Matieres_DEEE: "Les DEEE sont les Déchets d'Équipements Électriques et Électroniques"
+Matieres_DEEE_Electronique: DEEE - électronique
+layerDetails_Matieres_DEEE_Electronique: ''
+Matieres_DEEE_Electro-menager-gros-blanc: DEEE - électro-ménager
+layerDetails_Matieres_DEEE_Electro-menager-gros-blanc: ''
+Matieres_DEEE_PetitElectroMenager: DEEE - petit électro-ménager
+layerDetails_Matieres_DEEE_PetitElectroMenager: ''
+Matieres_DEEE_HI-Fi: DEEE - HI-Fi
+layerDetails_Matieres_DEEE_HI-Fi: ''
+Matieres_DEEE_Machine-outil: DEEE - machine outil
+layerDetails_Matieres_DEEE_Machine-outil: ''
+Matieres_DEEE_Matériel électroportatif: DEEE - matériel électroportatif
+layerDetails_Matieres_DEEE_Matériel électroportatif: ''
+Matieres_DEEE_Matériel d'éclairage: DEEE - éclairage
+layerDetails_Matieres_DEEE_Matériel d'éclairage: ''
+Matieres_Gisement spécifique: Gisement spécifique
+layerDetails_Matieres_Gisement spécifique: ''
+Matieres_Verre: Verre
+layerDetails_Matieres_Verre: ''
+Matieres_Culture: Culture
+layerDetails_Matieres_Culture: ''
+Matieres_Culture_Livre: Livre
+layerDetails_Matieres_Culture_Livre: ''
+Matieres_Culture_Magazine: Magazine
+layerDetails_Matieres_Culture_Magazine: ''
+Matieres_Culture_CD: CD
+layerDetails_Matieres_Culture_CD: ''
+Matieres_Culture_DVD: DVD
+layerDetails_Matieres_Culture_DVD: ''
+Matieres_Culture_Jeux-Video: Jeux-vidéos
+layerDetails_Matieres_Culture_Jeux-Video: ''
+Matieres_Culture_VHS: VHS
+layerDetails_Matieres_Culture_VHS: ''
+Matieres_Autre: Autres matières
+layerDetails_Matieres_Autre: ''
+Matieres_Autre_Bibelot: Bibelots
+layerDetails_Matieres_Autre_Bibelot: ''
+Matieres_Autre_Jouet: Jouets
+layerDetails_Matieres_Autre_Jouet: ''
+Matieres_Autre_Cadre: Cadres
+layerDetails_Matieres_Autre_Cadre: ''
 Régions: ''
 layerDetails_Régions: ''
 Régions_AlsaceChampagneArdenneLorraine: Alsace CAL

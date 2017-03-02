@@ -15,7 +15,7 @@ layers:
     - Recyclerie: /node/*[Fonction = "Recyclerie"]
     - Reseau: /node/*[Fonction = "Reseau"]
     - Ressourcerie: /node/*[Fonction = "Ressourcerie"]
-  - Status:
+  - Statuts:
     - Artisan: /node/*[Statut = "Artisan"]
     - Artiste: /node/*[Statut = "Artiste"]
     - Association: /node/*[Statut = "Association"]
@@ -35,20 +35,20 @@ layers:
     - SCOP: /node/*[Statut = "SCOP"]
     - SyndicatMixte: /node/*[Statut = "Syndicat mixte"]
     - UniversitéEcole: /node/*[Statut = "Université - Ecole"]
-  - Matières:
+  - Matieres:
     - Mobilier: /node/*[Catégorie = "Mobilier"]
-    - Métal: /node/*[Catégorie = "Métal"]
+    - Metal: /node/*[Catégorie = "Métal"]
     - PapierCarton: /node/*[Catégorie = "PapierCarton"]
     - Textile: /node/*[Catégorie = "Textile"]
     - DEEE:
       - Electronique: /node/*[DEEE = "Electronique"]
-      - Electro-ménager-gros-blanc: /node/*[DEEE = "Electro-ménager-gros-blanc"]
-      - Petit électro-ménager: /node/*[DEEE = "Petit électro-ménager"]
+      - Electro-menager-gros-blanc: /node/*[DEEE = "Electro-ménager-gros-blanc"]
+      - PetitElectroMenager: /node/*[DEEE = "Petit électro-ménager"]
       - HI-Fi: /node/*[DEEE = "HI-Fi"]
       - Machine-outil: /node/*[DEEE = "Machine-outil"]
-      - Matériel électroportatif: /node/*[DEEE = "Matériel électroportatif"]
-      - Matériel d'éclairage: /node/*[DEEE = "Matériel d'éclairage"]
-    - Gisement spécifique: /node/*[Catégorie = "Gisement spécifique"]
+      - MaterielElectroportatif: /node/*[DEEE = "Matériel électroportatif"]
+      - MaterielEclairage: /node/*[DEEE = "Matériel d'éclairage"]
+    - GisementSpecifique: /node/*[Catégorie = "Gisement spécifique"]
     - Verre: /node/*[Catégorie = "Verre"]
     - Culture:
       - Livre: /node/*[Culture = "Livre"]
