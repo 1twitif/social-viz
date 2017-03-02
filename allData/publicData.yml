@@ -215,6 +215,15 @@ node:
     Adresse: rue Jean Mermoz ZA d’Occitanie
     CodePostal: '11300'
     Commune: LIMOUX
+    StructureSociale: ACI
+    ETPbénévoles: '2.5'
+    NombreCDIhorsInsertion: '12'
+    NombreContratInsertion: '40'
+    NombreSalariés: '53'
+    CollecteDéchetterie: Oui
+    CollecteRDV: Oui
+    ApportVolontaire: Oui
+    CollectePaP: Oui
   - id: node-MP2-Environnement-WXlPV
     Fonction: Ressourcerie
     RaisonSociale: MP2 Environnement
@@ -263,6 +272,233 @@ node:
     label: Ma Ressourcerie
     Statut: Association
     Catégorie: Multiple
+  - id: node-Ressourcerie-de-Haut-UTROR
+    Fonction: Ressourcerie
+    RaisonSociale: Ressourcerie de Haute Provence
+    label: Ressourcerie de Haute Provence
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Association
+    Catégorie: Multiple
+  - id: node-ACTES-RE-SOURCES-QXpOa
+    Fonction: Ressourcerie
+    RaisonSociale: ACTES RE’SOURCES
+    label: ACTES RE’SOURCES
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Statut: Association
+  - id: node-Impulse-Toit-YzNPV
+    Fonction: Ressourcerie
+    RaisonSociale: Impulse Toit
+    label: Impulse Toit
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-Histoire-Sans-Fin-WXhOe
+    Fonction: Ressourcerie
+    RaisonSociale: Histoire Sans Fin
+    label: Histoire Sans Fin
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-Ressourcerie-PAE-VTJPV
+    Fonction: Ressourcerie
+    RaisonSociale: Ressourcerie PAE
+    label: Ressourcerie PAE
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-Declic-13-Y3pNR
+    Fonction: Ressourcerie
+    RaisonSociale: Déclic 13
+    label: Déclic 13
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: '1, Avenue Clément Ader – Immeuble le Concorde – ZI du Tubé'
+    CodePostal: '13800'
+    Commune: Istres
+  - id: node-La-Ressourcerie-du-P-VTJNa
+    Fonction: Ressourcerie
+    RaisonSociale: La Ressourcerie du Pays d’Arles
+    label: La Ressourcerie du Pays d’Arles
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: 'chez DSI, 8 avenue mistral '
+    CodePostal: '13210'
+    Commune: Saint Rémi de Provence
+  - id: node-Recyclodrome-STVNe
+    Fonction: Ressourcerie
+    RaisonSociale: Recyclodrome
+    label: Recyclodrome
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: 21 rue Chateauredon
+    CodePostal: '13001'
+    Commune: Marseille
+  - id: node-TriLogik-a3hNe
+    Fonction: Ressourcerie
+    RaisonSociale: TriLogik
+    label: TriLogik
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-ACTES-RE-SOURCES-YzJPR
+    Fonction: Ressourcerie
+    RaisonSociale: ACTES RE’SOURCES
+    label: ACTES RE’SOURCES
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-fabrique-a-Neuf-WTROa
+    Fonction: Ressourcerie
+    RaisonSociale: La fabrique à Neuf
+    label: La fabrique à Neuf
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-Recyclerie-Les-Po-TTNNa
+    Fonction: Ressourcerie
+    RaisonSociale: La Recyclerie Les Portes de l’Essonne
+    label: La Recyclerie Les Portes de l’Essonne
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-SIOM-Vallee-de-la-Ch-STRNV
+    Fonction: Ressourcerie
+    RaisonSociale: SIOM Vallée de la Chevreuse
+    label: SIOM Vallée de la Chevreuse
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: CD 118
+    CodePostal: '91978'
+    Commune: Courtaboeuf
+  - id: node-La-Ressourcerie-Le-UTVOe
+    Fonction: Ressourcerie
+    RaisonSociale: La Ressourcerie – Le Grenier
+    label: La Ressourcerie – Le Grenier
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-Gerbe-TTJOe
+    Fonction: Ressourcerie
+    RaisonSociale: La Gerbe
+    label: La Gerbe
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Adresse: 13 rue Fontenelles ZAC du Petit arc
+  - id: node-Ressourcerie-Apti-pr-a3dNV
+    Fonction: Ressourcerie
+    RaisonSociale: Ressourcerie Apti’prix
+    label: Ressourcerie Apti’prix
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-Collecterie-ZzRPR
+    Fonction: Ressourcerie
+    RaisonSociale: La Collecterie
+    label: La Collecterie
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-2mains-YzVNe
+    Fonction: Ressourcerie
+    RaisonSociale: 2mains
+    label: 2mains
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-Approche-a3pOa
+    Fonction: Ressourcerie
+    RaisonSociale: Approche
+    label: Approche
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-Home-Sweet-Zome-VTJNV
+    Fonction: Atelier Valorisation
+    Statut: Artiste
+    RaisonSociale: Home Sweet Zome
+    label: Home Sweet Zome
+    Catégorie: Verre
+  - id: node-PhilTex-and-Recyclin-VXdNR
+    Fonction: Entreprise recyclage
+    RaisonSociale: PhilTex and Recycling
+    label: PhilTex and Recycling
+    Catégorie: Textile
+  - id: node-CCPA-YzJOR
+    Fonction: Institution
+    Statut: Communauté de communes
+    RaisonSociale: CCPA
+    label: CCPA
+    Catégorie: Multiple
+  - id: node-Leclerc-UXpNR
+    Fonction: Gisement spécifique
+    Statut: Entreprise transnationale
+    RaisonSociale: Leclerc
+    label: Leclerc
+    Catégorie: Multiple
+  - id: node-Alogea-Y3dOV
+    Fonction: Gisement spécifique
+    Statut: Entreprise PME-PMI
+    RaisonSociale: Alogea
+    label: Alogea
+    Catégorie: Multiple
+    Commune: Limoux
+    CodePostal: '11300'
+  - id: node-Limouxin-ZzNNV
+    Fonction: Déchetterie
+    Statut: Communauté de communes
+    RaisonSociale: 'Limouxin '
+    label: Limouxin
+    Catégorie: Multiple
+  - id: node-Paprec-QTNNR
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Paprec
+    label: Paprec
+    Catégorie: PapierCarton
+  - id: node-Vertex-QXlNR
+    Fonction: Entreprise recyclage
+    Statut: Entreprise d'insertion
+    RaisonSociale: Vertex
+    label: Vertex
+    Catégorie: Textile
+  - id: node-Sapie-Z3hNe
+    Fonction: Atelier Valorisation
+    Statut: SCIC
+    RaisonSociale: Sapie
+    label: Sapie
+    Catégorie: DEEE
+    DEEE: Electronique
+  - id: node-Limoux-RXlNa
+    Fonction: Institution
+    Statut: Mairie
+    RaisonSociale: Limoux
+    label: Limoux
+    Catégorie: Autre
+    autre: Vélo
+  - id: node-PTCE-VTJNR
+    Fonction: Formation
+    Statut: Association
+    RaisonSociale: PTCE
+    label: PTCE
+    Catégorie: Multiple
+  - id: node-Aquatinte-Tintamare-TTVOV
+    Fonction: Distribution
+    Statut: SCIC
+    RaisonSociale: Aquatinte&Tintamare
+    label: Aquatinte&Tintamare
+    Catégorie: Multiple
+  - id: node-Valorink-UTROR
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: Valorink
+    label: Valorink
+    Catégorie: Autre
+    autre: Cartouche d'encre
+  - id: node-Recyclage-Lodevois-WTVOV
+    Fonction: Recyclerie
+    Statut: Association
+    RaisonSociale: Recyclage Lodévois
+    label: Recyclage Lodévois
+    Catégorie: Multiple
+    Adresse: Zone du Capitoul
+    CodePostal: '34700'
+    Commune: Lodève
+  - id: node-Lodeve-UTNOV
+    Fonction: Institution
+    Statut: Mairie
+    RaisonSociale: Lodève
+    label: Lodève
+    Catégorie: Autre
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -411,3 +647,286 @@ link:
     GenreLien: Relationnel
     TypeRelation: Adhérent
     label: Adhérent
+  - id: link-Adherent-azNPR
+    source: node-Ressourcerie-de-Haut-UTROR
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-VXlOa
+    source: node-ACTES-RE-SOURCES-QXpOa
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-UTROa
+    source: node-Impulse-Toit-YzNPV
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-SXhOe
+    source: node-Histoire-Sans-Fin-WXhOe
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    sources: x
+  - id: link-Adherent-WXlOR
+    source: node-Ressourcerie-PAE-VTJPV
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-UXlNa
+    source: node-Declic-13-Y3pNR
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-YzFNV
+    source: node-La-Ressourcerie-du-P-VTJNa
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-RTNNR
+    source: node-Recyclodrome-STVNe
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-TTVOe
+    source: node-TriLogik-a3hNe
+    target: node-Reseau-PACA-TXpNe
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-TTJNe
+    source: node-La-fabrique-a-Neuf-WTROa
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-STVNe
+    source: node-La-Recyclerie-Les-Po-TTNNa
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: c
+  - id: link-Adherent-STFNR
+    source: node-SIOM-Vallee-de-la-Ch-STRNV
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-TTFNe
+    source: node-La-Ressourcerie-Le-UTVOe
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-ZzNOa
+    source: node-La-Gerbe-TTJOe
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-VTBNe
+    source: node-Ressourcerie-Apti-pr-a3dNV
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-RXlOa
+    source: node-La-Collecterie-ZzRPR
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-ZzFNR
+    source: node-2mains-YzVNe
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-Adherent-azNPV
+    source: node-Approche-a3pOa
+    target: node-REFER-STVOa
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: x
+  - id: link-DEA-menager-STBNa
+    source: node-R-YzNNe
+    target: node-Ecomobilier-ZzVNe
+    GenreLien: Flux
+    TypeFlux: DEA ménager
+    label: DEA ménager
+    comments: x
+  - id: link-Autre-dechets-VTFNe
+    source: node-R-YzNNe
+    target: node-Home-Sweet-Zome-VTJNV
+    GenreLien: Relationnel
+    TypeFlux: Autre déchets
+    label: Autre déchets
+    comments: Fournit en verre
+    TypeRelation: Fournisseur
+  - id: link-Fournisseur-YzFPV
+    source: node-Bon-Debarras-Y3dPV
+    target: node-Recyclivre-YzNOe
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    comments: Fournit des livres
+  - id: link-Fournisseur-RXpOV
+    source: node-R-YzNNe
+    target: node-PhilTex-and-Recyclin-VXdNR
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    DébutLien: '2016'
+  - id: link-Prestation-QTVOV
+    source: node-Le-Parchemin-UXdOa
+    target: node-CCPA-YzJOR
+    GenreLien: Relationnel
+    TypeRelation: Prestation
+    label: Prestation
+    comments: x
+    DébutLien: '2006'
+  - id: link-Fournisseur-QTJPR
+    source: node-Leclerc-UXpNR
+    target: node-Le-Parchemin-UXdOa
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    comments: x
+  - id: link-Fournisseur-QTBPV
+    source: node-Alogea-Y3dOV
+    target: node-Le-Parchemin-UXdOa
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    comments: x
+  - id: link-Fournisseur-azBPV
+    source: node-Limouxin-ZzNNV
+    target: node-Le-Parchemin-UXdOa
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    comments: 'Relation informelle. '
+  - id: link-Fournisseur-WTNPR
+    source: node-Le-Parchemin-UXdOa
+    target: node-Ecomobilier-ZzVNe
+    GenreLien: Flux
+    label: DEA ménager
+    comments: 100 tonnes/an
+    TypeFlux: DEA ménager
+    Date: '2016'
+  - id: link-DEA-professionnel-RTFNa
+    source: node-Le-Parchemin-UXdOa
+    target: node-Valdelia-ZzVOV
+    GenreLien: Flux
+    TypeFlux: DEA professionnel
+    label: DEA professionnel
+    comments: très peu de flux
+  - id: link-Fournisseur-TXpNa
+    source: node-Le-Parchemin-UXdOa
+    target: node-Ecologic-azFPV
+    GenreLien: Relationnel
+    TypeRelation: Fournisseur
+    label: Fournisseur
+    DébutLien: '2014'
+    comments: 6 tonnes/an
+  - id: link-Partenariat-economiq-WXlNV
+    source: node-Le-Parchemin-UXdOa
+    target: node-Paprec-QTNNR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2016'
+    comments: 15 tonnes/an
+  - id: link-TLC-SXpNe
+    source: node-Le-Parchemin-UXdOa
+    target: node-Vertex-QXlNR
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: 40 tonnes en 2015
+  - id: link-Partenariat-economiq-VXdOe
+    source: node-Le-Parchemin-UXdOa
+    target: node-Sapie-Z3hNe
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2015'
+  - id: link-Partenariat-economiq-SXhOR
+    source: node-Le-Parchemin-UXdOa
+    target: node-Limoux-RXlNa
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2017'
+    comments: >-
+      Le parchemin met à disposition des vélos en préfiguration d'une plateforme
+      de mobilité, dans une visée d'insertion.
+  - id: link-Partenariat-economiq-UXpNe
+    source: node-PTCE-VTJNR
+    target: node-Le-Parchemin-UXdOa
+    GenreLien: Relationnel
+    TypeRelation: Partenariat académique
+    label: Partenariat académique
+    comments: >-
+      Animation avec une coopérative Agricole d'un atelier sur l'économie
+      circulaire. 
+  - id: link-Partenariat-economiq-RTRNR
+    source: node-Aquatinte-Tintamare-TTVOV
+    target: node-Le-Parchemin-UXdOa
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2017'
+    comments: >-
+      Mise à disposition de mobilier, vaisselle, du Parchemin à Aquatinte, qui
+      peut revendre à leurs clients, en échange d'une mise à disposition
+      d'espace. 
+  - id: link-Partenariat-economiq-VXdPV
+    source: node-Reseau-National-des-TTRNa
+    target: node-Recyclivre-YzNOe
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2016'
+    comments: >-
+      Tous les adhérents ont droit de bénéficier du partenariat avec
+      Recyclivre. 
+  - id: link-Partenariat-economiq-azROR
+    source: node-Valorink-UTROR
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    DébutLien: '2016'
+  - id: link-Prestation-QTNNe
+    source: node-Recyclage-Lodevois-WTVOV
+    target: node-Lodeve-UTNOV
+    GenreLien: Relationnel
+    TypeRelation: Prestation
+    label: Prestation
+    DébutLien: '2016'
