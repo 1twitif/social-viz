@@ -11,6 +11,8 @@ panels:
   tools-panel: small
 zoomPrecisionK: 3
 zoomPrecisionXY: 2
+nodeStyle:
+  selectionSize: 0.75
 fixedNode:
   sides: 8
   tension: -2

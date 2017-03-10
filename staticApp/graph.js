@@ -159,16 +159,18 @@ define([
 				nodeEnter.append("circle")
 					.attr("cx", 0).attr("cy", 0)
 					.attr("r", function (n) {
-						return n.r = options.nodeBaseRadius * nodeRadiusScale(n.degree);
+						n.r = options.nodeBaseRadius * nodeRadiusScale(n.degree);
+						return n.r * options.nodeStyle.selectionSize
 					})
-					.attr("opacity", .2) //FIXME: nombre magique
+					//.attr("opacity", .2) //FIXME: nombre magique
 					.attr("fill", function (d) {
 						return color(0);//FIXME: couleur magique
 					});
 				nodeEnter.append("path")
 					.attr("d", function (n) {
-						return points2Path(regularPolygon(0, 0, n.r, options.fixedNode.sides), options.fixedNode.tension);
+						return points2Path(regularPolygon(0, 0, n.r * options.nodeStyle.selectionSize, options.fixedNode.sides), options.fixedNode.tension)+' z';
 					})
+					.attr("transform","rotate(22.5)")
 					.attr("fill", function (d) {
 						return color(0);//FIXME: couleur magique
 					});
@@ -484,7 +486,7 @@ define([
 					.y(function (d) {
 						return d.y;
 					})
-					.curve(d3.curveCardinalClosed.tension(tension));
+					//.curve(d3.curveCardinalClosed.tension(tension));
 				return drawer(points);
 			}
 		});
