@@ -504,6 +504,34 @@ node:
     Statut: Association
     RaisonSociale: ecobazar
     label: ecobazar
+  - ActivitePrincipale: President
+  - id: node-GEBETEX-ZzBOV
+    Fonction: Entreprise recyclage
+    Statut: Entreprise nationale
+    RaisonSociale: GEBETEX
+    label: GEBETEX
+    Catégorie: Textile
+  - id: node-CROIX-ROUGE-13-UTJNV
+    Fonction: Reseau
+    Statut: Association
+    RaisonSociale: CROIX ROUGE 13
+    label: CROIX ROUGE 13
+    Catégorie: Multiple
+  - id: node-Le-Relais-13-WTVNR
+    Fonction: Reseau
+    Statut: Association
+    RaisonSociale: Le Relais 13
+    label: Le Relais 13
+    Catégorie: Textile
+  - id: node-A-WXdOa
+    Fonction: Ressourcerie
+    Statut: Association
+    RaisonSociale: AIR
+    label: AIR
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+    StructureSociale: ACI
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -941,3 +969,94 @@ link:
     GenreLien: Relationnel
     TypeRelation: Fournisseur
     label: Fournisseur
+  - id: link-Partenariat-economiq-YzFNe
+    source: node-GEBETEX-ZzBOV
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-TLC-QTBOe
+    source: node-La-Fibre-du-Tri-WXpOV
+    target: node-CROIX-ROUGE-13-UTJNV
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: c
+  - id: link-t-QXpNa
+    source: node-Le-Relais-13-WTVNR
+    target: node-La-Fibre-du-Tri-WXpOV
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: c
+  - id: link-Adherent-STFPR
+    source: node-La-Fibre-du-Tri-WXpOV
+    target: node-EcoTLC-UTRPR
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: c
+  - id: link-Adherent-Z3hNR
+    source: node-GEBETEX-ZzBOV
+    target: node-EcoTLC-UTRPR
+    GenreLien: Relationnel
+    TypeRelation: Adhérent
+    label: Adhérent
+    comments: c
+  - id: link-TLC-UTBOV
+    source: node-L-VTBOR
+    target: node-GEBETEX-ZzBOV
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: c
+  - id: link-TLC-WTRNV
+    source: node-Ma-Ressourcerie-TXdOR
+    target: node-GEBETEX-ZzBOV
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: c
+  - id: link-TLC-VTNNe
+    source: node-A-WXdOa
+    target: node-GEBETEX-ZzBOV
+    GenreLien: Flux
+    TypeFlux: TLC
+    label: TLC
+    comments: c
+  - id: link-Membre-YzNOe
+    source: node-A-WXdOa
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Membre
+    label: Membre
+    comments: c
+  - id: link-Partenariat-economiq-Z3pNa
+    source: node-Vertex-QXlNR
+    target: node-EcoTLC-UTRPR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-VXpNe
+    source: node-REFER-STVOa
+    target: node-ADEME-ZzBOR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-RTVPR
+    source: node-Reseau-PACA-TXpNe
+    target: node-ADEME-ZzBOR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-Z3dOe
+    source: node-Le-Relais-13-WTVNR
+    target: node-EcoTLC-UTRPR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
