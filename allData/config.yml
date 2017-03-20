@@ -83,7 +83,7 @@ layers:
     - PaysLoire: /node/*[starts-with(CodePostal,'44') or starts-with(CodePostal,'49') or starts-with(CodePostal,'53') or starts-with(CodePostal,'72') or starts-with(CodePostal,'85')]
     - ProvenceAlpesCotedAzur: /node/*[starts-with(CodePostal,'04') or starts-with(CodePostal,'05') or starts-with(CodePostal,'06') or starts-with(CodePostal,'13') or starts-with(CodePostal,'83') or starts-with(CodePostal,'84')]
   - Links:
-    - Relationnels:
+    - Relationnel:
       - Adhérent: /link/*[TypeRelation = "Adhérent"]
       - Editeur: /link/*[TypeRelation = "Editeur"]
       - Emploi: /link/*[TypeRelation = "Emploi"]
