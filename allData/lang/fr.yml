@@ -199,7 +199,7 @@ DAE: ''
 Autre déchets: ''
 TypeFlux: ''
 Date: ''
-legend_title: ''
+legend_title: Légende
 infoBox_layerEntityCount: ''
 G1: ''
 +: ''
@@ -336,7 +336,9 @@ layerDetails_Statuts_SyndicatMixte: ''
 Statuts_UniversitéEcole: Université - Ecole
 layerDetails_Statuts_UniversitéEcole: ''
 Matieres: Matières
-layerDetails_Matieres: "Chacun sa spécialité, filtrer les acteurs du recyclage en fonction des matériaux dont ils s'occupent."
+layerDetails_Matieres: >-
+  Chacun sa spécialité, filtrer les acteurs du recyclage en fonction des
+  matériaux dont ils s'occupent.
 Matieres_Mobilier: Mobilier
 layerDetails_Matieres_Mobilier: ''
 Matieres_Metal: Métal
@@ -346,7 +348,7 @@ layerDetails_Matieres_PapierCarton: ''
 Matieres_Textile: Textile
 layerDetails_Matieres_Textile: ''
 Matieres_DEEE: DEEE
-layerDetails_Matieres_DEEE: "Les DEEE sont les Déchets d'Équipements Électriques et Électroniques"
+layerDetails_Matieres_DEEE: Les DEEE sont les Déchets d'Équipements Électriques et Électroniques
 Matieres_DEEE_Electronique: DEEE - électronique
 layerDetails_Matieres_DEEE_Electronique: ''
 Matieres_DEEE_Electro-menager-gros-blanc: DEEE - électro-ménager
@@ -490,3 +492,49 @@ layerDetails_Links_Flux_DAE: ''
 Links_Flux_Autre déchets: Autres déchets
 layerDetails_Links_Flux_Autre déchets: ''
 form_title: Edition
+Ressourcerie de Haute Provence: ''
+ACTES RE’SOURCES: ''
+Impulse Toit: ''
+Histoire Sans Fin: ''
+Ressourcerie PAE: ''
+Déclic 13: ''
+La Ressourcerie du Pays d’Arles: ''
+Recyclodrome: ''
+TriLogik: ''
+La fabrique à Neuf: ''
+La Recyclerie Les Portes de l’Essonne: ''
+SIOM Vallée de la Chevreuse: ''
+La Ressourcerie – Le Grenier: ''
+La Gerbe: ''
+Ressourcerie Apti’prix: ''
+La Collecterie: ''
+2mains: ''
+Approche: ''
+Home Sweet Zome: ''
+PhilTex and Recycling: ''
+CCPA: ''
+Leclerc: ''
+Alogea: ''
+Limouxin: ''
+Paprec: ''
+Vertex: ''
+Sapie: ''
+Limoux: ''
+PTCE: ''
+Aquatinte&Tintamare: ''
+Valorink: ''
+Recyclage Lodévois: ''
+Lodève: ''
+ecobazar: ''
+undefined: ''
+GEBETEX: ''
+CROIX ROUGE 13: ''
+Le Relais 13: ''
+AIR: ''
+layerDetails_Statuts: ''
+Matieres_DEEE_MaterielElectroportatif: ''
+layerDetails_Matieres_DEEE_MaterielElectroportatif: ''
+Matieres_DEEE_MaterielEclairage: ''
+layerDetails_Matieres_DEEE_MaterielEclairage: ''
+Matieres_GisementSpecifique: ''
+layerDetails_Matieres_GisementSpecifique: ''
