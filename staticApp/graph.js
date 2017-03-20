@@ -133,7 +133,7 @@ define([
 					.attr("id", (n) => n.id)
 					.attr("class", "link")
 					.attr("stroke-width", function (d) {
-						return 4*Math.sqrt(d.value || 1);
+						return 2*Math.sqrt(d.value || 1);
 					})
 					.on("click", selectLink);
 
