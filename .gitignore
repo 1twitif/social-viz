@@ -5,3 +5,4 @@ build
 
 *.built.*
 lcov.info
+npm-debug.log
