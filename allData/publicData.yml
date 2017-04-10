@@ -541,6 +541,34 @@ node:
     label: Tremplin Horizon
     ChiffreAffaireMagasin_CATotal: NaN
     ChiffreAffaireMagasin_CAPanierMoyen: NaN
+  - id: node-La-REcyclerie-TTVNR
+    Fonction: Atelier Valorisation
+    Statut: Association
+    RaisonSociale: La REcyclerie
+    label: La REcyclerie
+    Catégorie: Multiple
+  - id: node-R-TXhOe
+    Fonction: Ressourcerie
+    Statut: Entreprise d'insertion
+    RaisonSociale: ésistes Ressourcerie
+    label: ésistes Ressourcerie
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    Catégorie: Multiple
+    StructureSociale: EI
+  - id: node-e-SXhPV
+    Fonction: Ressourcerie
+    Statut: Entreprise d'insertion
+    label: Résistes-Ressourcerie
+    ChiffreAffaireMagasin_CATotal: NaN
+    ChiffreAffaireMagasin_CAPanierMoyen: NaN
+    RaisonSociale: Résistes-Ressourcerie
+  - id: node-Recup-Art-WXpNa
+    Fonction: Evènement
+    Statut: Association
+    RaisonSociale: Récup'Art
+    label: Récup'Art
+    Catégorie: Multiple
 link:
   - id: link-TLC-a3lPV
     source: node-Bon-Debarras-Y3dPV
@@ -1082,4 +1110,75 @@ link:
     GenreLien: Relationnel
     TypeRelation: Partenariat économique
     label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-UTNOR
+    source: node-R1
+    target: node-EcoTLC-UTRPR
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-WXhOa
+    source: node-La-REcyclerie-TTVNR
+    target: node-Suez-azJPV
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: c
+  - id: link-Partenariat-economiq-QTJNe
+    source: node-La-REcyclerie-TTVNR
+    target: node-Recyclivre-YzNOe
+    GenreLien: Relationnel
+    TypeRelation: Partenariat économique
+    label: Partenariat économique
+    comments: ' c'
+  - id: link-Membre-WTBNe
+    source: node-e-SXhPV
+    target: node-Reseau-National-des-TTRNa
+    GenreLien: Relationnel
+    TypeRelation: Membre
+    label: Membre
+    comments: c
+  - id: link-Sous-tutelle-RTVPV
+    source: node-e-SXhPV
+    target: node-Recup-Art-WXpNa
+    GenreLien: Relationnel
+    TypeRelation: Sous-tutelle
+    label: Sous-tutelle
+    comments: c
+  - id: link-DEA-menager-QXlOV
+    source: node-e-SXhPV
+    target: node-Ecomobilier-ZzVNe
+    GenreLien: Flux
+    TypeFlux: DEA ménager
+    label: DEA ménager
+    comments: c
+  - id: link-DEEE-menager-TTROe
+    source: node-e-SXhPV
+    target: node-Ecologic-azFPV
+    GenreLien: Flux
+    TypeFlux: DEEE ménager
+    label: DEEE ménager
+    comments: c
+  - id: link-Multiple-WTBOe
+    source: node-e-SXhPV
+    target: node-Paprec-QTNNR
+    GenreLien: Flux
+    TypeFlux: Multiple
+    label: Multiple
+    comments: c
+  - id: link-DAE-YzJOV
+    source: node-e-SXhPV
+    target: node-Recyclivre-YzNOe
+    GenreLien: Relationnel
+    TypeFlux: DAE
+    label: Fournisseur
+    comments: c
+    TypeRelation: Fournisseur
+  - id: link-Financement-SXhOa
+    source: node-ADEME-ZzBOR
+    target: node-e-SXhPV
+    GenreLien: Relationnel
+    TypeRelation: Financement
+    label: Financement
     comments: c

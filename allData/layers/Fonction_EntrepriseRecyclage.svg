@@ -14,8 +14,8 @@
    viewBox="0 0 45 45.000001"
    id="svg4958"
    version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="Entreprise-recyclage.svg"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="Fonction_EntrepriseRecyclage.svg"
    inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Pictos-fonctions\picto-loupe.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
@@ -28,12 +28,12 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="-24.440026"
-     inkscape:cy="35.074605"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="11.570593"
+     inkscape:cy="23.074182"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="true"
+     showgrid="false"
      units="px"
      inkscape:window-width="1366"
      inkscape:window-height="705"
@@ -61,65 +61,60 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1007.3622)">
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5524"
-       width="45"
-       height="45"
-       x="-5.2047731e-009"
-       y="1007.3622"
-       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-legendes\DEA.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5524-31"
-       width="45"
-       height="45"
-       x="-5.2047731e-009"
-       y="1007.3622"
-       inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-legendes\DEA.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5524-8"
-       width="45"
-       height="45"
-       x="-5.2047731e-009"
-       y="1007.3622"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
     <g
-       style="display:inline"
-       id="g6208"
-       transform="matrix(0.86682538,0,0,0.86682538,-317.73526,759.86713)"
-       inkscape:export-filename="D:\0-0-Agata\0-Toile-recyclage\Pictos\pictos-structures.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300">
+       id="g10134">
+      <rect
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-legendes\DEA.png"
+         y="1007.3622"
+         x="-5.2047731e-009"
+         height="45"
+         width="45"
+         id="rect5524"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         inkscape:export-filename="D:\0-0-Agata\graphik\pictogrammes\Picto-legendes\DEA.png"
+         y="1007.3622"
+         x="-5.2047731e-009"
+         height="45"
+         width="45"
+         id="rect5524-31"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="300"
+         inkscape:export-xdpi="300"
+         y="1007.3622"
+         x="-5.2047731e-009"
+         height="45"
+         width="45"
+         id="rect5524-8"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:1.95103896;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <circle
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
          inkscape:export-filename="D:\0-0-Opacite\graphik\pictogrammes\Déf\Entreprises.png"
-         r="24.80315"
-         cy="311.47571"
-         cx="392.50726"
+         r="21.5"
+         cy="1029.8622"
+         cx="22.499998"
          id="path5087-3-8-5-1-25-9"
-         style="display:inline;opacity:1;fill:#00b1ff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         style="display:inline;opacity:1;fill:#5dfa74;fill-opacity:1;stroke:#00aeff;stroke-width:0.8668254;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="ccccccsccsccccc"
          inkscape:connector-curvature="0"
          id="path6028"
-         d="m 370.74292,302.37549 43.5287,0 0,1.00984 -1.00985,0 -4.13252,17.19061 -2.0426,-0.008 c 0,0 -0.65758,-0.22734 -0.99219,-0.22682 -0.34003,5.7e-4 -1.03172,0.22992 -1.03172,0.22992 l -23.19013,-0.0106 c 0,0 -0.68966,-0.23648 -1.02285,-0.23628 -0.34979,2e-4 -1.02609,0.2377 -1.02609,0.2377 l -4.03154,-0.01 -4.03937,-17.16732 -1.00984,0 z"
-         style="fill:#323232;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         d="M 3.6341125,1021.9739 H 41.365894 v 0.8753 h -0.875363 l -3.582173,14.9013 -1.770578,-0.01 c 0,0 -0.570007,-0.1971 -0.860055,-0.1967 -0.294747,5e-4 -0.894321,0.1993 -0.894321,0.1993 l -20.101794,-0.01 c 0,0 -0.597815,-0.205 -0.886632,-0.2049 -0.303207,2e-4 -0.889441,0.2061 -0.889441,0.2061 l -3.4946411,-0.01 -3.5014284,-14.8811 h -0.875355 z"
+         style="fill:#323232;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.8668254px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="path6030"
-         d="m 372.32434,303.36886 40.3608,0.0329 -0.14821,0.42337 -40.05933,0 z"
-         style="fill:#0a0a0a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         d="m 5.0049275,1022.835 34.9857655,0.029 -0.128472,0.367 H 5.1377772 Z"
+         style="fill:#0a0a0a;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.8668254px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <g
-         transform="matrix(0.07125,0,0,0.07125,401.14517,226.71141)"
+         transform="matrix(0.06176131,0,0,0.06176131,29.987554,956.38633)"
          id="g4420"
          style="display:inline;fill:#c8c8c8;fill-opacity:1">
         <g
@@ -135,11 +130,11 @@
              sodipodi:nodetypes="csccccscc"
              inkscape:connector-curvature="0"
              id="path4383"
-             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 9.06988,3.1771 9.06988,3.1771 l 61.89302,0.6933 -0.34667,45.5241 -35.77974,0 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -6.5471,-5.3923 -6.5471,-5.3923 z"
+             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 9.06988,3.1771 9.06988,3.1771 l 61.89302,0.6933 -0.34667,45.5241 h -35.77974 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -6.5471,-5.3923 -6.5471,-5.3923 z"
              style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         </g>
         <g
-           transform="matrix(-0.50301994,-0.8642748,0.8642748,-0.50301994,-1216.7343,1690.7977)"
+           transform="rotate(-120.2,-122.24125,1195.2255)"
            style="display:inline;fill:#c8c8c8;fill-opacity:1"
            id="g4385-2">
           <path
@@ -152,11 +147,11 @@
              sodipodi:nodetypes="csccccscc"
              inkscape:connector-curvature="0"
              id="path4383-2"
-             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 9.06988,3.1771 9.06988,3.1771 l 61.89302,0.6933 -0.34667,45.5241 -35.77974,0 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -6.5471,-5.3923 -6.5471,-5.3923 z"
+             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 9.06988,3.1771 9.06988,3.1771 l 61.89302,0.6933 -0.34667,45.5241 h -35.77974 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -6.5471,-5.3923 -6.5471,-5.3923 z"
              style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         </g>
         <g
-           transform="matrix(-0.45864956,0.88861724,-0.88861724,-0.45864956,883.19008,1859.1227)"
+           transform="rotate(117.3,-124.69879,1198.5834)"
            style="display:inline;fill:#c8c8c8;fill-opacity:1"
            id="g4385-3">
           <path
@@ -169,7 +164,7 @@
              sodipodi:nodetypes="csscccscc"
              inkscape:connector-curvature="0"
              id="path4383-3"
-             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 5.91488,2.6223 9.06988,3.1771 20.32051,3.5733 61.89302,0.6933 61.89302,0.6933 l -0.34667,45.5241 -35.77974,0 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -9.13747,-5.8759 -9.13747,-5.8759 z"
+             d="m -216.95064,1221.0543 c 0,0 5.71155,5.1392 8.72322,6.4128 3.87072,1.6368 5.91488,2.6223 9.06988,3.1771 20.32051,3.5733 61.89302,0.6933 61.89302,0.6933 l -0.34667,45.5241 h -35.77974 c 0,0 -7.4047,-1.1848 -10.24497,-2.3876 -3.60759,-1.5278 -9.13747,-5.8759 -9.13747,-5.8759 z"
              style="fill:#c8c8c8;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         </g>
       </g>
